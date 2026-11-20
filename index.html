@@ -394,280 +394,136 @@
                     </div>
                 </section>
 
-                <!-- Service Section Start -->
-                <section class="service-section section-padding section-bg fix" id="services">
-                    <div class="container">
-                        <!-- Section Header -->
-                        <div class="text-center mb-60">
-                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center" style="display: block; margin-bottom: 20px;">What We Do</span>
-                            <h2 class="split-title mb-4" style="font-size: 42px; font-weight: 800; color: var(--header); margin-bottom: 20px;">
-                                One Partner.<br>
-                                <span style="color: var(--theme);">A Clearer HR Picture.</span>
-                            </h2>
-                            <p style="max-width: 720px; margin: 0 auto; color: var(--text); font-size: 18px; line-height: 1.8; font-weight: 400;">
-                                A modular service offering tailored to your organisation’s size, sector, and operating realities.
-                            </p>
+                <!-- Service Section Start (What We Do) -->
+                <style>
+                    .gb-wwd { background: var(--bg-light, #F8FAFF); padding: 96px 0; position: relative; overflow-x: clip; }
+                    .gb-wwd__wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; width: 100%; }
+                    .gb-wwd__head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
+                    .gb-wwd__eyebrow { display: block; font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text); margin-bottom: 16px; }
+                    .gb-wwd__title { font-size: clamp(30px, 4vw, 44px); font-weight: 800; line-height: 1.2; color: var(--header); margin: 0 0 20px; }
+                    .gb-wwd__title span { color: #F26A3F; display: block; }
+                    .gb-wwd__sub { max-width: 640px; margin: 0 auto; color: var(--text); font-size: 18px; line-height: 1.7; text-wrap: balance; }
+                    .gb-wwd__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: stretch; }
+                    .gb-wwd__grid > .wow { display: flex; min-width: 0; }
+                    .gb-wwd__card { position: relative; display: flex; flex-direction: column; width: 100%; background: #fff; border: 1px solid var(--border, #E1E9F5); border-radius: 18px; padding: 32px 28px 28px; box-shadow: 0 6px 24px rgba(17, 27, 52, .06); overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; }
+                    .gb-wwd__card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, #F26A3F, #2A9D8F); }
+                    .gb-wwd__card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(17, 27, 52, .10); }
+                    .gb-wwd__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+                    .gb-wwd__icon { width: 56px; height: 56px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; color: var(--c); background: var(--cb); }
+                    .gb-wwd__num { width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #fff; background: var(--n); box-shadow: 0 4px 10px rgba(17, 27, 52, .15); }
+                    .gb-wwd__card h3 { font-size: 21px; font-weight: 700; line-height: 1.35; color: var(--header); margin: 0 0 12px; }
+                    .gb-wwd__card p { font-size: 15.5px; line-height: 1.7; color: var(--text); margin: 0 0 24px; }
+                    .gb-wwd__link { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; color: #F26A3F; font-weight: 600; font-size: 15px; }
+                    .gb-wwd__link i { transition: transform .3s ease; }
+                    .gb-wwd__link:hover { color: #CC4A22; }
+                    .gb-wwd__link:hover i { transform: translateX(4px); }
+                    .gb-wwd__cta { display: flex; justify-content: center; margin-top: 56px; }
+                    .gb-wwd__btn { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; background: #F26A3F; color: #fff; font-size: 16px; font-weight: 600; line-height: 1; padding: 8px 8px 8px 28px; border-radius: 999px; box-shadow: 0 8px 20px rgba(242, 106, 63, .28); transition: background .3s ease, transform .3s ease; }
+                    .gb-wwd__btn:hover { background: #CC4A22; color: #fff; transform: translateY(-2px); }
+                    .gb-wwd__btn .arr { width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #F26A3F; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+                    .gb-wwd__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 64px; }
+                    .gb-wwd__stat { background: #fff; border: 1px solid var(--border, #E1E9F5); border-radius: 16px; padding: 28px 16px; text-align: center; box-shadow: 0 4px 16px rgba(17, 27, 52, .05); min-width: 0; }
+                    .gb-wwd__stat .v { font-size: clamp(30px, 3.6vw, 46px); font-weight: 700; line-height: 1.1; color: var(--header); margin: 0 0 10px; white-space: nowrap; }
+                    .gb-wwd__stat .v em { font-style: normal; color: #F26A3F; }
+                    .gb-wwd__stat .l { font-size: 14.5px; font-weight: 600; color: var(--header); margin: 0; }
+                    @media (max-width: 1024px) { .gb-wwd__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } }
+                    @media (max-width: 767px) {
+                        .gb-wwd { padding: 64px 0; }
+                        .gb-wwd__head { margin-bottom: 40px; }
+                        .gb-wwd__sub { font-size: 16px; }
+                        .gb-wwd__grid { grid-template-columns: 1fr; gap: 20px; }
+                        .gb-wwd__card { padding: 28px 22px 24px; }
+                        .gb-wwd__cta { margin-top: 40px; }
+                        .gb-wwd__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+                        .gb-wwd__stat { padding: 22px 12px; }
+                    }
+                </style>
+                <section class="gb-wwd" id="services">
+                    <div class="gb-wwd__wrap">
+                        <div class="gb-wwd__head">
+                            <span class="gb-wwd__eyebrow">What We Do</span>
+                            <h2 class="gb-wwd__title">One Partner. <span>A Clearer HR Picture.</span></h2>
+                            <p class="gb-wwd__sub">A modular service offering tailored to your organisation’s size, sector and operating realities.</p>
                         </div>
 
-                        <!-- Services Grid -->
-                        <div class="row g-4 g-md-5">
-                            <!-- 01 HR Compliance Review -->
-                            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".1s">
-                                <div class="service-card-box p-5 h-100" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 20px; border: 1px solid var(--border); height: 100%; transition: all 0.4s ease; position: relative; overflow: hidden;">
-                                    <!-- Decorative accent -->
-                                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--theme), var(--accent-teal));"></div>
-                                    <div class="d-flex align-items-start justify-content-between mb-4">
-                                        <div class="icon-box" style="width: 60px; height: 60px; line-height: 60px; text-align: center; background: linear-gradient(135deg, rgba(239,105,57,0.12) 0%, rgba(239,105,57,0.05) 100%); border-radius: 14px; color: var(--theme); font-size: 26px; flex-shrink: 0;">
-                                            <i class="fa-solid fa-scale-balanced"></i>
-                                        </div>
-                                        <span style="font-size: 36px; font-weight: 900; color: rgba(239,105,57,0.08); letter-spacing: -1px;">01</span>
+                        <div class="gb-wwd__grid">
+                            <div class="wow fadeInUp" data-wow-delay=".1s">
+                                <article class="gb-wwd__card">
+                                    <div class="gb-wwd__top">
+                                        <span class="gb-wwd__icon" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);"><i class="fa-solid fa-scale-balanced"></i></span>
+                                        <span class="gb-wwd__num" style="--n: #F26A3F;">01</span>
                                     </div>
-                                    <h3 style="font-size: 22px; font-weight: 700; color: var(--header); margin-bottom: 12px; line-height: 1.4;">
-                                        HR Compliance Review
-                                    </h3>
-                                    <p style="color: var(--text); font-size: 15px; line-height: 1.7; margin-bottom: 20px; font-weight: 400;">
-                                        Comprehensive review of applicable labour-law requirements, statutory registers, notices, returns, and filing workflows.
-                                    </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 25px;">
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Applicable labour laws & filings
-                                        </li>
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Statutory registers & displays
-                                        </li>
-                                        <li style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Vendor & contractor documentation
-                                        </li>
-                                    </ul>
-                                    <a href="service#compliance" class="link-btn" style="color: var(--theme); font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-                                        Learn Details <i class="fa-solid fa-arrow-right" style="transition: transform 0.3s ease;"></i>
-                                    </a>
-                                </div>
+                                    <h3>HR Compliance Review</h3>
+                                    <p>Review applicable labour-law requirements, records, registers, notices and filing workflows.</p>
+                                    <a href="service#compliance" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                </article>
                             </div>
-
-                            <!-- 02 HR Process Audit -->
-                            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                                <div class="service-card-box p-5 h-100" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 20px; border: 1px solid var(--border); height: 100%; transition: all 0.4s ease; position: relative; overflow: hidden;">
-                                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--theme), var(--accent-teal));"></div>
-                                    <div class="d-flex align-items-start justify-content-between mb-4">
-                                        <div class="icon-box" style="width: 60px; height: 60px; line-height: 60px; text-align: center; background: linear-gradient(135deg, rgba(13,151,135,0.12) 0%, rgba(13,151,135,0.05) 100%); border-radius: 14px; color: var(--accent-teal); font-size: 26px; flex-shrink: 0;">
-                                            <i class="fa-solid fa-diagram-project"></i>
-                                        </div>
-                                        <span style="font-size: 36px; font-weight: 900; color: rgba(13,151,135,0.08); letter-spacing: -1px;">02</span>
+                            <div class="wow fadeInUp" data-wow-delay=".2s">
+                                <article class="gb-wwd__card">
+                                    <div class="gb-wwd__top">
+                                        <span class="gb-wwd__icon" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);"><i class="fa-solid fa-diagram-project"></i></span>
+                                        <span class="gb-wwd__num" style="--n: #CC4A22;">02</span>
                                     </div>
-                                    <h3 style="font-size: 22px; font-weight: 700; color: var(--header); margin-bottom: 12px; line-height: 1.4;">
-                                        HR Process Audit
-                                    </h3>
-                                    <p style="color: var(--text); font-size: 15px; line-height: 1.7; margin-bottom: 20px; font-weight: 400;">
-                                        Examine the entire employee journey: recruitment, onboarding, attendance, leave, role changes, and exit clearances.
-                                    </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 25px;">
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Recruitment & onboarding flows
-                                        </li>
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Attendance & leave controls
-                                        </li>
-                                        <li style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Resignation, clearance & F&F
-                                        </li>
-                                    </ul>
-                                    <a href="service#process" class="link-btn" style="color: var(--theme); font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-                                        Learn Details <i class="fa-solid fa-arrow-right" style="transition: transform 0.3s ease;"></i>
-                                    </a>
-                                </div>
+                                    <h3>HR Process Audit</h3>
+                                    <p>Examine recruitment, onboarding, attendance, leave, employee changes and exits.</p>
+                                    <a href="service#process" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                </article>
                             </div>
-
-                            <!-- 03 Policy & Documentation -->
-                            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                                <div class="service-card-box p-5 h-100" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 20px; border: 1px solid var(--border); height: 100%; transition: all 0.4s ease; position: relative; overflow: hidden;">
-                                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--theme), var(--accent-teal));"></div>
-                                    <div class="d-flex align-items-start justify-content-between mb-4">
-                                        <div class="icon-box" style="width: 60px; height: 60px; line-height: 60px; text-align: center; background: linear-gradient(135deg, rgba(239,105,57,0.12) 0%, rgba(239,105,57,0.05) 100%); border-radius: 14px; color: var(--theme); font-size: 26px; flex-shrink: 0;">
-                                            <i class="fa-solid fa-file-contract"></i>
-                                        </div>
-                                        <span style="font-size: 36px; font-weight: 900; color: rgba(239,105,57,0.08); letter-spacing: -1px;">03</span>
+                            <div class="wow fadeInUp" data-wow-delay=".3s">
+                                <article class="gb-wwd__card">
+                                    <div class="gb-wwd__top">
+                                        <span class="gb-wwd__icon" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);"><i class="fa-solid fa-file-contract"></i></span>
+                                        <span class="gb-wwd__num" style="--n: #F5A540;">03</span>
                                     </div>
-                                    <h3 style="font-size: 22px; font-weight: 700; color: var(--header); margin-bottom: 12px; line-height: 1.4;">
-                                        Policy & Documentation
-                                    </h3>
-                                    <p style="color: var(--text); font-size: 15px; line-height: 1.7; margin-bottom: 20px; font-weight: 400;">
-                                        Assess company policies, appointment letters, employee handbooks, POSH compliance, and process consistency.
-                                    </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 25px;">
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Employee handbook & policies
-                                        </li>
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            POSH awareness & ICC setup
-                                        </li>
-                                        <li style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Grievance & disciplinary rules
-                                        </li>
-                                    </ul>
-                                    <a href="service#policy" class="link-btn" style="color: var(--theme); font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-                                        Learn Details <i class="fa-solid fa-arrow-right" style="transition: transform 0.3s ease;"></i>
-                                    </a>
-                                </div>
+                                    <h3>Policy &amp; Documentation</h3>
+                                    <p>Assess HR policies, appointment documents, employee handbook and process consistency.</p>
+                                    <a href="service#policy" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                </article>
                             </div>
-
-                            <!-- 04 Employee Records Audit -->
-                            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                                <div class="service-card-box p-5 h-100" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 20px; border: 1px solid var(--border); height: 100%; transition: all 0.4s ease; position: relative; overflow: hidden;">
-                                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--theme), var(--accent-teal));"></div>
-                                    <div class="d-flex align-items-start justify-content-between mb-4">
-                                        <div class="icon-box" style="width: 60px; height: 60px; line-height: 60px; text-align: center; background: linear-gradient(135deg, rgba(13,151,135,0.12) 0%, rgba(13,151,135,0.05) 100%); border-radius: 14px; color: var(--accent-teal); font-size: 26px; flex-shrink: 0;">
-                                            <i class="fa-solid fa-folder-open"></i>
-                                        </div>
-                                        <span style="font-size: 36px; font-weight: 900; color: rgba(13,151,135,0.08); letter-spacing: -1px;">04</span>
+                            <div class="wow fadeInUp" data-wow-delay=".1s">
+                                <article class="gb-wwd__card">
+                                    <div class="gb-wwd__top">
+                                        <span class="gb-wwd__icon" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);"><i class="fa-solid fa-folder-open"></i></span>
+                                        <span class="gb-wwd__num" style="--n: #2A9D8F;">04</span>
                                     </div>
-                                    <h3 style="font-size: 22px; font-weight: 700; color: var(--header); margin-bottom: 12px; line-height: 1.4;">
-                                        Employee Records Audit
-                                    </h3>
-                                    <p style="color: var(--text); font-size: 15px; line-height: 1.7; margin-bottom: 20px; font-weight: 400;">
-                                        Check completeness, accuracy, accessibility, confidentiality, and statutory retention of personnel files.
-                                    </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 25px;">
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Offer & appointment letter consistency
-                                        </li>
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            KYC & background qualifications
-                                        </li>
-                                        <li style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            File retention & privacy access
-                                        </li>
-                                    </ul>
-                                    <a href="service#records" class="link-btn" style="color: var(--theme); font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-                                        Learn Details <i class="fa-solid fa-arrow-right" style="transition: transform 0.3s ease;"></i>
-                                    </a>
-                                </div>
+                                    <h3>Employee Records Audit</h3>
+                                    <p>Check completeness, accuracy, accessibility and retention of employee files.</p>
+                                    <a href="service#records" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                </article>
                             </div>
-
-                            <!-- 05 Compensation & Benefits -->
-                            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                                <div class="service-card-box p-5 h-100" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 20px; border: 1px solid var(--border); height: 100%; transition: all 0.4s ease; position: relative; overflow: hidden;">
-                                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--theme), var(--accent-teal));"></div>
-                                    <div class="d-flex align-items-start justify-content-between mb-4">
-                                        <div class="icon-box" style="width: 60px; height: 60px; line-height: 60px; text-align: center; background: linear-gradient(135deg, rgba(239,105,57,0.12) 0%, rgba(239,105,57,0.05) 100%); border-radius: 14px; color: var(--theme); font-size: 26px; flex-shrink: 0;">
-                                            <i class="fa-solid fa-file-invoice-dollar"></i>
-                                        </div>
-                                        <span style="font-size: 36px; font-weight: 900; color: rgba(239,105,57,0.08); letter-spacing: -1px;">05</span>
+                            <div class="wow fadeInUp" data-wow-delay=".2s">
+                                <article class="gb-wwd__card">
+                                    <div class="gb-wwd__top">
+                                        <span class="gb-wwd__icon" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                                        <span class="gb-wwd__num" style="--n: #F26A3F;">05</span>
                                     </div>
-                                    <h3 style="font-size: 22px; font-weight: 700; color: var(--header); margin-bottom: 12px; line-height: 1.4;">
-                                        Compensation & Benefits
-                                    </h3>
-                                    <p style="color: var(--text); font-size: 15px; line-height: 1.7; margin-bottom: 20px; font-weight: 400;">
-                                        Review salary structures, internal alignment, statutory wage baselines, and payroll approval controls.
-                                    </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 25px;">
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Statutory wage & minimum rates
-                                        </li>
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Overtime & shift reconciliation
-                                        </li>
-                                        <li style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Payroll approval matrix & proofs
-                                        </li>
-                                    </ul>
-                                    <a href="service#compensation" class="link-btn" style="color: var(--theme); font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-                                        Learn Details <i class="fa-solid fa-arrow-right" style="transition: transform 0.3s ease;"></i>
-                                    </a>
-                                </div>
+                                    <h3>Compensation &amp; Benefits Review</h3>
+                                    <p>Review salary structures, internal alignment, benefits records and process controls.</p>
+                                    <a href="service#compensation" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                </article>
                             </div>
-
-                            <!-- 06 Action Plan & Advisory -->
-                            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                                <div class="service-card-box p-5 h-100" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 20px; border: 1px solid var(--border); height: 100%; transition: all 0.4s ease; position: relative; overflow: hidden;">
-                                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--theme), var(--accent-teal));"></div>
-                                    <div class="d-flex align-items-start justify-content-between mb-4">
-                                        <div class="icon-box" style="width: 60px; height: 60px; line-height: 60px; text-align: center; background: linear-gradient(135deg, rgba(13,151,135,0.12) 0%, rgba(13,151,135,0.05) 100%); border-radius: 14px; color: var(--accent-teal); font-size: 26px; flex-shrink: 0;">
-                                            <i class="fa-solid fa-list-check"></i>
-                                        </div>
-                                        <span style="font-size: 36px; font-weight: 900; color: rgba(13,151,135,0.08); letter-spacing: -1px;">06</span>
+                            <div class="wow fadeInUp" data-wow-delay=".3s">
+                                <article class="gb-wwd__card">
+                                    <div class="gb-wwd__top">
+                                        <span class="gb-wwd__icon" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);"><i class="fa-solid fa-list-check"></i></span>
+                                        <span class="gb-wwd__num" style="--n: #CC4A22;">06</span>
                                     </div>
-                                    <h3 style="font-size: 22px; font-weight: 700; color: var(--header); margin-bottom: 12px; line-height: 1.4;">
-                                        Action Plan & Advisory
-                                    </h3>
-                                    <p style="color: var(--text); font-size: 15px; line-height: 1.7; margin-bottom: 20px; font-weight: 400;">
-                                        Prioritise findings by risk impact, assign accountable owners, and support practical implementation of improvements.
-                                    </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 25px;">
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Evidence-led risk prioritization
-                                        </li>
-                                        <li class="mb-2" style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Corrective action tracker
-                                        </li>
-                                        <li style="display: flex; align-items: start; font-size: 14px; color: var(--text);">
-                                            <i class="fa-solid fa-circle-check me-2 mt-1" style="color: var(--accent-teal) !important; font-size: 10px; flex-shrink: 0;"></i>
-                                            Executive readout & guidance
-                                        </li>
-                                    </ul>
-                                    <a href="service#advisory" class="link-btn" style="color: var(--theme); font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.3s ease;">
-                                        Learn Details <i class="fa-solid fa-arrow-right" style="transition: transform 0.3s ease;"></i>
-                                    </a>
-                                </div>
+                                    <h3>Action Plan &amp; Advisory</h3>
+                                    <p>Prioritise findings, assign owners and support implementation of agreed improvements.</p>
+                                    <a href="service#advisory" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                </article>
                             </div>
                         </div>
 
-                        <!-- Section Bottom CTA -->
-                        <div class="text-center mt-5">
-                            <a href="service" class="theme-btn" style="padding: 14px 40px; font-size: 16px; font-weight: 600;">
-                                <span class="btn-arrow-left"> <i class="fa-solid fa-arrow-right"></i> </span>
-                                <span class="btn-title">View All Services</span>
-                                <span class="btn-arrow-right"> <i class="fa-solid fa-arrow-right"></i> </span>
-                            </a>
+                        <div class="gb-wwd__cta">
+                            <a href="service" class="gb-wwd__btn">View All Services <span class="arr"><i class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
-                    </div>
-                </section>
 
-                <!-- Counter Section Start -->
-                <section class="counter-section section-padding fix pt-50 pb-50 section-bg">
-                    <div class="container">
-                        <div class="row g-4 text-center">
-                            <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                                <div class="counter-items-style-1 p-3">
-                                    <h2 style="color: var(--theme);"><span class="count">100</span>%</h2>
-                                    <p class="text" style="color: var(--header); font-weight: 600;">Statutory & Practical Scope</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                                <div class="counter-items-style-1 p-3">
-                                    <h2 style="color: var(--theme);"><span class="count">6</span>-Stage</h2>
-                                    <p class="text" style="color: var(--header); font-weight: 600;">Evidence-Led Method</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                                <div class="counter-items-style-1 p-3">
-                                    <h2 style="color: var(--theme);"><span class="count">3</span></h2>
-                                    <p class="text" style="color: var(--header); font-weight: 600;">Flexible Engagement Tiers</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                                <div class="counter-items-style-1 p-3">
-                                    <h2 style="color: var(--theme);"><span class="count">0</span></h2>
-                                    <p class="text" style="color: var(--header); font-weight: 600;">Unnecessary Disruption</p>
-                                </div>
-                            </div>
+                        <div class="gb-wwd__stats">
+                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".1s"><p class="v"><span class="count">100</span><em>%</em></p><p class="l">Statutory &amp; Practical Scope</p></div>
+                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".2s"><p class="v"><span class="count">6</span><em>-Stage</em></p><p class="l">Evidence-Led Method</p></div>
+                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".3s"><p class="v"><span class="count">3</span></p><p class="l">Flexible Engagement Tiers</p></div>
+                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".4s"><p class="v"><span class="count">0</span></p><p class="l">Unnecessary Disruption</p></div>
                         </div>
                     </div>
                 </section>
@@ -800,7 +656,7 @@
                 <section class="methodology-section section-padding fix section-bg" id="methodology">
                     <div class="container">
                         <div class="section-title text-center mb-50">
-                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">Our Methodology</span>
+                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">Our Method</span>
                             <h2 class="split-title">From Discovery to a Practical Action Plan.</h2>
                             <p style="max-width: 650px; margin: 15px auto 0; color: var(--text); font-size: 16px;">
                                 A structured 6-stage engagement designed to minimise disruption and maximise clarity.
@@ -881,7 +737,7 @@
                 <section class="examine-section section-padding fix" id="deliverables" style="background: #fff;">
                     <div class="container">
                         <div class="section-title text-center mb-50">
-                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">Scope & Deliverables</span>
+                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">What We Examine</span>
                             <h2 class="split-title">A Closer Look at Your HR Operating System.</h2>
                             <p style="max-width: 680px; margin: 15px auto 0; color: var(--text); font-size: 16px;">
                                 Useful outputs—not just observations. Deliverables are agreed before work begins and reflect the actual scope.
@@ -1053,7 +909,7 @@
                 <section class="engagement-section section-padding fix" id="tiers" style="background: #fff;">
                     <div class="container">
                         <div class="section-title text-center mb-50">
-                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">Flexible Engagement Tiers</span>
+                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">Flexible Engagement</span>
                             <h2 class="split-title">Choose the Support That Fits Your Stage.</h2>
                             <p style="max-width: 650px; margin: 15px auto 0; color: var(--text); font-size: 16px;">
                                 We scope our review to match your current workforce size, regulatory obligations, and organizational priorities.
@@ -1138,7 +994,7 @@
                             <div class="col-xl-5 col-lg-5">
                                 <div class="faq-left-content">
                                     <div class="section-title mb-3">
-                                        <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle">Partnership & FAQs</span>
+                                        <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle">A Good Partnership</span>
                                         <h2 class="split-title">Clear Expectations. Better Outcomes.</h2>
                                     </div>
                                     <p class="faq-text wow fadeInUp" data-wow-delay=".2s" style="color: var(--text); font-size: 15.5px; line-height: 1.7;">
