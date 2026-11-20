@@ -109,8 +109,68 @@
        Wow Animation Js Start
     ================================ */
 
-      new WOW().init();
-  
+      // Scroll reveal for .wow elements (replaces WOW.js).
+      // Plays every time an element scrolls into view, in both directions:
+      //   scrolling down -> element rises up into place (fadeInUp)
+      //   scrolling up   -> element drops down into place (fadeInDown)
+      // A per-frame check is used instead of WOW.js / IntersectionObserver because
+      // GSAP ScrollSmoother clips the page inside a fixed wrapper, which made those
+      // fire everything at once or loop. Positions are measured with the fade's own
+      // transform subtracted, so the animation can never re-trigger itself.
+      (function () {
+        var els = Array.prototype.slice.call(document.querySelectorAll(".wow"));
+        if (!els.length) return;
+
+        els.forEach(function (el) { el.style.visibility = "hidden"; });
+
+        function layoutRect(el) {
+          var r = el.getBoundingClientRect();
+          var ty = 0, t = getComputedStyle(el).transform;
+          if (t && t !== "none") {
+            var m = t.match(/matrix(3d)?\(([^)]+)\)/);
+            if (m) { var v = m[2].split(","); ty = parseFloat(m[1] ? v[13] : v[5]) || 0; }
+          }
+          return { top: r.top - ty, bottom: r.bottom - ty };
+        }
+
+        function play(el, fromTop) {
+          var delay = el.getAttribute("data-wow-delay");
+          var duration = el.getAttribute("data-wow-duration");
+          el.style.animationDelay = delay || "";
+          if (duration) el.style.animationDuration = duration;
+          el.style.animationName = (fromTop && el.classList.contains("fadeInUp")) ? "fadeInDown" : "";
+          void el.offsetWidth; // restart the CSS animation
+          el.style.visibility = "visible";
+          el.classList.add("animated");
+        }
+
+        function reset(el) {
+          el.classList.remove("animated");
+          el.style.visibility = "hidden";
+        }
+
+        function check() {
+          var vh = window.innerHeight;
+          for (var i = 0; i < els.length; i++) {
+            var el = els[i], r = layoutRect(el), on = el.classList.contains("animated");
+            if (!on && r.top < vh * 0.92 && r.bottom > vh * 0.08) {
+              play(el, r.top < vh / 2);
+            } else if (on && (r.bottom < 0 || r.top > vh)) {
+              reset(el); // fully off-screen: ready to play again
+            }
+          }
+        }
+
+        // Start after the preloader hides so top-of-page reveals are visible.
+        window.wowController = function () {
+          if (typeof gsap !== "undefined" && gsap.ticker) {
+            gsap.ticker.add(check); // runs in sync with ScrollSmoother
+          } else {
+            (function loop() { check(); requestAnimationFrame(loop); })();
+          }
+        };
+      })();
+
       /* ================================
        Nice Select Js Start
     ================================ */
@@ -907,7 +967,7 @@
         scrollTrigger: {
             trigger: title,
             start: "top 90%",
-            toggleActions: "play none none none"
+            toggleActions: "play reset play reset"
         },
         duration: 0.8,
         clipPath: "inset(0% 0% -15% 0%)",
