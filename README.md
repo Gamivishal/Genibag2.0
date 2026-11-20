@@ -16,8 +16,17 @@ Official website for **Geniebag Solutions / Genie Bag HR Consultancy** (*"The Ma
 
 ---
 
-## 📁 Repository Structure
-- `index.html` - Homepage
-- `about.html`, `service.html`, `contact.html` - Core pages
+## 📁 Clean Project Structure
+- `index.html` - Homepage (incorporating the 12-slide compliance audit framework)
+- `about.html` - About Us, leadership philosophy, 3 pillars & partnership boundaries
+- `service.html` - Overview of the 6 Modular Audit Services
+- `service-details.html` - In-depth breakdown of audit modules & 6-stage methodology
+- `pricing.html` - 3 Flexible Engagement Tiers (Health Check, Comprehensive, Advisory)
+- `faq.html` - Client FAQs, partnership principles, and statutory disclaimer
+- `contact.html` - Scoping consultation request & contact details
+- `404.html` - Custom error page
+- `contact.php` - Secure form handler
 - `Docs/` - Official HR Compliance Audit presentations and reference materials
-- `assets/` - CSS styles, JavaScript plugins, fonts, and images (including brand logo)
+- `assets/` - CSS styles, JavaScript plugins, fonts, and images (including transparent logo)
+- `_demo_templates_archive/` - Archived original ThemeForest demo pages (safely preserved)
+
