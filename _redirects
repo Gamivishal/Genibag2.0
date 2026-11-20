@@ -1,1 +1,8 @@
-/*  /:splat.html  200
+/assets/*         /assets/:splat         200
+/about            /about.html            200
+/service          /service.html          200
+/service-details  /service-details.html  200
+/pricing          /pricing.html          200
+/faq              /faq.html              200
+/contact          /contact.html          200
+/index.html       /                      301
