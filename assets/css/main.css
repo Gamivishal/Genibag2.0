@@ -16232,3 +16232,105 @@ span {
   scroll-margin-top: 110px !important;
 }
 
+/* Scoped Marquee Styling matching Bixoo live demo (293x177) */
+.faq-marquee-section {
+  padding: 30px 0 !important;
+  background-color: var(--theme);
+  overflow: hidden;
+}
+
+.faq-marquee-section .marquee {
+  gap: 30px;
+  --gap: 30px;
+  align-items: center;
+}
+
+.faq-marquee-section .marquee .marquee-group {
+  gap: 30px;
+  align-items: center;
+}
+
+.faq-marquee-section .marquee .marquee-thumb {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.faq-marquee-section .marquee .marquee-thumb .thumb {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-marquee-section .marquee .marquee-thumb .thumb img {
+  width: 293px;
+  height: 177px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.faq-marquee-section .marquee .marquee-thumb .text {
+  font-weight: 500;
+  font-size: 100px;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FFFFFF;
+  font-family: "Mona Sans", sans-serif;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  white-space: nowrap;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Tablet (768px - 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .faq-marquee-section {
+    padding: 25px 0 !important;
+  }
+  .faq-marquee-section .marquee,
+  .faq-marquee-section .marquee .marquee-group {
+    gap: 25px;
+    --gap: 25px;
+  }
+  .faq-marquee-section .marquee .marquee-thumb {
+    gap: 30px;
+  }
+  .faq-marquee-section .marquee .marquee-thumb .thumb img {
+    width: 240px;
+    height: 145px;
+    border-radius: 10px;
+  }
+  .faq-marquee-section .marquee .marquee-thumb .text {
+    font-size: 80px;
+  }
+}
+
+/* Mobile (under 768px) */
+@media (max-width: 767px) {
+  .faq-marquee-section {
+    padding: 20px 0 !important;
+  }
+  .faq-marquee-section .marquee,
+  .faq-marquee-section .marquee .marquee-group {
+    gap: 20px;
+    --gap: 20px;
+  }
+  .faq-marquee-section .marquee .marquee-thumb {
+    gap: 20px;
+  }
+  .faq-marquee-section .marquee .marquee-thumb .thumb img {
+    width: 180px;
+    height: 109px;
+    border-radius: 8px;
+  }
+  .faq-marquee-section .marquee .marquee-thumb .text {
+    font-size: 60px;
+  }
+}
+
+
