@@ -772,7 +772,115 @@
             normalizeScroll: false,
             ignoreMobileResize: true,
         });
+        window.smoother = smoother;
+
+        // Helper to get clean path without leading slash or .html
+        function cleanPath(p) {
+            if (!p) return "";
+            return p.replace(/^\//, "").replace(/\.html$/, "").replace(/\/$/, "");
+        }
+
+        // Smooth scroll to anchor on click
+        $(document).on("click", 'a[href*="#"]', function (e) {
+            var href = $(this).attr("href");
+            if (!href || href === "#" || href.startsWith("javascript:")) return;
+            if ($(this).hasClass("mean-expand")) return;
+
+            var hashIndex = href.indexOf("#");
+            if (hashIndex === -1) return;
+            var path = href.substring(0, hashIndex);
+            var hash = href.substring(hashIndex);
+
+            if (hash.length <= 1) return;
+
+            var currentPath = cleanPath(window.location.pathname);
+            var targetPath = cleanPath(path);
+
+            var isCurrentHome = (currentPath === "" || currentPath === "index");
+            var isTargetHome = (targetPath === "" || targetPath === "index");
+
+            // Same page if path empty & target exists, or paths match, or both are home
+            var isSamePage = (path === "" && $(hash).length) ||
+                             (targetPath === currentPath) ||
+                             (isCurrentHome && isTargetHome);
+
+            var $target = $(hash);
+
+            if (isSamePage && $target.length) {
+                e.preventDefault();
+
+                // Close offcanvas mobile drawer if open
+                $(".offcanvas__info").removeClass("info-open");
+                $(".offcanvas__overlay").removeClass("overlay-open");
+                $("body").removeClass("locked");
+
+                if (window.smoother && typeof window.smoother.offset === "function") {
+                    var targetOffset = window.smoother.offset($target[0]);
+                    var scrollY = Math.max(0, targetOffset - 80);
+                    window.smoother.scrollTo(scrollY, true);
+                } else {
+                    var elemTop = $target.offset().top - 80;
+                    $("html, body").stop().animate({
+                        scrollTop: Math.max(0, elemTop)
+                    }, 800);
+                }
+
+                if (window.history && window.history.pushState) {
+                    window.history.pushState(null, null, hash);
+                }
+            } else if (path === "" && !$target.length) {
+                // If on a subpage and clicked an anchor that only exists on home, redirect to home with hash
+                e.preventDefault();
+                window.location.href = "/" + hash;
+            }
+        });
+
+        // Close mobile drawer when clicking regular links inside mean-nav
+        $(document).on("click", ".mean-nav a:not(.mean-expand)", function () {
+            $(".offcanvas__info").removeClass("info-open");
+            $(".offcanvas__overlay").removeClass("overlay-open");
+            $("body").removeClass("locked");
+        });
+
+        // Smooth scroll to anchor on initial page load if hash exists
+        function scrollToHashTarget() {
+            var hash = window.location.hash;
+            if (hash && hash.length > 1) {
+                var $target = $(hash);
+                if ($target.length) {
+                    setTimeout(function () {
+                        if (typeof ScrollTrigger !== "undefined") {
+                            ScrollTrigger.refresh();
+                        }
+                        if (window.smoother && typeof window.smoother.offset === "function") {
+                            var targetOffset = window.smoother.offset($target[0]);
+                            var scrollY = Math.max(0, targetOffset - 80);
+                            window.smoother.scrollTo(scrollY, true);
+                        } else {
+                            var elemTop = $target.offset().top - 80;
+                            $("html, body").stop().animate({
+                                scrollTop: Math.max(0, elemTop)
+                            }, 600);
+                        }
+                    }, 400);
+                }
+            }
+        }
+
+        scrollToHashTarget();
+        $(window).on("load", scrollToHashTarget);
+        $(window).on("hashchange", scrollToHashTarget);
     }
+
+    // Also support back-top with smoother
+    $documentOn.on('click', '#back-top', function() {
+        if (window.smoother && typeof window.smoother.scrollTo === "function") {
+            window.smoother.scrollTo(0, true);
+        } else {
+            $('html, body').animate({ scrollTop: 0 }, 800);
+        }
+        return false;
+    });
 
     /* ================================
        Text Anim Js Start
