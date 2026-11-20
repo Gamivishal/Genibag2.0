@@ -84,14 +84,14 @@
        Video & Image Popup Js Start
     ================================ */
 
-      $(".img-popup").magnificPopup({
+      if ($.fn.magnificPopup) $(".img-popup").magnificPopup({
         type: "image",
         gallery: {
           enabled: true,
         },
       });
 
-      $(".video-popup").magnificPopup({
+      if ($.fn.magnificPopup) $(".video-popup").magnificPopup({
         type: "iframe",
         callbacks: {},
       });
@@ -100,7 +100,7 @@
        Counterup Js Start
     ================================ */
 
-      $(".count").counterUp({
+      if ($.fn.counterUp) $(".count").counterUp({
         delay: 15,
         time: 4000,
       });
@@ -115,7 +115,7 @@
        Nice Select Js Start
     ================================ */
 
-    if ($('.single-select').length) {
+    if ($.fn.niceSelect && $('.single-select').length) {
         $('.single-select').niceSelect();
     }
 
@@ -123,7 +123,7 @@
        Progress Bar Js Start
     ================================ */
 
-    $('.progress-bar').waypoint(function() {
+    if ($.fn.waypoint) $('.progress-bar').waypoint(function() {
         $('.progress-bar').css({
             animation: "animate-positive 2.6s",
             opacity: "1"
@@ -1149,9 +1149,9 @@
                     Preloader.fadeOut(400);
                     initAnimations();
 
-                }, 700);
+                }, 300);
 
-            }, 2000);
+            }, 200);
 
         } else {
             initAnimations();
