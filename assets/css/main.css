@@ -16202,3 +16202,28 @@ span {
 .footer-section::before {
   display: none !important;
 }
+
+/* Geniebag Brand Badge on Homepage Image */
+.geniebag-brand-badge {
+  background: var(--header) !important;
+  color: #ffffff !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+.geniebag-brand-badge h5 {
+  color: var(--theme) !important;
+  font-weight: 800 !important;
+}
+
+.geniebag-brand-badge p {
+  position: static !important;
+  transform: none !important;
+  max-width: 100% !important;
+  text-align: left !important;
+  color: #CBD5E1 !important;
+  font-weight: 500 !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
