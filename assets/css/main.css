@@ -16225,3 +16225,10 @@ span {
   line-height: 1.6 !important;
   margin: 0 !important;
 }
+
+/* Smooth anchor scroll offset for sticky header */
+#compliance, #process, #policy, #records, #compensation, #advisory,
+#methodology, #scope, #deliverables, #services, #about, #tiers, #faq {
+  scroll-margin-top: 110px !important;
+}
+
