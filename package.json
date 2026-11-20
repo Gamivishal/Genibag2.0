@@ -1,11 +1,9 @@
 {
-  "name": "bixoo",
+  "name": "geniebag-solutions",
   "version": "1.0.0",
-  "description": "Bixoo Business Consulting HTML Template",
+  "description": "Geniebag Solutions - HR Compliance & Audit Consultancy",
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js",
-    "serve": "node server.js"
+    "dev": "node server.js"
   },
   "devDependencies": {
     "live-server": "^1.2.2"
