@@ -1667,6 +1667,51 @@
     })();
 
 
+    /* ==========================================================================
+       Flexible Engagement Tiers - Scroll Reveal & Spotlight Interactions
+       ========================================================================== */
+    (function initTiersInteractions() {
+        const tiersSection = document.getElementById('tiers');
+        if (!tiersSection) return;
+
+        // 1. Scroll-Reveal Observer
+        if ('IntersectionObserver' in window) {
+            const tiersObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tiersSection.classList.add('is-revealed');
+                        tiersObserver.unobserve(tiersSection);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+            tiersObserver.observe(tiersSection);
+
+            // Safety timeout to ensure cards never remain stuck hidden
+            setTimeout(() => {
+                if (!tiersSection.classList.contains('is-revealed')) {
+                    tiersSection.classList.add('is-revealed');
+                }
+            }, 2500);
+        } else {
+            tiersSection.classList.add('is-revealed');
+        }
+
+        // 2. Desktop Cursor Spotlight for Tier Cards
+        if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+            const cards = tiersSection.querySelectorAll('.gb-tier-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left).toFixed(1);
+                    const y = (e.clientY - rect.top).toFixed(1);
+                    card.style.setProperty('--mx', `${x}px`);
+                    card.style.setProperty('--my', `${y}px`);
+                });
+            });
+        }
+    })();
+
 })(jQuery); // End jQuery
 
 

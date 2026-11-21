@@ -2535,84 +2535,789 @@
                     </div>
                 </section>
 
-                <!-- Flexible Engagement Tiers (Slide 10) -->
-                <section class="engagement-section section-padding fix" id="tiers" style="background: #fff;">
-                    <div class="container">
-                        <div class="section-title text-center mb-50">
-                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">Flexible Engagement</span>
-                            <h2 class="split-title">Choose the Support That Fits Your Stage.</h2>
-                            <p style="max-width: 650px; margin: 15px auto 0; color: var(--text); font-size: 16px;">
+                <!-- Flexible Engagement Tiers (Slide 10) Redesigned: Senior Consulting Tiers -->
+                <style>
+                    /* ==========================================================================
+                       Flexible Engagement Tiers - Senior UI/UX Redesign
+                       ========================================================================== */
+                    :root {
+                        --tier-orange: #F26A3F;
+                        --tier-orange-hover: #CC4A22;
+                        --tier-orange-glow: rgba(242, 106, 63, 0.28);
+                        --tier-amber: #F5A540;
+                        --tier-teal: #2A9D8F;
+                        --tier-teal-glow: rgba(42, 157, 143, 0.22);
+                        --tier-navy: #111A3A;
+                        --tier-navy-dark: #0F1733;
+                        --tier-text-dark: #526075;
+                        --tier-text-light: #A2B2CB;
+                        --tier-border-light: rgba(225, 233, 245, 0.85);
+                        --tier-ease: cubic-bezier(0.22, 1, 0.36, 1);
+                        --tier-duration: 380ms;
+                    }
+
+                    /* 1. Section Background: Soft off-white to very light blue gradient */
+                    .gb-tiers {
+                        background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFF 100%);
+                        padding: 100px 0;
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    /* 1. Faint dotted grid pattern (3-4% opacity) */
+                    .gb-tiers::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        background-image: radial-gradient(rgba(17, 26, 58, 0.035) 1.5px, transparent 1.5px);
+                        background-size: 28px 28px;
+                        pointer-events: none;
+                        z-index: 1;
+                    }
+
+                    /* 1. Soft blurred orange and teal glows */
+                    .gb-tiers__glow {
+                        position: absolute;
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 1;
+                        filter: blur(100px);
+                    }
+                    .gb-tiers__glow--orange {
+                        top: 25%;
+                        left: 15%;
+                        width: 550px;
+                        height: 480px;
+                        background: radial-gradient(circle, rgba(242, 106, 63, 0.08) 0%, transparent 70%);
+                    }
+                    .gb-tiers__glow--teal {
+                        bottom: 20%;
+                        right: 12%;
+                        width: 520px;
+                        height: 440px;
+                        background: radial-gradient(circle, rgba(42, 157, 143, 0.07) 0%, transparent 70%);
+                    }
+
+                    .gb-tiers__wrap {
+                        max-width: 1240px;
+                        margin: 0 auto;
+                        padding: 0 24px;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    /* 2. Centered Heading Area */
+                    .gb-tiers__head {
+                        text-align: center;
+                        max-width: 760px;
+                        margin: 0 auto 64px;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    .gb-tiers__eyebrow {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        padding: 6px 18px;
+                        border-radius: 999px;
+                        background: rgba(242, 106, 63, 0.08);
+                        border: 1px solid rgba(242, 106, 63, 0.35);
+                        color: var(--tier-orange);
+                        font-size: 12.5px;
+                        font-weight: 700;
+                        letter-spacing: 0.1em;
+                        text-transform: uppercase;
+                        margin-bottom: 20px;
+                    }
+                    .gb-tiers__eyebrow-dot {
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 50%;
+                        background: var(--tier-orange);
+                        box-shadow: 0 0 8px var(--tier-orange);
+                    }
+
+                    .gb-tiers__title {
+                        font-size: clamp(30px, 3.8vw, 44px);
+                        font-weight: 800;
+                        line-height: 1.24;
+                        color: var(--tier-navy);
+                        margin: 0 0 16px;
+                        letter-spacing: -0.5px;
+                    }
+                    .gb-tiers__title span.gradient-text {
+                        background: linear-gradient(90deg, #F26A3F 0%, #F5A540 100%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                    }
+
+                    .gb-tiers__sub {
+                        max-width: 640px;
+                        margin: 0 auto;
+                        color: var(--tier-text-dark);
+                        font-size: 17px;
+                        line-height: 1.7;
+                        text-wrap: balance;
+                        font-weight: 400;
+                    }
+
+                    /* 3. Cards Grid Layout (3 columns on desktop) */
+                    .gb-tiers__grid {
+                        display: grid;
+                        grid-template-columns: repeat(3, minmax(0, 1fr));
+                        gap: 32px;
+                        align-items: stretch;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    .gb-tier-card-wrap {
+                        display: flex;
+                        min-width: 0;
+                        position: relative;
+                    }
+
+                    /* Card Base */
+                    .gb-tier-card {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        border-radius: 22px;
+                        position: relative;
+                        transition: 
+                            transform var(--tier-duration) var(--tier-ease),
+                            box-shadow var(--tier-duration) var(--tier-ease);
+                        will-change: transform, box-shadow;
+                    }
+
+                    /* 4. Tier 1 and Tier 3 Light Cards */
+                    .gb-tier-card--light {
+                        background: #FFFFFF;
+                        border: 1px solid var(--tier-border-light);
+                        padding: 38px 32px 32px;
+                        box-shadow: 0 4px 18px rgba(17, 26, 58, 0.04), 0 1px 3px rgba(17, 26, 58, 0.02);
+                        z-index: 2;
+                    }
+
+                    /* Top accent bar on light cards */
+                    .gb-tier-card--light .gb-tier-card__topbar {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        height: 3px;
+                        border-radius: 22px 22px 0 0;
+                        background: transparent;
+                        transition: background var(--tier-duration) var(--tier-ease), height var(--tier-duration) var(--tier-ease);
+                    }
+
+                    /* 5. Tier 2 Featured Dark Hero Card */
+                    .gb-tier-card--featured {
+                        background: linear-gradient(180deg, var(--tier-navy) 0%, var(--tier-navy-dark) 100%);
+                        color: #ffffff;
+                        padding: 44px 34px 34px;
+                        border-radius: 24px;
+                        box-shadow: 0 16px 40px rgba(15, 23, 51, 0.28), 0 0 35px rgba(242, 106, 63, 0.20);
+                        z-index: 5;
+                    }
+
+                    /* Flowing glowing gradient border for featured card */
+                    .gb-tier-card__animated-border {
+                        position: absolute;
+                        inset: 0;
+                        border-radius: 24px;
+                        padding: 2px;
+                        background: linear-gradient(135deg, #F26A3F 0%, #F5A540 35%, #2A9D8F 70%, #F26A3F 100%);
+                        background-size: 300% 300%;
+                        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                        -webkit-mask-composite: xor;
+                        mask-composite: exclude;
+                        animation: flowBorder 8s ease infinite;
+                        pointer-events: none;
+                        z-index: 3;
+                    }
+
+                    @keyframes flowBorder {
+                        0%, 100% { background-position: 0% 50%; }
+                        50% { background-position: 100% 50%; }
+                    }
+
+                    /* Card content layering */
+                    .gb-tier-card > * {
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    /* 5. "MOST POPULAR" Badge: Centered on top edge, overlapping border */
+                    .gb-tier__popular-badge {
+                        position: absolute;
+                        top: -14px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: linear-gradient(135deg, #F26A3F 0%, #E85B2F 100%);
+                        color: #ffffff;
+                        padding: 5px 18px;
+                        border-radius: 999px;
+                        font-size: 11px;
+                        font-weight: 800;
+                        letter-spacing: 0.1em;
+                        text-transform: uppercase;
+                        box-shadow: 0 4px 16px rgba(242, 106, 63, 0.45);
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        white-space: nowrap;
+                        z-index: 10;
+                        overflow: hidden;
+                    }
+                    .gb-tier__popular-badge::before {
+                        content: "";
+                        position: absolute;
+                        top: -50%;
+                        left: -60%;
+                        width: 40%;
+                        height: 200%;
+                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+                        transform: rotate(25deg);
+                        animation: badgeShine 4s ease-in-out infinite;
+                        pointer-events: none;
+                    }
+
+                    @keyframes badgeShine {
+                        0%, 65% { left: -60%; }
+                        100% { left: 140%; }
+                    }
+
+                    /* Tier Badge Pill (TIER 1 / TIER 2 / TIER 3) */
+                    .gb-tier__badge {
+                        display: inline-block;
+                        padding: 4px 12px;
+                        border-radius: 999px;
+                        font-size: 11.5px;
+                        font-weight: 700;
+                        letter-spacing: 0.08em;
+                        text-transform: uppercase;
+                        margin-bottom: 18px;
+                        align-self: flex-start;
+                    }
+                    .gb-tier-card--light .gb-tier__badge {
+                        background: rgba(17, 26, 58, 0.06);
+                        color: var(--tier-navy);
+                        border: 1px solid rgba(17, 26, 58, 0.10);
+                    }
+                    .gb-tier-card--featured .gb-tier__badge {
+                        background: rgba(242, 106, 63, 0.18);
+                        color: var(--tier-orange);
+                        border: 1px solid rgba(242, 106, 63, 0.35);
+                    }
+
+                    /* Card Titles & Descriptions */
+                    .gb-tier__card-title {
+                        font-size: 22px;
+                        font-weight: 800;
+                        line-height: 1.3;
+                        margin: 0 0 10px;
+                    }
+                    .gb-tier-card--light .gb-tier__card-title {
+                        color: var(--tier-navy);
+                    }
+                    .gb-tier-card--featured .gb-tier__card-title {
+                        color: #ffffff;
+                    }
+
+                    .gb-tier__card-desc {
+                        font-size: 14.5px;
+                        line-height: 1.65;
+                        margin: 0 0 22px;
+                        min-height: 48px;
+                    }
+                    .gb-tier-card--light .gb-tier__card-desc {
+                        color: var(--tier-text-dark);
+                    }
+                    .gb-tier-card--featured .gb-tier__card-desc {
+                        color: var(--tier-text-light);
+                    }
+
+                    /* Thin Divider Line */
+                    .gb-tier__divider {
+                        height: 1px;
+                        width: 100%;
+                        margin-bottom: 24px;
+                    }
+                    .gb-tier-card--light .gb-tier__divider {
+                        background: rgba(17, 26, 58, 0.07);
+                    }
+                    .gb-tier-card--featured .gb-tier__divider {
+                        background: rgba(255, 255, 255, 0.10);
+                    }
+
+                    /* 1. Checklist Line Wrapping Fix (Problem 1) */
+                    .gb-tier__list {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0 0 32px;
+                        flex-grow: 1;
+                    }
+
+                    .gb-tier__item {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 12px;
+                        margin-bottom: 14px;
+                        font-size: 14.5px;
+                        line-height: 1.55;
+                    }
+                    .gb-tier-card--light .gb-tier__item {
+                        color: #2D3A50;
+                    }
+                    .gb-tier-card--featured .gb-tier__item {
+                        color: #E2E8F0;
+                    }
+
+                    .gb-tier__check-icon {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 11px;
+                        flex-shrink: 0;
+                        margin-top: 2px;
+                        transition: transform var(--tier-duration) var(--tier-ease);
+                    }
+                    .gb-tier-card--light .gb-tier__check-icon {
+                        background: rgba(42, 157, 143, 0.12);
+                        color: var(--tier-teal);
+                    }
+                    .gb-tier-card--featured .gb-tier__check-icon {
+                        background: rgba(242, 106, 63, 0.20);
+                        color: var(--tier-orange);
+                    }
+
+                    .gb-tier__item-text {
+                        flex: 1;
+                    }
+
+                    /* 2. Consistent Buttons (Problem 2 & Problem 4) */
+                    .gb-tier__btn {
+                        height: 48px;
+                        border-radius: 999px;
+                        font-size: 15px;
+                        font-weight: 700;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        text-decoration: none;
+                        padding: 0 24px;
+                        position: relative;
+                        overflow: hidden;
+                        margin-top: auto;
+                        box-sizing: border-box;
+                        transition: 
+                            transform var(--tier-duration) var(--tier-ease),
+                            box-shadow var(--tier-duration) var(--tier-ease),
+                            background var(--tier-duration) var(--tier-ease),
+                            color var(--tier-duration) var(--tier-ease),
+                            border-color var(--tier-duration) var(--tier-ease);
+                    }
+
+                    /* Light card button (Outlined -> Navy Fill) */
+                    .gb-tier__btn--outline {
+                        background: transparent;
+                        color: var(--tier-navy) !important;
+                        border: 1.5px solid rgba(17, 26, 58, 0.22);
+                        gap: 8px;
+                    }
+                    .gb-tier__btn--outline i {
+                        font-size: 13px;
+                        transition: transform var(--tier-duration) var(--tier-ease);
+                    }
+
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-tier-card--light:hover .gb-tier__btn--outline,
+                        .gb-tier__btn--outline:hover {
+                            background: var(--tier-navy);
+                            color: #ffffff !important;
+                            border-color: var(--tier-navy);
+                            transform: translateY(-2px);
+                            box-shadow: 0 6px 20px rgba(17, 26, 58, 0.20);
+                        }
+                        .gb-tier-card--light:hover .gb-tier__btn--outline i,
+                        .gb-tier__btn--outline:hover i {
+                            transform: translateX(4px);
+                        }
+                    }
+
+                    /* Featured card button (Solid Orange Gradient + Arrow Circle) */
+                    .gb-tier__btn--primary {
+                        background: linear-gradient(135deg, #F26A3F 0%, #E85B2F 100%);
+                        color: #ffffff !important;
+                        border: none;
+                        box-shadow: 0 6px 22px rgba(242, 106, 63, 0.45);
+                        gap: 10px;
+                    }
+                    .gb-tier__btn--primary::before {
+                        content: "";
+                        position: absolute;
+                        top: -50%;
+                        left: -60%;
+                        width: 40%;
+                        height: 200%;
+                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                        transform: rotate(25deg);
+                        transition: left 0.75s var(--tier-ease);
+                        pointer-events: none;
+                    }
+
+                    .gb-tier__btn-arrow-circle {
+                        width: 28px;
+                        height: 28px;
+                        border-radius: 50%;
+                        background: #ffffff;
+                        color: var(--tier-orange);
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 11px;
+                        flex-shrink: 0;
+                        transition: transform var(--tier-duration) var(--tier-ease);
+                    }
+
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-tier-card--featured:hover .gb-tier__btn--primary,
+                        .gb-tier__btn--primary:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 10px 28px rgba(242, 106, 63, 0.60);
+                            background: linear-gradient(135deg, #CC4A22 0%, #E85B2F 100%);
+                        }
+                        .gb-tier-card--featured:hover .gb-tier__btn--primary::before,
+                        .gb-tier__btn--primary:hover::before {
+                            left: 140%;
+                        }
+                        .gb-tier-card--featured:hover .gb-tier__btn-arrow-circle,
+                        .gb-tier__btn--primary:hover .gb-tier__btn-arrow-circle {
+                            transform: rotate(45deg);
+                        }
+                    }
+
+                    /* 6. Desktop Hover Effects */
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-tier-card--light:hover {
+                            transform: translateY(-8px);
+                            box-shadow: 0 16px 36px rgba(17, 26, 58, 0.08), 0 0 24px rgba(242, 106, 63, 0.16);
+                        }
+                        .gb-tier-card--light:hover .gb-tier-card__topbar {
+                            background: linear-gradient(90deg, var(--tier-orange) 0%, var(--tier-teal) 100%);
+                            height: 4px;
+                        }
+                        .gb-tier-card--featured:hover {
+                            transform: scale(1.05) translateY(-8px);
+                            box-shadow: 0 22px 48px rgba(15, 23, 51, 0.35), 0 0 45px rgba(242, 106, 63, 0.30);
+                        }
+                        .gb-tier-card:hover .gb-tier__check-icon {
+                            transform: scale(1.15);
+                        }
+                    }
+
+                    /* Desktop 3-column scaling for featured card */
+                    @media (min-width: 992px) {
+                        .gb-tier-card-wrap--featured {
+                            margin: -14px 0;
+                        }
+                        .gb-tier-card--featured {
+                            transform: scale(1.04);
+                        }
+                    }
+
+                    /* Touch devices: clean active state */
+                    @media (hover: none) or (pointer: coarse) {
+                        .gb-tier-card:active {
+                            transform: scale(0.985);
+                        }
+                    }
+
+                    /* 8. Trust Line Strip Under Cards */
+                    .gb-tiers__trust {
+                        margin-top: 56px;
+                        text-align: center;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+                        color: var(--tier-text-dark);
+                        font-size: 15px;
+                        font-weight: 500;
+                    }
+                    .gb-tiers__trust i {
+                        color: var(--tier-teal);
+                        font-size: 16px;
+                    }
+                    .gb-tiers__trust-link {
+                        color: var(--tier-orange);
+                        font-weight: 700;
+                        text-decoration: none;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 4px;
+                        transition: color var(--tier-duration) var(--tier-ease);
+                    }
+                    .gb-tiers__trust-link:hover {
+                        color: var(--tier-orange-hover);
+                        text-decoration: underline;
+                    }
+
+                    /* 7. Scroll Animation */
+                    @media (prefers-reduced-motion: no-preference) {
+                        .gb-tiers__reveal-head,
+                        .gb-tiers__reveal-card,
+                        .gb-tiers__reveal-trust {
+                            opacity: 0;
+                            transform: translateY(32px);
+                            transition: 
+                                opacity 0.65s var(--tier-ease),
+                                transform 0.65s var(--tier-ease);
+                        }
+
+                        .gb-tiers.is-revealed .gb-tiers__reveal-head {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+
+                        .gb-tiers.is-revealed .gb-tiers__reveal-card {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+
+                        /* Stagger 120ms left to right */
+                        .gb-tiers.is-revealed .gb-tier-card-wrap:nth-child(1) { transition-delay: 0.10s; }
+                        .gb-tiers.is-revealed .gb-tier-card-wrap:nth-child(2) { transition-delay: 0.22s; }
+                        .gb-tiers.is-revealed .gb-tier-card-wrap:nth-child(3) { transition-delay: 0.34s; }
+
+                        .gb-tiers.is-revealed .gb-tiers__reveal-trust {
+                            opacity: 1;
+                            transform: translateY(0);
+                            transition-delay: 0.46s;
+                        }
+                    }
+
+                    /* 9. Accessibility Focus-Visible */
+                    .gb-tier-card:focus-visible,
+                    .gb-tier__btn:focus-visible,
+                    .gb-tiers__trust-link:focus-visible {
+                        outline: 2px solid var(--tier-orange) !important;
+                        outline-offset: 3px !important;
+                    }
+
+                    /* Responsive Adjustments */
+                    @media (max-width: 991px) {
+                        .gb-tiers {
+                            padding: 80px 0;
+                        }
+                        .gb-tiers__head {
+                            margin-bottom: 48px;
+                        }
+                        .gb-tiers__grid {
+                            grid-template-columns: 1fr;
+                            max-width: 540px;
+                            margin: 0 auto;
+                            gap: 32px;
+                        }
+                        .gb-tier-card--featured {
+                            transform: none !important;
+                        }
+                        .gb-tier-card-wrap--featured {
+                            margin: 0;
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .gb-tiers {
+                            padding: 65px 0;
+                        }
+                        .gb-tier-card--light {
+                            padding: 30px 22px 24px;
+                        }
+                        .gb-tier-card--featured {
+                            padding: 36px 22px 24px;
+                        }
+                        .gb-tier__card-title {
+                            font-size: 20px;
+                        }
+                        .gb-tier__card-desc {
+                            min-height: auto;
+                            margin-bottom: 18px;
+                        }
+                        .gb-tiers__trust {
+                            flex-direction: column;
+                            gap: 8px;
+                            text-align: center;
+                        }
+                    }
+
+                    /* Reduced Motion Calm Fallback */
+                    @media (prefers-reduced-motion: reduce) {
+                        .gb-tiers__reveal-head,
+                        .gb-tiers__reveal-card,
+                        .gb-tiers__reveal-trust,
+                        .gb-tier-card,
+                        .gb-tier-card--featured::before,
+                        .gb-tier__popular-badge::before,
+                        .gb-tier__btn,
+                        .gb-tier__btn--primary::before,
+                        .gb-tier__btn-arrow-circle,
+                        .gb-tier__check-icon {
+                            transition: none !important;
+                            animation: none !important;
+                            transform: none !important;
+                            opacity: 1 !important;
+                        }
+                    }
+                </style>
+                <section class="gb-tiers" id="tiers">
+                    <!-- Background Depth Glows -->
+                    <div class="gb-tiers__glow gb-tiers__glow--orange" aria-hidden="true"></div>
+                    <div class="gb-tiers__glow gb-tiers__glow--teal" aria-hidden="true"></div>
+
+                    <div class="gb-tiers__wrap">
+                        <!-- 2. Centered Heading Area -->
+                        <div class="gb-tiers__head gb-tiers__reveal-head">
+                            <div class="gb-tiers__eyebrow">
+                                <span class="gb-tiers__eyebrow-dot" aria-hidden="true"></span>
+                                <span>Flexible Engagement</span>
+                            </div>
+                            <h2 class="gb-tiers__title">
+                                Choose the Support That <span class="gradient-text">Fits Your Stage.</span>
+                            </h2>
+                            <p class="gb-tiers__sub">
                                 We scope our review to match your current workforce size, regulatory obligations, and organizational priorities.
                             </p>
                         </div>
-                        <div class="row g-4 justify-content-center">
+
+                        <!-- 3. Cards Grid -->
+                        <div class="gb-tiers__grid">
                             <!-- Tier 1 -->
-                            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                                <div class="p-4 p-xl-5" style="background: var(--bg-light); border-radius: 20px; border: 1px solid var(--border); height: 100%; display: flex; flex-direction: column;">
-                                    <div class="mb-3">
-                                        <span style="background: rgba(17,27,52,0.08); color: var(--header); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">TIER 1</span>
-                                    </div>
-                                    <h3 style="color: var(--header); font-size: 22px; font-weight: 700; margin-bottom: 12px;">Focused Health Check</h3>
-                                    <p style="color: var(--text); font-size: 14.5px; line-height: 1.6; margin-bottom: 20px;">
+                            <div class="gb-tier-card-wrap gb-tiers__reveal-card">
+                                <article class="gb-tier-card gb-tier-card--light">
+                                    <div class="gb-tier-card__topbar" aria-hidden="true"></div>
+                                    <span class="gb-tier__badge">TIER 1</span>
+                                    <h3 class="gb-tier__card-title">Focused Health Check</h3>
+                                    <p class="gb-tier__card-desc">
                                         A targeted review of selected HR documents, policies, or specific operational concerns.
                                     </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 30px; font-size: 14px; color: var(--text); flex-grow: 1;">
-                                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2" style="color: var(--accent-teal) !important;"></i> Specific policy or document review</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2" style="color: var(--accent-teal) !important;"></i> Quick sampling of employee files</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2" style="color: var(--accent-teal) !important;"></i> High-level risk observations</li>
-                                        <li><i class="fa-solid fa-check text-success me-2" style="color: var(--accent-teal) !important;"></i> Rapid turnaround timeframe</li>
+                                    <div class="gb-tier__divider"></div>
+                                    <ul class="gb-tier__list">
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Specific policy or document review</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Quick sampling of employee files</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">High-level risk observations</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Rapid turnaround timeframe</span>
+                                        </li>
                                     </ul>
-                                    <a href="contact" class="theme-btn" style="background: #fff; color: var(--header); border: 1.5px solid var(--border); width: 100%; justify-content: center;">
-                                        <span class="btn-title" style="color: var(--header) !important; font-weight: 600;">Scope Health Check</span>
+                                    <a href="contact" class="gb-tier__btn gb-tier__btn--outline">
+                                        <span>Scope Health Check</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
                                     </a>
-                                </div>
+                                </article>
                             </div>
-                            <!-- Tier 2 (Featured) -->
-                            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                                <div class="p-4 p-xl-5" style="background: var(--header); color: #fff; border-radius: 20px; border: 2px solid var(--theme); height: 100%; display: flex; flex-direction: column; position: relative;">
-                                    <span style="position: absolute; top: -12px; right: 25px; background: var(--theme); color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Most Popular</span>
-                                    <div class="mb-3">
-                                        <span style="background: rgba(239,105,57,0.2); color: var(--theme); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">TIER 2</span>
-                                    </div>
-                                    <h3 style="color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 12px;">Comprehensive Audit</h3>
-                                    <p style="color: #A2B2CB; font-size: 14.5px; line-height: 1.6; margin-bottom: 20px;">
+
+                            <!-- Tier 2 (Featured / Most Popular) -->
+                            <div class="gb-tier-card-wrap gb-tier-card-wrap--featured gb-tiers__reveal-card">
+                                <article class="gb-tier-card gb-tier-card--featured">
+                                    <div class="gb-tier-card__animated-border" aria-hidden="true"></div>
+                                    <!-- Centered Most Popular Badge -->
+                                    <span class="gb-tier__popular-badge">
+                                        <i class="fa-solid fa-star"></i> MOST POPULAR
+                                    </span>
+                                    <span class="gb-tier__badge">TIER 2</span>
+                                    <h3 class="gb-tier__card-title">Comprehensive Audit</h3>
+                                    <p class="gb-tier__card-desc">
                                         A wider review across agreed HR and statutory areas, complete with evidence testing and prioritised register.
                                     </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 30px; font-size: 14px; color: #E1E9F5; flex-grow: 1;">
-                                        <li class="mb-2"><i class="fa-solid fa-check me-2" style="color: var(--theme);"></i> End-to-end statutory & process review</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check me-2" style="color: var(--theme);"></i> Rigorous sample testing across departments</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check me-2" style="color: var(--theme);"></i> Formal Findings Register & Risk Prioritization</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check me-2" style="color: var(--theme);"></i> Corrective action tracker with assigned owners</li>
-                                        <li><i class="fa-solid fa-check me-2" style="color: var(--theme);"></i> Executive leadership readout & discussion</li>
+                                    <div class="gb-tier__divider"></div>
+                                    <ul class="gb-tier__list">
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">End-to-end statutory & process review</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Rigorous sample testing across departments</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Formal Findings Register & Risk Prioritization</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Corrective action tracker with assigned owners</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Executive leadership readout & discussion</span>
+                                        </li>
                                     </ul>
-                                    <a href="contact" class="theme-btn" style="width: 100%; justify-content: center;">
-                                        <span class="btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                        <span class="btn-title">Scope Full Audit</span>
-                                        <span class="btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
+                                    <a href="contact" class="gb-tier__btn gb-tier__btn--primary">
+                                        <span>Scope Full Audit</span>
+                                        <span class="gb-tier__btn-arrow-circle"><i class="fa-solid fa-arrow-up-right"></i></span>
                                     </a>
-                                </div>
+                                </article>
                             </div>
+
                             <!-- Tier 3 -->
-                            <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                                <div class="p-4 p-xl-5" style="background: var(--bg-light); border-radius: 20px; border: 1px solid var(--border); height: 100%; display: flex; flex-direction: column;">
-                                    <div class="mb-3">
-                                        <span style="background: rgba(17,27,52,0.08); color: var(--header); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">TIER 3</span>
-                                    </div>
-                                    <h3 style="color: var(--header); font-size: 22px; font-weight: 700; margin-bottom: 12px;">Implementation Support</h3>
-                                    <p style="color: var(--text); font-size: 14.5px; line-height: 1.6; margin-bottom: 20px;">
+                            <div class="gb-tier-card-wrap gb-tiers__reveal-card">
+                                <article class="gb-tier-card gb-tier-card--light">
+                                    <div class="gb-tier-card__topbar" aria-hidden="true"></div>
+                                    <span class="gb-tier__badge">TIER 3</span>
+                                    <h3 class="gb-tier__card-title">Implementation Support</h3>
+                                    <p class="gb-tier__card-desc">
                                         Hands-on advisory helping leadership and internal teams close agreed gaps and strengthen workflows.
                                     </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0 0 30px; font-size: 14px; color: var(--text); flex-grow: 1;">
-                                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2" style="color: var(--accent-teal) !important;"></i> Policy drafting & template updates</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2" style="color: var(--accent-teal) !important;"></i> Remediation progress tracking</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check text-success me-2" style="color: var(--accent-teal) !important;"></i> Process control & governance coaching</li>
-                                        <li><i class="fa-solid fa-check text-success me-2" style="color: var(--accent-teal) !important;"></i> Scheduled follow-up review milestones</li>
+                                    <div class="gb-tier__divider"></div>
+                                    <ul class="gb-tier__list">
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Policy drafting & template updates</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Remediation progress tracking</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Process control & governance coaching</span>
+                                        </li>
+                                        <li class="gb-tier__item">
+                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
+                                            <span class="gb-tier__item-text">Scheduled follow-up review milestones</span>
+                                        </li>
                                     </ul>
-                                    <a href="contact" class="theme-btn" style="background: #fff; color: var(--header); border: 1.5px solid var(--border); width: 100%; justify-content: center;">
-                                        <span class="btn-title" style="color: var(--header) !important; font-weight: 600;">Request Support</span>
+                                    <a href="contact" class="gb-tier__btn gb-tier__btn--outline">
+                                        <span>Request Support</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
                                     </a>
-                                </div>
+                                </article>
                             </div>
+                        </div>
+
+                        <!-- 8. Trust Line Strip -->
+                        <div class="gb-tiers__trust gb-tiers__reveal-trust">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Not sure which tier fits? Book a free scoping call and we'll recommend the right scope.</span>
+                            <a href="contact" class="gb-tiers__trust-link">Talk to us <i class="fa-solid fa-arrow-up-right"></i></a>
                         </div>
                     </div>
                 </section>
