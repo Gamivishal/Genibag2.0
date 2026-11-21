@@ -16420,95 +16420,114 @@ span {
 }
 
 /* Centered Logo with ambient breathing glow */
-.genie-loader-logo-wrap {
+/* Dual Counter-Rotating Rings with Live Percentage */
+.genie-rings-wrapper {
   position: relative;
-  display: inline-block;
-  margin-bottom: 26px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
 }
 
-.genie-loader-logo {
-  height: 52px !important;
-  max-height: 52px !important;
-  width: auto !important;
-  object-fit: contain;
-  position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 0 16px rgba(29, 139, 138, 0.4));
-  animation: genieLogoPulse 2.2s ease-in-out infinite;
-}
-
-.genie-loader-glow {
+.genie-ring-glow {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(29, 139, 138, 0.4) 0%, rgba(252, 90, 52, 0.18) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(239, 105, 57, 0.28) 0%, rgba(29, 139, 138, 0.22) 45%, transparent 70%);
   border-radius: 50%;
   z-index: 1;
   filter: blur(18px);
-  animation: genieGlowPulse 2.2s ease-in-out infinite alternate;
+  animation: genieGlowPulse 2.4s ease-in-out infinite alternate;
 }
 
-@keyframes genieLogoPulse {
-  0%, 100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 16px rgba(29, 139, 138, 0.4));
-  }
-  50% {
-    transform: scale(1.035);
-    filter: drop-shadow(0 0 26px rgba(252, 90, 52, 0.55));
-  }
+.genie-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Outer Ring - Brand Vibrant Orange */
+.genie-ring-outer {
+  top: 5px;
+  left: 5px;
+  width: 130px;
+  height: 130px;
+  border: 3px solid transparent;
+  border-top-color: #EF6939;
+  border-right-color: rgba(239, 105, 57, 0.38);
+  border-bottom-color: #FC5A34;
+  box-shadow: 0 0 18px rgba(239, 105, 57, 0.45);
+  z-index: 2;
+  animation: genieRingRotateClockwise 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Inner Ring - Trust Mint / Teal Counter-Rotating */
+.genie-ring-inner {
+  top: 21px;
+  left: 21px;
+  width: 98px;
+  height: 98px;
+  border: 2.5px dashed rgba(29, 139, 138, 0.85);
+  border-top-color: #1D8B8A;
+  border-bottom-color: #0D9787;
+  border-left-color: rgba(29, 139, 138, 0.3);
+  box-shadow: 0 0 15px rgba(29, 139, 138, 0.4);
+  z-index: 2;
+  animation: genieRingRotateCounter 1.8s linear infinite;
+}
+
+/* Center Percentage Display */
+.genie-ring-core {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.genie-count-number {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  color: #FFFFFF;
+  letter-spacing: -1px;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.45);
+}
+
+.genie-count-symbol {
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  color: #FC5A34;
+  margin-left: 2px;
+  text-shadow: 0 0 10px rgba(252, 90, 52, 0.65);
+}
+
+@keyframes genieRingRotateClockwise {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes genieRingRotateCounter {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
 }
 
 @keyframes genieGlowPulse {
   0% {
     transform: translate(-50%, -50%) scale(0.85);
-    opacity: 0.5;
+    opacity: 0.55;
   }
   100% {
     transform: translate(-50%, -50%) scale(1.15);
     opacity: 0.95;
-  }
-}
-
-/* Glowing Progress Track */
-.genie-loader-bar-wrap {
-  width: 200px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 20px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.genie-loader-bar {
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, #1D8B8A, #FC5A34);
-  border-radius: 999px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-shadow: 0 0 10px #FC5A34;
-  animation: genieLoaderTrack 1.35s ease-in-out infinite;
-}
-
-@keyframes genieLoaderTrack {
-  0% {
-    left: -50%;
-    width: 30%;
-  }
-  50% {
-    left: 25%;
-    width: 60%;
-  }
-  100% {
-    left: 100%;
-    width: 40%;
   }
 }
 
@@ -16517,6 +16536,7 @@ span {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-bottom: 10px;
 }
 
 .genie-loader-brand {
@@ -16534,6 +16554,41 @@ span {
   font-weight: 500;
   letter-spacing: 1px;
   color: #94A3B8;
+}
+
+/* Status Pill */
+.genie-loader-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(29, 139, 138, 0.12);
+  border: 1px solid rgba(29, 139, 138, 0.3);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-top: 4px;
+}
+
+.genie-loader-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1D8B8A;
+  box-shadow: 0 0 8px #1D8B8A;
+  animation: genieStatusPulse 1.2s infinite alternate;
+}
+
+.genie-loader-status-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #1D8B8A;
+}
+
+@keyframes genieStatusPulse {
+  0% { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1.15); }
 }
 
 /* Soft transition feel on body when navigating */

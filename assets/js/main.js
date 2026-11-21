@@ -1181,7 +1181,8 @@
 
 
     /* ==========================================================================
-       Geniebag Premium Preloader & Menu Click Page Transitions
+       Geniebag Solutions - Premium Preloader (Dual Rings & Live Percent Counter)
+       & Sleek Menu Click Page Transitions
        ========================================================================== */
 
     function initAnimations() {
@@ -1195,8 +1196,66 @@
 
     const $progress = $("#genie-top-progress");
     const $preloader = $(".preloader");
+    const $percentEl = $("#genie-loader-percent");
+
+    // Check if navigating internally from menu
+    let isInternalNav = false;
+    try {
+        if (sessionStorage.getItem("genie_nav_transition") === "1") {
+            isInternalNav = true;
+            sessionStorage.removeItem("genie_nav_transition");
+        }
+    } catch (e) {
+        isInternalNav = false;
+    }
+
+    let currentPercent = 0;
+    let percentTimer = null;
+    let isRevealed = false;
+
+    // Smoothly increment the percentage counter towards 100%
+    function startPercentCounter() {
+        if (!$percentEl.length) return;
+        currentPercent = 0;
+        $percentEl.text("0");
+
+        clearInterval(percentTimer);
+        percentTimer = setInterval(function () {
+            if (isRevealed) {
+                clearInterval(percentTimer);
+                return;
+            }
+            if (currentPercent < 88) {
+                currentPercent += Math.floor(Math.random() * 5) + 3;
+                if (currentPercent > 88) currentPercent = 88;
+                $percentEl.text(currentPercent);
+            }
+        }, 35);
+    }
+
+    function finishPercentCounter(callback) {
+        clearInterval(percentTimer);
+        if (!$percentEl.length) {
+            if (callback) callback();
+            return;
+        }
+
+        const finishInterval = setInterval(function () {
+            if (currentPercent < 100) {
+                currentPercent += 4;
+                if (currentPercent > 100) currentPercent = 100;
+                $percentEl.text(currentPercent);
+            } else {
+                clearInterval(finishInterval);
+                if (callback) callback();
+            }
+        }, 12);
+    }
 
     function revealPage() {
+        if (isRevealed) return;
+        isRevealed = true;
+
         if ($progress.length) {
             $progress.css({ width: "100%", opacity: "1" });
             setTimeout(function () {
@@ -1204,19 +1263,41 @@
                 setTimeout(function () {
                     $progress.css({ width: "0%" });
                 }, 300);
-            }, 200);
+            }, 250);
         }
 
-        if ($preloader.length) {
-            setTimeout(function () {
+        if ($preloader.length && $preloader.hasClass("is-loading")) {
+            if (isInternalNav) {
+                // Fast reveal on internal menu navigation
                 $preloader.removeClass("is-loading").addClass("is-loaded");
                 setTimeout(function () {
-                    $preloader.fadeOut(350);
+                    $preloader.fadeOut(250);
                     initAnimations();
-                }, 200);
-            }, 180);
+                }, 80);
+            } else {
+                // Full luxury percent counter reveal on fresh load
+                finishPercentCounter(function () {
+                    setTimeout(function () {
+                        $preloader.removeClass("is-loading").addClass("is-loaded");
+                        setTimeout(function () {
+                            $preloader.fadeOut(350);
+                            initAnimations();
+                        }, 200);
+                    }, 150);
+                });
+            }
         } else {
             initAnimations();
+        }
+    }
+
+    // Start percent counting immediately on initial load
+    if (!isInternalNav) {
+        startPercentCounter();
+    } else {
+        // Fast progress bar indicator for internal page transition
+        if ($progress.length) {
+            $progress.css({ width: "85%", opacity: "1" });
         }
     }
 
@@ -1225,13 +1306,13 @@
         revealPage();
     });
 
-    // Also handle fallback in case load already fired
+    // Fallback safety timeout in case window load already fired
     $(document).ready(function () {
         setTimeout(function () {
-            if ($preloader.hasClass("is-loading")) {
+            if ($preloader.hasClass("is-loading") && !isRevealed) {
                 revealPage();
             }
-        }, 1200);
+        }, isInternalNav ? 300 : 1200);
     });
 
     // Intercept menu and internal navigation clicks for a smooth loading effect
@@ -1275,6 +1356,11 @@
 
         e.preventDefault();
 
+        // Save internal navigation state for the next page
+        try {
+            sessionStorage.setItem("genie_nav_transition", "1");
+        } catch (err) {}
+
         // 1. Animate top glowing progress bar
         if ($progress.length) {
             $progress.css({ width: "0%", opacity: "1" });
@@ -1283,17 +1369,13 @@
             }, 10);
         }
 
-        // 2. Smoothly show preloader with brand effect
-        if ($preloader.length) {
-            $preloader.stop(true, true).fadeIn(180).removeClass("is-loaded").addClass("is-loading");
-        }
-
+        // 2. Smoothly add soft transition on page body
         $("body").addClass("is-page-loading");
 
         // 3. Navigate smoothly
         setTimeout(function () {
             window.location.href = href;
-        }, 220);
+        }, 180);
     });
 
     // Handle browser Back/Forward (bfcache) restore

@@ -39,16 +39,22 @@
         <div class="preloader is-loading">
             <div class="preloader-inner">
                 <div class="genie-loader-content">
-                    <div class="genie-loader-logo-wrap">
-                        <img src="assets/img/logo/logo-transparent.png" alt="Geniebag Solutions" class="genie-loader-logo">
-                        <div class="genie-loader-glow"></div>
-                    </div>
-                    <div class="genie-loader-bar-wrap">
-                        <div class="genie-loader-bar"></div>
+                    <!-- Dual Counter-Rotating Rings with Live Percentage -->
+                    <div class="genie-rings-wrapper">
+                        <div class="genie-ring-glow"></div>
+                        <div class="genie-ring genie-ring-outer"></div>
+                        <div class="genie-ring genie-ring-inner"></div>
+                        <div class="genie-ring-core">
+                            <span class="genie-count-number" id="genie-loader-percent">0</span><span class="genie-count-symbol">%</span>
+                        </div>
                     </div>
                     <div class="genie-loader-text">
                         <span class="genie-loader-brand">Geniebag Solutions</span>
                         <span class="genie-loader-tagline">HR Compliance &amp; Governance</span>
+                    </div>
+                    <div class="genie-loader-status">
+                        <span class="genie-loader-dot"></span>
+                        <span class="genie-loader-status-text">SYSTEM READY</span>
                     </div>
                 </div>
             </div>
