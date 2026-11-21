@@ -1413,11 +1413,122 @@
         }
     });
 
+        /* ==========================================================================
+       What We Do Section - Senior Micro-Interactions (Tilt, Spotlight, Count-Up, Scroll Reveal)
+       ========================================================================== */
 
+    (function initWwdInteractions() {
+        const wwdSection = document.getElementById('services');
+        if (!wwdSection) return;
 
+        // 1. Scroll-Reveal via IntersectionObserver (or instant fallback)
+        if ('IntersectionObserver' in window) {
+            const wwdRevealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        wwdSection.classList.add('is-revealed');
+                        triggerCountUps();
+                        wwdRevealObserver.unobserve(wwdSection);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-  
-  })(jQuery); // End jQuery
+            wwdRevealObserver.observe(wwdSection);
+
+            // Safety timeout: ensure cards are never stuck invisible under any circumstances
+            setTimeout(() => {
+                if (!wwdSection.classList.contains('is-revealed')) {
+                    wwdSection.classList.add('is-revealed');
+                    triggerCountUps();
+                }
+            }, 2000);
+        } else {
+            wwdSection.classList.add('is-revealed');
+            triggerCountUps();
+        }
+
+        // 2. Count-Up Animation for Stat Tiles (cubic ease-out, respects reduced motion)
+        let countUpTriggered = false;
+        function triggerCountUps() {
+            if (countUpTriggered) return;
+            countUpTriggered = true;
+
+            const statNumbers = wwdSection.querySelectorAll('.gb-stat-num');
+            const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            statNumbers.forEach(numEl => {
+                const target = parseInt(numEl.getAttribute('data-target'), 10);
+                if (isNaN(target)) return;
+
+                if (isReducedMotion || target === 0) {
+                    numEl.textContent = target;
+                    return;
+                }
+
+                numEl.textContent = '0';
+                const duration = 1600; // ms
+                const startTime = performance.now();
+
+                function step(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Cubic ease out curve
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    const currentVal = Math.floor(easeOut * target);
+
+                    numEl.textContent = currentVal;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        numEl.textContent = target;
+                    }
+                }
+
+                requestAnimationFrame(step);
+            });
+        }
+
+        // 3. Desktop 3D Tilt & Cursor Spotlight (Fine pointer + hover devices only)
+        if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+            const cards = wwdSection.querySelectorAll('.gb-wwd__card');
+
+            cards.forEach(card => {
+                let rafId = null;
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const cx = rect.width / 2;
+                    const cy = rect.height / 2;
+
+                    // Subtle 3D tilt: max 4.5 degrees
+                    const rx = (((y - cy) / cy) * -4.5).toFixed(2);
+                    const ry = (((x - cx) / cx) * 4.5).toFixed(2);
+
+                    if (rafId) cancelAnimationFrame(rafId);
+                    rafId = requestAnimationFrame(() => {
+                        card.style.setProperty('--mx', `${x.toFixed(1)}px`);
+                        card.style.setProperty('--my', `${y.toFixed(1)}px`);
+                        card.style.setProperty('--rx', `${rx}deg`);
+                        card.style.setProperty('--ry', `${ry}deg`);
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    if (rafId) cancelAnimationFrame(rafId);
+                    // Smooth reset handled by CSS transition
+                    card.style.setProperty('--rx', '0deg');
+                    card.style.setProperty('--ry', '0deg');
+                    card.style.removeProperty('--mx');
+                    card.style.removeProperty('--my');
+                });
+            });
+        }
+    })();
+
+})(jQuery); // End jQuery
 
 
 

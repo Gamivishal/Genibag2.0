@@ -419,134 +419,883 @@
 
                 <!-- Service Section Start (What We Do) -->
                 <style>
-                    .gb-wwd { background: var(--bg-light, #F8FAFF); padding: 96px 0; position: relative; overflow-x: clip; }
-                    .gb-wwd__wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; width: 100%; }
-                    .gb-wwd__head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
-                    .gb-wwd__eyebrow { display: block; font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text); margin-bottom: 16px; }
-                    .gb-wwd__title { font-size: clamp(30px, 4vw, 44px); font-weight: 800; line-height: 1.2; color: var(--header); margin: 0 0 20px; }
-                    .gb-wwd__title span { color: #F26A3F; display: block; }
-                    .gb-wwd__sub { max-width: 640px; margin: 0 auto; color: var(--text); font-size: 18px; line-height: 1.7; text-wrap: balance; }
-                    .gb-wwd__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: stretch; }
-                    .gb-wwd__grid > .wow { display: flex; min-width: 0; }
-                    .gb-wwd__card { position: relative; display: flex; flex-direction: column; width: 100%; background: #fff; border: 1px solid var(--border, #E1E9F5); border-radius: 18px; padding: 32px 28px 28px; box-shadow: 0 6px 24px rgba(17, 27, 52, .06); overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; }
-                    .gb-wwd__card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, #F26A3F, #2A9D8F); }
-                    .gb-wwd__card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(17, 27, 52, .10); }
-                    .gb-wwd__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-                    .gb-wwd__icon { width: 56px; height: 56px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 24px; color: var(--c); background: var(--cb); }
-                    .gb-wwd__num { width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #fff; background: var(--n); box-shadow: 0 4px 10px rgba(17, 27, 52, .15); }
-                    .gb-wwd__card h3 { font-size: 21px; font-weight: 700; line-height: 1.35; color: var(--header); margin: 0 0 12px; }
-                    .gb-wwd__card p { font-size: 15.5px; line-height: 1.7; color: var(--text); margin: 0 0 24px; }
-                    .gb-wwd__link { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; color: #F26A3F; font-weight: 600; font-size: 15px; }
-                    .gb-wwd__link i { transition: transform .3s ease; }
-                    .gb-wwd__link:hover { color: #CC4A22; }
-                    .gb-wwd__link:hover i { transform: translateX(4px); }
-                    .gb-wwd__cta { display: flex; justify-content: center; margin-top: 56px; }
-                    .gb-wwd__btn { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; background: #F26A3F; color: #fff; font-size: 16px; font-weight: 600; line-height: 1; padding: 8px 8px 8px 28px; border-radius: 999px; box-shadow: 0 8px 20px rgba(242, 106, 63, .28); transition: background .3s ease, transform .3s ease; }
-                    .gb-wwd__btn:hover { background: #CC4A22; color: #fff; transform: translateY(-2px); }
-                    .gb-wwd__btn .arr { width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #F26A3F; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-                    .gb-wwd__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 64px; }
-                    .gb-wwd__stat { background: #fff; border: 1px solid var(--border, #E1E9F5); border-radius: 16px; padding: 28px 16px; text-align: center; box-shadow: 0 4px 16px rgba(17, 27, 52, .05); min-width: 0; }
-                    .gb-wwd__stat .v { font-size: clamp(30px, 3.6vw, 46px); font-weight: 700; line-height: 1.1; color: var(--header); margin: 0 0 10px; white-space: nowrap; }
-                    .gb-wwd__stat .v em { font-style: normal; color: #F26A3F; }
-                    .gb-wwd__stat .l { font-size: 14.5px; font-weight: 600; color: var(--header); margin: 0; }
-                    @media (max-width: 1024px) { .gb-wwd__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } }
+                    /* ==========================================================================
+                       What We Do Section - Senior UI Polish & Premium Micro-Interactions
+                       ========================================================================== */
+                    :root {
+                        /* Motion & timing tokens */
+                        --wwd-ease: cubic-bezier(0.22, 1, 0.36, 1);
+                        --wwd-duration: 380ms;
+                        /* Brand color tokens */
+                        --wwd-orange: #F26A3F;
+                        --wwd-orange-hover: #CC4A22;
+                        --wwd-orange-glow: rgba(242, 106, 63, 0.18);
+                        --wwd-teal: #2A9D8F;
+                        --wwd-navy: #111B34;
+                        --wwd-text: #526075;
+                        --wwd-border: rgba(225, 233, 245, 0.75);
+                        /* Layered shadows for tangible depth */
+                        --wwd-shadow-base: 
+                            0 1px 2px rgba(17, 27, 52, 0.03),
+                            0 4px 12px rgba(17, 27, 52, 0.04),
+                            0 12px 24px rgba(17, 27, 52, 0.03);
+                        --wwd-shadow-hover: 
+                            0 4px 12px rgba(17, 27, 52, 0.04),
+                            0 16px 36px rgba(17, 27, 52, 0.06),
+                            0 24px 48px var(--wwd-orange-glow);
+                    }
+
+                    /* Section Container with subtle background grid pattern */
+                    .gb-wwd {
+                        background: var(--bg-light, #F8FAFF);
+                        padding: 96px 0;
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    /* 6. Background depth: Faint dotted grid pattern (3–4% opacity) */
+                    .gb-wwd::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        background-image: radial-gradient(rgba(17, 27, 52, 0.035) 1.5px, transparent 1.5px);
+                        background-size: 28px 28px;
+                        pointer-events: none;
+                        z-index: 0;
+                    }
+
+                    /* 6. Background depth: Soft blurred ambient radial glows */
+                    .gb-wwd-glow {
+                        position: absolute;
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 0;
+                        filter: blur(80px);
+                    }
+
+                    .gb-wwd-glow--orange {
+                        top: 12%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 700px;
+                        height: 480px;
+                        background: radial-gradient(circle, rgba(242, 106, 63, 0.08) 0%, transparent 70%);
+                    }
+
+                    .gb-wwd-glow--teal {
+                        bottom: 8%;
+                        right: 5%;
+                        width: 500px;
+                        height: 400px;
+                        background: radial-gradient(circle, rgba(42, 157, 143, 0.07) 0%, transparent 70%);
+                    }
+
+                    /* 4. Decorative floating dots (subtle 4-6px floating motion) */
+                    .gb-wwd__dots {
+                        position: absolute;
+                        width: 140px;
+                        height: 140px;
+                        background-image: radial-gradient(rgba(242, 106, 63, 0.16) 1.5px, transparent 1.5px);
+                        background-size: 16px 16px;
+                        pointer-events: none;
+                        z-index: 0;
+                        opacity: 0.7;
+                    }
+
+                    .gb-wwd__dots--left {
+                        top: 60px;
+                        left: 4%;
+                    }
+
+                    .gb-wwd__dots--right {
+                        top: 220px;
+                        right: 4%;
+                        background-image: radial-gradient(rgba(42, 157, 143, 0.18) 1.5px, transparent 1.5px);
+                    }
+
+                    @media (prefers-reduced-motion: no-preference) {
+                        .gb-wwd__dots--left {
+                            animation: wwdFloat 5s ease-in-out infinite alternate;
+                        }
+                        .gb-wwd__dots--right {
+                            animation: wwdFloat 5s ease-in-out infinite alternate -2.5s;
+                        }
+                    }
+
+                    @keyframes wwdFloat {
+                        0% { transform: translateY(0px) rotate(0deg); }
+                        100% { transform: translateY(-6px) rotate(1.5deg); }
+                    }
+
+                    /* Section wrapper */
+                    .gb-wwd__wrap {
+                        position: relative;
+                        z-index: 1;
+                        max-width: 1240px;
+                        margin: 0 auto;
+                        padding: 0 20px;
+                    }
+
+                    /* Header styling */
+                    .gb-wwd__head {
+                        text-align: center;
+                        max-width: 760px;
+                        margin: 0 auto 56px;
+                    }
+
+                    .gb-wwd__eyebrow {
+                        display: inline-block;
+                        font-size: 13.5px;
+                        font-weight: 700;
+                        letter-spacing: .1em;
+                        text-transform: uppercase;
+                        color: var(--wwd-orange);
+                        margin-bottom: 14px;
+                    }
+
+                    .gb-wwd__title {
+                        font-size: clamp(30px, 3.8vw, 44px);
+                        font-weight: 800;
+                        line-height: 1.22;
+                        color: var(--wwd-navy);
+                        margin: 0 0 18px;
+                    }
+
+                    /* 4. Animated gradient shimmer text (orange to warm amber, 7s loop) */
+                    .gb-wwd__title span.gradient-text {
+                        background: linear-gradient(90deg, #F26A3F 0%, #F5A540 50%, #F26A3F 100%);
+                        background-size: 200% auto;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                    }
+
+                    @media (prefers-reduced-motion: no-preference) {
+                        .gb-wwd__title span.gradient-text {
+                            animation: wwdShimmer 7s ease-in-out infinite;
+                        }
+                    }
+
+                    @keyframes wwdShimmer {
+                        0% { background-position: 0% center; }
+                        50% { background-position: 100% center; }
+                        100% { background-position: 0% center; }
+                    }
+
+                    .gb-wwd__sub {
+                        max-width: 640px;
+                        margin: 0 auto;
+                        color: var(--wwd-text);
+                        font-size: 17.5px;
+                        line-height: 1.7;
+                        text-wrap: balance;
+                    }
+
+                    /* Grid Container */
+                    .gb-wwd__grid {
+                        display: grid;
+                        grid-template-columns: repeat(3, minmax(0, 1fr));
+                        gap: 28px;
+                        align-items: stretch;
+                    }
+
+                    .gb-wwd__reveal-card {
+                        display: flex;
+                        min-width: 0;
+                    }
+
+                    /* 1. Card Base Styling with Layered Shadow & Elevation */
+                    .gb-wwd__card {
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        background: linear-gradient(180deg, #FFFFFF 0%, #F9FAFC 100%);
+                        border: 1px solid var(--wwd-border);
+                        border-radius: 18px;
+                        padding: 32px 28px 28px;
+                        overflow: hidden;
+                        box-shadow: var(--wwd-shadow-base);
+                        transform-style: preserve-3d;
+                        transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(0px);
+                        transition: 
+                            transform var(--wwd-duration) var(--wwd-ease),
+                            box-shadow var(--wwd-duration) var(--wwd-ease),
+                            border-color var(--wwd-duration) var(--wwd-ease);
+                        will-change: transform, box-shadow;
+                    }
+
+                    /* 1. Top thin gradient bar */
+                    .gb-wwd__card-topbar {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        height: 3.5px;
+                        background: linear-gradient(90deg, var(--wwd-orange) 0%, var(--wwd-teal) 100%);
+                        transition: height var(--wwd-duration) var(--wwd-ease);
+                        z-index: 4;
+                    }
+
+                    /* 1. Faint oversized watermark number (01–06) at ~5% opacity */
+                    .gb-wwd__card-watermark {
+                        position: absolute;
+                        top: 10px;
+                        right: 18px;
+                        font-family: 'DM Sans', var(--font-primary, sans-serif);
+                        font-size: 110px;
+                        font-weight: 900;
+                        line-height: 0.85;
+                        color: var(--wwd-navy);
+                        opacity: 0.05;
+                        letter-spacing: -4px;
+                        pointer-events: none;
+                        user-select: none;
+                        z-index: 1;
+                        transition: transform var(--wwd-duration) var(--wwd-ease), opacity var(--wwd-duration) var(--wwd-ease);
+                    }
+
+                    /* 2. Cursor spotlight glow overlay */
+                    .gb-wwd__card-spotlight {
+                        position: absolute;
+                        inset: 0;
+                        border-radius: inherit;
+                        pointer-events: none;
+                        background: radial-gradient(360px circle at var(--mx, -500px) var(--my, -500px), rgba(242, 106, 63, 0.12), transparent 70%);
+                        opacity: 0;
+                        transition: opacity var(--wwd-duration) var(--wwd-ease);
+                        z-index: 1;
+                    }
+
+                    /* 2. Animated gradient border */
+                    .gb-wwd__card-border {
+                        position: absolute;
+                        inset: 0;
+                        border-radius: inherit;
+                        padding: 1.5px;
+                        background: linear-gradient(135deg, rgba(242, 106, 63, 0.65) 0%, rgba(42, 157, 143, 0.65) 100%);
+                        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                        -webkit-mask-composite: xor;
+                        mask-composite: exclude;
+                        opacity: 0;
+                        pointer-events: none;
+                        transition: opacity var(--wwd-duration) var(--wwd-ease);
+                        z-index: 3;
+                    }
+
+                    /* 2. Desktop Card Hover Effects */
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-wwd__card:hover {
+                            transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-8px);
+                            box-shadow: var(--wwd-shadow-hover);
+                        }
+
+                        .gb-wwd__card:hover .gb-wwd__card-topbar {
+                            height: 5.5px;
+                        }
+
+                        .gb-wwd__card:hover .gb-wwd__card-spotlight {
+                            opacity: 1;
+                        }
+
+                        .gb-wwd__card:hover .gb-wwd__card-border {
+                            opacity: 1;
+                        }
+
+                        .gb-wwd__card:hover .gb-wwd__card-watermark {
+                            transform: translateY(-4px) scale(1.02);
+                            opacity: 0.07;
+                        }
+                    }
+
+                    /* Touch devices: clean active state */
+                    @media (hover: none) or (pointer: coarse) {
+                        .gb-wwd__card:active {
+                            transform: scale(0.985);
+                            box-shadow: var(--wwd-shadow-hover);
+                        }
+                    }
+
+                    /* Card header row: Icon + Number badge */
+                    .gb-wwd__top {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 24px;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    /* 2. Icon box: scales to 1.08 and rotates ~6deg on hover */
+                    .gb-wwd__icon {
+                        width: 56px;
+                        height: 56px;
+                        border-radius: 14px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 24px;
+                        color: var(--c, var(--wwd-orange));
+                        background: var(--cb, rgba(242, 106, 63, 0.12));
+                        transition: 
+                            transform var(--wwd-duration) var(--wwd-ease),
+                            background var(--wwd-duration) var(--wwd-ease),
+                            color var(--wwd-duration) var(--wwd-ease),
+                            box-shadow var(--wwd-duration) var(--wwd-ease);
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-wwd__card:hover .gb-wwd__icon {
+                            transform: scale(1.08) rotate(6deg);
+                            background: linear-gradient(135deg, var(--wwd-orange) 0%, var(--wwd-teal) 100%);
+                            color: #ffffff;
+                            box-shadow: 0 8px 20px rgba(242, 106, 63, 0.28);
+                        }
+
+                        .gb-wwd__card:hover .gb-wwd__icon i {
+                            color: #ffffff !important;
+                        }
+                    }
+
+                    /* 2. Number badge with soft pulse ring on hover */
+                    .gb-wwd__num {
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 50%;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 15px;
+                        font-weight: 700;
+                        color: #ffffff;
+                        background: var(--n, var(--wwd-orange));
+                        box-shadow: 0 4px 10px rgba(17, 27, 52, 0.12);
+                        transition: 
+                            transform var(--wwd-duration) var(--wwd-ease),
+                            box-shadow var(--wwd-duration) var(--wwd-ease);
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-wwd__card:hover .gb-wwd__num {
+                            transform: scale(1.06);
+                            box-shadow: 0 0 0 4px rgba(242, 106, 63, 0.18), 0 6px 16px rgba(242, 106, 63, 0.32);
+                        }
+                    }
+
+                    /* Card typography */
+                    .gb-wwd__card h3 {
+                        font-size: 21px;
+                        font-weight: 700;
+                        line-height: 1.35;
+                        color: var(--wwd-navy);
+                        margin: 0 0 12px;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    .gb-wwd__card p {
+                        font-size: 15.5px;
+                        line-height: 1.7;
+                        color: var(--wwd-text);
+                        margin: 0 0 24px;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    /* 2. "Learn Details" link with sliding arrow & growing underline */
+                    .gb-wwd__link {
+                        margin-top: auto;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        align-self: flex-start;
+                        color: var(--wwd-orange);
+                        font-weight: 600;
+                        font-size: 15px;
+                        text-decoration: none;
+                        position: relative;
+                        padding-bottom: 2px;
+                        z-index: 2;
+                        transition: color var(--wwd-duration) var(--wwd-ease);
+                    }
+
+                    .gb-wwd__link-text {
+                        position: relative;
+                        display: inline-block;
+                    }
+
+                    .gb-wwd__link-text::after {
+                        content: "";
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background: var(--wwd-orange);
+                        border-radius: 1px;
+                        transform: scaleX(0);
+                        transform-origin: left;
+                        transition: transform var(--wwd-duration) var(--wwd-ease);
+                    }
+
+                    .gb-wwd__link i {
+                        font-size: 13px;
+                        transition: transform var(--wwd-duration) var(--wwd-ease);
+                    }
+
+                    @media (hover: hover) and (pointer: fine) {
+                        .gb-wwd__card:hover .gb-wwd__link-text::after,
+                        .gb-wwd__link:hover .gb-wwd__link-text::after {
+                            transform: scaleX(1);
+                        }
+
+                        .gb-wwd__card:hover .gb-wwd__link i,
+                        .gb-wwd__link:hover i {
+                            transform: translateX(5px);
+                        }
+                    }
+
+                    /* 4. "View All Services" CTA button with diagonal sweep & rotating arrow */
+                    .gb-wwd__cta {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 56px;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    .gb-wwd__btn {
+                        position: relative;
+                        overflow: hidden;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 12px;
+                        white-space: nowrap;
+                        background: var(--wwd-orange);
+                        color: #ffffff !important;
+                        font-size: 16px;
+                        font-weight: 600;
+                        line-height: 1;
+                        padding: 8px 8px 8px 28px;
+                        border-radius: 999px;
+                        box-shadow: 0 8px 24px rgba(242, 106, 63, 0.28);
+                        text-decoration: none;
+                        transition: 
+                            transform var(--wwd-duration) var(--wwd-ease),
+                            box-shadow var(--wwd-duration) var(--wwd-ease),
+                            background var(--wwd-duration) var(--wwd-ease);
+                    }
+
+                    .gb-wwd__btn::before {
+                        content: "";
+                        position: absolute;
+                        top: -50%;
+                        left: -60%;
+                        width: 40%;
+                        height: 200%;
+                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+                        transform: rotate(25deg);
+                        transition: left 0.75s var(--wwd-ease);
+                        pointer-events: none;
+                    }
+
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-wwd__btn:hover {
+                            background: var(--wwd-orange-hover);
+                            transform: translateY(-2px);
+                            box-shadow: 0 12px 30px rgba(242, 106, 63, 0.4);
+                        }
+
+                        .gb-wwd__btn:hover::before {
+                            left: 140%;
+                        }
+
+                        .gb-wwd__btn:hover .arr {
+                            transform: rotate(45deg);
+                        }
+                    }
+
+                    .gb-wwd__btn .arr {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background: #ffffff;
+                        color: var(--wwd-orange);
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-shrink: 0;
+                        transition: transform var(--wwd-duration) var(--wwd-ease);
+                    }
+
+                    /* 5. Stat Tiles with Hover Lift, Underline & Depth */
+                    .gb-wwd__stats {
+                        display: grid;
+                        grid-template-columns: repeat(4, minmax(0, 1fr));
+                        gap: 24px;
+                        margin-top: 64px;
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    .gb-wwd__stat {
+                        background: #ffffff;
+                        border: 1px solid var(--wwd-border);
+                        border-radius: 16px;
+                        padding: 28px 20px;
+                        text-align: center;
+                        box-shadow: 0 2px 6px rgba(17, 27, 52, 0.03), 0 8px 20px rgba(17, 27, 52, 0.04);
+                        min-width: 0;
+                        position: relative;
+                        overflow: hidden;
+                        transition: 
+                            transform var(--wwd-duration) var(--wwd-ease),
+                            box-shadow var(--wwd-duration) var(--wwd-ease),
+                            border-color var(--wwd-duration) var(--wwd-ease);
+                    }
+
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-wwd__stat:hover {
+                            transform: translateY(-4px);
+                            box-shadow: 0 4px 12px rgba(17, 27, 52, 0.04), 0 16px 32px rgba(242, 106, 63, 0.12);
+                            border-color: rgba(242, 106, 63, 0.3);
+                        }
+                    }
+
+                    .gb-wwd__stat .v {
+                        font-size: clamp(30px, 3.6vw, 46px);
+                        font-weight: 700;
+                        line-height: 1.1;
+                        color: var(--wwd-navy);
+                        margin: 0 0 10px;
+                        white-space: nowrap;
+                        position: relative;
+                        display: inline-block;
+                    }
+
+                    /* Suffixes stay orange */
+                    .gb-wwd__stat .v em {
+                        font-style: normal;
+                        color: var(--wwd-orange);
+                    }
+
+                    /* 5. Orange underline that grows below the number on hover */
+                    .gb-wwd__stat .v::after {
+                        content: "";
+                        position: absolute;
+                        bottom: -4px;
+                        left: 0;
+                        width: 100%;
+                        height: 2.5px;
+                        background: var(--wwd-orange);
+                        border-radius: 2px;
+                        transform: scaleX(0);
+                        transform-origin: center;
+                        transition: transform var(--wwd-duration) var(--wwd-ease);
+                    }
+
+                    @media (hover: hover) and (pointer: fine) {
+                        .gb-wwd__stat:hover .v::after {
+                            transform: scaleX(1);
+                        }
+                    }
+
+                    .gb-wwd__stat .l {
+                        font-size: 14.5px;
+                        font-weight: 600;
+                        color: var(--wwd-navy);
+                        margin: 0;
+                    }
+
+                    /* 3. Scroll Reveal Animation via Staggered Transitions */
+                    @media (prefers-reduced-motion: no-preference) {
+                        .gb-wwd__reveal-head,
+                        .gb-wwd__reveal-card,
+                        .gb-wwd__reveal-btn,
+                        .gb-wwd__reveal-stat {
+                            opacity: 0;
+                            transform: translateY(32px);
+                            transition: 
+                                opacity 0.65s var(--wwd-ease),
+                                transform 0.65s var(--wwd-ease);
+                        }
+
+                        .gb-wwd.is-revealed .gb-wwd__reveal-head {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+
+                        .gb-wwd.is-revealed .gb-wwd__reveal-card {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+
+                        /* Stagger 80-100ms per card */
+                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(1) { transition-delay: 0.08s; }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(2) { transition-delay: 0.16s; }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(3) { transition-delay: 0.24s; }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(4) { transition-delay: 0.32s; }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(5) { transition-delay: 0.40s; }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(6) { transition-delay: 0.48s; }
+
+                        .gb-wwd.is-revealed .gb-wwd__reveal-btn {
+                            opacity: 1;
+                            transform: translateY(0);
+                            transition-delay: 0.54s;
+                        }
+
+                        .gb-wwd.is-revealed .gb-wwd__reveal-stat {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-stat:nth-child(1) { transition-delay: 0.58s; }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-stat:nth-child(2) { transition-delay: 0.66s; }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-stat:nth-child(3) { transition-delay: 0.74s; }
+                        .gb-wwd.is-revealed .gb-wwd__reveal-stat:nth-child(4) { transition-delay: 0.82s; }
+                    }
+
+                    /* 7. Keyboard focus-visible accessibility ring */
+                    .gb-wwd__card:focus-visible,
+                    .gb-wwd__link:focus-visible,
+                    .gb-wwd__btn:focus-visible,
+                    .gb-wwd__stat:focus-visible {
+                        outline: 2px solid var(--wwd-orange) !important;
+                        outline-offset: 3px !important;
+                    }
+
+                    /* 7. Responsive Breakpoint Refinements (1440px, 1024px, 768px, 390px) */
+                    @media (max-width: 1024px) {
+                        .gb-wwd__grid {
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
+                            gap: 24px;
+                        }
+                        .gb-wwd__dots {
+                            opacity: 0.4;
+                        }
+                    }
+
                     @media (max-width: 767px) {
-                        .gb-wwd { padding: 64px 0; }
-                        .gb-wwd__head { margin-bottom: 40px; }
-                        .gb-wwd__sub { font-size: 16px; }
-                        .gb-wwd__grid { grid-template-columns: 1fr; gap: 20px; }
-                        .gb-wwd__card { padding: 28px 22px 24px; }
-                        .gb-wwd__cta { margin-top: 40px; }
-                        .gb-wwd__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
-                        .gb-wwd__stat { padding: 22px 12px; }
+                        .gb-wwd {
+                            padding: 64px 0;
+                        }
+                        .gb-wwd__head {
+                            margin-bottom: 40px;
+                        }
+                        .gb-wwd__sub {
+                            font-size: 16px;
+                        }
+                        .gb-wwd__grid {
+                            grid-template-columns: 1fr;
+                            gap: 20px;
+                        }
+                        .gb-wwd__card {
+                            padding: 28px 22px 24px;
+                        }
+                        .gb-wwd__cta {
+                            margin-top: 40px;
+                        }
+                        .gb-wwd__stats {
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
+                            gap: 16px;
+                            margin-top: 48px;
+                        }
+                        .gb-wwd__stat {
+                            padding: 22px 14px;
+                        }
+                        .gb-wwd__btn {
+                            font-size: 15px;
+                        }
+                        .gb-wwd__dots {
+                            display: none;
+                        }
+                    }
+
+                    @media (max-width: 390px) {
+                        .gb-wwd__stats {
+                            grid-template-columns: 1fr;
+                            gap: 14px;
+                        }
+                    }
+
+                    /* Reduced Motion Calm Fallback */
+                    @media (prefers-reduced-motion: reduce) {
+                        .gb-wwd__reveal-head,
+                        .gb-wwd__reveal-card,
+                        .gb-wwd__reveal-btn,
+                        .gb-wwd__reveal-stat,
+                        .gb-wwd__card,
+                        .gb-wwd__card-topbar,
+                        .gb-wwd__card-watermark,
+                        .gb-wwd__card-spotlight,
+                        .gb-wwd__card-border,
+                        .gb-wwd__icon,
+                        .gb-wwd__num,
+                        .gb-wwd__link,
+                        .gb-wwd__link-text::after,
+                        .gb-wwd__link i,
+                        .gb-wwd__btn,
+                        .gb-wwd__btn::before,
+                        .gb-wwd__btn .arr,
+                        .gb-wwd__stat,
+                        .gb-wwd__stat .v::after {
+                            transition: none !important;
+                            animation: none !important;
+                            transform: none !important;
+                            opacity: 1 !important;
+                        }
                     }
                 </style>
                 <section class="gb-wwd" id="services">
+                    <!-- Background Depth Glows & Floating Dots -->
+                    <div class="gb-wwd-glow gb-wwd-glow--orange" aria-hidden="true"></div>
+                    <div class="gb-wwd-glow gb-wwd-glow--teal" aria-hidden="true"></div>
+                    <div class="gb-wwd__dots gb-wwd__dots--left" aria-hidden="true"></div>
+                    <div class="gb-wwd__dots gb-wwd__dots--right" aria-hidden="true"></div>
+
                     <div class="gb-wwd__wrap">
-                        <div class="gb-wwd__head">
+                        <div class="gb-wwd__head gb-wwd__reveal-head">
                             <span class="gb-wwd__eyebrow">What We Do</span>
-                            <h2 class="gb-wwd__title">One Partner. <span>A Clearer HR Picture.</span></h2>
+                            <h2 class="gb-wwd__title">One Partner. <span class="gradient-text">A Clearer HR Picture.</span></h2>
                             <p class="gb-wwd__sub">A modular service offering tailored to your organisation's size, sector and operating realities.</p>
                         </div>
 
                         <div class="gb-wwd__grid">
-                            <div class="wow fadeInUp" data-wow-delay=".1s">
-                                <article class="gb-wwd__card">
+                            <!-- Card 01 -->
+                            <div class="gb-wwd__reveal-card">
+                                <article class="gb-wwd__card" data-number="01">
+                                    <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-border" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-spotlight" aria-hidden="true"></div>
+                                    <span class="gb-wwd__card-watermark" aria-hidden="true">01</span>
+
                                     <div class="gb-wwd__top">
                                         <span class="gb-wwd__icon" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);"><i class="fa-solid fa-scale-balanced"></i></span>
                                         <span class="gb-wwd__num" style="--n: #F26A3F;">01</span>
                                     </div>
                                     <h3>HR Compliance Review</h3>
                                     <p>Review applicable labour-law requirements, records, registers, notices and filing workflows.</p>
-                                    <a href="service#compliance" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="service#compliance" class="gb-wwd__link"><span class="gb-wwd__link-text">Learn Details</span> <i class="fa-solid fa-arrow-right"></i></a>
                                 </article>
                             </div>
-                            <div class="wow fadeInUp" data-wow-delay=".2s">
-                                <article class="gb-wwd__card">
+
+                            <!-- Card 02 -->
+                            <div class="gb-wwd__reveal-card">
+                                <article class="gb-wwd__card" data-number="02">
+                                    <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-border" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-spotlight" aria-hidden="true"></div>
+                                    <span class="gb-wwd__card-watermark" aria-hidden="true">02</span>
+
                                     <div class="gb-wwd__top">
                                         <span class="gb-wwd__icon" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);"><i class="fa-solid fa-diagram-project"></i></span>
                                         <span class="gb-wwd__num" style="--n: #CC4A22;">02</span>
                                     </div>
                                     <h3>HR Process Audit</h3>
                                     <p>Examine recruitment, onboarding, attendance, leave, employee changes and exits.</p>
-                                    <a href="service#process" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="service#process" class="gb-wwd__link"><span class="gb-wwd__link-text">Learn Details</span> <i class="fa-solid fa-arrow-right"></i></a>
                                 </article>
                             </div>
-                            <div class="wow fadeInUp" data-wow-delay=".3s">
-                                <article class="gb-wwd__card">
+
+                            <!-- Card 03 -->
+                            <div class="gb-wwd__reveal-card">
+                                <article class="gb-wwd__card" data-number="03">
+                                    <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-border" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-spotlight" aria-hidden="true"></div>
+                                    <span class="gb-wwd__card-watermark" aria-hidden="true">03</span>
+
                                     <div class="gb-wwd__top">
                                         <span class="gb-wwd__icon" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);"><i class="fa-solid fa-file-contract"></i></span>
                                         <span class="gb-wwd__num" style="--n: #F5A540;">03</span>
                                     </div>
                                     <h3>Policy &amp; Documentation</h3>
                                     <p>Assess HR policies, appointment documents, employee handbook and process consistency.</p>
-                                    <a href="service#policy" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="service#policy" class="gb-wwd__link"><span class="gb-wwd__link-text">Learn Details</span> <i class="fa-solid fa-arrow-right"></i></a>
                                 </article>
                             </div>
-                            <div class="wow fadeInUp" data-wow-delay=".1s">
-                                <article class="gb-wwd__card">
+
+                            <!-- Card 04 -->
+                            <div class="gb-wwd__reveal-card">
+                                <article class="gb-wwd__card" data-number="04">
+                                    <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-border" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-spotlight" aria-hidden="true"></div>
+                                    <span class="gb-wwd__card-watermark" aria-hidden="true">04</span>
+
                                     <div class="gb-wwd__top">
                                         <span class="gb-wwd__icon" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);"><i class="fa-solid fa-folder-open"></i></span>
                                         <span class="gb-wwd__num" style="--n: #2A9D8F;">04</span>
                                     </div>
                                     <h3>Employee Records Audit</h3>
                                     <p>Check completeness, accuracy, accessibility and retention of employee files.</p>
-                                    <a href="service#records" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="service#records" class="gb-wwd__link"><span class="gb-wwd__link-text">Learn Details</span> <i class="fa-solid fa-arrow-right"></i></a>
                                 </article>
                             </div>
-                            <div class="wow fadeInUp" data-wow-delay=".2s">
-                                <article class="gb-wwd__card">
+
+                            <!-- Card 05 -->
+                            <div class="gb-wwd__reveal-card">
+                                <article class="gb-wwd__card" data-number="05">
+                                    <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-border" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-spotlight" aria-hidden="true"></div>
+                                    <span class="gb-wwd__card-watermark" aria-hidden="true">05</span>
+
                                     <div class="gb-wwd__top">
                                         <span class="gb-wwd__icon" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);"><i class="fa-solid fa-file-invoice-dollar"></i></span>
                                         <span class="gb-wwd__num" style="--n: #F26A3F;">05</span>
                                     </div>
                                     <h3>Compensation &amp; Benefits Review</h3>
                                     <p>Review salary structures, internal alignment, benefits records and process controls.</p>
-                                    <a href="service#compensation" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="service#compensation" class="gb-wwd__link"><span class="gb-wwd__link-text">Learn Details</span> <i class="fa-solid fa-arrow-right"></i></a>
                                 </article>
                             </div>
-                            <div class="wow fadeInUp" data-wow-delay=".3s">
-                                <article class="gb-wwd__card">
+
+                            <!-- Card 06 -->
+                            <div class="gb-wwd__reveal-card">
+                                <article class="gb-wwd__card" data-number="06">
+                                    <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-border" aria-hidden="true"></div>
+                                    <div class="gb-wwd__card-spotlight" aria-hidden="true"></div>
+                                    <span class="gb-wwd__card-watermark" aria-hidden="true">06</span>
+
                                     <div class="gb-wwd__top">
                                         <span class="gb-wwd__icon" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);"><i class="fa-solid fa-list-check"></i></span>
                                         <span class="gb-wwd__num" style="--n: #CC4A22;">06</span>
                                     </div>
                                     <h3>Action Plan &amp; Advisory</h3>
                                     <p>Prioritise findings, assign owners and support implementation of agreed improvements.</p>
-                                    <a href="service#advisory" class="gb-wwd__link">Learn Details <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="service#advisory" class="gb-wwd__link"><span class="gb-wwd__link-text">Learn Details</span> <i class="fa-solid fa-arrow-right"></i></a>
                                 </article>
                             </div>
                         </div>
 
-                        <div class="gb-wwd__cta">
+                        <!-- CTA Button -->
+                        <div class="gb-wwd__cta gb-wwd__reveal-btn">
                             <a href="service" class="gb-wwd__btn">View All Services <span class="arr"><i class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
 
+                        <!-- 4 Stat Tiles -->
                         <div class="gb-wwd__stats">
-                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".1s"><p class="v"><span class="count">100</span><em>%</em></p><p class="l">Statutory &amp; Practical Scope</p></div>
-                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".2s"><p class="v"><span class="count">6</span><em>-Stage</em></p><p class="l">Evidence-Led Method</p></div>
-                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".3s"><p class="v"><span class="count">3</span></p><p class="l">Flexible Engagement Tiers</p></div>
-                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".4s"><p class="v"><span class="count">0</span></p><p class="l">Unnecessary Disruption</p></div>
+                            <div class="gb-wwd__stat gb-wwd__reveal-stat">
+                                <p class="v"><span class="gb-stat-num" data-target="100">100</span><em>%</em></p>
+                                <p class="l">Statutory &amp; Practical Scope</p>
+                            </div>
+                            <div class="gb-wwd__stat gb-wwd__reveal-stat">
+                                <p class="v"><span class="gb-stat-num" data-target="6">6</span><em>-Stage</em></p>
+                                <p class="l">Evidence-Led Method</p>
+                            </div>
+                            <div class="gb-wwd__stat gb-wwd__reveal-stat">
+                                <p class="v"><span class="gb-stat-num" data-target="3">3</span></p>
+                                <p class="l">Flexible Engagement Tiers</p>
+                            </div>
+                            <div class="gb-wwd__stat gb-wwd__reveal-stat">
+                                <p class="v"><span class="gb-stat-num" data-target="0">0</span></p>
+                                <p class="l">Unnecessary Disruption</p>
+                            </div>
                         </div>
                     </div>
                 </section>
