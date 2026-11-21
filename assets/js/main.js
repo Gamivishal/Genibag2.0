@@ -1181,8 +1181,9 @@
 
 
     /* ==========================================================================
-       Geniebag Solutions - Premium Preloader (Dual Rings & Live Percent Counter)
-       & Sleek Menu Click Page Transitions
+       Geniebag Solutions - TWO DEDICATED LOADERS:
+       Loader 1: Initial Website Visit Preloader (Dual Rings & Live Percent Counter)
+       Loader 2: Menu / Page Navigation Loader (Branded Logo Pulse & Progress Track)
        ========================================================================== */
 
     function initAnimations() {
@@ -1195,42 +1196,63 @@
     }
 
     const $progress = $("#genie-top-progress");
-    const $preloader = $(".preloader");
+    const $initialPreloader = $("#genie-initial-preloader");
+    const $menuLoader = $("#genie-menu-loader");
     const $percentEl = $("#genie-loader-percent");
 
-    // Check if navigating internally from menu
-    let isInternalNav = false;
+    // Check if this page load is caused by internal menu navigation
+    let isMenuChange = false;
     try {
-        if (sessionStorage.getItem("genie_nav_transition") === "1") {
-            isInternalNav = true;
-            sessionStorage.removeItem("genie_nav_transition");
+        if (sessionStorage.getItem("genie_is_menu_change") === "1") {
+            isMenuChange = true;
+            sessionStorage.removeItem("genie_is_menu_change");
         }
     } catch (e) {
-        isInternalNav = false;
+        isMenuChange = false;
     }
 
     let currentPercent = 0;
     let percentTimer = null;
     let isRevealed = false;
 
-    // Smoothly increment the percentage counter towards 100%
-    function startPercentCounter() {
-        if (!$percentEl.length) return;
-        currentPercent = 0;
-        $percentEl.text("0");
+    if (isMenuChange) {
+        // --- CASE B: MENU PAGE CHANGE ---
+        // Instantly bypass Loader 1 (Initial Preloader with rings/counter)
+        if ($initialPreloader.length) {
+            $initialPreloader.hide().removeClass("is-loading").addClass("is-loaded");
+        }
 
-        clearInterval(percentTimer);
-        percentTimer = setInterval(function () {
-            if (isRevealed) {
-                clearInterval(percentTimer);
-                return;
-            }
-            if (currentPercent < 88) {
-                currentPercent += Math.floor(Math.random() * 5) + 3;
-                if (currentPercent > 88) currentPercent = 88;
-                $percentEl.text(currentPercent);
-            }
-        }, 35);
+        // Show Loader 2 (Menu Loader) with animated top bar
+        if ($menuLoader.length) {
+            $menuLoader.addClass("is-active").show();
+        }
+        if ($progress.length) {
+            $progress.css({ width: "70%", opacity: "1" });
+        }
+    } else {
+        // --- CASE A: FIRST TIME VISIT / RELOAD ---
+        // Ensure Loader 2 is completely hidden
+        if ($menuLoader.length) {
+            $menuLoader.removeClass("is-active").hide();
+        }
+
+        // Run Loader 1 Percentage Counter
+        currentPercent = 0;
+        if ($percentEl.length) {
+            $percentEl.text("0");
+            clearInterval(percentTimer);
+            percentTimer = setInterval(function () {
+                if (isRevealed) {
+                    clearInterval(percentTimer);
+                    return;
+                }
+                if (currentPercent < 88) {
+                    currentPercent += Math.floor(Math.random() * 5) + 3;
+                    if (currentPercent > 88) currentPercent = 88;
+                    $percentEl.text(currentPercent);
+                }
+            }, 35);
+        }
     }
 
     function finishPercentCounter(callback) {
@@ -1266,38 +1288,32 @@
             }, 250);
         }
 
-        if ($preloader.length && $preloader.hasClass("is-loading")) {
-            if (isInternalNav) {
-                // Fast reveal on internal menu navigation
-                $preloader.removeClass("is-loading").addClass("is-loaded");
-                setTimeout(function () {
-                    $preloader.fadeOut(250);
-                    initAnimations();
-                }, 80);
-            } else {
-                // Full luxury percent counter reveal on fresh load
+        if (isMenuChange) {
+            // Dismiss Loader 2 (Menu Loader)
+            setTimeout(function () {
+                if ($menuLoader.length) {
+                    $menuLoader.fadeOut(240, function () {
+                        $(this).removeClass("is-active");
+                    });
+                }
+                $("body").removeClass("is-page-loading");
+                initAnimations();
+            }, 180);
+        } else {
+            // Dismiss Loader 1 (Initial Preloader with Dual Rings)
+            if ($initialPreloader.length && $initialPreloader.hasClass("is-loading")) {
                 finishPercentCounter(function () {
                     setTimeout(function () {
-                        $preloader.removeClass("is-loading").addClass("is-loaded");
+                        $initialPreloader.removeClass("is-loading").addClass("is-loaded");
                         setTimeout(function () {
-                            $preloader.fadeOut(350);
+                            $initialPreloader.fadeOut(350);
                             initAnimations();
                         }, 200);
                     }, 150);
                 });
+            } else {
+                initAnimations();
             }
-        } else {
-            initAnimations();
-        }
-    }
-
-    // Start percent counting immediately on initial load
-    if (!isInternalNav) {
-        startPercentCounter();
-    } else {
-        // Fast progress bar indicator for internal page transition
-        if ($progress.length) {
-            $progress.css({ width: "85%", opacity: "1" });
         }
     }
 
@@ -1309,13 +1325,13 @@
     // Fallback safety timeout in case window load already fired
     $(document).ready(function () {
         setTimeout(function () {
-            if ($preloader.hasClass("is-loading") && !isRevealed) {
+            if (!isRevealed) {
                 revealPage();
             }
-        }, isInternalNav ? 300 : 1200);
+        }, isMenuChange ? 450 : 1200);
     });
 
-    // Intercept menu and internal navigation clicks for a smooth loading effect
+    // Intercept menu and internal navigation clicks to trigger LOADER 2
     $(document).on("click", "a[href]", function (e) {
         const href = $(this).attr("href");
         const target = $(this).attr("target");
@@ -1356,12 +1372,12 @@
 
         e.preventDefault();
 
-        // Save internal navigation state for the next page
+        // 1. Mark session flag so next page knows this is a MENU CHANGE
         try {
-            sessionStorage.setItem("genie_nav_transition", "1");
+            sessionStorage.setItem("genie_is_menu_change", "1");
         } catch (err) {}
 
-        // 1. Animate top glowing progress bar
+        // 2. Animate top glowing progress bar
         if ($progress.length) {
             $progress.css({ width: "0%", opacity: "1" });
             setTimeout(function () {
@@ -1369,19 +1385,26 @@
             }, 10);
         }
 
-        // 2. Smoothly add soft transition on page body
+        // 3. Smoothly show Loader 2 (Menu Loader)
+        if ($menuLoader.length) {
+            $menuLoader.show().addClass("is-active");
+        }
+
         $("body").addClass("is-page-loading");
 
-        // 3. Navigate smoothly
+        // 4. Navigate smoothly to target page
         setTimeout(function () {
             window.location.href = href;
-        }, 180);
+        }, 220);
     });
 
     // Handle browser Back/Forward (bfcache) restore
     window.addEventListener("pageshow", function (event) {
         if (event.persisted) {
             $("body").removeClass("is-page-loading");
+            if ($menuLoader.length) {
+                $menuLoader.removeClass("is-active").hide();
+            }
             revealPage();
         }
     });
