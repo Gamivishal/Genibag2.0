@@ -1195,128 +1195,22 @@
         }
     }
 
-    const $progress = $("#genie-top-progress");
     const $initialPreloader = $("#genie-initial-preloader");
-    const $menuLoader = $("#genie-menu-loader");
     const $percentEl = $("#genie-loader-percent");
 
-    // Check if this page load is caused by internal menu navigation
-    let isMenuChange = false;
-    try {
-        if (document.documentElement.classList.contains("genie-is-menu-transition") ||
-            sessionStorage.getItem("genie_is_menu_change") === "1") {
-            isMenuChange = true;
-            document.documentElement.classList.add("genie-is-menu-transition");
-            sessionStorage.removeItem("genie_is_menu_change");
-        }
-    } catch (e) {
-        isMenuChange = false;
-    }
-
-    let currentPercent = 0;
-    let percentTimer = null;
     let isRevealed = false;
-
-    if (isMenuChange) {
-        // --- CASE B: MENU PAGE CHANGE ---
-        // Completely destroy Loader 1 from the DOM so it CAN NEVER SHOW
-        if ($initialPreloader.length) {
-            $initialPreloader.remove();
-        }
-
-        // Show Loader 2 (Menu Loader) with animated top bar
-        if ($menuLoader.length) {
-            $menuLoader.addClass("is-active").show();
-        }
-        if ($progress.length) {
-            $progress.css({ width: "70%", opacity: "1" });
-        }
-    } else {
-        // --- CASE A: FIRST TIME VISIT / RELOAD ---
-        // Ensure Loader 2 is completely hidden
-        if ($menuLoader.length) {
-            $menuLoader.removeClass("is-active").hide();
-        }
-
-        // Run Loader 1 Percentage Counter
-        currentPercent = 0;
-        if ($percentEl.length) {
-            $percentEl.text("0");
-            clearInterval(percentTimer);
-            percentTimer = setInterval(function () {
-                if (isRevealed) {
-                    clearInterval(percentTimer);
-                    return;
-                }
-                if (currentPercent < 88) {
-                    currentPercent += Math.floor(Math.random() * 5) + 3;
-                    if (currentPercent > 88) currentPercent = 88;
-                    $percentEl.text(currentPercent);
-                }
-            }, 35);
-        }
-    }
-
-    function finishPercentCounter(callback) {
-        clearInterval(percentTimer);
-        if (!$percentEl.length) {
-            if (callback) callback();
-            return;
-        }
-
-        const finishInterval = setInterval(function () {
-            if (currentPercent < 100) {
-                currentPercent += 4;
-                if (currentPercent > 100) currentPercent = 100;
-                $percentEl.text(currentPercent);
-            } else {
-                clearInterval(finishInterval);
-                if (callback) callback();
-            }
-        }, 12);
-    }
 
     function revealPage() {
         if (isRevealed) return;
         isRevealed = true;
 
-        if ($progress.length) {
-            $progress.css({ width: "100%", opacity: "1" });
-            setTimeout(function () {
-                $progress.css({ opacity: "0" });
-                setTimeout(function () {
-                    $progress.css({ width: "0%" });
-                }, 300);
-            }, 250);
-        }
-
-        if (isMenuChange) {
-            // Dismiss Loader 2 (Menu Loader)
-            setTimeout(function () {
-                if ($menuLoader.length) {
-                    $menuLoader.fadeOut(200, function () {
-                        $(this).removeClass("is-active");
-                    });
-                }
-                $("body").removeClass("is-page-loading");
-                document.documentElement.classList.remove("genie-is-menu-transition");
+        if ($initialPreloader.length && $initialPreloader.hasClass("is-loading")) {
+            $initialPreloader.removeClass("is-loading").addClass("is-loaded");
+            $initialPreloader.fadeOut(300, function () {
                 initAnimations();
-            }, 140);
+            });
         } else {
-            // Dismiss Loader 1 (Initial Preloader with Dual Rings)
-            if ($initialPreloader.length && $initialPreloader.hasClass("is-loading")) {
-                finishPercentCounter(function () {
-                    setTimeout(function () {
-                        $initialPreloader.removeClass("is-loading").addClass("is-loaded");
-                        setTimeout(function () {
-                            $initialPreloader.fadeOut(350);
-                            initAnimations();
-                        }, 200);
-                    }, 150);
-                });
-            } else {
-                initAnimations();
-            }
+            initAnimations();
         }
     }
 
@@ -1331,84 +1225,13 @@
             if (!isRevealed) {
                 revealPage();
             }
-        }, isMenuChange ? 450 : 1200);
-    });
-
-    // Intercept menu and internal navigation clicks to trigger LOADER 2
-    $(document).on("click", "a[href]", function (e) {
-        const href = $(this).attr("href");
-        const target = $(this).attr("target");
-
-        // Ignore empty, anchor-only, javascript, mailto, tel, or new tab links
-        if (!href || href === "#" || href.startsWith("#") || href.startsWith("javascript:") ||
-            href.startsWith("mailto:") || href.startsWith("tel:") || target === "_blank") {
-            return;
-        }
-
-        // Check if internal navigation
-        const isInternal = (
-            href.startsWith("/") ||
-            href.startsWith("./") ||
-            href.startsWith("about") ||
-            href.startsWith("service") ||
-            href.startsWith("faq") ||
-            href.startsWith("contact") ||
-            href.startsWith("index") ||
-            (!href.includes("://") && !href.startsWith("//"))
-        );
-
-        if (!isInternal) return;
-
-        // Check if clicking current page anchor
-        const currentPath = window.location.pathname.replace(/^\/|\/$/g, "");
-        const targetClean = href.split("?")[0].split("#")[0].replace(/^\/|\/$/g, "");
-        if (currentPath === targetClean || (currentPath === "" && (targetClean === "" || targetClean === "index.html"))) {
-            if (href.includes("#")) {
-                return; // Let anchor smooth-scroll naturally
-            }
-        }
-
-        // Do not intercept if user holds modifier keys (Ctrl/Cmd for new tab)
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.which === 2) {
-            return;
-        }
-
-        e.preventDefault();
-
-        // 1. Mark session flag so next page knows this is a MENU CHANGE
-        try {
-            sessionStorage.setItem("genie_is_menu_change", "1");
-        } catch (err) {}
-
-        // 2. Animate top glowing progress bar
-        if ($progress.length) {
-            $progress.css({ width: "0%", opacity: "1" });
-            setTimeout(function () {
-                $progress.css({ width: "70%" });
-            }, 10);
-        }
-
-        // 3. Smoothly show Loader 2 (Menu Loader)
-        document.documentElement.classList.add("genie-is-menu-transition");
-        if ($menuLoader.length) {
-            $menuLoader.addClass("is-active").show();
-        }
-
-        $("body").addClass("is-page-loading");
-
-        // 4. Navigate smoothly to target page
-        setTimeout(function () {
-            window.location.href = href;
-        }, 150);
+        }, 500);
     });
 
     // Handle browser Back/Forward (bfcache) restore
     window.addEventListener("pageshow", function (event) {
         if (event.persisted) {
             $("body").removeClass("is-page-loading");
-            if ($menuLoader.length) {
-                $menuLoader.removeClass("is-active").hide();
-            }
             revealPage();
         }
     });

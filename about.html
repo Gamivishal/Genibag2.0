@@ -67,33 +67,12 @@
             <div class="preloader-overlay"></div>
         </div>
 
-        <!-- Loader 2: Menu / Page Navigation Loader (Exclusively for Menu Page Changes) -->
-        <div id="genie-top-progress" class="genie-top-progress"></div>
-        <div id="genie-menu-loader" class="genie-menu-loader">
-            <div class="genie-menu-loader-inner">
-                <div class="genie-menu-loader-logo-wrap">
-                    <img src="assets/img/logo/logo-transparent.png" alt="Geniebag Solutions" class="genie-menu-loader-logo">
-                    <div class="genie-menu-loader-glow"></div>
-                </div>
-                <div class="genie-menu-loader-bar-wrap">
-                    <div class="genie-menu-loader-bar"></div>
-                </div>
-                <div class="genie-menu-loader-text">
-                    <span class="genie-menu-loader-brand">Geniebag Solutions</span>
-                    <span class="genie-menu-loader-tagline">Switching page...</span>
-                </div>
-            </div>
-        </div>
         <!-- Geniebag Loaders End -->
 
          <!-- Back To Top Start -->
         <button id="back-top" class="back-to-top">
             <i class="fa-regular fa-arrow-up"></i>
         </button>
-
-        <!-- GT MouseCursor Start -->
-        <div class="mouseCursor cursor-outer"></div>
-        <div class="mouseCursor cursor-inner"></div>
 
         <!-- Offcanvas Area Start -->
         <div class="fix-area">
@@ -113,17 +92,11 @@
                             </div>
                         </div>
                         <p class="text d-none d-xl-block">
-                            Developing personalized charity journeys to increase donor satisfaction strengthen community trust and expand our humanitarian by global philanthropic.
+                            Geniebag Solutions (The Management Basket) — Practical, proportionate, and people-aware HR compliance, audit, and workforce governance consultancy.
                         </p>
                         <div class="mobile-menu fix"></div>
                         <div class="off-contact-info">
                             <span class="info-title">Contact Info</span>
-                            <div class="contact-details">
-                                <span class="sub-info">Phone</span>
-                                <p>
-                                    <a href="tel:+2085550112">+208-555-0112</a>
-                                </p>
-                            </div>
                             <div class="contact-details">
                                 <span class="sub-info">Email</span>
                                 <p>
@@ -131,9 +104,9 @@
                                 </p>
                             </div>
                             <div class="contact-details">
-                                <span class="sub-info">Location</span>
+                                <span class="sub-info">Consultation</span>
                                 <p>
-                                    Elgin St. Celina, NY 10299
+                                    By appointment &bull; Scoping calls available
                                 </p>
                             </div>
                         </div>
@@ -143,10 +116,8 @@
                                 Follow us:
                             </span>
                             <div class="social-icon d-flex align-items-center">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="mailto:info@geniebag.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
                             </div>
                             
                         </div>
@@ -276,16 +247,6 @@
                         letter-spacing: -0.03em; margin: 0 0 22px; max-width: 760px;
                     }
                     .gba-hero__sub { max-width: 560px; font-size: 20px; line-height: 1.6; color: #D5DDEA; margin: 0; padding-left: 20px; border-left: 3px solid var(--gba-orange); }
-                    .gba-hero__nav { position: relative; z-index: 1; margin-top: 96px; border-top: 1px solid rgba(255, 255, 255, 0.14); background: rgba(13, 21, 42, 0.45); backdrop-filter: blur(6px); }
-                    .gba-hero__nav ul { display: flex; list-style: none; margin: 0 auto; padding: 0 20px; max-width: 1240px; }
-                    .gba-hero__nav li { flex: 1; }
-                    .gba-hero__nav a {
-                        display: flex; align-items: center; gap: 12px; padding: 22px 0; color: rgba(255, 255, 255, 0.78);
-                        font-size: 14.5px; font-weight: 600; text-decoration: none; border-top: 2px solid transparent; margin-top: -1px;
-                        transition: color .3s var(--gba-ease), border-color .3s var(--gba-ease);
-                    }
-                    .gba-hero__nav a span { font-size: 12px; color: var(--gba-orange); font-weight: 700; }
-                    .gba-hero__nav a:hover { color: #fff; border-top-color: var(--gba-orange); }
 
                     /* ---------- 2. Introduction ---------- */
                     .gba-intro { background: #fff; }
@@ -689,18 +650,14 @@
                         background: url('assets/img/inner/about-hero-bg.jpg') center 40% / cover no-repeat;
                     }
                     .gba-hero::before { z-index: 1; }
-                    .gba-hero > .gba-wrap, .gba-hero > .gba-hero__nav { z-index: 2; }
+                    .gba-hero > .gba-wrap { z-index: 2; }
                     .gba-hero.js-anim .gba-hero__img { transform: scale(1.08); transition: transform 2.2s var(--gba-ease); }
-                    .gba-hero.js-anim .gba-hero__nav { opacity: 0; transform: translate3d(0, 100%, 0); transition: opacity .9s var(--gba-ease) .55s, transform .9s var(--gba-ease) .55s; }
                     .gba-hero.is-ready .gba-hero__img { transform: scale(1); }
-                    .gba-hero.is-ready .gba-hero__nav { opacity: 1; transform: none; }
                     .gba-hero h1.wow.animated { animation-name: gbaMask !important; animation-duration: 1.15s !important; }
                     @keyframes gbaMask {
                         from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translate3d(0, 36px, 0); }
                         to { opacity: 1; clip-path: inset(-10% -10% -20% -10%); transform: none; }
                     }
-                    .gba-hero__nav a span { display: inline-block; transition: transform .35s var(--gba-ease); }
-                    .gba-hero__nav a:hover span { transform: translateX(-3px); }
 
                     /* Images: unveil on reveal, gentle scale + drift on hover */
                     :is(.gba-intro__media, .gba-portrait).animated :is(.gba-intro__img, .gba-portrait__img) { animation: gbaUnveil 1.3s var(--gba-ease) both; }
@@ -756,7 +713,7 @@
                         :is(.gba-hero, .gba-section, .gba-cta) .wow.animated,
                         :is(.gba-intro__media, .gba-portrait).animated :is(.gba-intro__img, .gba-portrait__img),
                         .gba-btn:hover i { animation: none !important; }
-                        .gba-hero__img, .gba-hero__nav, .gba-cta__panel, .gba-cta__panel *, .gba-cta__panel::before, .gba-cta__panel::after, .gba-btn::after, .gba-why, .gba-portrait::before { transition: none !important; }
+                        .gba-hero__img, .gba-cta__panel, .gba-cta__panel *, .gba-cta__panel::before, .gba-cta__panel::after, .gba-btn::after, .gba-why, .gba-portrait::before { transition: none !important; }
                         .gba-btn::after { display: none; }
                         .gba-intro__media:hover .gba-intro__img img, .gba-portrait:hover .gba-portrait__img img, .gba-intro__media:hover .gba-why, .gba-portrait:hover::before { transform: none; }
                     }
@@ -782,55 +739,80 @@
                     </div>
                 </section>
 
-                <!-- 2. Company Introduction -->
-                <section class="gba-section gba-intro" id="who-we-are">
+                <!-- 2. About Genie Bag Solutions (Who We Are) -->
+                <section class="gba-section gba-about-corp" id="who-we-are">
+                    <span id="about-geniebag" style="position:absolute; top:-100px; visibility:hidden;"></span>
                     <div class="gba-wrap">
-                        <div class="gba-intro__grid">
-                            <div>
-                                <span class="gba-eyebrow wow fadeInUp" data-wow-delay=".1s">Who We Are</span>
-                                <h2 class="gba-h2 wow fadeInUp" data-wow-delay=".2s">Good HR Is More Than <em>Paperwork.</em></h2>
-                                <p class="gba-lead wow fadeInUp" data-wow-delay=".3s">
-                                    At <b>Geniebag Solutions</b> (<i>The Management Basket</i>), we help organisations turn people processes into clear, consistent and review-ready practices.
+                        <div class="gba-corp-grid">
+                            
+                            <!-- LEFT COLUMN: Intro & Heading -->
+                            <div class="gba-corp-intro">
+                                <span class="gba-corp-eyebrow wow fadeInUp" data-wow-delay=".1s">ABOUT GENIE BAG SOLUTIONS</span>
+                                <h2 class="gba-corp-heading wow fadeInUp" data-wow-delay=".2s">
+                                    People. Processes.<br>
+                                    <span class="gba-corp-heading-accent">Better Workplaces.</span>
+                                </h2>
+                                <div class="gba-corp-line wow fadeInUp" data-wow-delay=".25s"></div>
+                                <p class="gba-corp-desc wow fadeInUp" data-wow-delay=".3s">
+                                    Good HR is more than paperwork. We help organisations build structured, transparent and people-aware HR practices that support better business decisions.
                                 </p>
-                                <p class="gba-body wow fadeInUp" data-wow-delay=".35s">
-                                    Our approach blends structure with practical understanding of day-to-day HR realities. We focus on <b>practical, proportionate, and people-aware HR governance</b> that fits your actual workforce and locations.
-                                </p>
-                                <div class="gba-shift wow fadeInUp" data-wow-delay=".4s">
-                                    <p>We help leadership move from <q>Are we covered?</q> to <strong>&ldquo;We know what to do next.&rdquo;</strong></p>
-                                </div>
                             </div>
-                            <div class="gba-intro__media wow fadeInUp" data-wow-delay=".25s">
-                                <div class="gba-intro__img">
-                                    <img loading="lazy" decoding="async" src="assets/img/inner/about-hero-team.jpg" alt="Geniebag consultants reviewing HR documentation with a client">
-                                </div>
-                                <div class="gba-why">
-                                    <h3>Why organisations work with Genie Bag</h3>
-                                    <ul>
-                                        <li>An independent, evidence-led view of HR processes</li>
-                                        <li>Clearer documentation and workforce accountability</li>
-                                        <li>Visibility into compliance gaps before they grow</li>
-                                        <li>Prioritised actions instead of overwhelm</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="gba-values">
-                            <div class="gba-value wow fadeInUp" data-wow-delay=".1s">
-                                <span class="gba-value__num">01</span>
-                                <h3>Protect the Business</h3>
-                                <p>Spot process gaps early, clarify responsibilities, and support better compliance discipline.</p>
+                            <!-- RIGHT COLUMN: Large Meeting Photograph with Floating Card -->
+                            <div class="gba-corp-media-col wow fadeInRight" data-wow-delay=".25s">
+                                <div class="gba-corp-media-wrap">
+                                    <div class="gba-corp-img-box">
+                                        <img src="assets/img/inner/faq-consultation.jpg" alt="Genie Bag Solutions - Professional Leadership Meeting &amp; HR Advisory" loading="lazy">
+                                    </div>
+                                    <!-- Overlapping Information Card -->
+                                    <div class="gba-corp-card wow fadeInUp" data-wow-delay=".4s">
+                                        <div class="gba-corp-card__icon">
+                                            <i class="fa-solid fa-shield-check"></i>
+                                        </div>
+                                        <div class="gba-corp-card__text">
+                                            <span class="gba-corp-card__tag">Practical HR Governance</span>
+                                            <h4 class="gba-corp-card__title">Clear Processes. Better Decisions.</h4>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="gba-value wow fadeInUp" data-wow-delay=".2s">
-                                <span class="gba-value__num">02</span>
-                                <h3>Support Employees</h3>
-                                <p>Create fair, understandable processes for policies, communication, records, and employee concerns.</p>
+
+                            <!-- LEFT COLUMN (Bottom): Three Key Information Blocks -->
+                            <div class="gba-corp-values">
+                                <div class="gba-corp-val wow fadeInUp" data-wow-delay=".35s">
+                                    <div class="gba-corp-val__head">
+                                        <span class="gba-corp-val__num">01</span>
+                                        <span class="gba-corp-val__sep">—</span>
+                                        <h3 class="gba-corp-val__title">Our Purpose</h3>
+                                    </div>
+                                    <p class="gba-corp-val__desc">
+                                        Helping organisations strengthen HR governance through practical, proportionate and consistent people processes.
+                                    </p>
+                                </div>
+
+                                <div class="gba-corp-val wow fadeInUp" data-wow-delay=".45s">
+                                    <div class="gba-corp-val__head">
+                                        <span class="gba-corp-val__num">02</span>
+                                        <span class="gba-corp-val__sep">—</span>
+                                        <h3 class="gba-corp-val__title">Our Approach</h3>
+                                    </div>
+                                    <p class="gba-corp-val__desc">
+                                        Combining compliance awareness, process evaluation and actionable recommendations tailored to each organisation.
+                                    </p>
+                                </div>
+
+                                <div class="gba-corp-val wow fadeInUp" data-wow-delay=".55s">
+                                    <div class="gba-corp-val__head">
+                                        <span class="gba-corp-val__num">03</span>
+                                        <span class="gba-corp-val__sep">—</span>
+                                        <h3 class="gba-corp-val__title">Our Commitment</h3>
+                                    </div>
+                                    <p class="gba-corp-val__desc">
+                                        Supporting businesses with clarity, confidentiality and people-focused HR advisory.
+                                    </p>
+                                </div>
                             </div>
-                            <div class="gba-value wow fadeInUp" data-wow-delay=".3s">
-                                <span class="gba-value__num">03</span>
-                                <h3>Enable Better Decisions</h3>
-                                <p>Give leadership a practical view of risks, priorities, and actions&mdash;not just a stack of documents.</p>
-                            </div>
+
                         </div>
                     </div>
                 </section>
@@ -919,85 +901,7 @@
                     </div>
                 </section>
 
-                <!-- 5. About Genie Bag Solutions (Who We Are Section) -->
-                <section class="gba-section gba-about-corp" id="about-geniebag">
-                    <span id="approach" style="position:absolute; top:-100px; visibility:hidden;"></span>
-                    <div class="gba-wrap">
-                        <div class="gba-corp-grid">
-                            
-                            <!-- LEFT COLUMN: Intro & Heading -->
-                            <div class="gba-corp-intro">
-                                <span class="gba-corp-eyebrow wow fadeInUp" data-wow-delay=".1s">ABOUT GENIE BAG SOLUTIONS</span>
-                                <h2 class="gba-corp-heading wow fadeInUp" data-wow-delay=".2s">
-                                    People. Processes.<br>
-                                    <span class="gba-corp-heading-accent">Better Workplaces.</span>
-                                </h2>
-                                <div class="gba-corp-line wow fadeInUp" data-wow-delay=".25s"></div>
-                                <p class="gba-corp-desc wow fadeInUp" data-wow-delay=".3s">
-                                    Good HR is more than paperwork. We help organisations build structured, transparent and people-aware HR practices that support better business decisions.
-                                </p>
-                            </div>
-
-                            <!-- RIGHT COLUMN: Large Meeting Photograph with Floating Card -->
-                            <div class="gba-corp-media-col wow fadeInRight" data-wow-delay=".25s">
-                                <div class="gba-corp-media-wrap">
-                                    <div class="gba-corp-img-box">
-                                        <img src="assets/img/inner/faq-consultation.jpg" alt="Genie Bag Solutions - Professional Leadership Meeting &amp; HR Advisory" loading="lazy">
-                                    </div>
-                                    <!-- Overlapping Information Card -->
-                                    <div class="gba-corp-card wow fadeInUp" data-wow-delay=".4s">
-                                        <div class="gba-corp-card__icon">
-                                            <i class="fa-solid fa-shield-check"></i>
-                                        </div>
-                                        <div class="gba-corp-card__text">
-                                            <span class="gba-corp-card__tag">Practical HR Governance</span>
-                                            <h4 class="gba-corp-card__title">Clear Processes. Better Decisions.</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- LEFT COLUMN (Bottom): Three Key Information Blocks -->
-                            <div class="gba-corp-values">
-                                <div class="gba-corp-val wow fadeInUp" data-wow-delay=".35s">
-                                    <div class="gba-corp-val__head">
-                                        <span class="gba-corp-val__num">01</span>
-                                        <span class="gba-corp-val__sep">—</span>
-                                        <h3 class="gba-corp-val__title">Our Purpose</h3>
-                                    </div>
-                                    <p class="gba-corp-val__desc">
-                                        Helping organisations strengthen HR governance through practical, proportionate and consistent people processes.
-                                    </p>
-                                </div>
-
-                                <div class="gba-corp-val wow fadeInUp" data-wow-delay=".45s">
-                                    <div class="gba-corp-val__head">
-                                        <span class="gba-corp-val__num">02</span>
-                                        <span class="gba-corp-val__sep">—</span>
-                                        <h3 class="gba-corp-val__title">Our Approach</h3>
-                                    </div>
-                                    <p class="gba-corp-val__desc">
-                                        Combining compliance awareness, process evaluation and actionable recommendations tailored to each organisation.
-                                    </p>
-                                </div>
-
-                                <div class="gba-corp-val wow fadeInUp" data-wow-delay=".55s">
-                                    <div class="gba-corp-val__head">
-                                        <span class="gba-corp-val__num">03</span>
-                                        <span class="gba-corp-val__sep">—</span>
-                                        <h3 class="gba-corp-val__title">Our Commitment</h3>
-                                    </div>
-                                    <p class="gba-corp-val__desc">
-                                        Supporting businesses with clarity, confidentiality and people-focused HR advisory.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 6. What You Can Expect From Us -->
+                <!-- 5. What You Can Expect From Us -->
                 <section class="gba-section gba-expect" id="expectations">
                     <div class="gba-wrap">
                         <div class="gba-head-center">
