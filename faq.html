@@ -1,7 +1,14 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
     <!--<< Header Area >>-->
-    <head>
+        <head>
+        <script>
+            try {
+                if (sessionStorage.getItem("genie_is_menu_change") === "1") {
+                    document.documentElement.classList.add("genie-is-menu-transition");
+                }
+            } catch (e) {}
+        </script>
        <!-- ========== Meta Tags ========== -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

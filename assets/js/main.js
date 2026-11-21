@@ -1203,8 +1203,10 @@
     // Check if this page load is caused by internal menu navigation
     let isMenuChange = false;
     try {
-        if (sessionStorage.getItem("genie_is_menu_change") === "1") {
+        if (document.documentElement.classList.contains("genie-is-menu-transition") ||
+            sessionStorage.getItem("genie_is_menu_change") === "1") {
             isMenuChange = true;
+            document.documentElement.classList.add("genie-is-menu-transition");
             sessionStorage.removeItem("genie_is_menu_change");
         }
     } catch (e) {
@@ -1217,9 +1219,9 @@
 
     if (isMenuChange) {
         // --- CASE B: MENU PAGE CHANGE ---
-        // Instantly bypass Loader 1 (Initial Preloader with rings/counter)
+        // Completely destroy Loader 1 from the DOM so it CAN NEVER SHOW
         if ($initialPreloader.length) {
-            $initialPreloader.hide().removeClass("is-loading").addClass("is-loaded");
+            $initialPreloader.remove();
         }
 
         // Show Loader 2 (Menu Loader) with animated top bar
@@ -1292,13 +1294,14 @@
             // Dismiss Loader 2 (Menu Loader)
             setTimeout(function () {
                 if ($menuLoader.length) {
-                    $menuLoader.fadeOut(240, function () {
+                    $menuLoader.fadeOut(200, function () {
                         $(this).removeClass("is-active");
                     });
                 }
                 $("body").removeClass("is-page-loading");
+                document.documentElement.classList.remove("genie-is-menu-transition");
                 initAnimations();
-            }, 180);
+            }, 140);
         } else {
             // Dismiss Loader 1 (Initial Preloader with Dual Rings)
             if ($initialPreloader.length && $initialPreloader.hasClass("is-loading")) {
@@ -1386,8 +1389,9 @@
         }
 
         // 3. Smoothly show Loader 2 (Menu Loader)
+        document.documentElement.classList.add("genie-is-menu-transition");
         if ($menuLoader.length) {
-            $menuLoader.show().addClass("is-active");
+            $menuLoader.addClass("is-active").show();
         }
 
         $("body").addClass("is-page-loading");
@@ -1395,7 +1399,7 @@
         // 4. Navigate smoothly to target page
         setTimeout(function () {
             window.location.href = href;
-        }, 220);
+        }, 150);
     });
 
     // Handle browser Back/Forward (bfcache) restore

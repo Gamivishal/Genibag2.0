@@ -16615,6 +16615,24 @@ body.is-page-loading main {
 /* ==========================================================================
    Loader 2: Menu / Page Navigation Loader (Exclusively for Menu Changes)
    ========================================================================== */
+
+/* Immediate suppression of Loader 1 during menu navigation */
+html.genie-is-menu-transition #genie-initial-preloader,
+html.genie-is-menu-transition .preloader {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+html.genie-is-menu-transition #genie-menu-loader {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 1000000000 !important;
+}
+
 .genie-menu-loader {
   position: fixed !important;
   top: 0 !important;
@@ -16624,7 +16642,7 @@ body.is-page-loading main {
   background: radial-gradient(circle at center, rgba(17, 27, 52, 0.95) 0%, rgba(12, 25, 44, 0.99) 100%) !important;
   backdrop-filter: blur(18px) !important;
   -webkit-backdrop-filter: blur(18px) !important;
-  z-index: 999999998 !important;
+  z-index: 1000000000 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -16638,6 +16656,7 @@ body.is-page-loading main {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
+  z-index: 1000000000 !important;
 }
 
 .genie-menu-loader-inner {
