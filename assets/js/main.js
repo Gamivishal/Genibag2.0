@@ -1180,42 +1180,128 @@
     }); // End Document Ready Function
 
 
-    /* ================================
-       Preloader Js Start
-    ================================ */
+    /* ==========================================================================
+       Geniebag Premium Preloader & Menu Click Page Transitions
+       ========================================================================== */
 
-    $windowOn.on("load", function () {
+    function initAnimations() {
+        if (typeof wowController === "function") {
+            wowController();
+        }
+        if (typeof gsapController === "function") {
+            gsapController();
+        }
+    }
 
-        const Preloader = $(".preloader");
+    const $progress = $("#genie-top-progress");
+    const $preloader = $(".preloader");
 
-        function initAnimations() {
-            if (typeof wowController === "function") {
-                wowController();
-            }
-            if (typeof gsapController === "function") {
-                gsapController();
-            }
+    function revealPage() {
+        if ($progress.length) {
+            $progress.css({ width: "100%", opacity: "1" });
+            setTimeout(function () {
+                $progress.css({ opacity: "0" });
+                setTimeout(function () {
+                    $progress.css({ width: "0%" });
+                }, 300);
+            }, 200);
         }
 
-        if (Preloader.length) {
-
+        if ($preloader.length) {
             setTimeout(function () {
-
-                Preloader.removeClass("is-loading").addClass("is-loaded");
-
+                $preloader.removeClass("is-loading").addClass("is-loaded");
                 setTimeout(function () {
-
-                    Preloader.fadeOut(400);
+                    $preloader.fadeOut(350);
                     initAnimations();
-
-                }, 300);
-
-            }, 200);
-
+                }, 200);
+            }, 180);
         } else {
             initAnimations();
         }
+    }
 
+    // Trigger reveal when window finishes loading
+    $windowOn.on("load", function () {
+        revealPage();
+    });
+
+    // Also handle fallback in case load already fired
+    $(document).ready(function () {
+        setTimeout(function () {
+            if ($preloader.hasClass("is-loading")) {
+                revealPage();
+            }
+        }, 1200);
+    });
+
+    // Intercept menu and internal navigation clicks for a smooth loading effect
+    $(document).on("click", "a[href]", function (e) {
+        const href = $(this).attr("href");
+        const target = $(this).attr("target");
+
+        // Ignore empty, anchor-only, javascript, mailto, tel, or new tab links
+        if (!href || href === "#" || href.startsWith("#") || href.startsWith("javascript:") ||
+            href.startsWith("mailto:") || href.startsWith("tel:") || target === "_blank") {
+            return;
+        }
+
+        // Check if internal navigation
+        const isInternal = (
+            href.startsWith("/") ||
+            href.startsWith("./") ||
+            href.startsWith("about") ||
+            href.startsWith("service") ||
+            href.startsWith("faq") ||
+            href.startsWith("contact") ||
+            href.startsWith("index") ||
+            (!href.includes("://") && !href.startsWith("//"))
+        );
+
+        if (!isInternal) return;
+
+        // Check if clicking current page anchor
+        const currentPath = window.location.pathname.replace(/^\/|\/$/g, "");
+        const targetClean = href.split("?")[0].split("#")[0].replace(/^\/|\/$/g, "");
+        if (currentPath === targetClean || (currentPath === "" && (targetClean === "" || targetClean === "index.html"))) {
+            if (href.includes("#")) {
+                return; // Let anchor smooth-scroll naturally
+            }
+        }
+
+        // Do not intercept if user holds modifier keys (Ctrl/Cmd for new tab)
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.which === 2) {
+            return;
+        }
+
+        e.preventDefault();
+
+        // 1. Animate top glowing progress bar
+        if ($progress.length) {
+            $progress.css({ width: "0%", opacity: "1" });
+            setTimeout(function () {
+                $progress.css({ width: "70%" });
+            }, 10);
+        }
+
+        // 2. Smoothly show preloader with brand effect
+        if ($preloader.length) {
+            $preloader.stop(true, true).fadeIn(180).removeClass("is-loaded").addClass("is-loading");
+        }
+
+        $("body").addClass("is-page-loading");
+
+        // 3. Navigate smoothly
+        setTimeout(function () {
+            window.location.href = href;
+        }, 220);
+    });
+
+    // Handle browser Back/Forward (bfcache) restore
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+            $("body").removeClass("is-page-loading");
+            revealPage();
+        }
     });
 
 
