@@ -217,9 +217,9 @@
                                     </ul>
                                 </div>
                                 <div class="pt-3 mt-2 border-top">
-                                    <a href="service-details#compliance" style="color: var(--theme); font-weight: 700; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                                    <button type="button" class="btn-module-details" data-module="1" style="background: none; border: none; padding: 0; color: var(--theme); font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
                                         View Module Details <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -239,9 +239,9 @@
                                     </ul>
                                 </div>
                                 <div class="pt-3 mt-2 border-top">
-                                    <a href="service-details#process" style="color: var(--theme); font-weight: 700; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                                    <button type="button" class="btn-module-details" data-module="2" style="background: none; border: none; padding: 0; color: var(--theme); font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
                                         View Module Details <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -261,9 +261,9 @@
                                     </ul>
                                 </div>
                                 <div class="pt-3 mt-2 border-top">
-                                    <a href="service-details#policy" style="color: var(--theme); font-weight: 700; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                                    <button type="button" class="btn-module-details" data-module="3" style="background: none; border: none; padding: 0; color: var(--theme); font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
                                         View Module Details <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -283,9 +283,9 @@
                                     </ul>
                                 </div>
                                 <div class="pt-3 mt-2 border-top">
-                                    <a href="service-details#records" style="color: var(--theme); font-weight: 700; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                                    <button type="button" class="btn-module-details" data-module="4" style="background: none; border: none; padding: 0; color: var(--theme); font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
                                         View Module Details <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -305,9 +305,9 @@
                                     </ul>
                                 </div>
                                 <div class="pt-3 mt-2 border-top">
-                                    <a href="service-details#compensation" style="color: var(--theme); font-weight: 700; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                                    <button type="button" class="btn-module-details" data-module="5" style="background: none; border: none; padding: 0; color: var(--theme); font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
                                         View Module Details <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -327,9 +327,9 @@
                                     </ul>
                                 </div>
                                 <div class="pt-3 mt-2 border-top">
-                                    <a href="service-details#advisory" style="color: var(--theme); font-weight: 700; font-size: 13.5px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                                    <button type="button" class="btn-module-details" data-module="6" style="background: none; border: none; padding: 0; color: var(--theme); font-weight: 700; font-size: 13.5px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
                                         View Module Details <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -535,5 +535,420 @@
         <script src="assets/js/ajax-mail.js" defer></script>
         <!--<< Main.js >>-->
         <script src="assets/js/main.js" defer></script>
+
+        <!-- ==========================================================================
+             Service Deep-Dive Modal Popup
+             ========================================================================== -->
+        <div id="serviceModuleModal" class="service-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="service-modal-dialog">
+                <div class="service-modal-content">
+                    <!-- Modal Header -->
+                    <div class="service-modal-header">
+                        <div class="d-flex align-items-center gap-3">
+                            <span id="modalBadge" class="service-modal-badge">MODULE 01</span>
+                            <span class="service-modal-subtag">Genie Bag HR Audit Suite</span>
+                        </div>
+                        <button type="button" class="service-modal-close" id="closeServiceModal" aria-label="Close dialog">&times;</button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="service-modal-body">
+                        <h3 id="modalTitle" class="service-modal-title">HR Statutory &amp; Compliance Audit</h3>
+                        <p id="modalDesc" class="service-modal-desc">
+                            Comprehensive review of your adherence to applicable central, state, and local labor legislation...
+                        </p>
+
+                        <div class="row g-4 mt-1">
+                            <!-- Left: Key Review Items -->
+                            <div class="col-lg-6">
+                                <div class="service-modal-card">
+                                    <h5 class="service-modal-section-title">
+                                        <i class="fa-solid fa-clipboard-check me-2" style="color: var(--theme);"></i> Key Scope &amp; Verification:
+                                    </h5>
+                                    <ul id="modalReviewList" class="service-modal-list">
+                                        <!-- Dynamically populated -->
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Right: Deliverables Included -->
+                            <div class="col-lg-6">
+                                <div class="service-modal-deliverable-card">
+                                    <div>
+                                        <span class="service-deliverable-tag">Deliverables Included</span>
+                                        <h5 class="service-deliverable-heading">Tangible Output For Leadership</h5>
+                                        <p id="modalDeliverables" class="service-deliverable-text">
+                                            <!-- Dynamically populated -->
+                                        </p>
+                                    </div>
+                                    <div class="mt-4 pt-3 border-top border-light d-flex align-items-center gap-2" style="font-size: 13px; color: #CBD5E1;">
+                                        <i class="fa-solid fa-shield-halved" style="color: #F2673A;"></i> Confidential &amp; Legally Vetted Deliverable
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="service-modal-footer">
+                        <div class="service-modal-footer-note">
+                            <strong>Ready to review this module?</strong>
+                            <span>Schedule a confidential scoping call to define your workforce requirements.</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <button type="button" class="service-modal-btn-cancel" id="cancelServiceModal">Close</button>
+                            <a href="contact" class="theme-btn header-bg">Book a Scoping Call <i class="fa-solid fa-arrow-up-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            /* Service Deep-Dive Modal Styles */
+            .service-modal-backdrop {
+                position: fixed;
+                inset: 0;
+                background: rgba(17, 27, 56, 0.72);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                z-index: 999999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .service-modal-backdrop.is-open {
+                opacity: 1;
+                visibility: visible;
+            }
+            .service-modal-dialog {
+                width: 100%;
+                max-width: 840px;
+                max-height: 90vh;
+                display: flex;
+                transform: scale(0.92) translateY(20px);
+                transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .service-modal-backdrop.is-open .service-modal-dialog {
+                transform: scale(1) translateY(0);
+            }
+            .service-modal-content {
+                background: #FFFFFF;
+                border-radius: 24px;
+                box-shadow: 0 25px 70px rgba(17, 27, 56, 0.28);
+                width: 100%;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                max-height: 90vh;
+            }
+            .service-modal-header {
+                padding: 24px 32px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid #EDF2F7;
+                background: #FAFCFF;
+            }
+            .service-modal-badge {
+                background: #F2673A;
+                color: #FFFFFF;
+                font-size: 12px;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                padding: 4px 14px;
+                border-radius: 999px;
+            }
+            .service-modal-subtag {
+                font-size: 13.5px;
+                font-weight: 600;
+                color: #718096;
+            }
+            .service-modal-close {
+                background: rgba(17, 27, 56, 0.06);
+                border: none;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                font-size: 24px;
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #111B38;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            .service-modal-close:hover {
+                background: #F2673A;
+                color: #FFFFFF;
+                transform: rotate(90deg);
+            }
+            .service-modal-body {
+                padding: 32px;
+                overflow-y: auto;
+            }
+            .service-modal-title {
+                font-size: 26px;
+                font-weight: 800;
+                color: #111B38;
+                margin: 0 0 12px;
+                line-height: 1.25;
+            }
+            .service-modal-desc {
+                color: #4A5568;
+                font-size: 15px;
+                line-height: 1.7;
+                margin-bottom: 24px;
+            }
+            .service-modal-card {
+                background: #F8FAFD;
+                border: 1px solid #E2E8F0;
+                border-radius: 16px;
+                padding: 22px;
+                height: 100%;
+            }
+            .service-modal-section-title {
+                font-size: 15px;
+                font-weight: 700;
+                color: #111B38;
+                margin-bottom: 14px;
+            }
+            .service-modal-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .service-modal-list li {
+                font-size: 13.5px;
+                color: #2D3748;
+                line-height: 1.6;
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .service-modal-list li i {
+                color: #0D9488;
+                margin-top: 4px;
+                font-size: 14px;
+                flex-shrink: 0;
+            }
+            .service-modal-deliverable-card {
+                background: linear-gradient(145deg, #111B38 0%, #1A274E 100%);
+                border-radius: 16px;
+                padding: 24px;
+                color: #FFFFFF;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .service-deliverable-tag {
+                font-size: 11px;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: #F2673A;
+                margin-bottom: 8px;
+                display: inline-block;
+            }
+            .service-deliverable-heading {
+                font-size: 17px;
+                font-weight: 700;
+                color: #FFFFFF;
+                margin-bottom: 12px;
+            }
+            .service-deliverable-text {
+                font-size: 14px;
+                line-height: 1.7;
+                color: #CBD5E1;
+                margin: 0;
+            }
+            .service-modal-footer {
+                padding: 20px 32px;
+                border-top: 1px solid #EDF2F7;
+                background: #FAFCFF;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+            .service-modal-footer-note strong {
+                display: block;
+                font-size: 14px;
+                color: #111B38;
+            }
+            .service-modal-footer-note span {
+                font-size: 12.5px;
+                color: #718096;
+            }
+            .service-modal-btn-cancel {
+                background: transparent;
+                border: 1px solid #CBD5E1;
+                color: #4A5568;
+                padding: 10px 22px;
+                border-radius: 999px;
+                font-weight: 600;
+                font-size: 13.5px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            .service-modal-btn-cancel:hover {
+                background: #EDF2F7;
+                color: #111B38;
+            }
+            @media (max-width: 767px) {
+                .service-modal-header { padding: 18px 20px; }
+                .service-modal-body { padding: 20px; }
+                .service-modal-footer { padding: 16px 20px; flex-direction: column; align-items: stretch; }
+                .service-modal-footer > div { justify-content: flex-end; }
+            }
+        </style>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var moduleData = {
+                    1: {
+                        badge: "MODULE 01",
+                        title: "HR Statutory & Compliance Audit",
+                        desc: "Comprehensive review of your adherence to applicable central, state, and local labor legislation. We verify mandatory registers, filings, licenses, and statutory notices to eliminate vulnerability to labour inspections and financial penalties.",
+                        reviews: [
+                            "Shops & Establishments Registration & Renewals",
+                            "Statutory Registers (Muster Roll, Overtime, Fines, Deductions)",
+                            "Minimum Wages, Payment of Wages, & Bonus compliances",
+                            "Mandatory notices display & annual returns filing proof"
+                        ],
+                        deliverables: "Statutory Compliance Gap Matrix, missing register inventory, penalty risk evaluation, and template register formats for instant regularization."
+                    },
+                    2: {
+                        badge: "MODULE 02",
+                        title: "HR Operations & Process Audit",
+                        desc: "Diagnostic evaluation of the employee lifecycle from recruitment and onboarding to performance, promotion, grievances, and exit separation. Identifies operational bottlenecks, inconsistencies, and administrative vulnerabilities.",
+                        reviews: [
+                            "Onboarding workflow, verification, & induction standards",
+                            "Probation evaluation, confirmation, & extension workflows",
+                            "Attendance, biometric/remote leave tracking & approval loops",
+                            "Offboarding: resignation, notice periods, handovers, clearance & Full & Final settlement"
+                        ],
+                        deliverables: "HR Process Map & Bottleneck Analysis, standard operating checklist (SOP) gaps, turnaround-time (TAT) benchmarks, and handover protocol templates."
+                    },
+                    3: {
+                        badge: "MODULE 03",
+                        title: "Policy, POSH & Employee Handbook Review",
+                        desc: "Comprehensive review of company policies, employee handbook, and sexual harassment prevention framework. Ensures all documents are up-to-date, legally robust, culturally aligned, and clearly understood by the workforce.",
+                        reviews: [
+                            "POSH Internal Committee (IC) constitution & annual report filing",
+                            "Code of Conduct, anti-harassment, & whistleblower mechanisms",
+                            "Leave policy (earned, sick, casual, maternity, paternity) statutory alignment",
+                            "IT usage, data protection, confidentiality & remote working rules"
+                        ],
+                        deliverables: "Policy Gap & Redline Analysis, Employee Handbook amendment recommendations, and POSH readiness assessment including mandatory workshop schedules."
+                    },
+                    4: {
+                        badge: "MODULE 04",
+                        title: "Employee Records & Employment Contracts Audit",
+                        desc: "In-depth sampling of physical and digital personnel files, employment contracts, offer letters, NDAs, and confidentiality agreements to identify gaps in legal enforceability and privacy protection.",
+                        reviews: [
+                            "Enforceability of employment agreements, probation & termination clauses",
+                            "Non-disclosure, non-compete, IP assignment & confidentiality covenants",
+                            "KYC compliance, educational verification records & background checks",
+                            "Secure personnel documentation storage & digital access controls"
+                        ],
+                        deliverables: "Personnel File Sampling Audit Report, contract risk exposure register, revised legally vetted offer letter/agreement templates, and KYC checklist."
+                    },
+                    5: {
+                        badge: "MODULE 05",
+                        title: "Compensation, Benefits & Payroll Compliance Audit",
+                        desc: "Comprehensive reconciliation of payroll registers, wage structures, minimum wage adherence, statutory benefits (PF, ESIC, Gratuity, Professional Tax), overtime payments, and leave encashment calculations.",
+                        reviews: [
+                            "Minimum wage rate compliance across categories (unskilled, skilled, managerial)",
+                            "PF & ESI wage ceiling deductions, calculation method & timely deposits",
+                            "Overtime calculation formulae and statutory limits observance",
+                            "Gratuity liability provisioning, actuarial requirements & payout accuracy"
+                        ],
+                        deliverables: "Payroll Reconciliation Audit Sheet, statutory exposure financial estimate, wage restructuring blueprint, and compliant payslip template."
+                    },
+                    6: {
+                        badge: "MODULE 06",
+                        title: "Remediation Action Plan & Implementation Advisory",
+                        desc: "An audit is only as valuable as the transformation it drives. We provide an execution-ready remediation roadmap with prioritised milestones, accountable owners, drafting support, and post-audit advisory check-ins.",
+                        reviews: [
+                            "30-60-90 day remediation roadmap sorted by risk severity",
+                            "Turnkey document drafting (letters, circulars, registers, policies)",
+                            "Leadership debrief presentation & management summary",
+                            "60-day post-audit compliance validation check-in"
+                        ],
+                        deliverables: "Master Remediation Action Register (Excel + PDF), leadership slide deck, standard templates kit, and ongoing quarterly advisory support."
+                    }
+                };
+
+                var modal = document.getElementById("serviceModuleModal");
+                var closeBtn = document.getElementById("closeServiceModal");
+                var cancelBtn = document.getElementById("cancelServiceModal");
+                var badgeEl = document.getElementById("modalBadge");
+                var titleEl = document.getElementById("modalTitle");
+                var descEl = document.getElementById("modalDesc");
+                var listEl = document.getElementById("modalReviewList");
+                var deliverableEl = document.getElementById("modalDeliverables");
+
+                function openModal(id) {
+                    var data = moduleData[id];
+                    if (!data || !modal) return;
+                    badgeEl.textContent = data.badge;
+                    titleEl.textContent = data.title;
+                    descEl.textContent = data.desc;
+                    deliverableEl.textContent = data.deliverables;
+
+                    listEl.innerHTML = "";
+                    data.reviews.forEach(function (item) {
+                        var li = document.createElement("li");
+                        li.innerHTML = '<i class="fa-solid fa-circle-check"></i> <span>' + item + '</span>';
+                        listEl.appendChild(li);
+                    });
+
+                    modal.classList.add("is-open");
+                    modal.setAttribute("aria-hidden", "false");
+                    document.body.style.overflow = "hidden";
+                }
+
+                function closeModal() {
+                    if (!modal) return;
+                    modal.classList.remove("is-open");
+                    modal.setAttribute("aria-hidden", "true");
+                    document.body.style.overflow = "";
+                }
+
+                document.querySelectorAll(".btn-module-details").forEach(function (btn) {
+                    btn.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        var modId = this.getAttribute("data-module");
+                        openModal(modId);
+                    });
+                });
+
+                if (closeBtn) closeBtn.addEventListener("click", closeModal);
+                if (cancelBtn) cancelBtn.addEventListener("click", closeModal);
+
+                if (modal) {
+                    modal.addEventListener("click", function (e) {
+                        if (e.target === modal) closeModal();
+                    });
+                }
+
+                document.addEventListener("keydown", function (e) {
+                    if (e.key === "Escape" && modal && modal.classList.contains("is-open")) {
+                        closeModal();
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

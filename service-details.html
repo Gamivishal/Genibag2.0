@@ -36,7 +36,17 @@
         <!--<< Nice Select.css >>-->
         <!--<< Main.css >>-->
         <link rel="stylesheet" href="assets/css/main.css">
-                            
+        <style>
+            .module-card {
+                scroll-margin-top: 120px;
+                transition: all 0.35s ease;
+            }
+            .module-card:target {
+                border-color: var(--theme) !important;
+                box-shadow: 0 10px 32px rgba(242, 103, 58, 0.18) !important;
+                background: #FFFFFF !important;
+            }
+        </style>
     </head>
     <body class="body-bg-1">
 
@@ -393,7 +403,8 @@
                                 </div>
 
                                 <!-- Module 6 -->
-                                <div id="remediation" class="module-card mb-5" style="background: #F8FAFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 28px;">
+                                <div id="advisory" class="module-card mb-5" style="background: #F8FAFF; border: 1px solid #E2E8F0; border-radius: 16px; padding: 28px;">
+                                    <span id="remediation" style="position: absolute; top: -80px; visibility: hidden;"></span>
                                     <div class="d-flex align-items-center gap-3 mb-3">
                                         <span style="background: var(--theme-hover); color: #fff; font-weight: 800; font-size: 14px; padding: 4px 12px; border-radius: 20px;">MODULE 06</span>
                                         <h4 style="font-size: 20px; font-weight: 800; color: var(--header); margin: 0;">Remediation Action Plan & Implementation Advisory</h4>
