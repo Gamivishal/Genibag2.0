@@ -425,4 +425,36 @@
         if (window.gsap && window.gsap.ticker) window.gsap.ticker.add(paintProgress);
         paintProgress();
     });
+
+    /* ---------- Direct Form Jump / Anchor handling ---------- */
+    function scrollToScopingForm() {
+        var target = document.getElementById("contact-form");
+        if (!target) return;
+        if (window.smoother && typeof window.smoother.scrollTo === "function") {
+            window.smoother.scrollTo(target, true, "top 100px");
+        } else {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        var nameField = document.getElementById("name");
+        if (nameField) {
+            setTimeout(function () { nameField.focus(); }, 450);
+        }
+    }
+
+    if (window.location.hash === "#contact-form" || window.location.hash === "#scoping-form") {
+        setTimeout(scrollToScopingForm, 350);
+    }
+    window.addEventListener("hashchange", function () {
+        if (window.location.hash === "#contact-form" || window.location.hash === "#scoping-form") {
+            scrollToScopingForm();
+        }
+    });
+
+    document.querySelectorAll('a[href="#contact-form"], a[href$="#contact-form"]').forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            history.pushState(null, null, "#contact-form");
+            scrollToScopingForm();
+        });
+    });
 })();
