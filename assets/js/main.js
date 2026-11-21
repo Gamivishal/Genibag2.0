@@ -231,9 +231,9 @@
                 slidesPerView: 1,
                 effect:'fade',
                 autoplay: {
-                    delay: 1500,         
+                    delay: 5000,         
                     disableOnInteraction: false,
-                    pauseOnMouseEnter: false,  
+                    pauseOnMouseEnter: true,  
                 },
                 navigation: {
                     nextEl: ".array-prev",
