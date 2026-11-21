@@ -16765,3 +16765,332 @@ html.genie-is-menu-transition #genie-menu-loader {
 
 
 
+
+/* Header: keep the six-item menu and scoping-call button on one line at laptop widths */
+.header-main .main-menu ul li a,
+.header-1 .header-right .theme-btn {
+  white-space: nowrap;
+}
+@media (max-width: 1439px) {
+  .header-main .main-menu ul li { margin-inline-end: 26px; }
+  .header-1 .header-right .theme-btn { padding: 0 24px; }
+}
+@media (max-width: 1299px) {
+  .header-main .main-menu ul li { margin-inline-end: 20px; }
+  .header-main .main-menu ul li a { font-size: 15px; }
+  .header-1 .header-right { gap: 12px !important; }
+  .header-1 .header-right .theme-btn { padding: 0 18px; font-size: 15px; height: 48px; line-height: 48px; }
+}
+
+/* ==========================================================================
+   Genie Bag Solutions — Premium Executive Corporate Section (About Us)
+   ========================================================================== */
+.gba-about-corp {
+  background-color: #F4F6FA !important;
+  position: relative;
+  overflow: hidden;
+  padding: 110px 0 !important;
+  visibility: visible !important;
+}
+
+.gba-about-corp,
+.gba-about-corp * {
+  box-sizing: border-box;
+}
+
+/* Ensure elements are never hidden by animation observers */
+.gba-about-corp .wow {
+  visibility: visible !important;
+}
+
+.gba-corp-grid {
+  display: grid;
+  grid-template-columns: 46% 1fr;
+  column-gap: 56px;
+  row-gap: 32px;
+  align-items: start;
+  visibility: visible !important;
+}
+
+/* LEFT COLUMN — Intro Header */
+.gba-corp-intro {
+  grid-column: 1;
+  grid-row: 1;
+  visibility: visible !important;
+}
+
+.gba-corp-eyebrow {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #F2673A;
+  margin-bottom: 12px;
+}
+
+.gba-corp-heading {
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+  font-size: clamp(32px, 3.6vw, 46px);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: #111B38;
+  margin: 0 0 18px 0;
+}
+
+.gba-corp-heading-accent {
+  color: #F2673A !important;
+  display: inline;
+}
+
+.gba-corp-line {
+  width: 52px;
+  height: 3px;
+  background: #F2673A;
+  border-radius: 2px;
+  margin: 0 0 22px 0;
+}
+
+.gba-corp-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: #26324A;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* LEFT COLUMN — Three Value Blocks */
+.gba-corp-values {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+  visibility: visible !important;
+}
+
+.gba-corp-val {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 22px 24px;
+  border: 1px solid rgba(17, 27, 56, 0.08);
+  border-left: 3px solid transparent;
+  box-shadow: 0 4px 18px rgba(17, 27, 56, 0.03);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  visibility: visible !important;
+}
+
+.gba-corp-val:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(17, 27, 56, 0.08);
+  border-left-color: #F2673A;
+  border-color: rgba(242, 103, 58, 0.3);
+}
+
+.gba-corp-val__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.gba-corp-val__num {
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #F2673A;
+  letter-spacing: 0.04em;
+}
+
+.gba-corp-val__sep {
+  color: #94A3B8;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.gba-corp-val__title {
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #111B38;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.gba-corp-val__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #526075;
+  margin: 0;
+}
+
+/* RIGHT COLUMN — Meeting Photograph & Floating Overlap Card */
+.gba-corp-media-col {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  position: relative;
+  align-self: center;
+  visibility: visible !important;
+}
+
+.gba-corp-media-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: visible;
+}
+
+.gba-corp-img-box {
+  border-radius: 20px;
+  overflow: hidden;
+  background: #111B38;
+  box-shadow: 0 20px 48px rgba(17, 27, 56, 0.12);
+  border: 1px solid rgba(17, 27, 56, 0.08);
+}
+
+.gba-corp-img-box img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gba-corp-media-wrap:hover .gba-corp-img-box img {
+  transform: scale(1.03);
+}
+
+/* Overlapping Info Card */
+.gba-corp-card {
+  position: absolute;
+  bottom: 30px;
+  left: -24px;
+  background: #111B38;
+  color: #FFFFFF;
+  padding: 18px 24px;
+  border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(17, 27, 56, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 3;
+  max-width: 340px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  visibility: visible !important;
+}
+
+.gba-corp-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 42px rgba(17, 27, 56, 0.36);
+}
+
+.gba-corp-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(242, 103, 58, 0.15);
+  border: 1px solid rgba(242, 103, 58, 0.3);
+  color: #F2673A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.gba-corp-card__tag {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #F2673A;
+  margin-bottom: 3px;
+}
+
+.gba-corp-card__title {
+  font-family: 'Plus Jakarta Sans', 'Manrope', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1199px) {
+  .gba-corp-grid {
+    grid-template-columns: 48% 1fr;
+    column-gap: 36px;
+  }
+  .gba-corp-img-box img {
+    height: 500px;
+  }
+  .gba-corp-card {
+    left: 16px;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .gba-about-corp {
+    padding: 80px 0 !important;
+  }
+  .gba-corp-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .gba-corp-intro {
+    order: 1;
+    width: 100%;
+  }
+  .gba-corp-media-col {
+    order: 2;
+    width: 100%;
+  }
+  .gba-corp-values {
+    order: 3;
+    width: 100%;
+    margin-top: 0;
+  }
+  .gba-corp-img-box img {
+    height: 400px;
+  }
+  .gba-corp-card {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin: -28px 16px 0 16px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .gba-about-corp {
+    padding: 64px 0 !important;
+  }
+  .gba-corp-heading {
+    font-size: 28px;
+  }
+  .gba-corp-desc {
+    font-size: 15px;
+  }
+  .gba-corp-img-box img {
+    height: 290px;
+  }
+  .gba-corp-card {
+    margin: 16px 0 0 0;
+  }
+}
+

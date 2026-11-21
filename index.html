@@ -169,13 +169,13 @@
                                             <a href="about">About Us</a>
                                         </li>
                                         <li class="">
-                                            <a href="service">Services</a>
+                                            <a href="service">Our Services</a>
                                         </li>
                                         <li class="">
                                             <a href="faq">FAQ</a>
                                         </li>
                                         <li class="">
-                                            <a href="contact">Contact</a>
+                                            <a href="contact">Contact Us</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -184,7 +184,7 @@
                             <a href="#" class="main-header__search search-toggler">
                                 <i class="fa-regular fa-magnifying-glass"></i>
                             </a>
-                            <a href="contact" class="theme-btn header-bg">Book an Audit <i class="fa-solid fa-arrow-up-right"></i></a>
+                            <a href="contact" class="theme-btn header-bg">Book a Scoping Call <i class="fa-solid fa-arrow-up-right"></i></a>
                             <div class="header__hamburger my-auto">
                                 <div class="sidebar__toggle">
                                     <span></span>
@@ -346,72 +346,255 @@
                     </div>
                 </section>
 
-                <!-- About Section Start -->
-                <section class="about-section section-padding fix" id="about">
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-xl-5 col-lg-5 wow fadeInUp" data-wow-delay=".3s">
-                                <div class="about-left-thumb-wrap" style="position: relative;">
-                                    <div class="client-img" style="border-radius: 16px; overflow: hidden; box-shadow: 0 12px 35px rgba(0,0,0,0.1);">
-                                        <img loading="lazy" decoding="async" src="assets/img/home-1/about-feature2-01.jpg" alt="HR Governance" style="border-radius: 16px; width: 100%; height: auto; object-fit: cover; display: block;">
-                                    </div>
-                                    <div class="geniebag-brand-badge" style="background: var(--header); color: #ffffff; padding: 20px 24px; border-radius: 14px; margin-top: -40px; margin-left: 15px; margin-right: 15px; position: relative; z-index: 5; box-shadow: 0 12px 30px rgba(17, 27, 52, 0.25); border-left: 4px solid var(--theme);">
-                                        <h5 style="color: var(--theme); margin-bottom: 6px; font-size: 17px; font-weight: 800; letter-spacing: 0.5px;">GENIEBAG SOLUTIONS</h5>
-                                        <p style="color: #CBD5E1 !important; margin: 0; font-size: 13.5px !important; line-height: 1.6 !important; position: static !important; transform: none !important; max-width: 100% !important; text-align: left !important; font-weight: 500 !important;">
-                                            <em style="color: #ffffff;">The Management Basket</em> • Practical, proportionate and people-aware HR governance.
-                                        </p>
-                                    </div>
+                <!-- ==========================================================================
+                     Home Redesign - Shared design system (About, Compliance Lens, Examine,
+                     Why Genie Bag, FAQ, CTA). Matches What We Do / Method / Tiers language.
+                     ========================================================================== -->
+                <style>
+                    :root {
+                        --gbh-orange: #F26A3F;
+                        --gbh-orange-2: #F5A540;
+                        --gbh-orange-dark: #CC4A22;
+                        --gbh-teal: #2A9D8F;
+                        --gbh-navy: #111B34;
+                        --gbh-navy-2: #1B284A;
+                        --gbh-text: #526075;
+                        --gbh-muted: #A2B2CB;
+                        --gbh-border: rgba(225, 233, 245, 0.9);
+                        --gbh-ease: cubic-bezier(0.22, 1, 0.36, 1);
+                        --gbh-shadow:
+                            0 1px 2px rgba(17, 27, 52, 0.03),
+                            0 4px 12px rgba(17, 27, 52, 0.04),
+                            0 12px 24px rgba(17, 27, 52, 0.03);
+                        --gbh-shadow-hover:
+                            0 4px 12px rgba(17, 27, 52, 0.05),
+                            0 18px 40px rgba(17, 27, 52, 0.08),
+                            0 24px 48px rgba(242, 106, 63, 0.10);
+                    }
+
+                    /* ---------- Shared primitives ---------- */
+                    .gbh-section { position: relative; overflow: hidden; padding: 104px 0; }
+                    .gbh-wrap { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+                    .gbh-dotgrid::before {
+                        content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+                        background-image: radial-gradient(rgba(17, 27, 52, 0.035) 1.5px, transparent 1.5px);
+                        background-size: 28px 28px;
+                    }
+                    .gbh-glow { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(80px); }
+                    .gbh-glow--orange { background: radial-gradient(circle, rgba(242, 106, 63, 0.10) 0%, transparent 70%); }
+                    .gbh-glow--teal { background: radial-gradient(circle, rgba(42, 157, 143, 0.09) 0%, transparent 70%); }
+
+                    .gbh-head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
+                    .gbh-eyebrow {
+                        display: inline-flex; align-items: center; gap: 8px;
+                        padding: 6px 16px; border-radius: 999px;
+                        background: rgba(242, 106, 63, 0.10); border: 1px solid rgba(242, 106, 63, 0.28);
+                        color: var(--gbh-orange); font-size: 12.5px; font-weight: 700;
+                        letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px;
+                    }
+                    .gbh-eyebrow__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gbh-orange); box-shadow: 0 0 8px var(--gbh-orange); }
+                    .gbh-eyebrow--dark { background: rgba(242, 106, 63, 0.14); border-color: rgba(242, 106, 63, 0.4); }
+                    .gbh-title {
+                        font-size: clamp(30px, 3.8vw, 44px); font-weight: 800; line-height: 1.22;
+                        letter-spacing: -0.5px; color: var(--gbh-navy); margin: 0 0 18px;
+                    }
+                    .gbh-grad {
+                        background: linear-gradient(90deg, #F26A3F 0%, #F5A540 50%, #F26A3F 100%);
+                        background-size: 200% auto;
+                        -webkit-background-clip: text; background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                    @media (prefers-reduced-motion: no-preference) {
+                        .gbh-grad { animation: gbhShimmer 7s ease-in-out infinite; }
+                    }
+                    @keyframes gbhShimmer { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+                    .gbh-sub { max-width: 640px; margin: 0 auto; color: var(--gbh-text); font-size: 17px; line-height: 1.75; text-wrap: balance; }
+                    .gbh-lead { color: var(--gbh-text); font-size: 17px; line-height: 1.75; margin: 0 0 26px; }
+
+                    .gbh-btn {
+                        display: inline-flex; align-items: center; gap: 12px;
+                        padding: 8px 8px 8px 26px; border-radius: 999px;
+                        background: var(--gbh-orange); color: #fff !important;
+                        font-size: 15.5px; font-weight: 700; text-decoration: none;
+                        box-shadow: 0 10px 24px rgba(242, 106, 63, 0.28);
+                        transition: transform .35s var(--gbh-ease), box-shadow .35s var(--gbh-ease), background .35s var(--gbh-ease);
+                    }
+                    .gbh-btn .arr {
+                        width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+                        background: #fff; color: var(--gbh-orange); font-size: 14px;
+                        transition: transform .35s var(--gbh-ease);
+                    }
+                    .gbh-btn:hover { background: var(--gbh-orange-dark); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(242, 106, 63, 0.34); }
+                    .gbh-btn:hover .arr { transform: rotate(45deg); }
+                    .gbh-btn:focus-visible { outline: 3px solid rgba(242, 106, 63, 0.45); outline-offset: 3px; }
+                    .gbh-btn--block { width: 100%; justify-content: space-between; }
+
+                    .gbh-card {
+                        position: relative; background: linear-gradient(180deg, #FFFFFF 0%, #F9FAFC 100%);
+                        border: 1px solid var(--gbh-border); border-radius: 18px; box-shadow: var(--gbh-shadow);
+                        transition: transform .4s var(--gbh-ease), box-shadow .4s var(--gbh-ease), border-color .4s var(--gbh-ease);
+                    }
+                    .gbh-card:hover { transform: translateY(-6px); box-shadow: var(--gbh-shadow-hover); border-color: rgba(242, 106, 63, 0.25); }
+                    .gbh-icon {
+                        width: 54px; height: 54px; border-radius: 14px; flex-shrink: 0;
+                        display: grid; place-items: center; font-size: 22px;
+                        color: var(--c, var(--gbh-orange)); background: var(--cb, rgba(242, 106, 63, 0.12));
+                        transition: transform .4s var(--gbh-ease), background .4s var(--gbh-ease), color .4s var(--gbh-ease);
+                    }
+
+                    /* ---------- 1. About / The Big Picture ---------- */
+                    .gbh-about { background: #FFFFFF; }
+                    .gbh-about .gbh-glow--orange { width: 520px; height: 420px; top: -80px; right: -120px; }
+                    .gbh-about .gbh-glow--teal { width: 460px; height: 380px; bottom: -60px; left: -140px; }
+                    .gbh-about__top { display: grid; grid-template-columns: 5fr 7fr; gap: 72px; align-items: center; }
+                    .gbh-about__media { position: relative; padding: 0 0 46px 0; }
+                    .gbh-about__media::before {
+                        content: ""; position: absolute; top: -18px; left: -18px; width: 62%; height: 72%;
+                        border-radius: 22px; background: linear-gradient(135deg, rgba(242, 106, 63, 0.16), rgba(42, 157, 143, 0.12));
+                        z-index: 0;
+                    }
+                    .gbh-about__img {
+                        position: relative; z-index: 1; border-radius: 22px; overflow: hidden;
+                        box-shadow: 0 24px 50px rgba(17, 27, 52, 0.16); aspect-ratio: 4 / 4.4;
+                    }
+                    .gbh-about__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--gbh-ease); }
+                    .gbh-about__media:hover .gbh-about__img img { transform: scale(1.04); }
+                    .gbh-about__chip {
+                        position: absolute; z-index: 3; top: 28px; right: -26px;
+                        display: flex; align-items: center; gap: 12px;
+                        padding: 12px 18px 12px 12px; border-radius: 16px;
+                        background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px);
+                        box-shadow: 0 14px 34px rgba(17, 27, 52, 0.14); border: 1px solid var(--gbh-border);
+                    }
+                    .gbh-about__chip .gbh-icon { width: 42px; height: 42px; font-size: 18px; border-radius: 12px; --c: var(--gbh-teal); --cb: rgba(42, 157, 143, 0.12); }
+                    .gbh-about__chip b { display: block; color: var(--gbh-navy); font-size: 15px; font-weight: 800; line-height: 1.2; }
+                    .gbh-about__chip small { display: block; color: var(--gbh-text); font-size: 12.5px; }
+                    @media (prefers-reduced-motion: no-preference) {
+                        .gbh-about__chip { animation: gbhFloat 5s ease-in-out infinite alternate; }
+                    }
+                    @keyframes gbhFloat { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
+                    .gbh-about__badge {
+                        position: absolute; z-index: 3; left: 24px; right: 24px; bottom: 0;
+                        padding: 20px 22px; border-radius: 16px; background: var(--gbh-navy);
+                        box-shadow: 0 18px 38px rgba(17, 27, 52, 0.28); overflow: hidden;
+                    }
+                    .gbh-about__badge::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--gbh-orange), var(--gbh-teal)); }
+                    .gbh-about__badge h5 { color: var(--gbh-orange); font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin: 0 0 6px; }
+                    .gbh-about__badge p { color: #CBD5E1; font-size: 13.5px; line-height: 1.6; margin: 0; }
+                    .gbh-about__badge em { color: #fff; font-style: italic; }
+                    .gbh-about__tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 32px; padding: 0; list-style: none; }
+                    .gbh-about__tags li {
+                        display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px;
+                        background: #F8FAFF; border: 1px solid var(--gbh-border); color: var(--gbh-navy);
+                        font-size: 14px; font-weight: 600;
+                    }
+                    .gbh-about__tags li i { color: var(--gbh-teal); }
+                    .gbh-about__pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin-top: 80px; }
+                    .gbh-pillar { padding: 32px 28px 30px; overflow: hidden; height: 100%; }
+                    .gbh-pillar::after {
+                        content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3.5px;
+                        background: linear-gradient(90deg, var(--gbh-orange), var(--gbh-teal));
+                        transform: scaleX(0); transform-origin: left; transition: transform .5s var(--gbh-ease);
+                    }
+                    .gbh-pillar:hover::after { transform: scaleX(1); }
+                    .gbh-pillar__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+                    .gbh-pillar__num { font-size: 44px; font-weight: 900; line-height: 1; letter-spacing: -2px; color: var(--gbh-navy); opacity: 0.07; transition: opacity .4s var(--gbh-ease); }
+                    .gbh-pillar:hover .gbh-pillar__num { opacity: 0.16; }
+                    .gbh-pillar:hover .gbh-icon { background: var(--c); color: #fff; transform: rotate(-6deg) scale(1.05); }
+                    .gbh-pillar h3 { font-size: 20px; font-weight: 700; color: var(--gbh-navy); margin: 0 0 10px; line-height: 1.3; }
+                    .gbh-pillar p { color: var(--gbh-text); font-size: 15px; line-height: 1.65; margin: 0; }
+
+                    @media (max-width: 1199px) {
+                        .gbh-about__top { gap: 48px; }
+                        .gbh-about__chip { right: -10px; }
+                    }
+                    @media (max-width: 991px) {
+                        .gbh-section { padding: 84px 0; }
+                        .gbh-about__top { grid-template-columns: 1fr; }
+                        .gbh-about__media { max-width: 520px; width: 100%; margin: 0 auto; }
+                        .gbh-about__pillars { grid-template-columns: 1fr 1fr; margin-top: 60px; }
+                        .gbh-about__pillars > :last-child { grid-column: 1 / -1; }
+                    }
+                    @media (max-width: 767px) {
+                        .gbh-section { padding: 68px 0; }
+                        .gbh-head { margin-bottom: 40px; }
+                        .gbh-about__pillars { grid-template-columns: 1fr; }
+                        .gbh-about__chip { top: 16px; right: 12px; }
+                        .gbh-about__media::before { left: -10px; top: -10px; }
+                        .gbh-sub, .gbh-lead { font-size: 16px; }
+                    }
+                    @media (prefers-reduced-motion: reduce) {
+                        .gbh-card, .gbh-btn, .gbh-btn .arr, .gbh-icon, .gbh-about__img img { transition: none; }
+                        .gbh-card:hover, .gbh-btn:hover { transform: none; }
+                    }
+                </style>
+
+                <!-- About Section Start (The Big Picture) -->
+                <section class="gbh-section gbh-about gbh-dotgrid" id="about">
+                    <div class="gbh-glow gbh-glow--orange" aria-hidden="true"></div>
+                    <div class="gbh-glow gbh-glow--teal" aria-hidden="true"></div>
+                    <div class="gbh-wrap">
+                        <div class="gbh-about__top">
+                            <div class="gbh-about__media wow fadeInUp" data-wow-delay=".2s">
+                                <div class="gbh-about__img">
+                                    <img loading="lazy" decoding="async" src="assets/img/home-1/about-feature2-01.jpg" alt="HR governance review in progress">
+                                </div>
+                                <div class="gbh-about__chip">
+                                    <span class="gbh-icon"><i class="fa-solid fa-shield-check"></i></span>
+                                    <span><b>Review-Ready</b><small>HR practices, end to end</small></span>
+                                </div>
+                                <div class="gbh-about__badge">
+                                    <h5>GENIEBAG SOLUTIONS</h5>
+                                    <p><em>The Management Basket</em> &bull; Practical, proportionate and people-aware HR governance.</p>
                                 </div>
                             </div>
-                            <div class="col-xl-7 col-lg-7">
-                                <div class="about-right-content-style-1 ps-xl-4">
-                                    <div class="section-title mb-0">
-                                        <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle">The Big Picture</span>
-                                        <h2 class="split-title">
-                                            Good HR is More Than Paperwork.
-                                        </h2>
-                                    </div>
-                                    <p class="about-text wow fadeInUp" data-wow-delay=".2s" style="font-size: 17px; line-height: 1.7; color: var(--text);">
-                                        We help organisations turn people processes into clear, consistent and review-ready practices. Our focus blends rigorous structure with practical understanding of day-to-day HR realities.
-                                    </p>
+                            <div class="gbh-about__content">
+                                <span class="gbh-eyebrow wow fadeInUp" data-wow-delay=".1s"><span class="gbh-eyebrow__dot" aria-hidden="true"></span>The Big Picture</span>
+                                <h2 class="gbh-title wow fadeInUp" data-wow-delay=".2s">Good HR is More Than <span class="gbh-grad">Paperwork.</span></h2>
+                                <p class="gbh-lead wow fadeInUp" data-wow-delay=".3s">
+                                    We help organisations turn people processes into clear, consistent and review-ready practices. Our focus blends rigorous structure with practical understanding of day-to-day HR realities.
+                                </p>
+                                <ul class="gbh-about__tags wow fadeInUp" data-wow-delay=".4s">
+                                    <li><i class="fa-solid fa-circle-check"></i> People Records</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Policies &amp; Process</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Risk &amp; Action Plan</li>
+                                </ul>
+                                <div class="wow fadeInUp" data-wow-delay=".5s">
+                                    <a href="about" class="gbh-btn">More About Us <span class="arr"><i class="fa-solid fa-arrow-up-right"></i></span></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="about-feature mt-5">
-                            <div class="row g-4">
-                                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                                    <div class="about-feature-box-style-1 p-4" style="border: 1px solid var(--border); border-radius: 16px; background: #fff; height: 100%;">
-                                        <div class="icon mb-3" style="width: 55px; height: 55px; line-height: 55px; text-align: center; background: rgba(239, 105, 57, 0.1); border-radius: 12px; color: var(--theme); font-size: 24px;">
-                                            <i class="fa-solid fa-shield-check"></i>
-                                        </div>
-                                        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--header);">Protect the Business</h3>
-                                        <p style="color: var(--text); font-size: 15px; line-height: 1.6; margin: 0;">
-                                            Spot process gaps early, clarify operational responsibilities, and support better compliance discipline across statutory and workforce operations.
-                                        </p>
+
+                        <div class="gbh-about__pillars">
+                            <div class="wow fadeInUp" data-wow-delay=".2s">
+                                <article class="gbh-card gbh-pillar">
+                                    <div class="gbh-pillar__top">
+                                        <span class="gbh-icon" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);"><i class="fa-solid fa-shield-check"></i></span>
+                                        <span class="gbh-pillar__num" aria-hidden="true">01</span>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                                    <div class="about-feature-box-style-1 p-4" style="border: 1px solid var(--border); border-radius: 16px; background: #fff; height: 100%;">
-                                        <div class="icon mb-3" style="width: 55px; height: 55px; line-height: 55px; text-align: center; background: rgba(13, 151, 135, 0.1); border-radius: 12px; color: var(--accent-teal); font-size: 24px;">
-                                            <i class="fa-solid fa-users"></i>
-                                        </div>
-                                        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--header);">Support Employees</h3>
-                                        <p style="color: var(--text); font-size: 15px; line-height: 1.6; margin: 0;">
-                                            Create fair, understandable, and transparent processes for company policies, communication, records retention, and employee concerns.
-                                        </p>
+                                    <h3>Protect the Business</h3>
+                                    <p>Spot process gaps early, clarify operational responsibilities, and support better compliance discipline across statutory and workforce operations.</p>
+                                </article>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-delay=".35s">
+                                <article class="gbh-card gbh-pillar">
+                                    <div class="gbh-pillar__top">
+                                        <span class="gbh-icon" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);"><i class="fa-solid fa-users"></i></span>
+                                        <span class="gbh-pillar__num" aria-hidden="true">02</span>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                                    <div class="about-feature-box-style-1 p-4" style="border: 1px solid var(--border); border-radius: 16px; background: #fff; height: 100%;">
-                                        <div class="icon mb-3" style="width: 55px; height: 55px; line-height: 55px; text-align: center; background: rgba(17, 27, 52, 0.1); border-radius: 12px; color: var(--header); font-size: 24px;">
-                                            <i class="fa-solid fa-chart-line-up"></i>
-                                        </div>
-                                        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--header);">Enable Better Decisions</h3>
-                                        <p style="color: var(--text); font-size: 15px; line-height: 1.6; margin: 0;">
-                                            Give leadership an actionable, evidence-led view of compliance risks, operational priorities, and resource allocation—not just a stack of documents.
-                                        </p>
+                                    <h3>Support Employees</h3>
+                                    <p>Create fair, understandable, and transparent processes for company policies, communication, records retention, and employee concerns.</p>
+                                </article>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-delay=".5s">
+                                <article class="gbh-card gbh-pillar">
+                                    <div class="gbh-pillar__top">
+                                        <span class="gbh-icon" style="--c: #111B34; --cb: rgba(17,27,52,.08);"><i class="fa-solid fa-chart-line-up"></i></span>
+                                        <span class="gbh-pillar__num" aria-hidden="true">03</span>
                                     </div>
-                                </div>
+                                    <h3>Enable Better Decisions</h3>
+                                    <p>Give leadership an actionable, evidence-led view of compliance risks, operational priorities, and resource allocation&mdash;not just a stack of documents.</p>
+                                </article>
                             </div>
                         </div>
                     </div>
@@ -1300,126 +1483,156 @@
                     </div>
                 </section>
 
-                <!-- Compliance Lens Section (Slide 4) -->
-                <section class="compliance-lens-section section-padding fix" id="scope" style="background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);">
-                    <div class="container">
-                        <div class="text-center mb-70">
-                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center" style="display: block; margin-bottom: 20px; color: var(--theme); font-weight: 700;">Compliance Lens</span>
-                            <h2 class="split-title mb-4" style="font-size: 38px; font-weight: 800; color: var(--header); margin-bottom: 25px; line-height: 1.3;">
-                                Compliance That Fits<br>
-                                <span style="background: linear-gradient(90deg, var(--theme), var(--accent-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Your Workplace.</span>
-                            </h2>
-                            <p style="max-width: 650px; margin: 0 auto; color: var(--text); font-size: 17px; line-height: 1.8; font-weight: 400;">
-                                We map statutory and workforce requirements to your actual workforce, operating locations, and ways of working — then help leadership clearly see what needs attention.
+                <!-- Compliance Lens Section (Slide 4) - Redesigned -->
+                <style>
+                    .gbh-lens { background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%); padding-bottom: 140px; }
+                    .gbh-lens .gbh-glow--orange { width: 600px; height: 420px; top: 8%; left: -160px; }
+                    .gbh-lens .gbh-glow--teal { width: 520px; height: 420px; bottom: 6%; right: -120px; }
+                    .gbh-lens__grid { display: grid; grid-template-columns: 7fr 5fr; gap: 40px; align-items: stretch; }
+                    .gbh-lens__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+                    .gbh-lens__item {
+                        display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 18px;
+                        padding: 20px 24px 20px 20px; overflow: hidden;
+                    }
+                    .gbh-lens__item::before {
+                        content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+                        background: var(--c); transform: scaleY(0); transform-origin: top;
+                        transition: transform .45s var(--gbh-ease);
+                    }
+                    .gbh-lens__item:hover { transform: translateX(6px); }
+                    .gbh-lens__item:hover::before { transform: scaleY(1); }
+                    .gbh-lens__item:hover .gbh-icon { background: var(--c); color: #fff; }
+                    .gbh-lens__num { font-size: 13px; font-weight: 800; color: var(--c); letter-spacing: 0.06em; min-width: 22px; }
+                    .gbh-lens__item h3 { font-size: 17.5px; font-weight: 700; color: var(--gbh-navy); margin: 0 0 4px; line-height: 1.35; }
+                    .gbh-lens__item p { font-size: 14.5px; color: var(--gbh-text); margin: 0; line-height: 1.6; }
+                    .gbh-lens__go {
+                        width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+                        background: #F1F4FA; color: var(--gbh-navy); font-size: 12px;
+                        transition: background .4s var(--gbh-ease), color .4s var(--gbh-ease), transform .4s var(--gbh-ease);
+                    }
+                    .gbh-lens__item:hover .gbh-lens__go { background: var(--c); color: #fff; transform: rotate(-45deg); }
+
+                    .gbh-lens__card {
+                        position: relative; overflow: hidden; height: 100%;
+                        display: flex; flex-direction: column;
+                        padding: 44px 38px 38px; border-radius: 24px; color: #fff;
+                        background: linear-gradient(155deg, #111B34 0%, #1B284A 100%);
+                        box-shadow: 0 30px 60px rgba(17, 27, 52, 0.25);
+                    }
+                    .gbh-lens__card::before {
+                        content: ""; position: absolute; inset: 0; pointer-events: none;
+                        background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1.2px, transparent 1.2px);
+                        background-size: 22px 22px;
+                        mask-image: linear-gradient(180deg, #000 0%, transparent 70%);
+                        -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 70%);
+                    }
+                    .gbh-lens__ring { position: absolute; border-radius: 50%; border: 1px solid rgba(242, 106, 63, 0.25); pointer-events: none; }
+                    .gbh-lens__ring--1 { width: 260px; height: 260px; top: -110px; right: -90px; }
+                    .gbh-lens__ring--2 { width: 180px; height: 180px; top: -70px; right: -50px; border-color: rgba(42, 157, 143, 0.3); }
+                    .gbh-lens__card > *:not(.gbh-lens__ring) { position: relative; z-index: 1; }
+                    .gbh-lens__card h3 { color: #fff; font-size: 27px; font-weight: 800; line-height: 1.3; margin: 0 0 16px; letter-spacing: -0.3px; }
+                    .gbh-lens__card > p { color: var(--gbh-muted); font-size: 16px; line-height: 1.75; margin: 0 0 28px; }
+                    .gbh-lens__assure { padding: 22px; border-radius: 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.10); margin-bottom: 30px; }
+                    .gbh-lens__assure h4 { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 16px; font-weight: 700; margin: 0 0 14px; }
+                    .gbh-lens__assure h4 i { color: var(--gbh-orange); }
+                    .gbh-lens__checks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+                    .gbh-lens__checks li { display: flex; align-items: flex-start; gap: 8px; color: #DCE3EE; font-size: 13.5px; line-height: 1.45; }
+                    .gbh-lens__checks li i { color: var(--gbh-teal); margin-top: 3px; font-size: 12px; }
+                    .gbh-lens__card .gbh-btn { margin-top: auto; }
+
+                    @media (max-width: 991px) {
+                        .gbh-lens { padding-bottom: 110px; }
+                        .gbh-lens__grid { grid-template-columns: 1fr; }
+                    }
+                    @media (max-width: 575px) {
+                        .gbh-lens__item { grid-template-columns: auto 1fr; gap: 14px; padding: 18px; }
+                        .gbh-lens__num, .gbh-lens__go { display: none; }
+                        .gbh-lens__item .gbh-icon { width: 46px; height: 46px; font-size: 19px; }
+                        .gbh-lens__card { padding: 34px 22px 24px; }
+                        .gbh-lens__card h3 { font-size: 23px; }
+                        .gbh-lens__checks { grid-template-columns: 1fr; }
+                    }
+                </style>
+                <section class="gbh-section gbh-lens gbh-dotgrid" id="scope">
+                    <div class="gbh-glow gbh-glow--orange" aria-hidden="true"></div>
+                    <div class="gbh-glow gbh-glow--teal" aria-hidden="true"></div>
+                    <div class="gbh-wrap">
+                        <div class="gbh-head">
+                            <span class="gbh-eyebrow wow fadeInUp" data-wow-delay=".1s"><span class="gbh-eyebrow__dot" aria-hidden="true"></span>Compliance Lens</span>
+                            <h2 class="gbh-title wow fadeInUp" data-wow-delay=".2s">Compliance That Fits <span class="gbh-grad">Your Workplace.</span></h2>
+                            <p class="gbh-sub wow fadeInUp" data-wow-delay=".3s">
+                                We map statutory and workforce requirements to your actual workforce, operating locations, and ways of working &mdash; then help leadership clearly see what needs attention.
                             </p>
                         </div>
 
-                        <div class="row g-4 g-xl-5 align-items-start">
-                            <!-- Left Column: Compliance Areas -->
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="compliance-list">
-                                    <!-- Area 1 -->
-                                    <div class="compliance-item mb-4 p-4" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s ease;">
-                                        <div class="d-flex gap-4">
-                                            <div style="width: 56px; height: 56px; line-height: 56px; text-align: center; background: linear-gradient(135deg, rgba(239,105,57,0.12) 0%, rgba(239,105,57,0.05) 100%); border-radius: 14px; color: var(--theme); font-size: 24px; flex-shrink: 0;">
-                                                <i class="fa-solid fa-address-book"></i>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <h5 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 700; color: var(--header);">Employment Records</h5>
-                                                <p style="margin: 0; font-size: 14px; color: var(--text); line-height: 1.6;">Offer & appointment letters, employee masters, identity KYC, and role change trails.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Area 2 -->
-                                    <div class="compliance-item mb-4 p-4" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s ease;">
-                                        <div class="d-flex gap-4">
-                                            <div style="width: 56px; height: 56px; line-height: 56px; text-align: center; background: linear-gradient(135deg, rgba(13,151,135,0.12) 0%, rgba(13,151,135,0.05) 100%); border-radius: 14px; color: var(--accent-teal); font-size: 24px; flex-shrink: 0;">
-                                                <i class="fa-solid fa-coins"></i>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <h5 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 700; color: var(--header);">Wages & Benefits</h5>
-                                                <p style="margin: 0; font-size: 14px; color: var(--text); line-height: 1.6;">Statutory wage baselines, benefits records, deductions, and payroll sign-off integrity.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Area 3 -->
-                                    <div class="compliance-item mb-4 p-4" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s ease;">
-                                        <div class="d-flex gap-4">
-                                            <div style="width: 56px; height: 56px; line-height: 56px; text-align: center; background: linear-gradient(135deg, rgba(239,105,57,0.12) 0%, rgba(239,105,57,0.05) 100%); border-radius: 14px; color: var(--theme); font-size: 24px; flex-shrink: 0;">
-                                                <i class="fa-solid fa-business-time"></i>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <h5 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 700; color: var(--header);">Working Time, Leave & Attendance</h5>
-                                                <p style="margin: 0; font-size: 14px; color: var(--text); line-height: 1.6;">Overtime controls, biometric inputs, leave balances, encashment, and shift records.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Area 4 -->
-                                    <div class="compliance-item mb-4 p-4" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s ease;">
-                                        <div class="d-flex gap-4">
-                                            <div style="width: 56px; height: 56px; line-height: 56px; text-align: center; background: linear-gradient(135deg, rgba(13,151,135,0.12) 0%, rgba(13,151,135,0.05) 100%); border-radius: 14px; color: var(--accent-teal); font-size: 24px; flex-shrink: 0;">
-                                                <i class="fa-solid fa-clipboard-check"></i>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <h5 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 700; color: var(--header);">Statutory Registers & Filings</h5>
-                                                <p style="margin: 0; font-size: 14px; color: var(--text); line-height: 1.6;">Applicable labour registers, statutory notice boards, annual returns, and contractor records.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Area 5 -->
-                                    <div class="compliance-item p-4" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s ease;">
-                                        <div class="d-flex gap-4">
-                                            <div style="width: 56px; height: 56px; line-height: 56px; text-align: center; background: linear-gradient(135deg, rgba(239,105,57,0.12) 0%, rgba(239,105,57,0.05) 100%); border-radius: 14px; color: var(--theme); font-size: 24px; flex-shrink: 0;">
-                                                <i class="fa-solid fa-scale-unbalanced-flip"></i>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <h5 style="margin: 0 0 6px 0; font-size: 18px; font-weight: 700; color: var(--header);">Policies, Notices & Employee Process</h5>
-                                                <p style="margin: 0; font-size: 14px; color: var(--text); line-height: 1.6;">POSH awareness & Internal Committee (ICC), disciplinary policy, and grievance workflows.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right Column: Scope Tailoring Card -->
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="p-5 p-md-6" style="background: linear-gradient(145deg, var(--header) 0%, #1a253a 100%); border-radius: 24px; border: 2px solid rgba(239,105,57,0.3); position: relative; overflow: hidden;">
-                                    <!-- Decorative circle -->
-                                    <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(239,105,57,0.1); border-radius: 50%;"></div>
-
-                                    <span style="display: inline-block; background: var(--theme); color: #fff; padding: 6px 16px; border-radius: 30px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px;">Scope Tailoring</span>
-
-                                    <h3 style="color: #fff; font-size: 26px; font-weight: 700; margin-bottom: 18px; line-height: 1.3;">
-                                        Scope is confirmed at kickoff.
-                                    </h3>
-
-                                    <p style="color: #A2B2CB; font-size: 16px; line-height: 1.8; margin-bottom: 30px; font-weight: 400;">
-                                        Applicable compliance requirements depend on establishment type, headcount, operating location, and current law. We never use a one-size-fits-all checklist.
-                                    </p>
-
-                                    <div class="p-4 mb-5" style="background: rgba(255,255,255,0.08); border-radius: 14px; border-left: 4px solid var(--theme);">
-                                        <h6 style="color: #fff; margin-bottom: 8px; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                                            <i class="fa-solid fa-circle-info" style="color: var(--theme) !important;"></i>
-                                            Practical Assurance
-                                        </h6>
-                                        <p style="color: #CBD5E1; font-size: 14px; margin: 0; line-height: 1.6;">
-                                            Clear scope • Confidential handling • Evidence-led recommendations • Zero operational disruption.
-                                        </p>
-                                    </div>
-
+                        <div class="gbh-lens__grid">
+                            <!-- Left: Compliance Areas -->
+                            <ol class="gbh-lens__list">
+                                <li class="wow fadeInUp" data-wow-delay=".1s"><div class="gbh-card gbh-lens__item" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);">
+                                    <span class="gbh-lens__num">01</span>
+                                    <span class="gbh-icon"><i class="fa-solid fa-address-book"></i></span>
                                     <div>
-                                        <a href="contact" class="theme-btn" style="width: 100%; justify-content: center; text-align: center; padding: 14px 28px; font-size: 16px; font-weight: 600;">
-                                            <span class="btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                            <span class="btn-title">Request Scoping Call</span>
-                                            <span class="btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                        </a>
+                                        <h3>Employment Records</h3>
+                                        <p>Offer &amp; appointment letters, employee masters, identity KYC, and role change trails.</p>
                                     </div>
+                                    <span class="gbh-lens__go" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                                </div></li>
+                                <li class="wow fadeInUp" data-wow-delay=".2s"><div class="gbh-card gbh-lens__item" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);">
+                                    <span class="gbh-lens__num">02</span>
+                                    <span class="gbh-icon"><i class="fa-solid fa-coins"></i></span>
+                                    <div>
+                                        <h3>Wages &amp; Benefits</h3>
+                                        <p>Statutory wage baselines, benefits records, deductions, and payroll sign-off integrity.</p>
+                                    </div>
+                                    <span class="gbh-lens__go" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                                </div></li>
+                                <li class="wow fadeInUp" data-wow-delay=".3s"><div class="gbh-card gbh-lens__item" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);">
+                                    <span class="gbh-lens__num">03</span>
+                                    <span class="gbh-icon"><i class="fa-solid fa-business-time"></i></span>
+                                    <div>
+                                        <h3>Working Time, Leave &amp; Attendance</h3>
+                                        <p>Overtime controls, biometric inputs, leave balances, encashment, and shift records.</p>
+                                    </div>
+                                    <span class="gbh-lens__go" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                                </div></li>
+                                <li class="wow fadeInUp" data-wow-delay=".4s"><div class="gbh-card gbh-lens__item" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);">
+                                    <span class="gbh-lens__num">04</span>
+                                    <span class="gbh-icon"><i class="fa-solid fa-clipboard-check"></i></span>
+                                    <div>
+                                        <h3>Statutory Registers &amp; Filings</h3>
+                                        <p>Applicable labour registers, statutory notice boards, annual returns, and contractor records.</p>
+                                    </div>
+                                    <span class="gbh-lens__go" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                                </div></li>
+                                <li class="wow fadeInUp" data-wow-delay=".5s"><div class="gbh-card gbh-lens__item" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);">
+                                    <span class="gbh-lens__num">05</span>
+                                    <span class="gbh-icon"><i class="fa-solid fa-scale-unbalanced-flip"></i></span>
+                                    <div>
+                                        <h3>Policies, Notices &amp; Employee Process</h3>
+                                        <p>POSH awareness &amp; Internal Committee (ICC), disciplinary policy, and grievance workflows.</p>
+                                    </div>
+                                    <span class="gbh-lens__go" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                                </div></li>
+                            </ol>
+
+                            <!-- Right: Scope Tailoring Card -->
+                            <aside class="gbh-lens__card wow fadeInUp" data-wow-delay=".3s">
+                                <span class="gbh-lens__ring gbh-lens__ring--1" aria-hidden="true"></span>
+                                <span class="gbh-lens__ring gbh-lens__ring--2" aria-hidden="true"></span>
+                                <div><span class="gbh-eyebrow gbh-eyebrow--dark"><span class="gbh-eyebrow__dot" aria-hidden="true"></span>Scope Tailoring</span></div>
+                                <h3>Scope is confirmed at kickoff.</h3>
+                                <p>Applicable compliance requirements depend on establishment type, headcount, operating location, and current law. We never use a one-size-fits-all checklist.</p>
+                                <div class="gbh-lens__assure">
+                                    <h4><i class="fa-solid fa-circle-info"></i> Practical Assurance</h4>
+                                    <ul class="gbh-lens__checks">
+                                        <li><i class="fa-solid fa-check"></i> Clear scope</li>
+                                        <li><i class="fa-solid fa-check"></i> Confidential handling</li>
+                                        <li><i class="fa-solid fa-check"></i> Evidence-led recommendations</li>
+                                        <li><i class="fa-solid fa-check"></i> Zero operational disruption</li>
+                                    </ul>
                                 </div>
-                            </div>
+                                <a href="contact" class="gbh-btn gbh-btn--block">Request Scoping Call <span class="arr"><i class="fa-solid fa-arrow-up-right"></i></span></a>
+                            </aside>
                         </div>
                     </div>
                 </section>
@@ -2363,170 +2576,310 @@
                     </div>
                 </section>
 
-                <!-- What We Examine / Operating System (Slide 6 & Slide 7) -->
-                <section class="examine-section section-padding fix" id="deliverables" style="background: #fff;">
-                    <div class="container">
-                        <div class="section-title text-center mb-50">
-                            <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">What We Examine</span>
-                            <h2 class="split-title">A Closer Look at Your HR Operating System.</h2>
-                            <p style="max-width: 680px; margin: 15px auto 0; color: var(--text); font-size: 16px;">
-                                Useful outputs—not just observations. Deliverables are agreed before work begins and reflect the actual scope.
+                <!-- What We Examine / Operating System (Slide 6 & Slide 7) - Redesigned -->
+                <style>
+                    .gbh-exam { background: #FFFFFF; }
+                    .gbh-exam .gbh-glow--orange { width: 560px; height: 420px; top: 4%; right: -140px; }
+                    .gbh-exam__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-bottom: 56px; }
+                    .gbh-tile { display: flex; gap: 18px; align-items: flex-start; padding: 26px 24px; height: 100%; overflow: hidden; }
+                    .gbh-tile::after {
+                        content: ""; position: absolute; left: 24px; right: 24px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0;
+                        background: var(--c); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--gbh-ease);
+                    }
+                    .gbh-tile:hover::after { transform: scaleX(1); }
+                    .gbh-tile:hover .gbh-icon { background: var(--c); color: #fff; transform: rotate(-6deg); }
+                    .gbh-tile .gbh-icon { width: 50px; height: 50px; font-size: 20px; }
+                    .gbh-tile h3 { font-size: 17.5px; font-weight: 700; color: var(--gbh-navy); margin: 2px 0 6px; line-height: 1.3; }
+                    .gbh-tile p { font-size: 14.5px; color: var(--gbh-text); margin: 0; line-height: 1.6; }
+
+                    .gbh-deliv {
+                        position: relative; overflow: hidden; border-radius: 28px; padding: 56px;
+                        background: linear-gradient(150deg, #111B34 0%, #16223F 55%, #1B284A 100%);
+                        box-shadow: 0 30px 70px rgba(17, 27, 52, 0.22);
+                        display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: center;
+                    }
+                    .gbh-deliv::before {
+                        content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; top: -260px; left: -160px;
+                        background: radial-gradient(circle, rgba(242, 106, 63, 0.18) 0%, transparent 65%); pointer-events: none;
+                    }
+                    .gbh-deliv::after {
+                        content: ""; position: absolute; width: 480px; height: 480px; border-radius: 50%; bottom: -260px; right: -120px;
+                        background: radial-gradient(circle, rgba(42, 157, 143, 0.16) 0%, transparent 65%); pointer-events: none;
+                    }
+                    .gbh-deliv > * { position: relative; z-index: 1; min-width: 0; }
+                    .gbh-deliv h3 { color: #fff; font-size: 30px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.3px; }
+                    .gbh-deliv__intro { color: var(--gbh-muted); font-size: 15.5px; line-height: 1.7; margin: 0 0 26px; }
+                    .gbh-deliv__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+                    .gbh-deliv__list li {
+                        display: flex; gap: 12px; align-items: flex-start; color: #CBD5E1; font-size: 14.5px; line-height: 1.55;
+                        padding: 10px 14px; border-radius: 12px; transition: background .35s var(--gbh-ease);
+                    }
+                    .gbh-deliv__list li:hover { background: rgba(255, 255, 255, 0.05); }
+                    .gbh-deliv__list li b { color: #fff; font-weight: 700; }
+                    .gbh-deliv__tick {
+                        width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center;
+                        background: rgba(242, 106, 63, 0.16); color: var(--gbh-orange); font-size: 11px; margin-top: 1px;
+                    }
+
+                    .gbh-register {
+                        border-radius: 18px; overflow: hidden; background: rgba(255, 255, 255, 0.04);
+                        border: 1px solid rgba(255, 255, 255, 0.10); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+                        backdrop-filter: blur(6px);
+                    }
+                    .gbh-register__bar {
+                        display: flex; align-items: center; gap: 14px; padding: 14px 20px;
+                        background: rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                    }
+                    .gbh-register__dots { display: flex; gap: 6px; }
+                    .gbh-register__dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); }
+                    .gbh-register__dots span:first-child { background: #F26A3F; }
+                    .gbh-register__dots span:nth-child(2) { background: #F5A540; }
+                    .gbh-register__dots span:nth-child(3) { background: #2A9D8F; }
+                    .gbh-register__name { color: #fff; font-size: 14.5px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+                    .gbh-register__name i { color: var(--gbh-orange); }
+                    .gbh-register__tag { margin-left: auto; font-size: 11.5px; color: var(--gbh-muted); padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.14); white-space: nowrap; }
+                    .gbh-register table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+                    .gbh-register th {
+                        text-align: left; font-weight: 600; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+                        color: var(--gbh-muted); padding: 14px 20px 10px;
+                    }
+                    .gbh-register td { color: #E1E9F5; padding: 16px 20px; border-top: 1px solid rgba(255, 255, 255, 0.07); vertical-align: middle; line-height: 1.45; }
+                    .gbh-register td.why { color: #AEB9CB; }
+                    .gbh-register tbody tr { transition: background .3s var(--gbh-ease); }
+                    .gbh-register tbody tr:hover { background: rgba(255, 255, 255, 0.04); }
+                    .gbh-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; white-space: nowrap; }
+                    .gbh-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+                    .gbh-pill--high { color: #FF8A73; background: rgba(239, 68, 68, 0.16); }
+                    .gbh-pill--med { color: #F5B95C; background: rgba(245, 165, 64, 0.16); }
+
+                    @media (max-width: 1199px) {
+                        .gbh-deliv { grid-template-columns: 1fr; padding: 48px 40px; }
+                    }
+                    @media (max-width: 991px) {
+                        .gbh-exam__grid { grid-template-columns: 1fr 1fr; }
+                    }
+                    @media (max-width: 767px) {
+                        .gbh-exam__grid { grid-template-columns: 1fr; }
+                        .gbh-deliv { padding: 36px 20px; border-radius: 22px; }
+                        .gbh-deliv h3 { font-size: 25px; }
+                        .gbh-register__tag { display: none; }
+                        .gbh-register thead { display: none; }
+                        .gbh-register table, .gbh-register tbody, .gbh-register tr, .gbh-register td { display: block; width: 100%; }
+                        .gbh-register tr { padding: 14px 18px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+                        .gbh-register td { border: 0; padding: 4px 0; }
+                        .gbh-register td::before { content: attr(data-label); display: block; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gbh-muted); margin-bottom: 2px; }
+                    }
+                </style>
+                <section class="gbh-section gbh-exam gbh-dotgrid" id="deliverables">
+                    <div class="gbh-glow gbh-glow--orange" aria-hidden="true"></div>
+                    <div class="gbh-wrap">
+                        <div class="gbh-head">
+                            <span class="gbh-eyebrow wow fadeInUp" data-wow-delay=".1s"><span class="gbh-eyebrow__dot" aria-hidden="true"></span>What We Examine</span>
+                            <h2 class="gbh-title wow fadeInUp" data-wow-delay=".2s">A Closer Look at Your <span class="gbh-grad">HR Operating System.</span></h2>
+                            <p class="gbh-sub wow fadeInUp" data-wow-delay=".3s">
+                                Useful outputs&mdash;not just observations. Deliverables are agreed before work begins and reflect the actual scope.
                             </p>
                         </div>
-                        <div class="row g-4 mb-5">
-                            <div class="col-xl-4 col-md-6">
-                                <div class="p-3" style="border-left: 3px solid var(--theme); background: var(--bg-light); border-radius: 0 10px 10px 0;">
-                                    <h5 style="color: var(--header); font-size: 16px; margin-bottom: 6px;"><i class="fa-solid fa-folder-user" style="color: var(--theme); margin-right: 6px;"></i> People Files</h5>
-                                    <p style="color: var(--text); font-size: 13.5px; margin: 0;">Offer & appointment letters, KYC, qualification records, job descriptions & changes.</p>
-                                </div>
+
+                        <div class="gbh-exam__grid">
+                            <div class="wow fadeInUp" data-wow-delay=".1s">
+                                <article class="gbh-card gbh-tile" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);">
+                                    <span class="gbh-icon"><i class="fa-solid fa-folder-user"></i></span>
+                                    <div><h3>People Files</h3><p>Offer &amp; appointment letters, KYC, qualification records, job descriptions &amp; changes.</p></div>
+                                </article>
                             </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="p-3" style="border-left: 3px solid var(--accent-teal); background: var(--bg-light); border-radius: 0 10px 10px 0;">
-                                    <h5 style="color: var(--header); font-size: 16px; margin-bottom: 6px;"><i class="fa-solid fa-arrows-rotate" style="color: var(--accent-teal); margin-right: 6px;"></i> Joining to Exit</h5>
-                                    <p style="color: var(--text); font-size: 13.5px; margin: 0;">Recruitment & onboarding, confirmation, transfers, resignation, clearance and F&F.</p>
-                                </div>
+                            <div class="wow fadeInUp" data-wow-delay=".2s">
+                                <article class="gbh-card gbh-tile" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);">
+                                    <span class="gbh-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+                                    <div><h3>Joining to Exit</h3><p>Recruitment &amp; onboarding, confirmation, transfers, resignation, clearance and F&amp;F.</p></div>
+                                </article>
                             </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="p-3" style="border-left: 3px solid var(--theme); background: var(--bg-light); border-radius: 0 10px 10px 0;">
-                                    <h5 style="color: var(--header); font-size: 16px; margin-bottom: 6px;"><i class="fa-solid fa-clock" style="color: var(--theme); margin-right: 6px;"></i> Time & Pay Inputs</h5>
-                                    <p style="color: var(--text); font-size: 13.5px; margin: 0;">Attendance & leave controls, overtime/shift records, payroll input approvals.</p>
-                                </div>
+                            <div class="wow fadeInUp" data-wow-delay=".3s">
+                                <article class="gbh-card gbh-tile" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);">
+                                    <span class="gbh-icon"><i class="fa-solid fa-clock"></i></span>
+                                    <div><h3>Time &amp; Pay Inputs</h3><p>Attendance &amp; leave controls, overtime/shift records, payroll input approvals.</p></div>
+                                </article>
                             </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="p-3" style="border-left: 3px solid var(--accent-teal); background: var(--bg-light); border-radius: 0 10px 10px 0;">
-                                    <h5 style="color: var(--header); font-size: 16px; margin-bottom: 6px;"><i class="fa-solid fa-file-contract" style="color: var(--accent-teal); margin-right: 6px;"></i> Policies & Culture</h5>
-                                    <p style="color: var(--text); font-size: 13.5px; margin: 0;">Employee handbook, grievance & disciplinary process, POSH awareness & ICC.</p>
-                                </div>
+                            <div class="wow fadeInUp" data-wow-delay=".1s">
+                                <article class="gbh-card gbh-tile" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);">
+                                    <span class="gbh-icon"><i class="fa-solid fa-file-contract"></i></span>
+                                    <div><h3>Policies &amp; Culture</h3><p>Employee handbook, grievance &amp; disciplinary process, POSH awareness &amp; ICC.</p></div>
+                                </article>
                             </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="p-3" style="border-left: 3px solid var(--theme); background: var(--bg-light); border-radius: 0 10px 10px 0;">
-                                    <h5 style="color: var(--header); font-size: 16px; margin-bottom: 6px;"><i class="fa-solid fa-scale-balanced" style="color: var(--theme); margin-right: 6px;"></i> Statutory Readiness</h5>
-                                    <p style="color: var(--text); font-size: 13.5px; margin: 0;">Applicable registers, statutory notices, return filings, contractor vendor documents.</p>
-                                </div>
+                            <div class="wow fadeInUp" data-wow-delay=".2s">
+                                <article class="gbh-card gbh-tile" style="--c: #F26A3F; --cb: rgba(242,106,63,.12);">
+                                    <span class="gbh-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+                                    <div><h3>Statutory Readiness</h3><p>Applicable registers, statutory notices, return filings, contractor vendor documents.</p></div>
+                                </article>
                             </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="p-3" style="border-left: 3px solid var(--accent-teal); background: var(--bg-light); border-radius: 0 10px 10px 0;">
-                                    <h5 style="color: var(--header); font-size: 16px; margin-bottom: 6px;"><i class="fa-solid fa-shield-halved" style="color: var(--accent-teal); margin-right: 6px;"></i> Governance & Controls</h5>
-                                    <p style="color: var(--text); font-size: 13.5px; margin: 0;">Approval matrix and ownership, record retention & access, escalation handling.</p>
-                                </div>
+                            <div class="wow fadeInUp" data-wow-delay=".3s">
+                                <article class="gbh-card gbh-tile" style="--c: #2A9D8F; --cb: rgba(42,157,143,.12);">
+                                    <span class="gbh-icon"><i class="fa-solid fa-shield-keyhole"></i></span>
+                                    <div><h3>Governance &amp; Controls</h3><p>Approval matrix and ownership, record retention &amp; access, escalation handling.</p></div>
+                                </article>
                             </div>
                         </div>
 
-                        <!-- Deliverables List Showcase (Slide 7 & 9) -->
-                        <div class="p-4 p-md-5" style="background: var(--header); color: #fff; border-radius: 20px;">
-                            <div class="row g-4 align-items-center">
-                                <div class="col-xl-5 col-lg-5">
-                                    <span style="color: var(--theme); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Tangible Client Value</span>
-                                    <h3 style="color: #fff; font-size: 26px; font-weight: 700; margin: 10px 0 15px;">What Clients Receive:</h3>
-                                    <p style="color: #A2B2CB; font-size: 15px; line-height: 1.6; margin-bottom: 25px;">
-                                        Deliverables are agreed before work begins and reflect the specific scope of your review.
-                                    </p>
-                                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 14.5px; color: #E1E9F5;">
-                                        <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> <b>Executive Summary</b>: Concise overview of risks and priorities.</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> <b>Compliance Checklist</b>: What was reviewed, available, and outstanding.</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> <b>Findings Register</b>: Observation, impact, priority, recommended action.</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> <b>Action Tracker</b>: Owners, due dates, dependencies, and closure status.</li>
-                                        <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> <b>Process Notes</b>: Workflows and governance accountability recommendations.</li>
-                                        <li><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> <b>Leadership Readout</b>: Closing alignment session on next steps.</li>
-                                    </ul>
+                        <!-- Deliverables Showcase (Slide 7 & 9) -->
+                        <div class="gbh-deliv wow fadeInUp" data-wow-delay=".2s">
+                            <div>
+                                <span class="gbh-eyebrow gbh-eyebrow--dark"><span class="gbh-eyebrow__dot" aria-hidden="true"></span>Tangible Client Value</span>
+                                <h3>What Clients Receive</h3>
+                                <p class="gbh-deliv__intro">Deliverables are agreed before work begins and reflect the specific scope of your review.</p>
+                                <ul class="gbh-deliv__list">
+                                    <li><span class="gbh-deliv__tick"><i class="fa-solid fa-check"></i></span><span><b>Executive Summary</b> &mdash; Concise overview of risks and priorities.</span></li>
+                                    <li><span class="gbh-deliv__tick"><i class="fa-solid fa-check"></i></span><span><b>Compliance Checklist</b> &mdash; What was reviewed, available, and outstanding.</span></li>
+                                    <li><span class="gbh-deliv__tick"><i class="fa-solid fa-check"></i></span><span><b>Findings Register</b> &mdash; Observation, impact, priority, recommended action.</span></li>
+                                    <li><span class="gbh-deliv__tick"><i class="fa-solid fa-check"></i></span><span><b>Action Tracker</b> &mdash; Owners, due dates, dependencies, and closure status.</span></li>
+                                    <li><span class="gbh-deliv__tick"><i class="fa-solid fa-check"></i></span><span><b>Process Notes</b> &mdash; Workflows and governance accountability recommendations.</span></li>
+                                    <li><span class="gbh-deliv__tick"><i class="fa-solid fa-check"></i></span><span><b>Leadership Readout</b> &mdash; Closing alignment session on next steps.</span></li>
+                                </ul>
+                            </div>
+                            <div class="gbh-register">
+                                <div class="gbh-register__bar">
+                                    <span class="gbh-register__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                                    <span class="gbh-register__name"><i class="fa-solid fa-table-list"></i> Sample Findings Register</span>
+                                    <span class="gbh-register__tag">Illustrative Examples</span>
                                 </div>
-                                <div class="col-xl-7 col-lg-7">
-                                    <div class="p-4" style="background: #1B284A; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
-                                        <h5 style="color: #fff; font-size: 16px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between;">
-                                            <span><i class="fa-solid fa-table-list text-warning me-2" style="color: var(--theme) !important;"></i> Sample Findings Register</span>
-                                            <span style="font-size: 12px; color: #A2B2CB; font-weight: 400;">Illustrative Examples</span>
-                                        </h5>
-                                        <div class="table-responsive">
-                                            <table class="table text-white mb-0" style="font-size: 13px;">
-                                                <thead>
-                                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.2); color: #A2B2CB;">
-                                                        <th>Observation</th>
-                                                        <th>Why It Matters</th>
-                                                        <th>Recommended Action</th>
-                                                        <th>Priority</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                                                        <td>Incomplete employee files</td>
-                                                        <td style="color: #CAD2D2;">May delay statutory responses</td>
-                                                        <td>Use role checklist; close gaps</td>
-                                                        <td><span class="badge bg-danger">HIGH</span></td>
-                                                    </tr>
-                                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                                                        <td>Policy versions differ</td>
-                                                        <td style="color: #CAD2D2;">Inconsistent management rules</td>
-                                                        <td>Approve one controlled version</td>
-                                                        <td><span class="badge bg-warning text-dark">MEDIUM</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Unclear approval trail</td>
-                                                        <td style="color: #CAD2D2;">Decisions hard to verify</td>
-                                                        <td>Define limits; retain evidence</td>
-                                                        <td><span class="badge bg-warning text-dark">MEDIUM</span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                                <table>
+                                    <thead>
+                                        <tr><th>Observation</th><th>Why It Matters</th><th>Recommended Action</th><th>Priority</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td data-label="Observation">Incomplete employee files</td>
+                                            <td data-label="Why it matters" class="why">May delay statutory responses</td>
+                                            <td data-label="Recommended action">Use role checklist; close gaps</td>
+                                            <td data-label="Priority"><span class="gbh-pill gbh-pill--high">HIGH</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="Observation">Policy versions differ</td>
+                                            <td data-label="Why it matters" class="why">Inconsistent management rules</td>
+                                            <td data-label="Recommended action">Approve one controlled version</td>
+                                            <td data-label="Priority"><span class="gbh-pill gbh-pill--med">MEDIUM</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="Observation">Unclear approval trail</td>
+                                            <td data-label="Why it matters" class="why">Decisions hard to verify</td>
+                                            <td data-label="Recommended action">Define limits; retain evidence</td>
+                                            <td data-label="Priority"><span class="gbh-pill gbh-pill--med">MEDIUM</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Why Genie Bag Section (Slide 8) -->
-                <section class="choose-us-section section-padding fix" id="why-us" style="background: var(--bg-light);">
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-xl-6 col-lg-6">
-                                <div class="choose-us-left-content">
-                                    <div class="section-title mb-3">
-                                        <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle">Why Genie Bag</span>
-                                        <h2 class="split-title">Make HR Easier to Trust — and Easier to Run.</h2>
-                                    </div>
-                                    <p class="choose-text wow fadeInUp" data-wow-delay=".2s" style="color: var(--text); font-size: 16px; line-height: 1.7;">
-                                        Our approach blends structure with practical understanding of day-to-day HR realities. We help leadership move from <i>“Are we covered?”</i> to <b>“We know what to do next.”</b>
-                                    </p>
-                                    <div class="mt-4">
-                                        <h5 style="color: var(--header); font-size: 17px; margin-bottom: 15px; font-weight: 700;">What You Get:</h5>
-                                        <ul style="list-style: none; padding: 0; margin: 0 0 25px; font-size: 14.5px; color: var(--text);">
-                                            <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> An independent, unbiased view of HR processes</li>
-                                            <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> Clearer documentation and workforce accountability</li>
-                                            <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> Visibility into compliance gaps before they grow</li>
-                                            <li class="mb-2"><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> Prioritised, realistic actions instead of overwhelm</li>
-                                            <li><i class="fa-solid fa-check-circle me-2" style="color: var(--theme);"></i> Strictly confidential, respectful engagement</li>
+                <!-- Why Genie Bag Section (Slide 8) - Redesigned -->
+                <style>
+                    .gbh-why { background: #F8FAFF; }
+                    .gbh-why .gbh-glow--orange { width: 520px; height: 420px; bottom: -80px; left: -120px; }
+                    .gbh-why .gbh-glow--teal { width: 520px; height: 420px; top: -60px; right: -120px; }
+                    .gbh-why__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+                    .gbh-shift { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: stretch; margin: 0 0 28px; }
+                    .gbh-shift__box { padding: 18px 20px; border-radius: 16px; border: 1px solid var(--gbh-border); background: #fff; }
+                    .gbh-shift__box small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gbh-text); margin-bottom: 6px; }
+                    .gbh-shift__box q { quotes: "\201C" "\201D"; font-size: 16.5px; font-weight: 700; color: var(--gbh-text); font-style: italic; line-height: 1.4; }
+                    .gbh-shift__box--to { background: var(--gbh-navy); border-color: var(--gbh-navy); box-shadow: 0 14px 30px rgba(17, 27, 52, 0.2); }
+                    .gbh-shift__box--to small { color: var(--gbh-orange); }
+                    .gbh-shift__box--to q { color: #fff; font-style: normal; }
+                    .gbh-shift__arrow { align-self: center; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--gbh-orange); color: #fff; box-shadow: 0 8px 18px rgba(242, 106, 63, 0.35); }
+                    .gbh-get { padding: 24px 26px; margin-bottom: 32px; }
+                    .gbh-get h4 { font-size: 16.5px; font-weight: 700; color: var(--gbh-navy); margin: 0 0 14px; }
+                    .gbh-get ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+                    .gbh-get li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; color: var(--gbh-text); line-height: 1.5; }
+                    .gbh-get li i { color: var(--gbh-teal); margin-top: 4px; }
+                    .gbh-get:hover { transform: none; }
+
+                    .gbh-how { position: relative; padding: 36px; border-radius: 26px; background: #fff; border: 1px solid var(--gbh-border); box-shadow: 0 24px 60px rgba(17, 27, 52, 0.08); }
+                    .gbh-how__head { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+                    .gbh-how__head .gbh-icon { width: 46px; height: 46px; font-size: 19px; --c: var(--gbh-teal); --cb: rgba(42, 157, 143, 0.12); }
+                    .gbh-how__head h3 { font-size: 22px; font-weight: 800; color: var(--gbh-navy); margin: 0; }
+                    .gbh-how__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+                    .gbh-how__item {
+                        position: relative; padding: 22px 20px; border-radius: 16px; background: #F8FAFF; border: 1px solid transparent; overflow: hidden;
+                        transition: background .4s var(--gbh-ease), border-color .4s var(--gbh-ease), transform .4s var(--gbh-ease), box-shadow .4s var(--gbh-ease);
+                    }
+                    .gbh-how__item:hover { background: #fff; border-color: rgba(242, 106, 63, 0.25); transform: translateY(-4px); box-shadow: var(--gbh-shadow-hover); }
+                    .gbh-how__num { position: absolute; top: 12px; right: 16px; font-size: 34px; font-weight: 900; color: var(--gbh-navy); opacity: 0.06; letter-spacing: -1px; line-height: 1; }
+                    .gbh-how__item i { color: var(--c); font-size: 20px; margin-bottom: 14px; display: block; }
+                    .gbh-how__item h4 { font-size: 15.5px; font-weight: 700; color: var(--gbh-navy); margin: 0 0 6px; line-height: 1.35; }
+                    .gbh-how__item p { font-size: 13.5px; color: var(--gbh-text); margin: 0; line-height: 1.6; }
+
+                    @media (max-width: 991px) {
+                        .gbh-why__grid { grid-template-columns: 1fr; gap: 48px; }
+                    }
+                    @media (max-width: 575px) {
+                        .gbh-shift { grid-template-columns: 1fr; }
+                        .gbh-shift__arrow { justify-self: center; transform: rotate(90deg); }
+                        .gbh-how { padding: 24px 18px; }
+                        .gbh-how__grid { grid-template-columns: 1fr; }
+                    }
+                </style>
+                <section class="gbh-section gbh-why gbh-dotgrid" id="why-us">
+                    <div class="gbh-glow gbh-glow--orange" aria-hidden="true"></div>
+                    <div class="gbh-glow gbh-glow--teal" aria-hidden="true"></div>
+                    <div class="gbh-wrap">
+                        <div class="gbh-why__grid">
+                            <div>
+                                <span class="gbh-eyebrow wow fadeInUp" data-wow-delay=".1s"><span class="gbh-eyebrow__dot" aria-hidden="true"></span>Why Genie Bag</span>
+                                <h2 class="gbh-title wow fadeInUp" data-wow-delay=".2s">Make HR Easier to Trust &mdash; <span class="gbh-grad">and Easier to Run.</span></h2>
+                                <p class="gbh-lead wow fadeInUp" data-wow-delay=".3s">
+                                    Our approach blends structure with practical understanding of day-to-day HR realities. We help leadership move from uncertainty to clear next steps.
+                                </p>
+                                <div class="gbh-shift wow fadeInUp" data-wow-delay=".35s">
+                                    <div class="gbh-shift__box"><small>From</small><q>Are we covered?</q></div>
+                                    <span class="gbh-shift__arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+                                    <div class="gbh-shift__box gbh-shift__box--to"><small>To</small><q>We know what to do next.</q></div>
+                                </div>
+                                <div class="wow fadeInUp" data-wow-delay=".4s">
+                                    <div class="gbh-card gbh-get">
+                                        <h4>What You Get:</h4>
+                                        <ul>
+                                            <li><i class="fa-solid fa-circle-check"></i> An independent, unbiased view of HR processes</li>
+                                            <li><i class="fa-solid fa-circle-check"></i> Clearer documentation and workforce accountability</li>
+                                            <li><i class="fa-solid fa-circle-check"></i> Visibility into compliance gaps before they grow</li>
+                                            <li><i class="fa-solid fa-circle-check"></i> Prioritised, realistic actions instead of overwhelm</li>
+                                            <li><i class="fa-solid fa-circle-check"></i> Strictly confidential, respectful engagement</li>
                                         </ul>
                                     </div>
-                                    <a href="contact" class="theme-btn wow fadeInUp" data-wow-delay=".4s">
-                                        <span class="btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                        <span class="btn-title">Schedule a Discussion</span>
-                                        <span class="btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                    </a>
+                                </div>
+                                <div class="wow fadeInUp" data-wow-delay=".5s">
+                                    <a href="contact" class="gbh-btn">Schedule a Discussion <span class="arr"><i class="fa-solid fa-arrow-up-right"></i></span></a>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                                <div class="p-4 p-md-5" style="background: #fff; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(17,27,52,0.06);">
-                                    <h4 style="color: var(--header); font-size: 20px; margin-bottom: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px;">
-                                        <span style="width: 38px; height: 38px; line-height: 38px; text-align: center; background: rgba(13,151,135,0.12); color: var(--accent-teal); border-radius: 8px; font-size: 18px;"><i class="fa-solid fa-handshake"></i></span>
-                                        How We Work:
-                                    </h4>
-                                    <div class="d-flex flex-column gap-3">
-                                        <div class="p-3" style="background: var(--bg-light); border-radius: 10px;">
-                                            <h6 style="color: var(--header); margin-bottom: 4px; font-size: 15px;">Tailored to Your Context</h6>
-                                            <p style="color: var(--text); font-size: 13.5px; margin: 0;">Mapped to your actual workforce profile, business sector, and working patterns.</p>
+
+                            <div class="wow fadeInUp" data-wow-delay=".3s">
+                                <div class="gbh-how">
+                                    <div class="gbh-how__head">
+                                        <span class="gbh-icon"><i class="fa-solid fa-handshake"></i></span>
+                                        <h3>How We Work</h3>
+                                    </div>
+                                    <div class="gbh-how__grid">
+                                        <div class="gbh-how__item" style="--c: #F26A3F;">
+                                            <span class="gbh-how__num" aria-hidden="true">01</span>
+                                            <i class="fa-solid fa-bullseye-arrow"></i>
+                                            <h4>Tailored to Your Context</h4>
+                                            <p>Mapped to your actual workforce profile, business sector, and working patterns.</p>
                                         </div>
-                                        <div class="p-3" style="background: var(--bg-light); border-radius: 10px;">
-                                            <h6 style="color: var(--header); margin-bottom: 4px; font-size: 15px;">Evidence-Led & Risk-Prioritised</h6>
-                                            <p style="color: var(--text); font-size: 13.5px; margin: 0;">Observations backed by data and documentation samples, categorised by risk level.</p>
+                                        <div class="gbh-how__item" style="--c: #2A9D8F;">
+                                            <span class="gbh-how__num" aria-hidden="true">02</span>
+                                            <i class="fa-solid fa-chart-mixed"></i>
+                                            <h4>Evidence-Led &amp; Risk-Prioritised</h4>
+                                            <p>Observations backed by data and documentation samples, categorised by risk level.</p>
                                         </div>
-                                        <div class="p-3" style="background: var(--bg-light); border-radius: 10px;">
-                                            <h6 style="color: var(--header); margin-bottom: 4px; font-size: 15px;">Transparent Scope & Timelines</h6>
-                                            <p style="color: var(--text); font-size: 13.5px; margin: 0;">Agreed boundaries from kickoff with zero operational disruption to daily business.</p>
+                                        <div class="gbh-how__item" style="--c: #2A9D8F;">
+                                            <span class="gbh-how__num" aria-hidden="true">03</span>
+                                            <i class="fa-solid fa-calendar-check"></i>
+                                            <h4>Transparent Scope &amp; Timelines</h4>
+                                            <p>Agreed boundaries from kickoff with zero operational disruption to daily business.</p>
                                         </div>
-                                        <div class="p-3" style="background: var(--bg-light); border-radius: 10px;">
-                                            <h6 style="color: var(--header); margin-bottom: 4px; font-size: 15px;">Action-Oriented Output</h6>
-                                            <p style="color: var(--text); font-size: 13.5px; margin: 0;">Practical recommendations with assigned owners, due dates, and tracker matrices.</p>
+                                        <div class="gbh-how__item" style="--c: #F26A3F;">
+                                            <span class="gbh-how__num" aria-hidden="true">04</span>
+                                            <i class="fa-solid fa-list-check"></i>
+                                            <h4>Action-Oriented Output</h4>
+                                            <p>Practical recommendations with assigned owners, due dates, and tracker matrices.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -3322,114 +3675,223 @@
                     </div>
                 </section>
 
-                <!-- Partnership & FAQ Section (Slide 11) -->
-                <section class="faq-section section-padding fix section-bg" id="faq">
-                    <div class="container">
-                        <div class="row g-4 justify-content-between align-items-center">
-                            <div class="col-xl-5 col-lg-5">
-                                <div class="faq-left-content">
-                                    <div class="section-title mb-3">
-                                        <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle">A Good Partnership</span>
-                                        <h2 class="split-title">Clear Expectations. Better Outcomes.</h2>
+                <!-- Partnership & FAQ Section (Slide 11) - Redesigned -->
+                <style>
+                    .gbh-faq { background: #F0F4FA; padding-bottom: 72px; }
+                    .gbh-faq .gbh-glow--orange { width: 520px; height: 420px; top: 10%; left: -160px; }
+                    .gbh-faq__grid { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
+                    .gbh-faq__help {
+                        position: relative; overflow: hidden; margin-top: 8px; padding: 28px; border-radius: 20px;
+                        background: linear-gradient(150deg, #111B34 0%, #1B284A 100%); color: #fff;
+                        box-shadow: 0 22px 50px rgba(17, 27, 52, 0.2);
+                    }
+                    .gbh-faq__help::after { content: ""; position: absolute; width: 220px; height: 220px; border-radius: 50%; top: -110px; right: -80px; background: radial-gradient(circle, rgba(242, 106, 63, 0.3) 0%, transparent 70%); }
+                    .gbh-faq__help > * { position: relative; z-index: 1; }
+                    .gbh-faq__help .gbh-icon { width: 46px; height: 46px; font-size: 19px; margin-bottom: 16px; --c: #fff; --cb: rgba(242, 106, 63, 0.9); }
+                    .gbh-faq__help h3 { color: #fff; font-size: 20px; font-weight: 800; margin: 0 0 6px; }
+                    .gbh-faq__help p { color: var(--gbh-muted); font-size: 14.5px; line-height: 1.6; margin: 0 0 20px; }
+                    .gbh-faq__links { display: flex; flex-wrap: wrap; gap: 10px; }
+                    .gbh-faq__link {
+                        display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px;
+                        font-size: 14px; font-weight: 700; text-decoration: none; color: #fff !important;
+                        border: 1px solid rgba(255, 255, 255, 0.22); transition: background .35s var(--gbh-ease), border-color .35s var(--gbh-ease);
+                    }
+                    .gbh-faq__link:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.4); }
+                    .gbh-faq__link--solid { background: var(--gbh-orange); border-color: var(--gbh-orange); }
+                    .gbh-faq__link--solid:hover { background: var(--gbh-orange-dark); border-color: var(--gbh-orange-dark); }
+
+                    .gbh-faq__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+                    .gbh-faq__list .accordion {
+                        background: #fff; border: 1px solid var(--gbh-border); border-radius: 18px; overflow: hidden;
+                        box-shadow: var(--gbh-shadow); transition: border-color .4s var(--gbh-ease), box-shadow .4s var(--gbh-ease);
+                    }
+                    .gbh-faq__list .accordion.active-block { border-color: rgba(242, 106, 63, 0.35); box-shadow: var(--gbh-shadow-hover); }
+                    .gbh-faq__list .acc-btn {
+                        display: flex; align-items: center; gap: 16px; cursor: pointer; padding: 22px 24px;
+                        font-family: "Mona Sans", sans-serif; font-size: 17px; font-weight: 700; line-height: 1.4; color: var(--gbh-navy);
+                        transition: color .3s var(--gbh-ease);
+                    }
+                    .gbh-faq__list .acc-btn:hover, .gbh-faq__list .acc-btn.active { color: var(--gbh-orange); }
+                    .gbh-faq__qnum {
+                        flex-shrink: 0; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center;
+                        background: #F1F4FA; color: var(--gbh-navy); font-size: 13px; font-weight: 800;
+                        transition: background .35s var(--gbh-ease), color .35s var(--gbh-ease);
+                    }
+                    .gbh-faq__list .acc-btn.active .gbh-faq__qnum { background: var(--gbh-orange); color: #fff; }
+                    .gbh-faq__q { flex: 1; }
+                    .gbh-faq__toggle { position: relative; flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--gbh-border); transition: transform .4s var(--gbh-ease), border-color .4s var(--gbh-ease), background .4s var(--gbh-ease); }
+                    .gbh-faq__toggle::before, .gbh-faq__toggle::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; border-radius: 2px; background: var(--gbh-navy); transform: translate(-50%, -50%); transition: transform .4s var(--gbh-ease), background .4s var(--gbh-ease); }
+                    .gbh-faq__toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+                    .gbh-faq__list .acc-btn.active .gbh-faq__toggle { background: rgba(242, 106, 63, 0.1); border-color: rgba(242, 106, 63, 0.4); transform: rotate(180deg); }
+                    .gbh-faq__list .acc-btn.active .gbh-faq__toggle::before, .gbh-faq__list .acc-btn.active .gbh-faq__toggle::after { background: var(--gbh-orange); }
+                    .gbh-faq__list .acc-btn.active .gbh-faq__toggle::after { transform: translate(-50%, -50%) rotate(0deg); }
+                    .gbh-faq__list .acc-content { display: none; }
+                    .gbh-faq__list .acc-content.current { display: block; }
+                    .gbh-faq__list .acc-content .text { padding: 0 24px 24px 78px; color: var(--gbh-text); font-size: 15px; line-height: 1.75; }
+
+                    .gbh-note { display: flex; gap: 14px; align-items: flex-start; margin-top: 22px; padding: 18px 20px; border-radius: 16px; background: rgba(242, 106, 63, 0.07); border: 1px dashed rgba(242, 106, 63, 0.35); }
+                    .gbh-note i { color: var(--gbh-orange); font-size: 18px; margin-top: 2px; }
+                    .gbh-note p { margin: 0; font-size: 13.5px; color: var(--gbh-navy); line-height: 1.65; }
+
+                    @media (max-width: 991px) {
+                        .gbh-faq { padding-bottom: 60px; }
+                        .gbh-faq__grid { grid-template-columns: 1fr; gap: 40px; }
+                    }
+                    @media (max-width: 575px) {
+                        .gbh-faq__list .acc-btn { padding: 18px; gap: 12px; font-size: 15.5px; }
+                        .gbh-faq__qnum { display: none; }
+                        .gbh-faq__list .acc-content .text { padding: 0 18px 20px; font-size: 14.5px; }
+                    }
+
+                    /* ---------- Closing CTA (overlaps into footer) ---------- */
+                    .gbh-cta { position: relative; z-index: 10; background: linear-gradient(180deg, #F0F4FA 0%, #F0F4FA 50%, #111B34 50%, #111B34 100%); padding: 0; }
+                    .gbh-cta__card {
+                        position: relative; overflow: hidden; border-radius: 28px; padding: 52px 56px;
+                        background: linear-gradient(120deg, #CC4A22 0%, #F26A3F 55%, #F5A540 120%);
+                        box-shadow: 0 30px 60px rgba(204, 74, 34, 0.30);
+                        display: flex; align-items: center; justify-content: space-between; gap: 32px;
+                    }
+                    .gbh-cta__card::before {
+                        content: ""; position: absolute; inset: 0; pointer-events: none;
+                        background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.4px, transparent 1.4px); background-size: 22px 22px;
+                        mask-image: linear-gradient(90deg, transparent 30%, #000 100%);
+                        -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000 100%);
+                    }
+                    .gbh-cta__ring { position: absolute; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.22); pointer-events: none; }
+                    .gbh-cta__ring--1 { width: 340px; height: 340px; right: -110px; top: -170px; }
+                    .gbh-cta__ring--2 { width: 220px; height: 220px; right: -50px; top: -110px; }
+                    .gbh-cta__card > *:not(.gbh-cta__ring) { position: relative; z-index: 1; }
+                    .gbh-cta__copy { flex: 1 1 auto; min-width: 0; }
+                    .gbh-cta__kicker { display: inline-block; color: rgba(255, 255, 255, 0.85); font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+                    .gbh-cta__title { color: #fff; font-size: clamp(28px, 3.4vw, 40px); font-weight: 800; line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.5px; }
+                    .gbh-cta__text { color: rgba(255, 255, 255, 0.92); font-size: 16px; line-height: 1.6; margin: 0; max-width: 560px; }
+                    .gbh-cta__actions { display: flex; flex-wrap: wrap; gap: 12px; flex-shrink: 0; }
+                    .gbh-cta__btn {
+                        display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px;
+                        font-size: 15px; font-weight: 700; text-decoration: none; white-space: nowrap;
+                        transition: transform .35s var(--gbh-ease), box-shadow .35s var(--gbh-ease), background .35s var(--gbh-ease);
+                    }
+                    .gbh-cta__btn--light { background: #fff; color: #111B34 !important; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14); }
+                    .gbh-cta__btn--light i { color: var(--gbh-orange); }
+                    .gbh-cta__btn--ghost { color: #fff !important; border: 1.5px solid rgba(255, 255, 255, 0.55); }
+                    .gbh-cta__btn:hover { transform: translateY(-2px); }
+                    .gbh-cta__btn--light:hover { box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2); }
+                    .gbh-cta__btn--ghost:hover { background: rgba(255, 255, 255, 0.12); }
+                    .gbh-cta__btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+                    @media (max-width: 991px) {
+                        .gbh-cta__card { flex-direction: column; align-items: flex-start; padding: 44px 36px; }
+                    }
+                    @media (max-width: 575px) {
+                        .gbh-cta__card { padding: 34px 22px; border-radius: 22px; }
+                        .gbh-cta__actions, .gbh-cta__btn { width: 100%; justify-content: center; }
+                    }
+                </style>
+                <section class="gbh-section gbh-faq" id="faq">
+                    <div class="gbh-glow gbh-glow--orange" aria-hidden="true"></div>
+                    <div class="gbh-wrap">
+                        <div class="gbh-faq__grid">
+                            <div>
+                                <span class="gbh-eyebrow wow fadeInUp" data-wow-delay=".1s"><span class="gbh-eyebrow__dot" aria-hidden="true"></span>A Good Partnership</span>
+                                <h2 class="gbh-title wow fadeInUp" data-wow-delay=".2s">Clear Expectations. <span class="gbh-grad">Better Outcomes.</span></h2>
+                                <p class="gbh-lead wow fadeInUp" data-wow-delay=".3s">
+                                    A strong audit works best when both sides know the boundaries and responsibilities from day one.
+                                </p>
+                                <div class="gbh-faq__help wow fadeInUp" data-wow-delay=".4s">
+                                    <span class="gbh-icon"><i class="fa-solid fa-comments-question"></i></span>
+                                    <h3>Still have questions?</h3>
+                                    <p>Browse the full FAQ or speak with us directly about your scope.</p>
+                                    <div class="gbh-faq__links">
+                                        <a href="faq" class="gbh-faq__link">All FAQs <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="contact" class="gbh-faq__link gbh-faq__link--solid">Talk to Us <i class="fa-solid fa-arrow-up-right"></i></a>
                                     </div>
-                                    <p class="faq-text wow fadeInUp" data-wow-delay=".2s" style="color: var(--text); font-size: 15.5px; line-height: 1.7;">
-                                        A strong audit works best when both sides know the boundaries and responsibilities from day one.
-                                    </p>
                                 </div>
                             </div>
-                            <div class="col-xl-7 col-lg-7">
-                                <div class="faq-items-style-1 ps-xl-3">
-                                    <ul class="accordion-box">
-                                        <!--Block 1-->
-                                        <li class="accordion block active-block wow fadeInUp" data-wow-delay=".2s">
-                                            <div class="acc-btn active">
-                                                What is the typical timeframe for an HR Compliance Audit?
-                                                <div class="icon fa-regular fa-plus"></div>
-                                            </div>
-                                            <div class="acc-content current">
-                                                <div class="content">
-                                                    <div class="text" style="color: var(--text); font-size: 14.5px; line-height: 1.6;">
-                                                        A standard audit typically takes between 1 to 3 weeks depending on organization headcount, number of operating locations, and the agreed scope of records to be sampled.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--Block 2-->
-                                        <li class="accordion block wow fadeInUp" data-wow-delay=".4s">
-                                            <div class="acc-btn">
-                                                How do you protect sensitive employee & payroll data?
-                                                <div class="icon fa-regular fa-plus"></div>
-                                            </div>
-                                            <div class="acc-content">
-                                                <div class="content">
-                                                    <div class="text" style="color: var(--text); font-size: 14.5px; line-height: 1.6;">
-                                                        All engagements are governed by strict confidentiality and non-disclosure agreements. Evidence is reviewed via secure protocols with restricted access, and personnel data is handled with complete discretion.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--Block 3-->
-                                        <li class="accordion block wow fadeInUp" data-wow-delay=".6s">
-                                            <div class="acc-btn">
-                                                How are findings prioritized in the final report?
-                                                <div class="icon fa-regular fa-plus"></div>
-                                            </div>
-                                            <div class="acc-content">
-                                                <div class="content">
-                                                    <div class="text" style="color: var(--text); font-size: 14.5px; line-height: 1.6;">
-                                                        Observations are categorized into High, Medium, and Low priority based on statutory liability, regulatory exposure, and business operational risk. Each finding is paired with a clear, realistic corrective action.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--Block 4-->
-                                        <li class="accordion block wow fadeInUp" data-wow-delay=".8s">
-                                            <div class="acc-btn">
-                                                What happens after the audit is delivered?
-                                                <div class="icon fa-regular fa-plus"></div>
-                                            </div>
-                                            <div class="acc-content">
-                                                <div class="content">
-                                                    <div class="text" style="color: var(--text); font-size: 14.5px; line-height: 1.6;">
-                                                        We conduct an executive leadership readout to walk through the observations. If Implementation Support is in scope, we assist your team in updating policies and tracking corrective action completion.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
 
-                                    <!-- Statutory Disclaimer Note (Slide 11) -->
-                                    <div class="p-3 mt-4" style="background: rgba(239,105,57,0.08); border-left: 4px solid var(--theme); border-radius: 0 10px 10px 0;">
-                                        <p style="margin: 0; font-size: 13px; color: var(--header); line-height: 1.6;">
-                                            <b>Important Notice:</b> This consultancy review supports compliance readiness; it is not a guarantee of legal compliance or a substitute for advice from a qualified legal or statutory professional where required.
-                                        </p>
-                                    </div>
+                            <div>
+                                <ul class="accordion-box gbh-faq__list">
+                                    <li class="accordion block active-block wow fadeInUp" data-wow-delay=".2s">
+                                        <div class="acc-btn active">
+                                            <span class="gbh-faq__qnum">01</span>
+                                            <span class="gbh-faq__q">What is the typical timeframe for an HR Compliance Audit?</span>
+                                            <span class="gbh-faq__toggle" aria-hidden="true"></span>
+                                        </div>
+                                        <div class="acc-content current">
+                                            <div class="content">
+                                                <div class="text">
+                                                    A standard audit typically takes between 1 to 3 weeks depending on organization headcount, number of operating locations, and the agreed scope of records to be sampled.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="accordion block wow fadeInUp" data-wow-delay=".3s">
+                                        <div class="acc-btn">
+                                            <span class="gbh-faq__qnum">02</span>
+                                            <span class="gbh-faq__q">How do you protect sensitive employee &amp; payroll data?</span>
+                                            <span class="gbh-faq__toggle" aria-hidden="true"></span>
+                                        </div>
+                                        <div class="acc-content">
+                                            <div class="content">
+                                                <div class="text">
+                                                    All engagements are governed by strict confidentiality and non-disclosure agreements. Evidence is reviewed via secure protocols with restricted access, and personnel data is handled with complete discretion.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="accordion block wow fadeInUp" data-wow-delay=".4s">
+                                        <div class="acc-btn">
+                                            <span class="gbh-faq__qnum">03</span>
+                                            <span class="gbh-faq__q">How are findings prioritized in the final report?</span>
+                                            <span class="gbh-faq__toggle" aria-hidden="true"></span>
+                                        </div>
+                                        <div class="acc-content">
+                                            <div class="content">
+                                                <div class="text">
+                                                    Observations are categorized into High, Medium, and Low priority based on statutory liability, regulatory exposure, and business operational risk. Each finding is paired with a clear, realistic corrective action.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="accordion block wow fadeInUp" data-wow-delay=".5s">
+                                        <div class="acc-btn">
+                                            <span class="gbh-faq__qnum">04</span>
+                                            <span class="gbh-faq__q">What happens after the audit is delivered?</span>
+                                            <span class="gbh-faq__toggle" aria-hidden="true"></span>
+                                        </div>
+                                        <div class="acc-content">
+                                            <div class="content">
+                                                <div class="text">
+                                                    We conduct an executive leadership readout to walk through the observations. If Implementation Support is in scope, we assist your team in updating policies and tracking corrective action completion.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <!-- Statutory Disclaimer Note (Slide 11) -->
+                                <div class="gbh-note wow fadeInUp" data-wow-delay=".3s">
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                    <p><b>Important Notice:</b> This consultancy review supports compliance readiness; it is not a guarantee of legal compliance or a substitute for advice from a qualified legal or statutory professional where required.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Closing Call to Action Banner (Slide 12) -->
-                <section class="cta-banner-section fix" style="background: linear-gradient(135deg, #CF4B23 0%, #EF6939 100%) !important; padding: 16px 0; position: relative; z-index: 10;">
-                    <div class="container">
-                        <div class="row align-items-center justify-content-between g-3 text-center text-md-start">
-                            <div class="col-lg-8 col-md-8">
-                                <div class="d-flex flex-column flex-xl-row align-items-center align-items-md-start align-items-xl-center gap-1 gap-xl-3">
-                                    <h3 style="color: #ffffff !important; font-size: 18.5px; font-weight: 800; margin: 0; letter-spacing: -0.2px; white-space: nowrap;">
-                                        LET'S MAKE HR <span style="font-weight: 600; opacity: 0.95;">clearer. stronger. ready.</span>
-                                    </h3>
-                                    <span class="d-none d-xl-inline" style="color: rgba(255,255,255,0.6); font-size: 13px;">•</span>
-                                    <p style="color: rgba(255, 255, 255, 0.92) !important; margin: 0; font-size: 13.5px; font-weight: 500;">
-                                        Start with a conversation about your people, processes, and compliance priorities.
-                                    </p>
-                                </div>
+                <!-- Closing Call to Action Banner (Slide 12) - Redesigned -->
+                <section class="gbh-cta">
+                    <div class="gbh-wrap">
+                        <div class="gbh-cta__card wow fadeInUp" data-wow-delay=".1s">
+                            <span class="gbh-cta__ring gbh-cta__ring--1" aria-hidden="true"></span>
+                            <span class="gbh-cta__ring gbh-cta__ring--2" aria-hidden="true"></span>
+                            <div class="gbh-cta__copy">
+                                <span class="gbh-cta__kicker">Let's make HR</span>
+                                <h2 class="gbh-cta__title">clearer. stronger. ready.</h2>
+                                <p class="gbh-cta__text">Start with a conversation about your people, processes, and compliance priorities.</p>
                             </div>
-                            <div class="col-lg-4 col-md-4 text-center text-md-end">
-                                <a href="contact" style="background: #ffffff !important; color: #111B34 !important; font-size: 13.5px; font-weight: 700; padding: 8px 22px; border-radius: 999px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.12); transition: all 0.25s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 18px rgba(0,0,0,0.18)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(0,0,0,0.12)';">
-                                    <span>Get In Touch Today</span>
-                                    <i class="fa-solid fa-arrow-up-right" style="color: #EF6939; font-size: 12px;"></i>
-                                </a>
+                            <div class="gbh-cta__actions">
+                                <a href="contact" class="gbh-cta__btn gbh-cta__btn--light">Get In Touch Today <i class="fa-solid fa-arrow-up-right"></i></a>
+                                <a href="service" class="gbh-cta__btn gbh-cta__btn--ghost">Explore Services</a>
                             </div>
                         </div>
                     </div>
@@ -3468,8 +3930,7 @@
                                         <li><a href="/" style="color: #E2E8F0; text-decoration: none;">Home</a></li>
                                         <li><a href="about" style="color: #E2E8F0; text-decoration: none;">About Us</a></li>
                                         <li><a href="service" style="color: #E2E8F0; text-decoration: none;">Our Services</a></li>
-                                        <li><a href="/#methodology" style="color: #E2E8F0; text-decoration: none;">Audit Method</a></li>
-                                        <li><a href="/#deliverables" style="color: #E2E8F0; text-decoration: none;">Deliverables</a></li>
+                                        <li><a href="faq" style="color: #E2E8F0; text-decoration: none;">FAQ</a></li>
                                         <li><a href="contact" style="color: #E2E8F0; text-decoration: none;">Contact Us</a></li>
                                     </ul>
                                 </div>
