@@ -1528,6 +1528,145 @@
         }
     })();
 
+
+    /* ==========================================================================
+       Our Method Section - Connected Journey & Stage Progress Interactions
+       ========================================================================== */
+    (function initMethodJourney() {
+        const methodSection = document.getElementById('methodology');
+        if (!methodSection) return;
+
+        const grid = methodSection.querySelector('.gb-method__grid');
+        const nodes = methodSection.querySelectorAll('.gb-method__node');
+        const svgEl = methodSection.querySelector('.gb-method__journey-svg');
+        const pathBg = methodSection.querySelector('.gb-method__path-bg');
+        const pathActive = methodSection.querySelector('.gb-method__path-active');
+
+        // Dynamically align SVG connector path through corridor and nodes
+        function alignTrackPath() {
+            if (window.innerWidth < 992 || !grid || nodes.length < 6 || !svgEl || !pathBg || !pathActive) return;
+
+            const gRect = grid.getBoundingClientRect();
+            if (gRect.width === 0 || gRect.height === 0) return;
+
+            const pts = Array.from(nodes).map(n => {
+                const nRect = n.getBoundingClientRect();
+                return {
+                    x: Math.round(nRect.left + nRect.width / 2 - gRect.left),
+                    y: Math.round(nRect.top + nRect.height / 2 - gRect.top)
+                };
+            });
+
+            const gw = Math.round(gRect.width);
+            const gh = Math.round(gRect.height);
+            svgEl.setAttribute('viewBox', `0 0 ${gw} ${gh}`);
+
+            const r1y = pts[2].y;
+            const r2y = pts[3].y;
+            // Corridor between rows
+            const midY = Math.round((r1y + r2y) / 2);
+            const rightEdge = Math.round(gw - 8);
+            const leftEdge = 8;
+
+            // Snaking journey: Row 1 (01 -> 02 -> 03) -> loop down into corridor -> loop into Row 2 (04 -> 05 -> 06)
+            const d = `M ${pts[0].x},${pts[0].y} ` +
+                      `L ${pts[1].x},${pts[1].y} ` +
+                      `L ${pts[2].x},${pts[2].y} ` +
+                      `L ${rightEdge - 15},${r1y} ` +
+                      `C ${rightEdge + 10},${r1y} ${rightEdge + 10},${midY} ${rightEdge - 15},${midY} ` +
+                      `L ${leftEdge + 15},${midY} ` +
+                      `C ${leftEdge - 10},${midY} ${leftEdge - 10},${r2y} ${leftEdge + 15},${r2y} ` +
+                      `L ${pts[3].x},${pts[3].y} ` +
+                      `L ${pts[4].x},${pts[4].y} ` +
+                      `L ${pts[5].x},${pts[5].y}`;
+
+            pathBg.setAttribute('d', d);
+            pathActive.setAttribute('d', d);
+
+            try {
+                const totalLen = Math.round(pathActive.getTotalLength());
+                pathActive.style.strokeDasharray = `${totalLen}`;
+                if (!methodSection.classList.contains('is-revealed')) {
+                    pathActive.style.strokeDashoffset = `${totalLen}`;
+                } else {
+                    pathActive.style.strokeDashoffset = '0';
+                }
+            } catch (err) {}
+        }
+
+        // Initialize path dimensions on load and resize
+        alignTrackPath();
+        let resizeTimer = null;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(alignTrackPath, 150);
+        });
+
+        // Trigger reveal, progressive drawing, and node lighting
+        let methodRevealed = false;
+        function triggerReveal() {
+            if (methodRevealed) return;
+            methodRevealed = true;
+            methodSection.classList.add('is-revealed');
+            alignTrackPath();
+
+            if (pathActive) {
+                pathActive.style.strokeDashoffset = '0';
+            }
+
+            const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (isReducedMotion) {
+                nodes.forEach(node => node.classList.add('is-active'));
+                return;
+            }
+
+            // Light up stage nodes progressively along the journey path
+            nodes.forEach((node, idx) => {
+                setTimeout(() => {
+                    node.classList.add('is-active');
+                }, 180 + idx * 160);
+            });
+        }
+
+        // Scroll observer for reveal
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        triggerReveal();
+                        observer.unobserve(methodSection);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+            observer.observe(methodSection);
+
+            // Safety timeout to ensure section is never stuck invisible
+            setTimeout(() => {
+                if (!methodSection.classList.contains('is-revealed')) {
+                    triggerReveal();
+                }
+            }, 2500);
+        } else {
+            triggerReveal();
+        }
+
+        // Desktop mouse tracking for spotlight
+        if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+            const cards = methodSection.querySelectorAll('.gb-method__card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left).toFixed(1);
+                    const y = (e.clientY - rect.top).toFixed(1);
+                    card.style.setProperty('--mx', `${x}px`);
+                    card.style.setProperty('--my', `${y}px`);
+                });
+            });
+        }
+    })();
+
+
 })(jQuery); // End jQuery
 
 
