@@ -36,9 +36,10 @@
         <!--<< Nice Select.css >>-->
         <!--<< Main.css >>-->
         <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/contact.css">
                             
     </head>
-    <body class="body-bg-1">
+    <body class="body-bg-1 gbc-page">
 
         <!-- Back To Top Start -->
                 <!-- Geniebag Dual Loaders: Loader 1 (Initial Visit) & Loader 2 (Menu Change) Start -->
@@ -176,289 +177,291 @@
             <div id="smooth-content">
 
                 <!-- Breadcrumb / Hero Section Start -->
-                <section class="breadcrumb-wrapper bg-cover fix" style="background: linear-gradient(rgba(17, 27, 52, 0.72), rgba(17, 27, 52, 0.82)), url('assets/img/inner/contact-hero-bg.jpg') center center / cover no-repeat;">
-                    <div class="container">
+                <section class="breadcrumb-wrapper gbc-hero fix" aria-labelledby="gbc-hero-title">
+                    <div class="gbc-hero__media" aria-hidden="true"><div class="gbc-hero__img"></div></div>
+                    <div class="container gbc-wrap">
                         <div class="page-heading">
-                            <ul class="breadcrumb-list wow fadeInUp" style="list-style: none;">
-                                <li><i class="fa-solid fa-house"></i><a href="/">Home</a></li>
-                                <li><i class="fa-solid fa-chevron-right"></i></li>
-                                <li>Contact</li>
-                            </ul>
-                            <h1 class="breadcrumb-title split-title">Schedule an HR Audit</h1>
+                            <nav aria-label="Breadcrumb">
+                                <ul class="breadcrumb-list gbc-hero__crumbs">
+                                    <li><i class="fa-solid fa-house" aria-hidden="true"></i><a href="/">Home</a></li>
+                                    <li aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></li>
+                                    <li aria-current="page">Contact</li>
+                                </ul>
+                            </nav>
+                            <h1 id="gbc-hero-title" class="breadcrumb-title gbc-hero__title">Schedule an HR Audit</h1>
+                            <p class="gbc-hero__sub">Tell us about your workforce. We'll scope a review that fits.</p>
                         </div>
                     </div>
                 </section>
 
-                <!--Contact Section Start -->
-                <section class="contact-section fix section-padding">
-                    <div class="container container">
-                        <div class="contact-top">
-                            <div class="section-title text-center">
-                                <span class="sub-title sub-title tz-sub-tilte tz-sub-anim tx-subTitle justify-content-center">Get in Touch</span>
-                                <h2 class="split-title">Start Your HR Advisory Conversation</h2>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                                    <div class="icon-box-items-inners">
-                                        <div class="icon">
-                                            <i class="fa-solid fa-envelope" style="font-size: 26px; color: var(--theme);"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>Direct Inquiries</p>
-                                            <h3 class="title"><a href="mailto:info@geniebag.com" class="link">info@geniebag.com</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".5s">
-                                    <div class="icon-box-items-inners">
-                                        <div class="icon">
-                                            <i class="fa-solid fa-clock" style="font-size: 26px; color: var(--theme);"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>Advisory Hours</p>
-                                            <h3 class="title">Mon – Fri (By Appointment)</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 wow fadeInUp" data-wow-delay=".7s">
-                                    <div class="icon-box-items-inners">
-                                        <div class="icon">
-                                            <i class="fa-solid fa-building-user" style="font-size: 26px; color: var(--theme);"></i>
-                                        </div>
-                                        <div class="content">
-                                            <p>Service Coverage</p>
-                                            <h3 class="title">Pan-India &amp; Virtual Advisory</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Intro + Contact Info Cards Start -->
+                <section class="gbc-intro" aria-labelledby="gbc-intro-title">
+                    <div class="container gbc-wrap">
+                        <div class="gbc-head">
+                            <p class="gbc-eyebrow"><span class="gbc-type" data-type-order="1">Get in Touch</span></p>
+                            <h2 id="gbc-intro-title" class="gbc-title"><span class="gbc-type" data-type-order="2">Start Your HR Advisory Conversation</span></h2>
                         </div>
-                        <div class="contact-middle-items">
-                            <div class="row g-4 align-items-stretch">
-                                <div class="col-lg-6 wow fadeInUp">
-                                    <form id="contact-form" class="contact-form-box" onsubmit="event.preventDefault(); var btn=this.querySelector('button'); btn.disabled=true; btn.innerHTML='<span>Inquiry Sent! We will connect within 1 business day.</span>'; setTimeout(function(){ btn.disabled=false; btn.innerHTML='<span class=\'btn-title\'>Book a Scoping Call</span>'; }, 4000); alert('Thank you for reaching out to Genie Bag Solutions. Our advisory team will respond within 1 business day to arrange your scoping discussion.');">
-                                        <h3 class="split-title">Schedule a Scoping Call</h3>
-                                            <div class="row g-4 align-items-center justify-content-center">
-                                            <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                                                <div class="form-clt">
-                                                    <input type="text" name="name" id="name" placeholder="Your Full Name" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                                                <div class="form-clt">
-                                                    <input type="email" name="email" id="email2" placeholder="Corporate Email Address" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                                                <div class="form-clt">
-                                                    <input type="tel" name="phone" id="phone" placeholder="Phone Number (Optional)">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                                                <div class="form-clt">
-                                                    <input type="text" name="subject" id="subject" placeholder="Organisation / Headcount">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 wow fadeInUp" data-wow-delay=".8s">
-                                                <div class="form-clt">
-                                                    <textarea name="message" id="message" placeholder="Briefly describe your HR review priorities or compliance questions..."></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 wow fadeInUp" data-wow-delay=".9s">
-                                                <div class="contact-button">
-                                                    <button type="submit" class="theme-btn">
-                                                        <span class="btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                        <span class="btn-title">Book a Scoping Call</span>
-                                                        <span class="btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> </span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                        <ul class="gbc-info" role="list">
+                            <li data-reveal>
+                                <div class="gbc-card">
+                                    <span class="gbc-card__icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+                                    <div class="gbc-card__body">
+                                        <p class="gbc-card__label">Direct Inquiries</p>
+                                        <p class="gbc-card__value"><a href="mailto:info@geniebag.com">info@geniebag.com</a></p>
+                                    </div>
+                                    <button type="button" class="gbc-copy" data-copy="info@geniebag.com" aria-label="Copy email address">
+                                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                                    </button>
                                 </div>
-                                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                                    <div class="scoping-briefing-card" style="background: #111B38; border-radius: 20px; padding: 44px 36px; color: #ffffff; height: 100%; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 16px 40px rgba(17, 27, 56, 0.16); position: relative; overflow: hidden;">
-                                        <div style="position: absolute; right: -40px; bottom: -40px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(242,103,58,0.18) 0%, transparent 70%); pointer-events: none;"></div>
-                                        <div>
-                                            <span style="display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #F2673A; margin-bottom: 14px;">Confidential &amp; Tailored</span>
-                                            <h3 style="color: #ffffff; font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 18px;">Why Schedule a Scoping Call?</h3>
-                                            <p style="color: #A2B2CB; font-size: 15px; line-height: 1.7; margin-bottom: 24px;">A structured 30-minute discovery session with our senior HR advisory team to align on organizational scope, review priorities, and enterprise compliance readiness.</p>
-                                            
-                                            <ul style="list-style: none; padding: 0; margin: 0 0 28px; display: flex; flex-direction: column; gap: 16px;">
-                                                <li style="display: flex; align-items: flex-start; gap: 14px;">
-                                                    <div style="width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: rgba(242, 103, 58, 0.15); color: #F2673A; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;">1</div>
-                                                    <div>
-                                                        <strong style="color: #FFFFFF; font-size: 15px; display: block;">Zero Obligation &amp; Confidential</strong>
-                                                        <span style="color: #8C9BB3; font-size: 13.5px;">All discussions are strictly non-binding and covered under non-disclosure standards.</span>
-                                                    </div>
-                                                </li>
-                                                <li style="display: flex; align-items: flex-start; gap: 14px;">
-                                                    <div style="width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: rgba(242, 103, 58, 0.15); color: #F2673A; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;">2</div>
-                                                    <div>
-                                                        <strong style="color: #FFFFFF; font-size: 15px; display: block;">Proportionate Scope Definition</strong>
-                                                        <span style="color: #8C9BB3; font-size: 13.5px;">We map your exact headcount, entity structure, and statutory modules before proposal.</span>
-                                                    </div>
-                                                </li>
-                                                <li style="display: flex; align-items: flex-start; gap: 14px;">
-                                                    <div style="width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: rgba(242, 103, 58, 0.15); color: #F2673A; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;">3</div>
-                                                    <div>
-                                                        <strong style="color: #FFFFFF; font-size: 15px; display: block;">Direct Advisory Engagement</strong>
-                                                        <span style="color: #8C9BB3; font-size: 13.5px;">Speak directly with seasoned HR governance auditors, not aggressive sales personnel.</span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        
-                                        <div style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.12); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                                            <div style="display: flex; align-items: center; gap: 10px;">
-                                                <i class="fa-solid fa-shield-halved" style="color: #F2673A; font-size: 18px;"></i>
-                                                <span style="color: #CBD5E1; font-size: 13px;">ISO-Aligned &amp; Statutory Confidentiality</span>
-                                            </div>
-                                            <a href="mailto:info@geniebag.com" style="color: #F2673A; font-size: 13.5px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-                                                Direct Email <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i>
-                                            </a>
-                                        </div>
+                            </li>
+                            <li data-reveal>
+                                <div class="gbc-card">
+                                    <span class="gbc-card__icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></span>
+                                    <div class="gbc-card__body">
+                                        <p class="gbc-card__label">Advisory Hours</p>
+                                        <p class="gbc-card__value">Mon – Fri, By appointment</p>
                                     </div>
                                 </div>
+                            </li>
+                            <li data-reveal>
+                                <div class="gbc-card">
+                                    <span class="gbc-card__icon" aria-hidden="true"><i class="fa-solid fa-earth-asia"></i></span>
+                                    <div class="gbc-card__body">
+                                        <p class="gbc-card__label">Service Coverage</p>
+                                        <p class="gbc-card__value">Pan-India &amp; Virtual Advisory</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <!-- Form + Briefing Card -->
+                        <div class="gbc-grid">
+                            <div class="gbc-formcard" data-reveal>
+                                <form id="contact-form" class="contact-form-box gbc-form" aria-labelledby="gbc-form-title">
+                                    <div class="gbc-form__head">
+                                        <h3 id="gbc-form-title" class="gbc-form__title">Schedule a Scoping Call</h3>
+                                        <p class="gbc-form__lead">Takes under 2 minutes. We reply within one business day.</p>
+                                        <p class="gbc-form__req"><span aria-hidden="true">*</span> Required</p>
+                                    </div>
+                                    <div class="gbc-fields">
+                                        <div class="form-clt gbc-field">
+                                            <input type="text" name="name" id="name" placeholder=" " autocomplete="name" required aria-describedby="name-err">
+                                            <label for="name">Your full name <span class="gbc-req" aria-hidden="true">*</span></label>
+                                            <span class="gbc-field__ok" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+                                            <p class="gbc-field__err" id="name-err"></p>
+                                        </div>
+                                        <div class="form-clt gbc-field">
+                                            <input type="email" name="email" id="email2" placeholder=" " autocomplete="email" required aria-describedby="email2-err">
+                                            <label for="email2">Corporate email address <span class="gbc-req" aria-hidden="true">*</span></label>
+                                            <span class="gbc-field__ok" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+                                            <p class="gbc-field__err" id="email2-err"></p>
+                                        </div>
+                                        <div class="form-clt gbc-field">
+                                            <input type="tel" name="phone" id="phone" placeholder=" " autocomplete="tel" aria-describedby="phone-err">
+                                            <label for="phone">Phone number</label>
+                                            <span class="gbc-field__ok" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+                                            <p class="gbc-field__err" id="phone-err"></p>
+                                        </div>
+                                        <div class="form-clt gbc-field">
+                                            <input type="text" name="subject" id="subject" placeholder=" " autocomplete="organization" aria-describedby="subject-err">
+                                            <label for="subject">Organisation / headcount</label>
+                                            <span class="gbc-field__ok" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+                                            <p class="gbc-field__err" id="subject-err"></p>
+                                        </div>
+                                    </div>
+
+                                    <fieldset class="gbc-chips">
+                                        <legend>Service of interest <span>(optional, choose any)</span></legend>
+                                        <div class="gbc-chips__list">
+                                            <button type="button" class="gbc-chip" aria-pressed="false">Compliance Review</button>
+                                            <button type="button" class="gbc-chip" aria-pressed="false">Process Audit</button>
+                                            <button type="button" class="gbc-chip" aria-pressed="false">Policy &amp; Documentation</button>
+                                            <button type="button" class="gbc-chip" aria-pressed="false">Records Audit</button>
+                                            <button type="button" class="gbc-chip" aria-pressed="false">Compensation &amp; Benefits</button>
+                                            <button type="button" class="gbc-chip gbc-chip--unsure" aria-pressed="false">Not sure yet</button>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="form-clt gbc-field gbc-field--area">
+                                        <textarea name="message" id="message" placeholder=" " rows="5" aria-describedby="message-hint"></textarea>
+                                        <label for="message">What should we review?</label>
+                                        <p class="gbc-field__hint" id="message-hint">
+                                            <span>Your HR priorities or compliance questions: headcount, entities, deadlines. A few lines is plenty.</span>
+                                            <span class="gbc-count">0 characters</span>
+                                        </p>
+                                    </div>
+
+                                    <div class="gbc-consent">
+                                        <input type="checkbox" id="gbc-consent" required aria-describedby="gbc-consent-err">
+                                        <label for="gbc-consent"><span class="gbc-consent__box" aria-hidden="true"><i class="fa-solid fa-check"></i></span>I agree to be contacted about my enquiry</label>
+                                        <p class="gbc-field__err" id="gbc-consent-err"></p>
+                                    </div>
+
+                                    <div class="gbc-form__foot">
+                                        <div class="contact-button">
+                                            <button type="submit" class="theme-btn gbc-submit">
+                                                <span class="btn-arrow-left"> <i class="fa-solid fa-arrow-up-right"></i> </span>
+                                                <span class="btn-title">Book a Scoping Call</span>
+                                                <span class="btn-arrow-right"> <i class="fa-solid fa-arrow-up-right"></i> <span class="gbc-spinner" aria-hidden="true"></span></span>
+                                            </button>
+                                        </div>
+                                        <p class="gbc-lock"><i class="fa-solid fa-lock" aria-hidden="true"></i> Your details stay confidential.</p>
+                                    </div>
+                                    <div class="form-message gbc-form__msg" role="alert"></div>
+                                </form>
+
+                                <div class="gbc-success" role="status" aria-live="polite" tabindex="-1" hidden>
+                                    <div class="gbc-success__badge" aria-hidden="true">
+                                        <span class="gbc-success__ring"></span>
+                                        <span class="gbc-success__disc"></span>
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                    <h3 class="gbc-success__title">Thanks!</h3>
+                                    <p class="gbc-success__text">We'll be in touch within one business day.</p>
+                                    <button type="button" class="gbc-success__again">Send another enquiry</button>
+                                </div>
                             </div>
+
+                            <aside class="gbc-why" data-reveal aria-labelledby="gbc-why-title">
+                                <div class="gbc-why__inner">
+                                    <span class="gbc-why__eyebrow">Confidential &amp; Tailored</span>
+                                    <h3 id="gbc-why-title" class="gbc-why__title">Why Schedule a Scoping Call?</h3>
+                                    <p class="gbc-why__lead">A structured 30-minute discovery session with our senior HR advisory team to align on organizational scope, review priorities, and enterprise compliance readiness.</p>
+
+                                    <ol class="gbc-timeline">
+                                        <li>
+                                            <span class="gbc-timeline__num" aria-hidden="true">1</span>
+                                            <div>
+                                                <strong>Zero Obligation &amp; Confidential</strong>
+                                                <span>All discussions are strictly non-binding and covered under non-disclosure standards.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="gbc-timeline__num" aria-hidden="true">2</span>
+                                            <div>
+                                                <strong>Proportionate Scope Definition</strong>
+                                                <span>We map your exact headcount, entity structure, and statutory modules before proposal.</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span class="gbc-timeline__num" aria-hidden="true">3</span>
+                                            <div>
+                                                <strong>Direct Advisory Engagement</strong>
+                                                <span>Speak directly with seasoned HR governance auditors, not aggressive sales personnel.</span>
+                                            </div>
+                                        </li>
+                                    </ol>
+
+                                    <ul class="gbc-trust" role="list">
+                                        <li><i class="fa-solid fa-stopwatch" aria-hidden="true"></i>30-min session</li>
+                                        <li><i class="fa-solid fa-file-contract" aria-hidden="true"></i>Non-binding &amp; NDA-covered</li>
+                                        <li><i class="fa-solid fa-user-tie" aria-hidden="true"></i>Senior HR advisors</li>
+                                    </ul>
+                                </div>
+
+                                <div class="gbc-why__foot">
+                                    <span class="gbc-why__seal"><i class="fa-solid fa-shield-keyhole" aria-hidden="true"></i>ISO-Aligned &amp; Statutory Confidentiality</span>
+                                    <a href="mailto:info@geniebag.com" class="gbc-why__link">Direct Email <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                                </div>
+                            </aside>
                         </div>
                     </div>
                 </section>
 
-                <!-- Marquee Section Start -->
-                <div class="marquee-section">
+                <!-- What Happens Next Start -->
+                <section class="gbc-next" aria-labelledby="gbc-next-title">
+                    <div class="container gbc-wrap">
+                        <h2 id="gbc-next-title" class="gbc-next__title">What happens next</h2>
+                        <div class="gbc-next__track">
+                            <span class="gbc-next__line" aria-hidden="true"></span>
+                            <ol class="gbc-next__steps">
+                                <li data-reveal>
+                                    <span class="gbc-next__num" aria-hidden="true">1</span>
+                                    <div>
+                                        <h3>You send the form</h3>
+                                        <p>Share a few details about your organisation and priorities.</p>
+                                    </div>
+                                </li>
+                                <li data-reveal>
+                                    <span class="gbc-next__num" aria-hidden="true">2</span>
+                                    <div>
+                                        <h3>We schedule a 30-min scoping call</h3>
+                                        <p>A senior advisor responds within one business day to arrange it.</p>
+                                    </div>
+                                </li>
+                                <li data-reveal>
+                                    <span class="gbc-next__num" aria-hidden="true">3</span>
+                                    <div>
+                                        <h3>You receive a tailored scope &amp; proposal</h3>
+                                        <p>Mapped to your headcount, entity structure and statutory modules.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        <p class="gbc-next__alt">Prefer to write directly? Email <a href="mailto:info@geniebag.com">info@geniebag.com</a></p>
+                    </div>
+                </section>
+
+                <!-- Marquee Section Start (seamless loop: two identical sets, track moves 0 to -50%) -->
+                <div class="marquee-section gbc-marquee">
                     <div class="marquee">
-                        <div class="marquee-group">
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="HR Compliance Review">
+                        <div class="gbc-marquee__track">
+                            <div class="marquee-group">
+                                <div class="marquee-thumb">
+                                    <div class="thumb">
+                                        <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="HR Compliance Review" width="293" height="177">
+                                    </div>
+                                    <span class="text">HR Compliance</span>
                                 </div>
-                                <span class="text">HR Compliance</span>
+                                <div class="marquee-thumb">
+                                    <div class="thumb">
+                                        <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Statutory Readiness" width="293" height="177">
+                                    </div>
+                                    <span class="text">Statutory Readiness</span>
+                                </div>
+                                <div class="marquee-thumb">
+                                    <div class="thumb">
+                                        <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="Process &amp; Policy" width="293" height="177">
+                                    </div>
+                                    <span class="text">Process &amp; Policy</span>
+                                </div>
+                                <div class="marquee-thumb">
+                                    <div class="thumb">
+                                        <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Action Plan &amp; Advisory" width="293" height="177">
+                                    </div>
+                                    <span class="text">Action Plan</span>
+                                </div>
                             </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Statutory Readiness">
+                            <div class="marquee-group" aria-hidden="true">
+                                <div class="marquee-thumb">
+                                    <div class="thumb">
+                                        <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="" width="293" height="177">
+                                    </div>
+                                    <span class="text">HR Compliance</span>
                                 </div>
-                                <span class="text">Statutory Readiness</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="Process & Policy">
+                                <div class="marquee-thumb">
+                                    <div class="thumb">
+                                        <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="" width="293" height="177">
+                                    </div>
+                                    <span class="text">Statutory Readiness</span>
                                 </div>
-                                <span class="text">Process & Policy</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Action Plan & Advisory">
+                                <div class="marquee-thumb">
+                                    <div class="thumb">
+                                        <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="" width="293" height="177">
+                                    </div>
+                                    <span class="text">Process &amp; Policy</span>
                                 </div>
-                                <span class="text">Action Plan</span>
-                            </div>
-                        </div>
-                        <div class="marquee-group">
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="HR Compliance Review">
+                                <div class="marquee-thumb">
+                                    <div class="thumb">
+                                        <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="" width="293" height="177">
+                                    </div>
+                                    <span class="text">Action Plan</span>
                                 </div>
-                                <span class="text">HR Compliance</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Statutory Readiness">
-                                </div>
-                                <span class="text">Statutory Readiness</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="Process & Policy">
-                                </div>
-                                <span class="text">Process & Policy</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Action Plan & Advisory">
-                                </div>
-                                <span class="text">Action Plan</span>
-                            </div>
-                        </div>
-                        <div class="marquee-group">
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="HR Compliance Review">
-                                </div>
-                                <span class="text">HR Compliance</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Statutory Readiness">
-                                </div>
-                                <span class="text">Statutory Readiness</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="Process & Policy">
-                                </div>
-                                <span class="text">Process & Policy</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Action Plan & Advisory">
-                                </div>
-                                <span class="text">Action Plan</span>
-                            </div>
-                        </div>
-                        <div class="marquee-group">
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="HR Compliance Review">
-                                </div>
-                                <span class="text">HR Compliance</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Statutory Readiness">
-                                </div>
-                                <span class="text">Statutory Readiness</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-1.jpg" alt="Process & Policy">
-                                </div>
-                                <span class="text">Process & Policy</span>
-                            </div>
-                            <div class="marquee-thumb">
-                                <div class="thumb">
-                                    <img loading="lazy" decoding="async" src="assets/img/home-1/marquee-img-2.jpg" alt="Action Plan & Advisory">
-                                </div>
-                                <span class="text">Action Plan</span>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Closing Call to Action Banner (Slide 12) -->
-                <section class="cta-banner-section fix" style="background: linear-gradient(135deg, #CF4B23 0%, #EF6939 100%) !important; padding: 16px 0; position: relative; z-index: 10;">
-                    <div class="container">
-                        <div class="row align-items-center justify-content-between g-3 text-center text-md-start">
-                            <div class="col-lg-8 col-md-8">
-                                <div class="d-flex flex-column flex-xl-row align-items-center align-items-md-start align-items-xl-center gap-1 gap-xl-3">
-                                    <h3 style="color: #ffffff !important; font-size: 18.5px; font-weight: 800; margin: 0; letter-spacing: -0.2px; white-space: nowrap;">
-                                        LET'S MAKE HR <span style="font-weight: 600; opacity: 0.95;">clearer. stronger. ready.</span>
-                                    </h3>
-                                    <span class="d-none d-xl-inline" style="color: rgba(255,255,255,0.6); font-size: 13px;">•</span>
-                                    <p style="color: rgba(255, 255, 255, 0.92) !important; margin: 0; font-size: 13.5px; font-weight: 500;">
-                                        Start with a conversation about your people, processes, and compliance priorities.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 text-center text-md-end">
-                                <a href="contact" style="background: #ffffff !important; color: #111B34 !important; font-size: 13.5px; font-weight: 700; padding: 8px 22px; border-radius: 999px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.12); transition: all 0.25s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 18px rgba(0,0,0,0.18)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(0,0,0,0.12)';">
-                                    <span>Get In Touch Today</span>
-                                    <i class="fa-solid fa-arrow-up-right" style="color: #EF6939; font-size: 12px;"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <!-- Marquee Section End. The closing CTA banner is intentionally omitted on the Contact page. -->
 
                 <!-- Footer Section Start -->
                 <footer class="footer-section fix" style="background: #111B34 !important; color: #ffffff; position: relative; z-index: 5;">
@@ -571,5 +574,6 @@
         <script src="assets/js/ajax-mail.js" defer></script>
         <!--<< Main.js >>-->
         <script src="assets/js/main.js" defer></script>
+        <script src="assets/js/contact.js" defer></script>
     </body>
 </html>

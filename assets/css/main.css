@@ -6241,12 +6241,18 @@ span {
 }
 @media (max-width: 1199px) {
   .header-1 .logo img {
-    width: 150px;
+    height: 60px !important;
+    max-height: 60px !important;
+    width: auto !important;
+    max-width: 240px !important;
   }
 }
 @media (max-width: 575px) {
   .header-1 .logo img {
-    width: 150px;
+    height: 52px !important;
+    max-height: 52px !important;
+    width: auto !important;
+    max-width: 200px !important;
   }
 }
 .header-1 .container {
@@ -16132,10 +16138,10 @@ span {
 .header-11 .logo img,
 .header-12 .logo img,
 .logo img {
-  height: 48px !important;
-  max-height: 48px !important;
+  height: 72px !important;
+  max-height: 72px !important;
   width: auto !important;
-  max-width: 220px !important;
+  max-width: 280px !important;
   object-fit: contain;
   background: transparent !important;
   background-color: transparent !important;
@@ -16143,13 +16149,21 @@ span {
   border-radius: 0 !important;
   display: inline-block;
   box-shadow: none !important;
+  transition: all 0.3s ease;
+}
+
+.sticky .logo img,
+.header-1.sticky .logo img {
+  height: 60px !important;
+  max-height: 60px !important;
+  max-width: 240px !important;
 }
 
 .offcanvas__wrapper .offcanvas__logo img {
-  height: 46px !important;
-  max-height: 46px !important;
+  height: 60px !important;
+  max-height: 60px !important;
   width: auto !important;
-  max-width: 200px !important;
+  max-width: 240px !important;
   object-fit: contain;
   background: transparent !important;
   background-color: transparent !important;
