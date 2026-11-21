@@ -69,11 +69,10 @@
 
     
       /* ================================
-       Sticky Header Js Start
+       Sticky Header Js
     ================================ */
-
-       $windowOn.on("scroll", function () {
-        if ($(this).scrollTop() > 250) {
+      $windowOn.on("scroll", function () {
+        if ($(this).scrollTop() > 20) {
           $("#header-sticky").addClass("sticky");
         } else {
           $("#header-sticky").removeClass("sticky");
