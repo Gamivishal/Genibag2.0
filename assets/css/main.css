@@ -177,6 +177,9 @@
 html {
   overflow-x: hidden;
   max-width: 100%;
+  /* Bootstrap sets :root { scroll-behavior: smooth }, which fights GSAP ScrollSmoother
+     (double-smoothing, jumpy anchor/back-to-top scrolls). Smoother handles easing itself. */
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -11331,31 +11334,92 @@ span {
 }
 
 .back-to-top {
-  background-color: var(--theme);
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  color: var(--white);
-  font-size: 18px;
   position: fixed;
-  display: inline-block;
-  z-index: 999;
-  right: 30px;
-  bottom: 30px;
-  transition: all 0.4s ease-in-out;
+  right: 28px;
+  bottom: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF7048 0%, #EA580C 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.42), 0 2px 6px rgba(0, 0, 0, 0.22);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
-  border-radius: 12px;
-}
-.back-to-top:hover {
-  background-color: var(--header);
-  color: var(--white);
+  transform: translateY(20px) scale(0.88);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.35s ease;
+  padding: 0;
+  outline: none;
+  pointer-events: none;
 }
 .back-to-top.show {
   opacity: 1;
   visibility: visible;
-  transform: translate(0);
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 14px 30px rgba(234, 88, 12, 0.6), 0 4px 10px rgba(0, 0, 0, 0.28);
+  background: linear-gradient(135deg, #FF7D54 0%, #F15F1C 100%);
+  color: #ffffff;
+}
+.back-to-top:active {
+  transform: translateY(0) scale(0.95);
+}
+.back-to-top:focus-visible {
+  outline: 2px solid #FF8A63;
+  outline-offset: 3px;
+}
+.back-to-top i {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+.back-to-top:hover i {
+  transform: translateY(-2px);
+}
+
+/* SVG Circular Scroll Progress Ring */
+.back-to-top-ring {
+  position: absolute;
+  inset: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  pointer-events: none;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  overflow: visible;
+}
+.back-to-top-ring circle {
+  fill: none;
+  stroke-width: 2.5;
+}
+.back-to-top-ring-bg {
+  stroke: rgba(255, 112, 72, 0.22);
+}
+.back-to-top-ring-fill {
+  stroke: #FF7048;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 0.08s linear;
+}
+
+@media (max-width: 576px) {
+  .back-to-top {
+    right: 18px;
+    bottom: 20px;
+    width: 44px;
+    height: 44px;
+    font-size: 14.5px;
+  }
 }
 
 .cursor-outer {

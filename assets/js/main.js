@@ -173,8 +173,19 @@
           }
         }
 
+        // Skip the (getComputedStyle-heavy) pass while the page isn't moving.
+        // A full pass is still forced every ~0.5s to catch layout changes.
+        var lastY = null, lastVh = null, idleFrames = 0;
+        function currentY() {
+          return (window.smoother && typeof window.smoother.scrollTop === "function")
+            ? window.smoother.scrollTop()
+            : (window.pageYOffset || document.documentElement.scrollTop || 0);
+        }
+
         function check() {
-          var vh = window.innerHeight;
+          var vh = window.innerHeight, y = currentY();
+          if (y === lastY && vh === lastVh && ++idleFrames < 30) return;
+          lastY = y; lastVh = vh; idleFrames = 0;
           for (var i = 0; i < els.length; i++) {
             var el = els[i], r = layoutRect(el), on = el.classList.contains("animated");
             if (!on && r.top < vh * 0.92 && r.bottom > vh * 0.08) {
@@ -807,20 +818,95 @@
     /* ================================
         Back To Top Button Js Start
     ================================ */
-    $windowOn.on('scroll', function() {
-        var windowScrollTop = $(this).scrollTop();
-        var windowHeight = $(window).height();
-        var documentHeight = $(document).height();
+    var $backTop = $("#back-top");
+    var toTopEl = document.getElementById("back-top");
+    var ringBar = null;
 
-        if (windowScrollTop + windowHeight >= documentHeight - 10) {
-            $("#back-top").addClass("show");
-        } else {
-            $("#back-top").removeClass("show");
+    if (toTopEl && !toTopEl.querySelector(".back-to-top-ring")) {
+        try {
+            var ns = "http://www.w3.org/2000/svg";
+            var svg = document.createElementNS(ns, "svg");
+            svg.setAttribute("class", "back-to-top-ring");
+            svg.setAttribute("viewBox", "0 0 58 58");
+            svg.setAttribute("aria-hidden", "true");
+
+            var bg = document.createElementNS(ns, "circle");
+            bg.setAttribute("class", "back-to-top-ring-bg");
+            bg.setAttribute("cx", "29");
+            bg.setAttribute("cy", "29");
+            bg.setAttribute("r", "26");
+            svg.appendChild(bg);
+
+            ringBar = document.createElementNS(ns, "circle");
+            ringBar.setAttribute("class", "back-to-top-ring-fill");
+            ringBar.setAttribute("cx", "29");
+            ringBar.setAttribute("cy", "29");
+            ringBar.setAttribute("r", "26");
+            ringBar.setAttribute("pathLength", "100");
+            svg.appendChild(ringBar);
+
+            toTopEl.appendChild(svg);
+        } catch (e) {
+            console.error(e);
         }
-    });
+    }
 
-    $documentOn.on('click', '#back-top', function() {
-        $('html, body').animate({ scrollTop: 0 }, 800);
+    var backTopShown = null;   // last applied visibility state
+    var lastRingOffset = -1;   // last applied ring offset (avoid needless DOM writes)
+
+    function checkBackToTop() {
+        var scrollY, progress;
+        var docHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+
+        if (window.smoother && typeof window.smoother.scrollTop === "function") {
+            // Smoothed (visual) position, so the ring moves with the content, not ahead of it
+            scrollY = window.smoother.scrollTop();
+            progress = typeof window.smoother.progress === "number"
+                ? window.smoother.progress
+                : scrollY / docHeight;
+        } else {
+            scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+            progress = scrollY / docHeight;
+        }
+        progress = Math.min(1, Math.max(0, progress));
+
+        // Show button once the user has scrolled down 280px (toggle only on change)
+        var shouldShow = scrollY > 280;
+        if (shouldShow !== backTopShown) {
+            backTopShown = shouldShow;
+            $backTop.toggleClass("show", shouldShow);
+        }
+
+        if (ringBar) {
+            var dashoffset = Math.round((1 - progress) * 1000) / 10; // 0.1 precision
+            if (dashoffset !== lastRingOffset) {
+                lastRingOffset = dashoffset;
+                ringBar.style.strokeDashoffset = dashoffset;
+            }
+        }
+    }
+
+    // One update path: gsap.ticker runs every frame in sync with ScrollSmoother.
+    // Fall back to a passive scroll listener only if GSAP is unavailable.
+    if (typeof gsap !== 'undefined' && gsap.ticker) {
+        gsap.ticker.add(checkBackToTop);
+    } else {
+        window.addEventListener('scroll', checkBackToTop, { passive: true });
+        window.addEventListener('resize', checkBackToTop, { passive: true });
+    }
+
+    // Initial check
+    checkBackToTop();
+
+    $documentOn.off('click', '#back-top').on('click', '#back-top', function(e) {
+        if (e) e.preventDefault();
+        if (window.smoother && typeof window.smoother.scrollTo === "function") {
+            window.smoother.scrollTo(0, true);
+        } else {
+            // Single animation only — running native smooth scroll and jQuery animate together makes it stutter
+            $('html, body').stop().animate({ scrollTop: 0 }, 700);
+        }
+        if (this && this.blur) this.blur();
         return false;
     });
 
@@ -847,12 +933,16 @@
             nullTargetWarn: false,
         });
 
+        var prefersReducedMotion = window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         let smoother = ScrollSmoother.create({
             wrapper: "#smooth-wrapper",
             content: "#smooth-content",
-            smooth: 2,
-            effects: true,
-            smoothTouch: 0.1,
+            // 1.2s catch-up feels smooth but still responsive (2 felt floaty/laggy)
+            smooth: prefersReducedMotion ? 0 : 1.2,
+            effects: !prefersReducedMotion,
+            smoothTouch: prefersReducedMotion ? 0 : 0.1,
             normalizeScroll: false,
             ignoreMobileResize: true,
         });
@@ -956,15 +1046,7 @@
         $(window).on("hashchange", scrollToHashTarget);
     }
 
-    // Also support back-top with smoother
-    $documentOn.on('click', '#back-top', function() {
-        if (window.smoother && typeof window.smoother.scrollTo === "function") {
-            window.smoother.scrollTo(0, true);
-        } else {
-            $('html, body').animate({ scrollTop: 0 }, 800);
-        }
-        return false;
-    });
+
 
     /* ================================
        Text Anim Js Start
@@ -1411,8 +1493,22 @@
             }
         }
 
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll, { passive: true });
+        // With ScrollSmoother the content keeps gliding after native scroll events stop,
+        // so drive the timeline from gsap.ticker (only when the section has moved).
+        if (typeof gsap !== 'undefined' && gsap.ticker) {
+            let lastTop = null, lastVh = null;
+            gsap.ticker.add(() => {
+                if (!spine) return;
+                const top = spine.getBoundingClientRect().top;
+                const vh = window.innerHeight;
+                if (top === lastTop && vh === lastVh) return;
+                lastTop = top; lastVh = vh;
+                updateTimelineProgress();
+            });
+        } else {
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll, { passive: true });
+        }
         window.addEventListener('load', updateTimelineProgress);
         updateTimelineProgress();
 
