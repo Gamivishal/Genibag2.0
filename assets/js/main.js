@@ -235,8 +235,8 @@
                     pauseOnMouseEnter: true,  
                 },
                 navigation: {
-                    nextEl: ".array-prev",
-                    prevEl: ".array-next",
+                    prevEl: ".array-prev, .hero-arrow--prev",
+                    nextEl: ".array-next, .hero-arrow--next",
                 },
             });
         }
