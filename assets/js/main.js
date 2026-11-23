@@ -141,11 +141,36 @@
           void el.offsetWidth; // restart the CSS animation
           el.style.visibility = "visible";
           el.classList.add("animated");
+
+          // Interactive hooks for What We Do stats & Method journey
+          if (el.classList.contains("gb-wwd__stat") || el.closest(".gb-wwd__stats")) {
+            if (typeof window.triggerGenieStatCounters === "function") {
+              window.triggerGenieStatCounters();
+            }
+          }
+          if (el.closest("#methodology")) {
+            if (typeof window.triggerGenieMethodReveal === "function") {
+              window.triggerGenieMethodReveal();
+            }
+          }
         }
 
         function reset(el) {
           el.classList.remove("animated");
           el.style.visibility = "hidden";
+          el.style.animationName = "";
+
+          // Interactive reset hooks when off-screen
+          if (el.classList.contains("gb-wwd__stat") || el.closest(".gb-wwd__stats")) {
+            if (typeof window.resetGenieStatCounters === "function") {
+              window.resetGenieStatCounters();
+            }
+          }
+          if (el.closest("#methodology")) {
+            if (typeof window.resetGenieMethodReveal === "function") {
+              window.resetGenieMethodReveal();
+            }
+          }
         }
 
         function check() {
@@ -1244,35 +1269,11 @@
         const wwdSection = document.getElementById('services');
         if (!wwdSection) return;
 
-        // 1. Scroll-Reveal via IntersectionObserver (or instant fallback)
-        if ('IntersectionObserver' in window) {
-            const wwdRevealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        wwdSection.classList.add('is-revealed');
-                        triggerCountUps();
-                        wwdRevealObserver.unobserve(wwdSection);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        wwdSection.classList.add('is-revealed');
 
-            wwdRevealObserver.observe(wwdSection);
-
-            // Safety timeout: ensure cards are never stuck invisible under any circumstances
-            setTimeout(() => {
-                if (!wwdSection.classList.contains('is-revealed')) {
-                    wwdSection.classList.add('is-revealed');
-                    triggerCountUps();
-                }
-            }, 2000);
-        } else {
-            wwdSection.classList.add('is-revealed');
-            triggerCountUps();
-        }
-
-        // 2. Count-Up Animation for Stat Tiles (cubic ease-out, respects reduced motion)
+        // 2. Count-Up Animation for Stat Tiles (cubic ease-out, re-triggers on scroll into view)
         let countUpTriggered = false;
-        function triggerCountUps() {
+        window.triggerGenieStatCounters = function() {
             if (countUpTriggered) return;
             countUpTriggered = true;
 
@@ -1310,7 +1311,11 @@
 
                 requestAnimationFrame(step);
             });
-        }
+        };
+
+        window.resetGenieStatCounters = function() {
+            countUpTriggered = false;
+        };
 
         // 3. Desktop 3D Tilt & Cursor Spotlight (Fine pointer + hover devices only)
         if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
@@ -1384,21 +1389,45 @@
             const gh = Math.round(gRect.height);
             svgEl.setAttribute('viewBox', `0 0 ${gw} ${gh}`);
 
-            const r1y = pts[2].y;
-            const r2y = pts[3].y;
-            // Corridor between rows
-            const midY = Math.round((r1y + r2y) / 2);
-            const rightEdge = Math.round(gw - 8);
-            const leftEdge = 8;
+            const cards = methodSection.querySelectorAll('.gb-method__card-wrap');
+            if (cards.length < 6) return;
 
-            // Snaking journey: Row 1 (01 -> 02 -> 03) -> loop down into corridor -> loop into Row 2 (04 -> 05 -> 06)
+            const r0Rect = cards[0].getBoundingClientRect();
+            const r1Rect = cards[1].getBoundingClientRect();
+            const r2Rect = cards[2].getBoundingClientRect();
+            const r3Rect = cards[3].getBoundingClientRect();
+            const r4Rect = cards[4].getBoundingClientRect();
+            const r5Rect = cards[5].getBoundingClientRect();
+
+            // Calculate true row boundaries relative to the grid
+            const row1Bottom = Math.max(r0Rect.bottom, r1Rect.bottom, r2Rect.bottom) - gRect.top;
+            const row2Top = Math.min(r3Rect.top, r4Rect.top, r5Rect.top) - gRect.top;
+
+            // The true corridor between rows (in the row gap)
+            const midY = Math.round((row1Bottom + row2Top) / 2);
+
+            const r1y = pts[2].y; // Header level for Row 1
+            const r2y = pts[3].y; // Header level for Row 2
+
+            // Margin clearance on left and right for outer loops (outside cards)
+            const r3Right = Math.round(r2Rect.right - gRect.left);
+            const r4Left = Math.round(r3Rect.left - gRect.left);
+            const rightLoopX = r3Right + 20;
+            const leftLoopX = r4Left - 20;
+            const radius = 18;
+
+            // Snaking journey: Row 1 (01 -> 02 -> 03) -> loop down outside card 3 -> corridor between rows -> loop into Row 2 (04 -> 05 -> 06)
             const d = `M ${pts[0].x},${pts[0].y} ` +
                       `L ${pts[1].x},${pts[1].y} ` +
                       `L ${pts[2].x},${pts[2].y} ` +
-                      `L ${rightEdge - 15},${r1y} ` +
-                      `C ${rightEdge + 10},${r1y} ${rightEdge + 10},${midY} ${rightEdge - 15},${midY} ` +
-                      `L ${leftEdge + 15},${midY} ` +
-                      `C ${leftEdge - 10},${midY} ${leftEdge - 10},${r2y} ${leftEdge + 15},${r2y} ` +
+                      `L ${rightLoopX - radius},${r1y} ` +
+                      `Q ${rightLoopX},${r1y} ${rightLoopX},${r1y + radius} ` +
+                      `L ${rightLoopX},${midY - radius} ` +
+                      `Q ${rightLoopX},${midY} ${rightLoopX - radius},${midY} ` +
+                      `L ${leftLoopX + radius},${midY} ` +
+                      `Q ${leftLoopX},${midY} ${leftLoopX},${midY + radius} ` +
+                      `L ${leftLoopX},${r2y - radius} ` +
+                      `Q ${leftLoopX},${r2y} ${leftLoopX + radius},${r2y} ` +
                       `L ${pts[3].x},${pts[3].y} ` +
                       `L ${pts[4].x},${pts[4].y} ` +
                       `L ${pts[5].x},${pts[5].y}`;
@@ -1424,16 +1453,23 @@
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(alignTrackPath, 150);
         });
+        window.addEventListener('load', alignTrackPath);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(alignTrackPath);
+        }
 
-        // Trigger reveal, progressive drawing, and node lighting
+        // Trigger reveal, progressive drawing, and node lighting (re-triggers on scroll)
         let methodRevealed = false;
-        function triggerReveal() {
+        let nodeTimers = [];
+
+        window.triggerGenieMethodReveal = function() {
             if (methodRevealed) return;
             methodRevealed = true;
             methodSection.classList.add('is-revealed');
             alignTrackPath();
 
             if (pathActive) {
+                pathActive.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.22, 1, 0.36, 1)';
                 pathActive.style.strokeDashoffset = '0';
             }
 
@@ -1444,35 +1480,29 @@
             }
 
             // Light up stage nodes progressively along the journey path
+            nodeTimers.forEach(t => clearTimeout(t));
+            nodeTimers = [];
             nodes.forEach((node, idx) => {
-                setTimeout(() => {
+                const t = setTimeout(() => {
                     node.classList.add('is-active');
                 }, 180 + idx * 160);
+                nodeTimers.push(t);
             });
-        }
+        };
 
-        // Scroll observer for reveal
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        triggerReveal();
-                        observer.unobserve(methodSection);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-            observer.observe(methodSection);
-
-            // Safety timeout to ensure section is never stuck invisible
-            setTimeout(() => {
-                if (!methodSection.classList.contains('is-revealed')) {
-                    triggerReveal();
-                }
-            }, 2500);
-        } else {
-            triggerReveal();
-        }
+        window.resetGenieMethodReveal = function() {
+            methodRevealed = false;
+            nodeTimers.forEach(t => clearTimeout(t));
+            nodeTimers = [];
+            nodes.forEach(node => node.classList.remove('is-active'));
+            if (pathActive) {
+                try {
+                    const totalLen = Math.round(pathActive.getTotalLength());
+                    pathActive.style.transition = 'none';
+                    pathActive.style.strokeDashoffset = `${totalLen}`;
+                } catch (e) {}
+            }
+        };
 
         // Desktop mouse tracking for spotlight
         if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {

@@ -1292,51 +1292,84 @@
                         margin: 0;
                     }
 
-                    /* 3. Scroll Reveal Animation via Staggered Transitions */
+                    /* 3. Dynamic Scroll Reveal & Directional Entrance Animations */
+                    .gb-wwd__card-wrap {
+                        display: flex;
+                        min-width: 0;
+                        width: 100%;
+                    }
+
                     @media (prefers-reduced-motion: no-preference) {
-                        .gb-wwd__reveal-head,
-                        .gb-wwd__reveal-card,
-                        .gb-wwd__reveal-btn,
-                        .gb-wwd__reveal-stat {
-                            opacity: 0;
-                            transform: translateY(32px);
-                            transition: 
-                                opacity 0.65s var(--wwd-ease),
-                                transform 0.65s var(--wwd-ease);
+                        .gb-wwd .wow {
+                            visibility: hidden;
+                            will-change: transform, opacity;
+                        }
+                        .gb-wwd .wow.animated {
+                            visibility: visible;
+                            animation-duration: 0.85s;
+                            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+                            animation-fill-mode: both;
+                        }
+                        .gb-wwd .wow.fadeInLeft.animated {
+                            animation-name: gbDataFromLeft !important;
+                        }
+                        .gb-wwd .wow.fadeInRight.animated {
+                            animation-name: gbDataFromRight !important;
+                        }
+                        .gb-wwd .wow.fadeInUp.animated {
+                            animation-name: gbDataFromUp !important;
+                        }
+                        .gb-wwd .wow.fadeInUp.animated[style*="fadeInDown"] {
+                            animation-name: gbDataFromDown !important;
                         }
 
-                        .gb-wwd.is-revealed .gb-wwd__reveal-head {
-                            opacity: 1;
-                            transform: translateY(0);
+                        @keyframes gbDataFromLeft {
+                            0% {
+                                opacity: 0;
+                                transform: translate3d(-50px, 0, 0);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate3d(0, 0, 0);
+                            }
+                        }
+                        @keyframes gbDataFromRight {
+                            0% {
+                                opacity: 0;
+                                transform: translate3d(50px, 0, 0);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate3d(0, 0, 0);
+                            }
+                        }
+                        @keyframes gbDataFromUp {
+                            0% {
+                                opacity: 0;
+                                transform: translate3d(0, 38px, 0);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate3d(0, 0, 0);
+                            }
+                        }
+                        @keyframes gbDataFromDown {
+                            0% {
+                                opacity: 0;
+                                transform: translate3d(0, -38px, 0);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate3d(0, 0, 0);
+                            }
                         }
 
-                        .gb-wwd.is-revealed .gb-wwd__reveal-card {
-                            opacity: 1;
-                            transform: translateY(0);
+                        @media (max-width: 767px) {
+                            .gb-wwd .wow.fadeInLeft.animated,
+                            .gb-wwd .wow.fadeInRight.animated {
+                                animation-name: gbDataFromUp !important;
+                            }
                         }
-
-                        /* Stagger 80-100ms per card */
-                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(1) { transition-delay: 0.08s; }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(2) { transition-delay: 0.16s; }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(3) { transition-delay: 0.24s; }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(4) { transition-delay: 0.32s; }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(5) { transition-delay: 0.40s; }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-card:nth-child(6) { transition-delay: 0.48s; }
-
-                        .gb-wwd.is-revealed .gb-wwd__reveal-btn {
-                            opacity: 1;
-                            transform: translateY(0);
-                            transition-delay: 0.54s;
-                        }
-
-                        .gb-wwd.is-revealed .gb-wwd__reveal-stat {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-stat:nth-child(1) { transition-delay: 0.58s; }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-stat:nth-child(2) { transition-delay: 0.66s; }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-stat:nth-child(3) { transition-delay: 0.74s; }
-                        .gb-wwd.is-revealed .gb-wwd__reveal-stat:nth-child(4) { transition-delay: 0.82s; }
                     }
 
                     /* 7. Keyboard focus-visible accessibility ring */
@@ -1438,7 +1471,7 @@
                     <div class="gb-wwd__dots gb-wwd__dots--right" aria-hidden="true"></div>
 
                     <div class="gb-wwd__wrap">
-                        <div class="gb-wwd__head gb-wwd__reveal-head">
+                        <div class="gb-wwd__head wow fadeInUp" data-wow-delay=".1s">
                             <span class="gb-wwd__eyebrow">What We Do</span>
                             <h2 class="gb-wwd__title">One Partner. <span class="gradient-text">A Clearer HR Picture.</span></h2>
                             <p class="gb-wwd__sub">A modular service offering tailored to your organisation's size, sector and operating realities.</p>
@@ -1446,7 +1479,7 @@
 
                         <div class="gb-wwd__grid">
                             <!-- Card 01 -->
-                            <div class="gb-wwd__reveal-card">
+                            <div class="gb-wwd__card-wrap wow fadeInLeft" data-wow-delay=".15s">
                                 <article class="gb-wwd__card" data-number="01">
                                     <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-wwd__card-border" aria-hidden="true"></div>
@@ -1464,7 +1497,7 @@
                             </div>
 
                             <!-- Card 02 -->
-                            <div class="gb-wwd__reveal-card">
+                            <div class="gb-wwd__card-wrap wow fadeInUp" data-wow-delay=".3s">
                                 <article class="gb-wwd__card" data-number="02">
                                     <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-wwd__card-border" aria-hidden="true"></div>
@@ -1482,7 +1515,7 @@
                             </div>
 
                             <!-- Card 03 -->
-                            <div class="gb-wwd__reveal-card">
+                            <div class="gb-wwd__card-wrap wow fadeInRight" data-wow-delay=".45s">
                                 <article class="gb-wwd__card" data-number="03">
                                     <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-wwd__card-border" aria-hidden="true"></div>
@@ -1500,7 +1533,7 @@
                             </div>
 
                             <!-- Card 04 -->
-                            <div class="gb-wwd__reveal-card">
+                            <div class="gb-wwd__card-wrap wow fadeInLeft" data-wow-delay=".2s">
                                 <article class="gb-wwd__card" data-number="04">
                                     <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-wwd__card-border" aria-hidden="true"></div>
@@ -1518,7 +1551,7 @@
                             </div>
 
                             <!-- Card 05 -->
-                            <div class="gb-wwd__reveal-card">
+                            <div class="gb-wwd__card-wrap wow fadeInUp" data-wow-delay=".35s">
                                 <article class="gb-wwd__card" data-number="05">
                                     <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-wwd__card-border" aria-hidden="true"></div>
@@ -1536,7 +1569,7 @@
                             </div>
 
                             <!-- Card 06 -->
-                            <div class="gb-wwd__reveal-card">
+                            <div class="gb-wwd__card-wrap wow fadeInRight" data-wow-delay=".5s">
                                 <article class="gb-wwd__card" data-number="06">
                                     <div class="gb-wwd__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-wwd__card-border" aria-hidden="true"></div>
@@ -1555,25 +1588,25 @@
                         </div>
 
                         <!-- CTA Button -->
-                        <div class="gb-wwd__cta gb-wwd__reveal-btn">
+                        <div class="gb-wwd__cta wow fadeInUp" data-wow-delay=".3s">
                             <a href="service" class="gb-wwd__btn">View All Services <span class="arr"><i class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
 
                         <!-- 4 Stat Tiles -->
                         <div class="gb-wwd__stats">
-                            <div class="gb-wwd__stat gb-wwd__reveal-stat">
+                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".1s">
                                 <p class="v"><span class="gb-stat-num" data-target="100">100</span><em>%</em></p>
                                 <p class="l">Statutory &amp; Practical Scope</p>
                             </div>
-                            <div class="gb-wwd__stat gb-wwd__reveal-stat">
+                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".2s">
                                 <p class="v"><span class="gb-stat-num" data-target="6">6</span><em>-Stage</em></p>
                                 <p class="l">Evidence-Led Method</p>
                             </div>
-                            <div class="gb-wwd__stat gb-wwd__reveal-stat">
+                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".3s">
                                 <p class="v"><span class="gb-stat-num" data-target="3">3</span></p>
                                 <p class="l">Flexible Engagement Tiers</p>
                             </div>
-                            <div class="gb-wwd__stat gb-wwd__reveal-stat">
+                            <div class="gb-wwd__stat wow fadeInUp" data-wow-delay=".4s">
                                 <p class="v"><span class="gb-stat-num" data-target="0">0</span></p>
                                 <p class="l">Unnecessary Disruption</p>
                             </div>
@@ -1890,7 +1923,7 @@
                     .gb-method__grid {
                         display: grid;
                         grid-template-columns: repeat(3, minmax(0, 1fr));
-                        gap: 32px 28px;
+                        gap: 36px 28px;
                         position: relative;
                         z-index: 2;
                     }
@@ -1903,6 +1936,7 @@
                         height: 100%;
                         pointer-events: none;
                         z-index: 1;
+                        overflow: visible;
                     }
                     .gb-method__journey-svg {
                         width: 100%;
@@ -2257,40 +2291,77 @@
                         }
                     }
 
-                    /* 6. Scroll Animations via Staggered Transitions */
+                    /* 6. Dynamic Scroll Reveal & Directional Entrance Animations */
                     @media (prefers-reduced-motion: no-preference) {
-                        .gb-method__reveal-head,
-                        .gb-method__reveal-card,
-                        .gb-method__reveal-cta {
-                            opacity: 0;
-                            transform: translateY(32px);
-                            transition: 
-                                opacity 0.65s var(--method-ease),
-                                transform 0.65s var(--method-ease);
+                        .gb-method .wow {
+                            visibility: hidden;
+                            will-change: transform, opacity;
+                        }
+                        .gb-method .wow.animated {
+                            visibility: visible;
+                            animation-duration: 0.85s;
+                            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+                            animation-fill-mode: both;
+                        }
+                        .gb-method .wow.fadeInLeft.animated {
+                            animation-name: gbMethodFromLeft !important;
+                        }
+                        .gb-method .wow.fadeInRight.animated {
+                            animation-name: gbMethodFromRight !important;
+                        }
+                        .gb-method .wow.fadeInUp.animated {
+                            animation-name: gbMethodFromUp !important;
+                        }
+                        .gb-method .wow.fadeInUp.animated[style*="fadeInDown"] {
+                            animation-name: gbMethodFromDown !important;
                         }
 
-                        .gb-method.is-revealed .gb-method__reveal-head {
-                            opacity: 1;
-                            transform: translateY(0);
+                        @keyframes gbMethodFromLeft {
+                            0% {
+                                opacity: 0;
+                                transform: translate3d(-50px, 0, 0);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate3d(0, 0, 0);
+                            }
+                        }
+                        @keyframes gbMethodFromRight {
+                            0% {
+                                opacity: 0;
+                                transform: translate3d(50px, 0, 0);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate3d(0, 0, 0);
+                            }
+                        }
+                        @keyframes gbMethodFromUp {
+                            0% {
+                                opacity: 0;
+                                transform: translate3d(0, 38px, 0);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate3d(0, 0, 0);
+                            }
+                        }
+                        @keyframes gbMethodFromDown {
+                            0% {
+                                opacity: 0;
+                                transform: translate3d(0, -38px, 0);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate3d(0, 0, 0);
+                            }
                         }
 
-                        .gb-method.is-revealed .gb-method__reveal-card {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
-
-                        /* Stagger 100ms per card */
-                        .gb-method.is-revealed .gb-method__reveal-card:nth-child(1) { transition-delay: 0.10s; }
-                        .gb-method.is-revealed .gb-method__reveal-card:nth-child(2) { transition-delay: 0.20s; }
-                        .gb-method.is-revealed .gb-method__reveal-card:nth-child(3) { transition-delay: 0.30s; }
-                        .gb-method.is-revealed .gb-method__reveal-card:nth-child(4) { transition-delay: 0.40s; }
-                        .gb-method.is-revealed .gb-method__reveal-card:nth-child(5) { transition-delay: 0.50s; }
-                        .gb-method.is-revealed .gb-method__reveal-card:nth-child(6) { transition-delay: 0.60s; }
-
-                        .gb-method.is-revealed .gb-method__reveal-cta {
-                            opacity: 1;
-                            transform: translateY(0);
-                            transition-delay: 0.70s;
+                        @media (max-width: 767px) {
+                            .gb-method .wow.fadeInLeft.animated,
+                            .gb-method .wow.fadeInRight.animated {
+                                animation-name: gbMethodFromUp !important;
+                            }
                         }
                     }
 
@@ -2464,7 +2535,7 @@
 
                     <div class="gb-method__wrap">
                         <!-- 2. Centered Heading Area -->
-                        <div class="gb-method__head gb-method__reveal-head">
+                        <div class="gb-method__head wow fadeInUp" data-wow-delay=".1s">
                             <div class="gb-method__eyebrow">
                                 <span class="gb-method__eyebrow-dot" aria-hidden="true"></span>
                                 <span>Our Method</span>
@@ -2489,13 +2560,13 @@
                                             <stop offset="100%" stop-color="#2A9D8F" />
                                         </linearGradient>
                                     </defs>
-                                    <path class="gb-method__path-bg" d="M 64,52 L 460,52 L 856,52 C 1100,52 1100,280 856,280 L 64,280 C -40,280 -40,340 64,340 L 460,340 L 856,340" />
-                                    <path class="gb-method__path-active" d="M 64,52 L 460,52 L 856,52 C 1100,52 1100,280 856,280 L 64,280 C -40,280 -40,340 64,340 L 460,340 L 856,340" />
+                                    <path class="gb-method__path-bg" d="M 64,52 L 460,52 L 856,52 L 1202,52 Q 1220,52 1220,70 L 1220,248 Q 1220,266 1202,266 L -2,266 Q -20,266 -20,284 L -20,322 Q -20,340 -2,340 L 64,340 L 460,340 L 856,340" />
+                                    <path class="gb-method__path-active" d="M 64,52 L 460,52 L 856,52 L 1202,52 Q 1220,52 1220,70 L 1220,248 Q 1220,266 1202,266 L -2,266 Q -20,266 -20,284 L -20,322 Q -20,340 -2,340 L 64,340 L 460,340 L 856,340" />
                                 </svg>
                             </div>
 
                             <!-- Stage 01: DISCOVER -->
-                            <div class="gb-method__card-wrap gb-method__reveal-card">
+                            <div class="gb-method__card-wrap wow fadeInLeft" data-wow-delay=".15s">
                                 <article class="gb-method__card" data-stage="1">
                                     <div class="gb-method__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-method__card-border" aria-hidden="true"></div>
@@ -2523,7 +2594,7 @@
                             </div>
 
                             <!-- Stage 02: COLLECT -->
-                            <div class="gb-method__card-wrap gb-method__reveal-card">
+                            <div class="gb-method__card-wrap wow fadeInUp" data-wow-delay=".3s">
                                 <article class="gb-method__card" data-stage="2">
                                     <div class="gb-method__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-method__card-border" aria-hidden="true"></div>
@@ -2551,7 +2622,7 @@
                             </div>
 
                             <!-- Stage 03: REVIEW -->
-                            <div class="gb-method__card-wrap gb-method__reveal-card">
+                            <div class="gb-method__card-wrap wow fadeInRight" data-wow-delay=".45s">
                                 <article class="gb-method__card" data-stage="3">
                                     <div class="gb-method__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-method__card-border" aria-hidden="true"></div>
@@ -2579,7 +2650,7 @@
                             </div>
 
                             <!-- Stage 04: PRIORITISE -->
-                            <div class="gb-method__card-wrap gb-method__reveal-card">
+                            <div class="gb-method__card-wrap wow fadeInLeft" data-wow-delay=".2s">
                                 <article class="gb-method__card" data-stage="4">
                                     <div class="gb-method__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-method__card-border" aria-hidden="true"></div>
@@ -2607,7 +2678,7 @@
                             </div>
 
                             <!-- Stage 05: REPORT -->
-                            <div class="gb-method__card-wrap gb-method__reveal-card">
+                            <div class="gb-method__card-wrap wow fadeInUp" data-wow-delay=".35s">
                                 <article class="gb-method__card" data-stage="5">
                                     <div class="gb-method__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-method__card-border" aria-hidden="true"></div>
@@ -2635,7 +2706,7 @@
                             </div>
 
                             <!-- Stage 06: SUPPORT -->
-                            <div class="gb-method__card-wrap gb-method__reveal-card">
+                            <div class="gb-method__card-wrap wow fadeInRight" data-wow-delay=".5s">
                                 <article class="gb-method__card" data-stage="6">
                                     <div class="gb-method__card-topbar" aria-hidden="true"></div>
                                     <div class="gb-method__card-border" aria-hidden="true"></div>
@@ -2664,7 +2735,7 @@
                         </div>
 
                         <!-- 7. Bottom CTA Strip -->
-                        <div class="gb-method__cta gb-method__reveal-cta">
+                        <div class="gb-method__cta wow fadeInUp" data-wow-delay=".3s">
                             <span class="gb-method__cta-text">Ready to see where you stand?</span>
                             <a href="contact" class="gb-method__cta-btn">
                                 <span>Schedule Scoping Call</span>
