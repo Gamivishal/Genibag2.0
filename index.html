@@ -1768,37 +1768,80 @@
                     </div>
                 </section>
 
-                <!-- Our Method Section (Slide 5) Redesigned: Senior Consulting Journey -->
+                <!-- Our Method Section - Premium Interactive Vertical Timeline -->
                 <style>
                     /* ==========================================================================
-                       Our Method Section - Senior Consulting Journey & Glassmorphic Redesign
+                       Premium Interactive Vertical Timeline - Our Method Section Redesign
                        ========================================================================== */
                     :root {
-                        --method-bg-1: #0F1733;
-                        --method-bg-2: #111A3A;
-                        --method-orange: #F26A3F;
-                        --method-orange-hover: #CC4A22;
-                        --method-orange-glow: rgba(242, 106, 63, 0.28);
-                        --method-amber: #F5A540;
-                        --method-teal: #2A9D8F;
-                        --method-teal-glow: rgba(42, 157, 143, 0.25);
-                        --method-text-muted: #CBD5E1;
-                        --method-border: rgba(255, 255, 255, 0.10);
-                        --method-card-bg: rgba(255, 255, 255, 0.04);
-                        --method-ease: cubic-bezier(0.22, 1, 0.36, 1);
-                        --method-duration: 380ms;
+                        --tm-bg: #0B1020;
+                        --tm-bg-card: #151D32;
+                        --tm-orange: #FF7048;
+                        --tm-orange-glow: rgba(255, 112, 72, 0.45);
+                        --tm-orange-subtle: rgba(255, 112, 72, 0.12);
+                        --tm-orange-border: rgba(255, 112, 72, 0.35);
+                        --tm-heading: #F5F6FA;
+                        --tm-desc: #A5AEC0;
+                        --tm-border: rgba(255, 255, 255, 0.08);
+                        --tm-border-hover: rgba(255, 112, 72, 0.35);
+                        --tm-line-track: rgba(255, 255, 255, 0.09);
+                        --tm-ease: cubic-bezier(0.22, 1, 0.36, 1);
                     }
 
-                    /* 1. Deep Navy Container */
                     .gb-method {
-                        background: linear-gradient(180deg, var(--method-bg-1) 0%, var(--method-bg-2) 100%);
-                        padding: 130px 0 110px;
+                        background-color: var(--tm-bg);
+                        background-image: 
+                            radial-gradient(circle at 50% 12%, rgba(35, 28, 80, 0.38) 0%, transparent 60%),
+                            radial-gradient(circle at 12% 50%, rgba(18, 25, 52, 0.75) 0%, transparent 50%),
+                            radial-gradient(circle at 88% 75%, rgba(255, 112, 72, 0.06) 0%, transparent 50%);
+                        padding: 130px 0 120px;
                         position: relative;
                         overflow: hidden;
                         color: #ffffff;
                     }
 
-                    /* 1. Curved Dividers blending into adjacent sections */
+                    /* Atmospheric Dot Grid */
+                    .gb-method::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1.5px, transparent 1.5px);
+                        background-size: 32px 32px;
+                        pointer-events: none;
+                        z-index: 1;
+                    }
+
+                    /* Atmospheric Glow Orbs */
+                    .gb-method__glow {
+                        position: absolute;
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 1;
+                        filter: blur(100px);
+                    }
+                    .gb-method__glow--top {
+                        top: 5%;
+                        left: 20%;
+                        width: 600px;
+                        height: 450px;
+                        background: radial-gradient(circle, rgba(120, 80, 220, 0.08) 0%, transparent 70%);
+                    }
+                    .gb-method__glow--orange {
+                        top: 45%;
+                        right: 5%;
+                        width: 500px;
+                        height: 500px;
+                        background: radial-gradient(circle, rgba(255, 112, 72, 0.08) 0%, transparent 70%);
+                    }
+                    .gb-method__glow--bottom {
+                        bottom: 5%;
+                        left: 10%;
+                        width: 550px;
+                        height: 450px;
+                        background: radial-gradient(circle, rgba(42, 157, 143, 0.07) 0%, transparent 70%);
+                    }
+
+                    /* Smooth Top & Bottom Dividers blending with adjacent sections */
                     .gb-method__divider {
                         position: absolute;
                         left: 0;
@@ -1808,51 +1851,9 @@
                         pointer-events: none;
                         z-index: 3;
                     }
-                    .gb-method__divider--top {
-                        top: 0;
-                    }
-                    .gb-method__divider--bottom {
-                        bottom: 0;
-                    }
-                    .gb-method__divider svg {
-                        width: 100%;
-                        height: 100%;
-                        display: block;
-                    }
-
-                    /* 1. Background depth: Faint dotted grid pattern (3-5% opacity) */
-                    .gb-method::before {
-                        content: "";
-                        position: absolute;
-                        inset: 0;
-                        background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1.5px, transparent 1.5px);
-                        background-size: 28px 28px;
-                        pointer-events: none;
-                        z-index: 1;
-                    }
-
-                    /* 1. Soft blurred orange and teal radial glows */
-                    .gb-method__glow {
-                        position: absolute;
-                        border-radius: 50%;
-                        pointer-events: none;
-                        z-index: 1;
-                        filter: blur(95px);
-                    }
-                    .gb-method__glow--orange {
-                        top: 18%;
-                        left: 10%;
-                        width: 600px;
-                        height: 500px;
-                        background: radial-gradient(circle, rgba(242, 106, 63, 0.13) 0%, transparent 70%);
-                    }
-                    .gb-method__glow--teal {
-                        bottom: 15%;
-                        right: 8%;
-                        width: 550px;
-                        height: 450px;
-                        background: radial-gradient(circle, rgba(42, 157, 143, 0.12) 0%, transparent 70%);
-                    }
+                    .gb-method__divider--top { top: 0; }
+                    .gb-method__divider--bottom { bottom: 0; }
+                    .gb-method__divider svg { width: 100%; height: 100%; display: block; }
 
                     .gb-method__wrap {
                         max-width: 1240px;
@@ -1862,11 +1863,11 @@
                         z-index: 2;
                     }
 
-                    /* 2. Heading Area */
+                    /* Section Header */
                     .gb-method__head {
                         text-align: center;
-                        max-width: 760px;
-                        margin: 0 auto 64px;
+                        max-width: 780px;
+                        margin: 0 auto 80px;
                         position: relative;
                         z-index: 2;
                     }
@@ -1877,421 +1878,462 @@
                         gap: 8px;
                         padding: 6px 18px;
                         border-radius: 999px;
-                        background: rgba(242, 106, 63, 0.12);
-                        border: 1px solid rgba(242, 106, 63, 0.35);
-                        color: var(--method-orange);
+                        background: var(--tm-orange-subtle);
+                        border: 1px solid var(--tm-orange-border);
+                        color: var(--tm-orange);
                         font-size: 12.5px;
                         font-weight: 700;
-                        letter-spacing: 0.1em;
+                        letter-spacing: 0.12em;
                         text-transform: uppercase;
-                        margin-bottom: 20px;
+                        margin-bottom: 22px;
                     }
                     .gb-method__eyebrow-dot {
                         width: 7px;
                         height: 7px;
                         border-radius: 50%;
-                        background: var(--method-orange);
-                        box-shadow: 0 0 8px var(--method-orange);
+                        background: var(--tm-orange);
+                        box-shadow: 0 0 10px var(--tm-orange);
+                        animation: tmDotPulse 2s ease-in-out infinite alternate;
+                    }
+                    @keyframes tmDotPulse {
+                        0% { transform: scale(0.9); opacity: 0.7; }
+                        100% { transform: scale(1.3); opacity: 1; }
                     }
 
                     .gb-method__title {
-                        font-size: clamp(30px, 3.8vw, 44px);
+                        font-size: clamp(32px, 4vw, 46px);
                         font-weight: 800;
-                        line-height: 1.24;
-                        color: #FFFFFF;
-                        margin: 0 0 16px;
+                        line-height: 1.22;
+                        color: var(--tm-heading);
+                        margin: 0 0 18px;
                         letter-spacing: -0.5px;
                     }
-                    .gb-method__title span.gradient-text {
-                        background: linear-gradient(90deg, #F26A3F 0%, #F5A540 100%);
+                    .gb-method__highlight {
+                        background: linear-gradient(90deg, #FF7048 0%, #FFA07A 100%);
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
                         background-clip: text;
+                        color: var(--tm-orange);
                     }
 
                     .gb-method__sub {
-                        max-width: 620px;
+                        max-width: 640px;
                         margin: 0 auto;
-                        color: var(--method-text-muted);
-                        font-size: 17px;
-                        line-height: 1.7;
-                        text-wrap: balance;
+                        color: var(--tm-desc);
+                        font-size: 17.5px;
+                        line-height: 1.75;
                         font-weight: 400;
+                        text-wrap: balance;
                     }
 
-                    /* 3. Journey Grid (3x2 on desktop) */
-                    .gb-method__grid {
-                        display: grid;
-                        grid-template-columns: repeat(3, minmax(0, 1fr));
-                        gap: 36px 28px;
+                    /* ==========================================================================
+                       Vertical Timeline Spine & Alternating Rows
+                       ========================================================================== */
+                    .gb-timeline {
                         position: relative;
-                        z-index: 2;
+                        max-width: 1140px;
+                        margin: 0 auto;
+                        padding: 20px 0 40px;
                     }
 
-                    /* 3. SVG Track for Desktop Connected Journey */
-                    .gb-method__journey-track {
+                    /* Central Continuous Timeline Track (Spine) */
+                    .gb-timeline__spine {
                         position: absolute;
-                        inset: 0;
-                        width: 100%;
-                        height: 100%;
-                        pointer-events: none;
+                        top: 40px;
+                        bottom: 40px;
+                        left: 50%;
+                        width: 3px;
+                        transform: translateX(-50%);
+                        background: var(--tm-line-track);
+                        border-radius: 3px;
                         z-index: 1;
-                        overflow: visible;
-                    }
-                    .gb-method__journey-svg {
-                        width: 100%;
-                        height: 100%;
-                        display: block;
-                        overflow: visible;
-                    }
-                    .gb-method__path-bg {
-                        stroke: rgba(255, 255, 255, 0.13);
-                        stroke-width: 2px;
-                        stroke-dasharray: 6 6;
-                        fill: none;
-                    }
-                    .gb-method__path-active {
-                        stroke: url(#gbMethodGrad);
-                        stroke-width: 2.5px;
-                        stroke-linecap: round;
-                        stroke-linejoin: round;
-                        fill: none;
-                        transition: stroke-dashoffset 1.8s var(--method-ease);
                     }
 
-                    /* 4. Card Design (Glassmorphism) */
-                    .gb-method__card-wrap {
+                    /* Active Glowing Fill Line */
+                    .gb-timeline__spine-fill {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 0%;
+                        background: linear-gradient(180deg, #FF7048 0%, #FFA07A 50%, #FF7048 100%);
+                        box-shadow: 0 0 14px var(--tm-orange-glow);
+                        border-radius: 3px;
+                        transition: height 0.15s ease-out;
+                    }
+
+                    /* Timeline Stage Row (Alternating Left / Right) */
+                    .gb-timeline__row {
+                        position: relative;
                         display: flex;
-                        min-width: 0;
+                        align-items: center;
+                        margin-bottom: 72px;
+                        z-index: 2;
+                    }
+                    .gb-timeline__row:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    /* Left Row: Card on Left */
+                    .gb-timeline__row--left {
+                        justify-content: flex-start;
+                    }
+
+                    /* Right Row: Card on Right */
+                    .gb-timeline__row--right {
+                        justify-content: flex-end;
+                    }
+
+                    /* Central Milestone Node (Positioned on central spine) */
+                    .gb-timeline__node-wrap {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: 5;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .gb-timeline__node {
+                        width: 46px;
+                        height: 46px;
+                        border-radius: 50%;
+                        background: #0E162B;
+                        border: 2px solid rgba(255, 255, 255, 0.18);
+                        color: rgba(255, 255, 255, 0.55);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 13.5px;
+                        font-weight: 800;
+                        position: relative;
+                        transition: all 0.45s var(--tm-ease);
+                        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+                        user-select: none;
+                    }
+
+                    .gb-timeline__node-num {
                         position: relative;
                         z-index: 2;
                     }
 
-                    .gb-method__card {
-                        background: var(--method-card-bg);
-                        backdrop-filter: blur(14px);
-                        -webkit-backdrop-filter: blur(14px);
-                        border: 1px solid var(--method-border);
+                    /* Active Glowing Node */
+                    .gb-timeline__node.is-active {
+                        background: linear-gradient(135deg, #FF7048 0%, #E85B2F 100%);
+                        border-color: #FF7048;
+                        color: #ffffff;
+                        box-shadow: 0 0 20px var(--tm-orange-glow), 0 0 35px rgba(255, 112, 72, 0.25);
+                        transform: scale(1.08);
+                    }
+
+                    /* Active Pulse Ring */
+                    .gb-timeline__node-pulse {
+                        position: absolute;
+                        inset: -8px;
+                        border-radius: 50%;
+                        border: 2px solid rgba(255, 112, 72, 0.55);
+                        opacity: 0;
+                        pointer-events: none;
+                    }
+                    .gb-timeline__node.is-active .gb-timeline__node-pulse {
+                        animation: tmNodePulse 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+                    }
+
+                    @keyframes tmNodePulse {
+                        0% { transform: scale(0.92); opacity: 0.85; }
+                        50% { transform: scale(1.4); opacity: 0.25; }
+                        100% { transform: scale(1.75); opacity: 0; }
+                    }
+
+                    /* Horizontal Connector Line (from node to card) */
+                    .gb-timeline__connector {
+                        position: absolute;
+                        top: 50%;
+                        height: 2px;
+                        z-index: 3;
+                        pointer-events: none;
+                        transition: background 0.4s var(--tm-ease), box-shadow 0.4s var(--tm-ease);
+                    }
+                    .gb-timeline__row--left .gb-timeline__connector {
+                        right: 50%;
+                        width: 48px;
+                        transform: translateY(-50%);
+                        background: linear-gradient(90deg, rgba(255, 112, 72, 0.7), rgba(255, 112, 72, 0.2));
+                    }
+                    .gb-timeline__row--right .gb-timeline__connector {
+                        left: 50%;
+                        width: 48px;
+                        transform: translateY(-50%);
+                        background: linear-gradient(90deg, rgba(255, 112, 72, 0.2), rgba(255, 112, 72, 0.7));
+                    }
+                    .gb-timeline__row:hover .gb-timeline__connector {
+                        box-shadow: 0 0 8px var(--tm-orange-glow);
+                    }
+
+                    /* ==========================================================================
+                       Content Card Design
+                       ========================================================================== */
+                    .gb-timeline__card-wrap {
+                        width: calc(50% - 48px);
+                        position: relative;
+                        z-index: 2;
+                    }
+
+                    .gb-timeline__card {
+                        background: var(--tm-bg-card);
+                        background: linear-gradient(180deg, #172037 0%, #131A2D 100%);
+                        border: 1px solid var(--tm-border);
                         border-radius: 20px;
-                        padding: 30px 28px 28px;
-                        width: 100%;
+                        overflow: hidden;
+                        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
+                        transition: 
+                            transform 0.45s var(--tm-ease),
+                            border-color 0.45s var(--tm-ease),
+                            box-shadow 0.45s var(--tm-ease);
                         display: flex;
                         flex-direction: column;
                         position: relative;
-                        overflow: hidden;
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.15);
-                        transform: perspective(1000px) translateY(0);
-                        transition: 
-                            transform var(--method-duration) var(--method-ease),
-                            box-shadow var(--method-duration) var(--method-ease),
-                            border-color var(--method-duration) var(--method-ease);
-                        will-change: transform, box-shadow;
                     }
 
-                    /* 4. Top Thin Gradient Line */
-                    .gb-method__card-topbar {
+                    /* Top Accent Gradient Bar */
+                    .gb-timeline__card::before {
+                        content: "";
                         position: absolute;
                         top: 0;
                         left: 0;
                         right: 0;
                         height: 2px;
-                        background: linear-gradient(90deg, var(--method-orange) 0%, var(--method-teal) 100%);
-                        border-radius: 20px 20px 0 0;
-                        opacity: 0.7;
-                        transition: 
-                            height var(--method-duration) var(--method-ease),
-                            opacity var(--method-duration) var(--method-ease),
-                            box-shadow var(--method-duration) var(--method-ease);
+                        background: linear-gradient(90deg, #FF7048 0%, #FFA07A 50%, #2A9D8F 100%);
+                        opacity: 0.65;
                         z-index: 4;
+                        transition: opacity 0.4s var(--tm-ease), height 0.4s var(--tm-ease);
                     }
 
-                    /* 5. Animated Gradient Border on Hover */
-                    .gb-method__card-border {
-                        position: absolute;
-                        inset: 0;
-                        border-radius: inherit;
-                        padding: 1.5px;
-                        background: linear-gradient(135deg, rgba(242, 106, 63, 0.75) 0%, rgba(42, 157, 143, 0.75) 100%);
-                        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-                        -webkit-mask-composite: xor;
-                        mask-composite: exclude;
-                        opacity: 0;
-                        pointer-events: none;
-                        transition: opacity var(--method-duration) var(--method-ease);
-                        z-index: 3;
+                    /* Card Hover Elevation */
+                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+                        .gb-timeline__card:hover {
+                            transform: translateY(-6px);
+                            border-color: var(--tm-border-hover);
+                            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.48), 0 0 30px rgba(255, 112, 72, 0.22);
+                        }
+                        .gb-timeline__card:hover::before {
+                            opacity: 1;
+                            height: 3px;
+                            box-shadow: 0 0 10px rgba(255, 112, 72, 0.5);
+                        }
+                        .gb-timeline__card:hover .gb-timeline__card-img img {
+                            transform: scale(1.05);
+                        }
+                        .gb-timeline__card:hover .gb-timeline__card-arrow {
+                            background: var(--tm-orange);
+                            color: #ffffff;
+                            transform: translate(3px, -3px) rotate(45deg);
+                            box-shadow: 0 4px 14px rgba(255, 112, 72, 0.4);
+                        }
                     }
 
-                    /* 5. Cursor Spotlight Glow Overlay */
-                    .gb-method__card-spotlight {
+                    /* Card Media / Image Container (Wide Top Image) */
+                    .gb-timeline__card-media {
+                        position: relative;
+                        width: 100%;
+                        aspect-ratio: 16 / 9;
+                        max-height: 220px;
+                        overflow: hidden;
+                        background: #0E1628;
+                    }
+
+                    .gb-timeline__card-img {
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
+                        position: relative;
+                    }
+                    .gb-timeline__card-img img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                        transition: transform 0.85s var(--tm-ease);
+                    }
+
+                    /* Gradient Vignette over image */
+                    .gb-timeline__card-media::after {
+                        content: "";
                         position: absolute;
                         inset: 0;
-                        border-radius: inherit;
+                        background: linear-gradient(180deg, rgba(11, 16, 32, 0.1) 0%, rgba(19, 26, 45, 0.75) 100%);
                         pointer-events: none;
-                        background: radial-gradient(350px circle at var(--mx, -500px) var(--my, -500px), rgba(242, 106, 63, 0.15), transparent 70%);
-                        opacity: 0;
-                        transition: opacity var(--method-duration) var(--method-ease);
                         z-index: 1;
                     }
 
-                    /* 4 & 5. Card Header Row */
-                    .gb-method__card-head {
+                    /* Floating Stage Badge on Image */
+                    .gb-timeline__stage-pill {
+                        position: absolute;
+                        top: 16px;
+                        left: 18px;
+                        z-index: 3;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 6px;
+                        padding: 5px 12px;
+                        border-radius: 999px;
+                        background: rgba(11, 16, 32, 0.82);
+                        backdrop-filter: blur(8px);
+                        -webkit-backdrop-filter: blur(8px);
+                        border: 1px solid rgba(255, 112, 72, 0.4);
+                        color: var(--tm-orange);
+                        font-size: 11px;
+                        font-weight: 700;
+                        letter-spacing: 0.1em;
+                        text-transform: uppercase;
+                    }
+
+                    /* Floating Icon Box on Image */
+                    .gb-timeline__icon-box {
+                        position: absolute;
+                        top: 16px;
+                        right: 18px;
+                        z-index: 3;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 10px;
+                        background: rgba(11, 16, 32, 0.82);
+                        backdrop-filter: blur(8px);
+                        -webkit-backdrop-filter: blur(8px);
+                        border: 1px solid rgba(255, 255, 255, 0.15);
+                        color: #FFA07A;
                         display: flex;
                         align-items: center;
-                        justify-content: space-between;
-                        margin-bottom: 22px;
+                        justify-content: center;
+                        font-size: 14.5px;
+                        transition: transform 0.35s var(--tm-ease), background 0.35s var(--tm-ease), color 0.35s var(--tm-ease);
+                    }
+
+                    /* Card Body Content */
+                    .gb-timeline__card-body {
+                        padding: 26px 28px 28px;
                         position: relative;
                         z-index: 2;
                     }
 
-                    .gb-method__node-group {
+                    .gb-timeline__card-header {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+                        gap: 16px;
+                        margin-bottom: 12px;
+                    }
+
+                    .gb-timeline__card-title {
+                        font-size: 21px;
+                        font-weight: 800;
+                        color: var(--tm-heading);
+                        letter-spacing: 0.03em;
+                        text-transform: uppercase;
+                        margin: 0;
+                        line-height: 1.3;
+                    }
+
+                    .gb-timeline__card-arrow {
+                        width: 34px;
+                        height: 34px;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.06);
+                        border: 1px solid rgba(255, 255, 255, 0.12);
+                        color: var(--tm-orange);
                         display: flex;
                         align-items: center;
-                        gap: 14px;
-                    }
-
-                    /* 3. Circular Node on Connector */
-                    .gb-method__node {
-                        width: 38px;
-                        height: 38px;
-                        border-radius: 50%;
-                        background: #0E1630;
-                        border: 2px solid rgba(255, 255, 255, 0.22);
-                        color: rgba(255, 255, 255, 0.6);
-                        display: inline-flex;
-                        align-items: center;
                         justify-content: center;
-                        font-size: 14px;
-                        font-weight: 800;
-                        position: relative;
-                        z-index: 5;
+                        font-size: 12.5px;
                         flex-shrink: 0;
-                        transition: 
-                            background 0.45s var(--method-ease),
-                            border-color 0.45s var(--method-ease),
-                            color 0.45s var(--method-ease),
-                            box-shadow 0.45s var(--method-ease),
-                            transform 0.45s var(--method-ease);
-                    }
-                    .gb-method__node.is-active {
-                        background: linear-gradient(135deg, #F26A3F 0%, #F5A540 100%);
-                        border-color: #F26A3F;
-                        color: #ffffff;
-                        box-shadow: 0 0 16px var(--method-orange-glow);
-                        transform: scale(1.04);
+                        transition: all 0.35s var(--tm-ease);
                     }
 
-                    /* Pulse Ring for Active Nodes */
-                    .gb-method__node-pulse {
+                    .gb-timeline__card-desc {
+                        color: var(--tm-desc);
+                        font-size: 15.5px;
+                        line-height: 1.72;
+                        margin: 0;
+                        font-weight: 400;
+                    }
+
+                    /* ==========================================================================
+                       Final CTA Strip (Concluding the Timeline)
+                       ========================================================================== */
+                    .gb-timeline__cta {
+                        position: relative;
+                        text-align: center;
+                        margin-top: 80px;
+                        padding-top: 40px;
+                        z-index: 2;
+                    }
+
+                    /* Connecting End Node on spine leading into CTA */
+                    .gb-timeline__end-node {
+                        width: 18px;
+                        height: 18px;
+                        border-radius: 50%;
+                        background: var(--tm-orange);
+                        box-shadow: 0 0 16px var(--tm-orange);
+                        margin: 0 auto 36px;
+                        position: relative;
+                    }
+                    .gb-timeline__end-node::after {
+                        content: "";
                         position: absolute;
                         inset: -6px;
                         border-radius: 50%;
-                        border: 1.5px solid rgba(242, 106, 63, 0.5);
-                        opacity: 0;
-                        pointer-events: none;
-                    }
-                    .gb-method__node.is-active .gb-method__node-pulse {
-                        animation: methodPulseRing 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+                        border: 1.5px solid rgba(255, 112, 72, 0.4);
+                        animation: tmDotPulse 2s ease-in-out infinite alternate;
                     }
 
-                    @keyframes methodPulseRing {
-                        0% { transform: scale(0.92); opacity: 0.85; }
-                        50% { transform: scale(1.35); opacity: 0.25; }
-                        100% { transform: scale(1.6); opacity: 0; }
+                    .gb-timeline__cta-wrap {
+                        display: inline-flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 16px;
                     }
 
-                    /* 4. Display Number: Outlined shifting to Filled Gradient */
-                    .gb-method__display-num {
-                        font-size: 34px;
-                        font-weight: 900;
-                        line-height: 1;
-                        letter-spacing: -1px;
-                        color: transparent;
-                        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35);
-                        font-family: 'DM Sans', sans-serif;
-                        transition: all var(--method-duration) var(--method-ease);
-                        user-select: none;
+                    .gb-timeline__cta-text {
+                        color: var(--tm-heading);
+                        font-size: 19px;
+                        font-weight: 700;
+                        letter-spacing: -0.2px;
                     }
 
-                    .gb-method__meta-group {
-                        display: flex;
+                    .gb-timeline__cta-btn {
+                        position: relative;
+                        display: inline-flex;
                         align-items: center;
                         gap: 10px;
-                    }
-
-                    /* 4. Stage Pill */
-                    .gb-method__stage-pill {
-                        display: inline-block;
-                        padding: 4px 11px;
+                        padding: 12px 28px;
                         border-radius: 999px;
-                        background: rgba(242, 106, 63, 0.1);
-                        border: 1px solid rgba(242, 106, 63, 0.45);
-                        color: var(--method-orange);
-                        font-size: 11px;
-                        font-weight: 700;
-                        letter-spacing: 0.08em;
-                        text-transform: uppercase;
-                        white-space: nowrap;
-                    }
-
-                    /* 4. Small line icon in rounded square */
-                    .gb-method__icon-box {
-                        width: 42px;
-                        height: 42px;
-                        border-radius: 12px;
-                        background: rgba(255, 255, 255, 0.05);
-                        border: 1px solid rgba(255, 255, 255, 0.12);
-                        color: var(--method-teal);
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 18px;
-                        transition: 
-                            transform var(--method-duration) var(--method-ease),
-                            background var(--method-duration) var(--method-ease),
-                            color var(--method-duration) var(--method-ease),
-                            border-color var(--method-duration) var(--method-ease),
-                            box-shadow var(--method-duration) var(--method-ease);
-                        flex-shrink: 0;
-                    }
-
-                    /* 4. Title & Description Typography */
-                    .gb-method__card-title {
-                        font-size: 20px;
-                        font-weight: 800;
-                        color: #FFFFFF;
-                        letter-spacing: 0.04em;
-                        margin: 0 0 10px;
-                        text-transform: uppercase;
-                        position: relative;
-                        z-index: 2;
-                    }
-
-                    .gb-method__card-desc {
-                        font-size: 15px;
-                        line-height: 1.7;
-                        color: var(--method-text-muted);
-                        margin: 0;
-                        font-weight: 400;
-                        position: relative;
-                        z-index: 2;
-                    }
-
-                    /* 5. Desktop Card Hover Effects */
-                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-                        .gb-method__card:hover {
-                            transform: translateY(-8px);
-                            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 28px var(--method-orange-glow);
-                        }
-
-                        .gb-method__card:hover .gb-method__card-topbar {
-                            height: 3.5px;
-                            opacity: 1;
-                            box-shadow: 0 0 12px rgba(242, 106, 63, 0.6);
-                        }
-
-                        .gb-method__card:hover .gb-method__card-border {
-                            opacity: 1;
-                        }
-
-                        .gb-method__card:hover .gb-method__card-spotlight {
-                            opacity: 1;
-                        }
-
-                        .gb-method__card:hover .gb-method__icon-box {
-                            transform: scale(1.08);
-                            background: linear-gradient(135deg, var(--method-orange) 0%, var(--method-teal) 100%);
-                            border-color: transparent;
-                            color: #ffffff;
-                            box-shadow: 0 6px 18px rgba(242, 106, 63, 0.35);
-                        }
-
-                        .gb-method__card:hover .gb-method__display-num {
-                            -webkit-text-stroke: 0px;
-                            background: linear-gradient(135deg, #F26A3F 0%, #F5A540 100%);
-                            -webkit-background-clip: text;
-                            -webkit-text-fill-color: transparent;
-                        }
-                    }
-
-                    /* Touch devices: clean active state */
-                    @media (hover: none) or (pointer: coarse) {
-                        .gb-method__card:active {
-                            transform: scale(0.985);
-                            box-shadow: 0 8px 24px var(--method-orange-glow);
-                        }
-                    }
-
-                    /* 7. Bottom CTA Strip */
-                    .gb-method__cta {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 18px;
-                        margin-top: 60px;
-                        position: relative;
-                        z-index: 2;
-                    }
-
-                    .gb-method__cta-text {
-                        color: rgba(255, 255, 255, 0.88);
-                        font-size: 16.5px;
-                        font-weight: 500;
-                        letter-spacing: -0.1px;
-                    }
-
-                    .gb-method__cta-btn {
-                        position: relative;
-                        overflow: hidden;
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 8px;
-                        padding: 10px 24px;
-                        border-radius: 999px;
-                        background: linear-gradient(135deg, #F26A3F 0%, #E85B2F 100%);
+                        background: linear-gradient(135deg, #FF7048 0%, #E85B2F 100%);
                         color: #ffffff !important;
-                        font-size: 14.5px;
+                        font-size: 15px;
                         font-weight: 700;
                         text-decoration: none;
-                        box-shadow: 0 4px 20px rgba(242, 106, 63, 0.4);
-                        transition: 
-                            transform var(--method-duration) var(--method-ease),
-                            box-shadow var(--method-duration) var(--method-ease),
-                            background var(--method-duration) var(--method-ease);
+                        box-shadow: 0 8px 24px rgba(255, 112, 72, 0.38);
+                        transition: transform 0.35s var(--tm-ease), box-shadow 0.35s var(--tm-ease), background 0.35s var(--tm-ease);
+                    }
+                    .gb-timeline__cta-btn i {
+                        font-size: 13.5px;
+                        transition: transform 0.35s var(--tm-ease);
+                    }
+                    .gb-timeline__cta-btn:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 14px 34px rgba(255, 112, 72, 0.52);
+                        background: linear-gradient(135deg, #FF5B2C 0%, #D84F25 100%);
+                    }
+                    .gb-timeline__cta-btn:hover i {
+                        transform: translate(2px, -2px);
                     }
 
-                    .gb-method__cta-btn i {
-                        font-size: 13px;
-                        transition: transform var(--method-duration) var(--method-ease);
-                    }
-
-                    .gb-method__cta-btn::before {
-                        content: "";
-                        position: absolute;
-                        top: -50%;
-                        left: -60%;
-                        width: 40%;
-                        height: 200%;
-                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-                        transform: rotate(25deg);
-                        transition: left 0.75s var(--method-ease);
-                        pointer-events: none;
-                    }
-
-                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-                        .gb-method__cta-btn:hover {
-                            transform: translateY(-2px);
-                            box-shadow: 0 8px 28px rgba(242, 106, 63, 0.55);
-                            background: linear-gradient(135deg, #CC4A22 0%, #E85B2F 100%);
-                        }
-                        .gb-method__cta-btn:hover::before {
-                            left: 140%;
-                        }
-                        .gb-method__cta-btn:hover i {
-                            transform: translate(2px, -2px);
-                        }
-                    }
-
-                    /* 6. Dynamic Scroll Reveal & Directional Entrance Animations */
+                    /* ==========================================================================
+                       Directional Animations
+                       ========================================================================== */
                     @media (prefers-reduced-motion: no-preference) {
                         .gb-method .wow {
                             visibility: hidden;
@@ -2304,220 +2346,280 @@
                             animation-fill-mode: both;
                         }
                         .gb-method .wow.fadeInLeft.animated {
-                            animation-name: gbMethodFromLeft !important;
+                            animation-name: gbTimelineFromLeft !important;
                         }
                         .gb-method .wow.fadeInRight.animated {
-                            animation-name: gbMethodFromRight !important;
+                            animation-name: gbTimelineFromRight !important;
                         }
                         .gb-method .wow.fadeInUp.animated {
-                            animation-name: gbMethodFromUp !important;
-                        }
-                        .gb-method .wow.fadeInUp.animated[style*="fadeInDown"] {
-                            animation-name: gbMethodFromDown !important;
+                            animation-name: gbTimelineFromUp !important;
                         }
 
-                        @keyframes gbMethodFromLeft {
-                            0% {
-                                opacity: 0;
-                                transform: translate3d(-50px, 0, 0);
-                            }
-                            100% {
-                                opacity: 1;
-                                transform: translate3d(0, 0, 0);
-                            }
+                        @keyframes gbTimelineFromLeft {
+                            0% { opacity: 0; transform: translate3d(-50px, 0, 0); }
+                            100% { opacity: 1; transform: translate3d(0, 0, 0); }
                         }
-                        @keyframes gbMethodFromRight {
-                            0% {
-                                opacity: 0;
-                                transform: translate3d(50px, 0, 0);
-                            }
-                            100% {
-                                opacity: 1;
-                                transform: translate3d(0, 0, 0);
-                            }
+                        @keyframes gbTimelineFromRight {
+                            0% { opacity: 0; transform: translate3d(50px, 0, 0); }
+                            100% { opacity: 1; transform: translate3d(0, 0, 0); }
                         }
-                        @keyframes gbMethodFromUp {
-                            0% {
-                                opacity: 0;
-                                transform: translate3d(0, 38px, 0);
-                            }
-                            100% {
-                                opacity: 1;
-                                transform: translate3d(0, 0, 0);
-                            }
-                        }
-                        @keyframes gbMethodFromDown {
-                            0% {
-                                opacity: 0;
-                                transform: translate3d(0, -38px, 0);
-                            }
-                            100% {
-                                opacity: 1;
-                                transform: translate3d(0, 0, 0);
-                            }
-                        }
-
-                        @media (max-width: 767px) {
-                            .gb-method .wow.fadeInLeft.animated,
-                            .gb-method .wow.fadeInRight.animated {
-                                animation-name: gbMethodFromUp !important;
-                            }
+                        @keyframes gbTimelineFromUp {
+                            0% { opacity: 0; transform: translate3d(0, 36px, 0); }
+                            100% { opacity: 1; transform: translate3d(0, 0, 0); }
                         }
                     }
 
-                    /* 8. Accessibility: Keyboard focus-visible */
-                    .gb-method__card:focus-visible,
-                    .gb-method__cta-btn:focus-visible {
-                        outline: 2px solid var(--method-orange) !important;
-                        outline-offset: 3px !important;
-                    }
-
-                    /* 8. Responsive Design & Mobile Vertical Timeline (< 992px) */
-                    @media (max-width: 991px) {
+                    /* ==========================================================================
+                       Responsive Adaptations (Tablet & Mobile - Strict Alternating Left/Right)
+                       ========================================================================== */
+                    /* Tablet (768px - 1023px): Alternating Left/Right Timeline */
+                    @media (min-width: 768px) and (max-width: 1023px) {
                         .gb-method {
                             padding: 100px 0 90px;
                         }
                         .gb-method__head {
-                            margin-bottom: 48px;
+                            margin-bottom: 64px;
                         }
-                        .gb-method__journey-track {
-                            display: none !important;
+                        .gb-timeline__card-wrap {
+                            width: calc(50% - 36px);
                         }
-                        .gb-method__grid {
-                            grid-template-columns: 1fr;
-                            gap: 24px;
-                            position: relative;
-                            padding-left: 56px;
+                        .gb-timeline__row--left .gb-timeline__connector,
+                        .gb-timeline__row--right .gb-timeline__connector {
+                            width: 36px;
                         }
-                        /* Vertical timeline line on mobile */
-                        .gb-method__grid::before {
-                            content: "";
-                            position: absolute;
-                            top: 40px;
-                            bottom: 40px;
-                            left: 20px;
-                            width: 2px;
-                            background: linear-gradient(180deg, #F26A3F 0%, #F5A540 50%, #2A9D8F 100%);
-                            opacity: 0.75;
-                            border-radius: 2px;
-                            z-index: 1;
+                        .gb-timeline__card-media {
+                            max-height: 185px;
                         }
-                        /* Mobile layout: Card allows node to float outside without clipping */
-                        .gb-method__card-wrap {
-                            position: relative;
+                        .gb-timeline__card-body {
+                            padding: 22px 20px 24px;
                         }
-                        .gb-method__card {
-                            overflow: visible !important;
-                            padding: 26px 22px;
+                        .gb-timeline__card-title {
+                            font-size: 19px;
                         }
-                        .gb-method__node {
-                            position: absolute;
-                            left: -54px;
-                            top: 26px;
-                            z-index: 6;
-                        }
-                        /* Subtle connector tick from node to card */
-                        .gb-method__node::after {
-                            content: "";
-                            position: absolute;
-                            top: 50%;
-                            right: -16px;
-                            width: 16px;
-                            height: 1.5px;
-                            background: rgba(242, 106, 63, 0.4);
-                            pointer-events: none;
-                        }
-                        .gb-method__glow--orange {
-                            width: 350px;
-                            height: 350px;
-                            left: -10%;
-                        }
-                        .gb-method__glow--teal {
-                            width: 350px;
-                            height: 350px;
-                            right: -10%;
+                        .gb-timeline__card-desc {
+                            font-size: 14.5px;
                         }
                     }
 
-                    @media (max-width: 480px) {
+                    /* Phablet / Large Mobile (481px - 767px): Alternating Left/Right */
+                    @media (min-width: 481px) and (max-width: 767px) {
                         .gb-method {
                             padding: 85px 0 75px;
                         }
-                        .gb-method__grid {
-                            padding-left: 48px;
+                        .gb-method__wrap {
+                            padding: 0 12px;
                         }
-                        .gb-method__grid::before {
-                            left: 17px;
+                        .gb-method__head {
+                            margin-bottom: 50px;
                         }
-                        .gb-method__node {
-                            left: -48px;
-                            width: 34px;
-                            height: 34px;
-                            font-size: 13px;
-                            top: 22px;
+                        .gb-method__title {
+                            font-size: clamp(26px, 6vw, 34px);
                         }
-                        .gb-method__node::after {
-                            right: -14px;
-                            width: 14px;
+                        .gb-timeline__row {
+                            margin-bottom: 44px;
                         }
-                        .gb-method__display-num {
-                            font-size: 28px;
-                        }
-                        .gb-method__icon-box {
+                        .gb-timeline__node {
                             width: 36px;
                             height: 36px;
-                            font-size: 16px;
+                            font-size: 12px;
                         }
-                        .gb-method__card {
-                            padding: 20px 16px;
+                        .gb-timeline__card-wrap {
+                            width: calc(50% - 24px);
                         }
-                        .gb-method__card-title {
-                            font-size: 18px;
+                        .gb-timeline__row--left .gb-timeline__connector,
+                        .gb-timeline__row--right .gb-timeline__connector {
+                            width: 24px;
                         }
-                        .gb-method__card-desc {
-                            font-size: 14px;
+                        .gb-timeline__card-media {
+                            max-height: 135px;
                         }
-                        .gb-method__cta {
-                            flex-direction: column;
-                            gap: 12px;
-                            text-align: center;
-                            margin-top: 48px;
+                        .gb-timeline__card-body {
+                            padding: 16px 14px 18px;
+                        }
+                        .gb-timeline__card-title {
+                            font-size: 15.5px;
+                        }
+                        .gb-timeline__card-desc {
+                            font-size: 13px;
+                            line-height: 1.6;
                         }
                     }
 
-                    /* Reduced Motion Calm Fallback */
+                    /* Compact Smartphone (320px - 480px): Alternating Left/Right Timeline */
+                    @media (max-width: 480px) {
+                        .gb-method {
+                            padding: 75px 0 65px;
+                        }
+                        .gb-method__wrap {
+                            padding: 0 8px;
+                        }
+                        .gb-method__head {
+                            margin-bottom: 42px;
+                        }
+                        .gb-method__eyebrow {
+                            margin-bottom: 14px;
+                            font-size: 10.5px;
+                            padding: 4px 12px;
+                        }
+                        .gb-method__title {
+                            font-size: 24px;
+                            line-height: 1.25;
+                            margin-bottom: 12px;
+                        }
+                        .gb-method__sub {
+                            font-size: 14px;
+                            line-height: 1.6;
+                        }
+
+                        /* Central timeline spine */
+                        .gb-timeline {
+                            padding: 10px 0 20px;
+                        }
+                        .gb-timeline__spine {
+                            left: 50%;
+                            transform: translateX(-50%);
+                            top: 20px;
+                            bottom: 50px;
+                            width: 2.5px;
+                        }
+
+                        /* Alternating rows */
+                        .gb-timeline__row {
+                            margin-bottom: 34px;
+                            position: relative;
+                        }
+                        .gb-timeline__row:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        /* Milestone Node in Center */
+                        .gb-timeline__node-wrap {
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            z-index: 5;
+                        }
+                        .gb-timeline__node {
+                            width: 30px;
+                            height: 30px;
+                            font-size: 10.5px;
+                            border-width: 1.5px;
+                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+                        }
+
+                        /* Horizontal connector from center node to card */
+                        .gb-timeline__connector {
+                            height: 1.5px;
+                        }
+                        .gb-timeline__row--left .gb-timeline__connector {
+                            right: 50%;
+                            width: 22px;
+                            transform: translateY(-50%);
+                        }
+                        .gb-timeline__row--right .gb-timeline__connector {
+                            left: 50%;
+                            width: 22px;
+                            transform: translateY(-50%);
+                        }
+
+                        /* Alternating card width on compact screen */
+                        .gb-timeline__card-wrap {
+                            width: calc(50% - 22px);
+                        }
+                        .gb-timeline__card {
+                            border-radius: 13px;
+                            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+                        }
+
+                        /* Card Media */
+                        .gb-timeline__card-media {
+                            max-height: 95px;
+                            aspect-ratio: 16 / 10;
+                        }
+                        .gb-timeline__stage-pill {
+                            top: 6px;
+                            left: 6px;
+                            font-size: 8.5px;
+                            padding: 2px 6px;
+                            letter-spacing: 0.05em;
+                        }
+                        .gb-timeline__icon-box {
+                            top: 6px;
+                            right: 6px;
+                            width: 24px;
+                            height: 24px;
+                            font-size: 10px;
+                            border-radius: 6px;
+                        }
+
+                        /* Card Body */
+                        .gb-timeline__card-body {
+                            padding: 10px 8px 12px;
+                        }
+                        .gb-timeline__card-header {
+                            margin-bottom: 5px;
+                            gap: 6px;
+                        }
+                        .gb-timeline__card-title {
+                            font-size: 13px;
+                            letter-spacing: 0.02em;
+                        }
+                        .gb-timeline__card-arrow {
+                            width: 20px;
+                            height: 20px;
+                            font-size: 8.5px;
+                        }
+                        .gb-timeline__card-desc {
+                            font-size: 11px;
+                            line-height: 1.52;
+                        }
+
+                        /* Final CTA on small screens */
+                        .gb-timeline__cta {
+                            margin-top: 42px;
+                            padding-top: 20px;
+                        }
+                        .gb-timeline__cta-text {
+                            font-size: 16px;
+                        }
+                        .gb-timeline__cta-btn {
+                            padding: 10px 22px;
+                            font-size: 13.5px;
+                        }
+                    }
+
+                    /* Accessibility: Keyboard focus-visible & Reduced Motion */
+                    .gb-timeline__card:focus-visible,
+                    .gb-timeline__cta-btn:focus-visible {
+                        outline: 2px solid var(--tm-orange) !important;
+                        outline-offset: 3px !important;
+                    }
                     @media (prefers-reduced-motion: reduce) {
-                        .gb-method__reveal-head,
-                        .gb-method__reveal-card,
-                        .gb-method__reveal-cta,
-                        .gb-method__card,
-                        .gb-method__card-topbar,
-                        .gb-method__card-border,
-                        .gb-method__card-spotlight,
-                        .gb-method__icon-box,
-                        .gb-method__display-num,
-                        .gb-method__node,
-                        .gb-method__node.is-active,
-                        .gb-method__node-pulse,
-                        .gb-method__cta-btn,
-                        .gb-method__cta-btn::before,
-                        .gb-method__cta-btn i,
-                        .gb-method__path-active {
+                        .gb-timeline__card,
+                        .gb-timeline__card-img img,
+                        .gb-timeline__card-arrow,
+                        .gb-timeline__node,
+                        .gb-timeline__spine-fill,
+                        .gb-timeline__cta-btn {
                             transition: none !important;
                             animation: none !important;
                             transform: none !important;
                             opacity: 1 !important;
-                            stroke-dashoffset: 0 !important;
                         }
-                        .gb-method__node {
-                            background: linear-gradient(135deg, #F26A3F 0%, #F5A540 100%) !important;
-                            border-color: #F26A3F !important;
+                        .gb-timeline__node {
+                            background: linear-gradient(135deg, #FF7048 0%, #E85B2F 100%) !important;
+                            border-color: #FF7048 !important;
                             color: #ffffff !important;
+                        }
+                        .gb-timeline__spine-fill {
+                            height: 100% !important;
                         }
                     }
                 </style>
+
                 <section class="gb-method" id="methodology">
-                    <!-- 1. Smooth Curved Top & Bottom Dividers -->
+                    <!-- Smooth Curved Top & Bottom Dividers -->
                     <div class="gb-method__divider gb-method__divider--top" aria-hidden="true">
                         <svg viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0,0 L1440,0 L1440,14 Q720,48 0,14 Z" fill="#F8F9FA"></path>
@@ -2529,218 +2631,242 @@
                         </svg>
                     </div>
 
-                    <!-- 1. Background Depth Glows -->
+                    <!-- Atmospheric Glows -->
+                    <div class="gb-method__glow gb-method__glow--top" aria-hidden="true"></div>
                     <div class="gb-method__glow gb-method__glow--orange" aria-hidden="true"></div>
-                    <div class="gb-method__glow gb-method__glow--teal" aria-hidden="true"></div>
+                    <div class="gb-method__glow gb-method__glow--bottom" aria-hidden="true"></div>
 
                     <div class="gb-method__wrap">
-                        <!-- 2. Centered Heading Area -->
+                        <!-- Section Header -->
                         <div class="gb-method__head wow fadeInUp" data-wow-delay=".1s">
                             <div class="gb-method__eyebrow">
                                 <span class="gb-method__eyebrow-dot" aria-hidden="true"></span>
-                                <span>Our Method</span>
+                                <span>OUR METHOD</span>
                             </div>
                             <h2 class="gb-method__title">
-                                From Discovery to a <span class="gradient-text">Practical Action Plan.</span>
+                                From Discovery to a <span class="gb-method__highlight">Practical Action Plan.</span>
                             </h2>
                             <p class="gb-method__sub">
                                 A structured 6-stage engagement designed to minimise disruption and maximise clarity.
                             </p>
                         </div>
 
-                        <!-- 3. Journey Grid -->
-                        <div class="gb-method__grid">
-                            <!-- SVG track for connecting journey line on desktop -->
-                            <div class="gb-method__journey-track" aria-hidden="true">
-                                <svg class="gb-method__journey-svg" viewBox="0 0 1200 560" preserveAspectRatio="none">
-                                    <defs>
-                                        <linearGradient id="gbMethodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" stop-color="#F26A3F" />
-                                            <stop offset="50%" stop-color="#F5A540" />
-                                            <stop offset="100%" stop-color="#2A9D8F" />
-                                        </linearGradient>
-                                    </defs>
-                                    <path class="gb-method__path-bg" d="M 64,52 L 460,52 L 856,52 L 1202,52 Q 1220,52 1220,70 L 1220,248 Q 1220,266 1202,266 L -2,266 Q -20,266 -20,284 L -20,322 Q -20,340 -2,340 L 64,340 L 460,340 L 856,340" />
-                                    <path class="gb-method__path-active" d="M 64,52 L 460,52 L 856,52 L 1202,52 Q 1220,52 1220,70 L 1220,248 Q 1220,266 1202,266 L -2,266 Q -20,266 -20,284 L -20,322 Q -20,340 -2,340 L 64,340 L 460,340 L 856,340" />
-                                </svg>
+                        <!-- Premium Interactive Vertical Timeline -->
+                        <div class="gb-timeline">
+                            <!-- Central Spine Track -->
+                            <div class="gb-timeline__spine" aria-hidden="true">
+                                <div class="gb-timeline__spine-fill"></div>
                             </div>
 
-                            <!-- Stage 01: DISCOVER -->
-                            <div class="gb-method__card-wrap wow fadeInLeft" data-wow-delay=".15s">
-                                <article class="gb-method__card" data-stage="1">
-                                    <div class="gb-method__card-topbar" aria-hidden="true"></div>
-                                    <div class="gb-method__card-border" aria-hidden="true"></div>
-                                    <div class="gb-method__card-spotlight" aria-hidden="true"></div>
-
-                                    <div class="gb-method__card-head">
-                                        <div class="gb-method__node-group">
-                                            <div class="gb-method__node" data-stage="1" aria-label="Stage 1">
-                                                <span class="gb-method__node-num">1</span>
-                                                <span class="gb-method__node-pulse" aria-hidden="true"></span>
+                            <!-- STAGE 01: DISCOVER (Left) -->
+                            <div class="gb-timeline__row gb-timeline__row--left">
+                                <div class="gb-timeline__card-wrap wow fadeInLeft" data-wow-delay=".15s">
+                                    <article class="gb-timeline__card" data-stage="1">
+                                        <div class="gb-timeline__card-media">
+                                            <div class="gb-timeline__card-img">
+                                                <img loading="lazy" decoding="async" src="assets/img/inner/faq-consultation.jpg" alt="Stage 01 Discover - Corporate Consultation and Strategy Meeting">
                                             </div>
-                                            <span class="gb-method__display-num">01</span>
-                                        </div>
-                                        <div class="gb-method__meta-group">
-                                            <span class="gb-method__stage-pill">STAGE 1</span>
-                                            <div class="gb-method__icon-box">
+                                            <span class="gb-timeline__stage-pill">STAGE 01</span>
+                                            <div class="gb-timeline__icon-box" aria-hidden="true">
                                                 <i class="fa-solid fa-compass"></i>
                                             </div>
                                         </div>
+                                        <div class="gb-timeline__card-body">
+                                            <div class="gb-timeline__card-header">
+                                                <h3 class="gb-timeline__card-title">DISCOVER</h3>
+                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
+                                                    <i class="fa-solid fa-arrow-up-right"></i>
+                                                </span>
+                                            </div>
+                                            <p class="gb-timeline__card-desc">Understand business context, workforce profile, operating locations, and primary leadership concerns.</p>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="gb-timeline__connector" aria-hidden="true"></div>
+                                <div class="gb-timeline__node-wrap">
+                                    <div class="gb-timeline__node" data-stage="1" aria-label="Stage 1">
+                                        <span class="gb-timeline__node-num">01</span>
+                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
                                     </div>
-
-                                    <h3 class="gb-method__card-title">DISCOVER</h3>
-                                    <p class="gb-method__card-desc">Understand business context, workforce profile, operating locations, and primary leadership concerns.</p>
-                                </article>
+                                </div>
                             </div>
 
-                            <!-- Stage 02: COLLECT -->
-                            <div class="gb-method__card-wrap wow fadeInUp" data-wow-delay=".3s">
-                                <article class="gb-method__card" data-stage="2">
-                                    <div class="gb-method__card-topbar" aria-hidden="true"></div>
-                                    <div class="gb-method__card-border" aria-hidden="true"></div>
-                                    <div class="gb-method__card-spotlight" aria-hidden="true"></div>
-
-                                    <div class="gb-method__card-head">
-                                        <div class="gb-method__node-group">
-                                            <div class="gb-method__node" data-stage="2" aria-label="Stage 2">
-                                                <span class="gb-method__node-num">2</span>
-                                                <span class="gb-method__node-pulse" aria-hidden="true"></span>
+                            <!-- STAGE 02: COLLECT (Right) -->
+                            <div class="gb-timeline__row gb-timeline__row--right">
+                                <div class="gb-timeline__connector" aria-hidden="true"></div>
+                                <div class="gb-timeline__node-wrap">
+                                    <div class="gb-timeline__node" data-stage="2" aria-label="Stage 2">
+                                        <span class="gb-timeline__node-num">02</span>
+                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="gb-timeline__card-wrap wow fadeInRight" data-wow-delay=".2s">
+                                    <article class="gb-timeline__card" data-stage="2">
+                                        <div class="gb-timeline__card-media">
+                                            <div class="gb-timeline__card-img">
+                                                <img loading="lazy" decoding="async" src="assets/img/inner/service-details-01.jpg" alt="Stage 02 Collect - Documentation, Records & Policy Evidence">
                                             </div>
-                                            <span class="gb-method__display-num">02</span>
-                                        </div>
-                                        <div class="gb-method__meta-group">
-                                            <span class="gb-method__stage-pill">STAGE 2</span>
-                                            <div class="gb-method__icon-box">
+                                            <span class="gb-timeline__stage-pill">STAGE 02</span>
+                                            <div class="gb-timeline__icon-box" aria-hidden="true">
                                                 <i class="fa-solid fa-folder-open"></i>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <h3 class="gb-method__card-title">COLLECT</h3>
-                                    <p class="gb-method__card-desc">Request and gather relevant personnel records, policies, statutory registers, and process evidence.</p>
-                                </article>
+                                        <div class="gb-timeline__card-body">
+                                            <div class="gb-timeline__card-header">
+                                                <h3 class="gb-timeline__card-title">COLLECT</h3>
+                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
+                                                    <i class="fa-solid fa-arrow-up-right"></i>
+                                                </span>
+                                            </div>
+                                            <p class="gb-timeline__card-desc">Request and gather relevant personnel records, policies, statutory registers, and process evidence.</p>
+                                        </div>
+                                    </article>
+                                </div>
                             </div>
 
-                            <!-- Stage 03: REVIEW -->
-                            <div class="gb-method__card-wrap wow fadeInRight" data-wow-delay=".45s">
-                                <article class="gb-method__card" data-stage="3">
-                                    <div class="gb-method__card-topbar" aria-hidden="true"></div>
-                                    <div class="gb-method__card-border" aria-hidden="true"></div>
-                                    <div class="gb-method__card-spotlight" aria-hidden="true"></div>
-
-                                    <div class="gb-method__card-head">
-                                        <div class="gb-method__node-group">
-                                            <div class="gb-method__node" data-stage="3" aria-label="Stage 3">
-                                                <span class="gb-method__node-num">3</span>
-                                                <span class="gb-method__node-pulse" aria-hidden="true"></span>
+                            <!-- STAGE 03: REVIEW (Left) -->
+                            <div class="gb-timeline__row gb-timeline__row--left">
+                                <div class="gb-timeline__card-wrap wow fadeInLeft" data-wow-delay=".25s">
+                                    <article class="gb-timeline__card" data-stage="3">
+                                        <div class="gb-timeline__card-media">
+                                            <div class="gb-timeline__card-img">
+                                                <img loading="lazy" decoding="async" src="assets/img/home-1/hero-audit.jpg" alt="Stage 03 Review - Testing Data Samples & Gap Analysis">
                                             </div>
-                                            <span class="gb-method__display-num">03</span>
-                                        </div>
-                                        <div class="gb-method__meta-group">
-                                            <span class="gb-method__stage-pill">STAGE 3</span>
-                                            <div class="gb-method__icon-box">
+                                            <span class="gb-timeline__stage-pill">STAGE 03</span>
+                                            <div class="gb-timeline__icon-box" aria-hidden="true">
                                                 <i class="fa-solid fa-clipboard-check"></i>
                                             </div>
                                         </div>
+                                        <div class="gb-timeline__card-body">
+                                            <div class="gb-timeline__card-header">
+                                                <h3 class="gb-timeline__card-title">REVIEW</h3>
+                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
+                                                    <i class="fa-solid fa-arrow-up-right"></i>
+                                                </span>
+                                            </div>
+                                            <p class="gb-timeline__card-desc">Test data samples, compare written documents to actual daily practice, and identify gaps or inconsistencies.</p>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="gb-timeline__connector" aria-hidden="true"></div>
+                                <div class="gb-timeline__node-wrap">
+                                    <div class="gb-timeline__node" data-stage="3" aria-label="Stage 3">
+                                        <span class="gb-timeline__node-num">03</span>
+                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
                                     </div>
-
-                                    <h3 class="gb-method__card-title">REVIEW</h3>
-                                    <p class="gb-method__card-desc">Test data samples, compare written documents to actual daily practice, and identify gaps or inconsistencies.</p>
-                                </article>
+                                </div>
                             </div>
 
-                            <!-- Stage 04: PRIORITISE -->
-                            <div class="gb-method__card-wrap wow fadeInLeft" data-wow-delay=".2s">
-                                <article class="gb-method__card" data-stage="4">
-                                    <div class="gb-method__card-topbar" aria-hidden="true"></div>
-                                    <div class="gb-method__card-border" aria-hidden="true"></div>
-                                    <div class="gb-method__card-spotlight" aria-hidden="true"></div>
-
-                                    <div class="gb-method__card-head">
-                                        <div class="gb-method__node-group">
-                                            <div class="gb-method__node" data-stage="4" aria-label="Stage 4">
-                                                <span class="gb-method__node-num">4</span>
-                                                <span class="gb-method__node-pulse" aria-hidden="true"></span>
+                            <!-- STAGE 04: PRIORITISE (Right) -->
+                            <div class="gb-timeline__row gb-timeline__row--right">
+                                <div class="gb-timeline__connector" aria-hidden="true"></div>
+                                <div class="gb-timeline__node-wrap">
+                                    <div class="gb-timeline__node" data-stage="4" aria-label="Stage 4">
+                                        <span class="gb-timeline__node-num">04</span>
+                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="gb-timeline__card-wrap wow fadeInRight" data-wow-delay=".3s">
+                                    <article class="gb-timeline__card" data-stage="4">
+                                        <div class="gb-timeline__card-media">
+                                            <div class="gb-timeline__card-img">
+                                                <img loading="lazy" decoding="async" src="assets/img/inner/about-hero-team.jpg" alt="Stage 04 Prioritise - Strategic Classification & Action Planning">
                                             </div>
-                                            <span class="gb-method__display-num">04</span>
-                                        </div>
-                                        <div class="gb-method__meta-group">
-                                            <span class="gb-method__stage-pill">STAGE 4</span>
-                                            <div class="gb-method__icon-box">
+                                            <span class="gb-timeline__stage-pill">STAGE 04</span>
+                                            <div class="gb-timeline__icon-box" aria-hidden="true">
                                                 <i class="fa-solid fa-layer-group"></i>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <h3 class="gb-method__card-title">PRIORITISE</h3>
-                                    <p class="gb-method__card-desc">Classify observations by regulatory impact, business urgency, and practical effort required to resolve.</p>
-                                </article>
+                                        <div class="gb-timeline__card-body">
+                                            <div class="gb-timeline__card-header">
+                                                <h3 class="gb-timeline__card-title">PRIORITISE</h3>
+                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
+                                                    <i class="fa-solid fa-arrow-up-right"></i>
+                                                </span>
+                                            </div>
+                                            <p class="gb-timeline__card-desc">Classify observations by regulatory impact, business urgency, and practical effort required to resolve.</p>
+                                        </div>
+                                    </article>
+                                </div>
                             </div>
 
-                            <!-- Stage 05: REPORT -->
-                            <div class="gb-method__card-wrap wow fadeInUp" data-wow-delay=".35s">
-                                <article class="gb-method__card" data-stage="5">
-                                    <div class="gb-method__card-topbar" aria-hidden="true"></div>
-                                    <div class="gb-method__card-border" aria-hidden="true"></div>
-                                    <div class="gb-method__card-spotlight" aria-hidden="true"></div>
-
-                                    <div class="gb-method__card-head">
-                                        <div class="gb-method__node-group">
-                                            <div class="gb-method__node" data-stage="5" aria-label="Stage 5">
-                                                <span class="gb-method__node-num">5</span>
-                                                <span class="gb-method__node-pulse" aria-hidden="true"></span>
+                            <!-- STAGE 05: REPORT (Left) -->
+                            <div class="gb-timeline__row gb-timeline__row--left">
+                                <div class="gb-timeline__card-wrap wow fadeInLeft" data-wow-delay=".35s">
+                                    <article class="gb-timeline__card" data-stage="5">
+                                        <div class="gb-timeline__card-media">
+                                            <div class="gb-timeline__card-img">
+                                                <img loading="lazy" decoding="async" src="assets/img/inner/service-hero-bg.jpg" alt="Stage 05 Report - Executive Reporting & Recommended Corrective Actions">
                                             </div>
-                                            <span class="gb-method__display-num">05</span>
-                                        </div>
-                                        <div class="gb-method__meta-group">
-                                            <span class="gb-method__stage-pill">STAGE 5</span>
-                                            <div class="gb-method__icon-box">
+                                            <span class="gb-timeline__stage-pill">STAGE 05</span>
+                                            <div class="gb-timeline__icon-box" aria-hidden="true">
                                                 <i class="fa-solid fa-chart-column"></i>
                                             </div>
                                         </div>
+                                        <div class="gb-timeline__card-body">
+                                            <div class="gb-timeline__card-header">
+                                                <h3 class="gb-timeline__card-title">REPORT</h3>
+                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
+                                                    <i class="fa-solid fa-arrow-up-right"></i>
+                                                </span>
+                                            </div>
+                                            <p class="gb-timeline__card-desc">Present evidence-led observations, executive summaries, risk registers, and recommended corrective actions.</p>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="gb-timeline__connector" aria-hidden="true"></div>
+                                <div class="gb-timeline__node-wrap">
+                                    <div class="gb-timeline__node" data-stage="5" aria-label="Stage 5">
+                                        <span class="gb-timeline__node-num">05</span>
+                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
                                     </div>
-
-                                    <h3 class="gb-method__card-title">REPORT</h3>
-                                    <p class="gb-method__card-desc">Present evidence-led observations, executive summaries, risk registers, and recommended corrective actions.</p>
-                                </article>
+                                </div>
                             </div>
 
-                            <!-- Stage 06: SUPPORT -->
-                            <div class="gb-method__card-wrap wow fadeInRight" data-wow-delay=".5s">
-                                <article class="gb-method__card" data-stage="6">
-                                    <div class="gb-method__card-topbar" aria-hidden="true"></div>
-                                    <div class="gb-method__card-border" aria-hidden="true"></div>
-                                    <div class="gb-method__card-spotlight" aria-hidden="true"></div>
-
-                                    <div class="gb-method__card-head">
-                                        <div class="gb-method__node-group">
-                                            <div class="gb-method__node" data-stage="6" aria-label="Stage 6">
-                                                <span class="gb-method__node-num">6</span>
-                                                <span class="gb-method__node-pulse" aria-hidden="true"></span>
+                            <!-- STAGE 06: SUPPORT (Right) -->
+                            <div class="gb-timeline__row gb-timeline__row--right">
+                                <div class="gb-timeline__connector" aria-hidden="true"></div>
+                                <div class="gb-timeline__node-wrap">
+                                    <div class="gb-timeline__node" data-stage="6" aria-label="Stage 6">
+                                        <span class="gb-timeline__node-num">06</span>
+                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="gb-timeline__card-wrap wow fadeInRight" data-wow-delay=".4s">
+                                    <article class="gb-timeline__card" data-stage="6">
+                                        <div class="gb-timeline__card-media">
+                                            <div class="gb-timeline__card-img">
+                                                <img loading="lazy" decoding="async" src="assets/img/inner/contact-hero-bg.jpg" alt="Stage 06 Support - Implementation Guidance and Hands-on Advisory">
                                             </div>
-                                            <span class="gb-method__display-num">06</span>
-                                        </div>
-                                        <div class="gb-method__meta-group">
-                                            <span class="gb-method__stage-pill">STAGE 6</span>
-                                            <div class="gb-method__icon-box">
+                                            <span class="gb-timeline__stage-pill">STAGE 06</span>
+                                            <div class="gb-timeline__icon-box" aria-hidden="true">
                                                 <i class="fa-solid fa-handshake-angle"></i>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <h3 class="gb-method__card-title">SUPPORT</h3>
-                                    <p class="gb-method__card-desc">Agree on owners and realistic timelines; provide hands-on follow-up guidance where in agreed scope.</p>
-                                </article>
+                                        <div class="gb-timeline__card-body">
+                                            <div class="gb-timeline__card-header">
+                                                <h3 class="gb-timeline__card-title">SUPPORT</h3>
+                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
+                                                    <i class="fa-solid fa-arrow-up-right"></i>
+                                                </span>
+                                            </div>
+                                            <p class="gb-timeline__card-desc">Agree on owners and realistic timelines; provide hands-on follow-up guidance where in agreed scope.</p>
+                                        </div>
+                                    </article>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- 7. Bottom CTA Strip -->
-                        <div class="gb-method__cta wow fadeInUp" data-wow-delay=".3s">
-                            <span class="gb-method__cta-text">Ready to see where you stand?</span>
-                            <a href="contact" class="gb-method__cta-btn">
-                                <span>Schedule Scoping Call</span>
-                                <i class="fa-solid fa-arrow-up-right"></i>
-                            </a>
+                        <!-- Final CTA Strip -->
+                        <div class="gb-timeline__cta wow fadeInUp" data-wow-delay=".3s">
+                            <div class="gb-timeline__end-node" aria-hidden="true"></div>
+                            <div class="gb-timeline__cta-wrap">
+                                <span class="gb-timeline__cta-text">Ready to see where you stand?</span>
+                                <a href="contact" class="gb-timeline__cta-btn">
+                                    <span>Schedule Scoping Call</span>
+                                    <i class="fa-solid fa-arrow-up-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </section>

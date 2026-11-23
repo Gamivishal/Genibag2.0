@@ -1364,149 +1364,71 @@
         const methodSection = document.getElementById('methodology');
         if (!methodSection) return;
 
-        const grid = methodSection.querySelector('.gb-method__grid');
-        const nodes = methodSection.querySelectorAll('.gb-method__node');
-        const svgEl = methodSection.querySelector('.gb-method__journey-svg');
-        const pathBg = methodSection.querySelector('.gb-method__path-bg');
-        const pathActive = methodSection.querySelector('.gb-method__path-active');
+        const spine = methodSection.querySelector('.gb-timeline__spine');
+        const spineFill = methodSection.querySelector('.gb-timeline__spine-fill');
+        const rows = methodSection.querySelectorAll('.gb-timeline__row');
+        const nodes = methodSection.querySelectorAll('.gb-timeline__node');
 
-        // Dynamically align SVG connector path through corridor and nodes
-        function alignTrackPath() {
-            if (window.innerWidth < 992 || !grid || nodes.length < 6 || !svgEl || !pathBg || !pathActive) return;
+        // Dynamically update central vertical timeline line and illuminate nodes on scroll
+        function updateTimelineProgress() {
+            if (!spine || !spineFill || nodes.length === 0) return;
 
-            const gRect = grid.getBoundingClientRect();
-            if (gRect.width === 0 || gRect.height === 0) return;
+            const spineRect = spine.getBoundingClientRect();
+            const viewportH = window.innerHeight;
 
-            const pts = Array.from(nodes).map(n => {
-                const nRect = n.getBoundingClientRect();
-                return {
-                    x: Math.round(nRect.left + nRect.width / 2 - gRect.left),
-                    y: Math.round(nRect.top + nRect.height / 2 - gRect.top)
-                };
-            });
+            // Trigger point at 55% of viewport height
+            const triggerY = viewportH * 0.55;
 
-            const gw = Math.round(gRect.width);
-            const gh = Math.round(gRect.height);
-            svgEl.setAttribute('viewBox', `0 0 ${gw} ${gh}`);
+            // Distance scrolled through spine
+            const progressPx = Math.max(0, Math.min(spineRect.height, triggerY - spineRect.top));
+            const progressRatio = spineRect.height > 0 ? (progressPx / spineRect.height) : 0;
 
-            const cards = methodSection.querySelectorAll('.gb-method__card-wrap');
-            if (cards.length < 6) return;
+            spineFill.style.height = `${(progressRatio * 100).toFixed(1)}%`;
 
-            const r0Rect = cards[0].getBoundingClientRect();
-            const r1Rect = cards[1].getBoundingClientRect();
-            const r2Rect = cards[2].getBoundingClientRect();
-            const r3Rect = cards[3].getBoundingClientRect();
-            const r4Rect = cards[4].getBoundingClientRect();
-            const r5Rect = cards[5].getBoundingClientRect();
+            // Illuminate circular stage indicators as the timeline progress line reaches each row
+            rows.forEach((row, idx) => {
+                const node = nodes[idx];
+                if (!node) return;
+                const nodeRect = node.getBoundingClientRect();
+                const nodeCenterY = nodeRect.top + nodeRect.height / 2;
 
-            // Calculate true row boundaries relative to the grid
-            const row1Bottom = Math.max(r0Rect.bottom, r1Rect.bottom, r2Rect.bottom) - gRect.top;
-            const row2Top = Math.min(r3Rect.top, r4Rect.top, r5Rect.top) - gRect.top;
-
-            // The true corridor between rows (in the row gap)
-            const midY = Math.round((row1Bottom + row2Top) / 2);
-
-            const r1y = pts[2].y; // Header level for Row 1
-            const r2y = pts[3].y; // Header level for Row 2
-
-            // Margin clearance on left and right for outer loops (outside cards)
-            const r3Right = Math.round(r2Rect.right - gRect.left);
-            const r4Left = Math.round(r3Rect.left - gRect.left);
-            const rightLoopX = r3Right + 20;
-            const leftLoopX = r4Left - 20;
-            const radius = 18;
-
-            // Snaking journey: Row 1 (01 -> 02 -> 03) -> loop down outside card 3 -> corridor between rows -> loop into Row 2 (04 -> 05 -> 06)
-            const d = `M ${pts[0].x},${pts[0].y} ` +
-                      `L ${pts[1].x},${pts[1].y} ` +
-                      `L ${pts[2].x},${pts[2].y} ` +
-                      `L ${rightLoopX - radius},${r1y} ` +
-                      `Q ${rightLoopX},${r1y} ${rightLoopX},${r1y + radius} ` +
-                      `L ${rightLoopX},${midY - radius} ` +
-                      `Q ${rightLoopX},${midY} ${rightLoopX - radius},${midY} ` +
-                      `L ${leftLoopX + radius},${midY} ` +
-                      `Q ${leftLoopX},${midY} ${leftLoopX},${midY + radius} ` +
-                      `L ${leftLoopX},${r2y - radius} ` +
-                      `Q ${leftLoopX},${r2y} ${leftLoopX + radius},${r2y} ` +
-                      `L ${pts[3].x},${pts[3].y} ` +
-                      `L ${pts[4].x},${pts[4].y} ` +
-                      `L ${pts[5].x},${pts[5].y}`;
-
-            pathBg.setAttribute('d', d);
-            pathActive.setAttribute('d', d);
-
-            try {
-                const totalLen = Math.round(pathActive.getTotalLength());
-                pathActive.style.strokeDasharray = `${totalLen}`;
-                if (!methodSection.classList.contains('is-revealed')) {
-                    pathActive.style.strokeDashoffset = `${totalLen}`;
-                } else {
-                    pathActive.style.strokeDashoffset = '0';
-                }
-            } catch (err) {}
-        }
-
-        // Initialize path dimensions on load and resize
-        alignTrackPath();
-        let resizeTimer = null;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(alignTrackPath, 150);
-        });
-        window.addEventListener('load', alignTrackPath);
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(alignTrackPath);
-        }
-
-        // Trigger reveal, progressive drawing, and node lighting (re-triggers on scroll)
-        let methodRevealed = false;
-        let nodeTimers = [];
-
-        window.triggerGenieMethodReveal = function() {
-            if (methodRevealed) return;
-            methodRevealed = true;
-            methodSection.classList.add('is-revealed');
-            alignTrackPath();
-
-            if (pathActive) {
-                pathActive.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.22, 1, 0.36, 1)';
-                pathActive.style.strokeDashoffset = '0';
-            }
-
-            const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (isReducedMotion) {
-                nodes.forEach(node => node.classList.add('is-active'));
-                return;
-            }
-
-            // Light up stage nodes progressively along the journey path
-            nodeTimers.forEach(t => clearTimeout(t));
-            nodeTimers = [];
-            nodes.forEach((node, idx) => {
-                const t = setTimeout(() => {
+                if (nodeCenterY <= triggerY + 24) {
                     node.classList.add('is-active');
-                }, 180 + idx * 160);
-                nodeTimers.push(t);
+                } else {
+                    node.classList.remove('is-active');
+                }
             });
+        }
+
+        let ticking = false;
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateTimelineProgress();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        window.addEventListener('load', updateTimelineProgress);
+        updateTimelineProgress();
+
+        // Hook for bidirectional WOW / scrollController
+        window.triggerGenieMethodReveal = function() {
+            methodSection.classList.add('is-revealed');
+            updateTimelineProgress();
         };
 
         window.resetGenieMethodReveal = function() {
-            methodRevealed = false;
-            nodeTimers.forEach(t => clearTimeout(t));
-            nodeTimers = [];
-            nodes.forEach(node => node.classList.remove('is-active'));
-            if (pathActive) {
-                try {
-                    const totalLen = Math.round(pathActive.getTotalLength());
-                    pathActive.style.transition = 'none';
-                    pathActive.style.strokeDashoffset = `${totalLen}`;
-                } catch (e) {}
-            }
+            updateTimelineProgress();
         };
 
         // Desktop mouse tracking for spotlight
         if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
-            const cards = methodSection.querySelectorAll('.gb-method__card');
+            const cards = methodSection.querySelectorAll('.gb-timeline__card');
             cards.forEach(card => {
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();

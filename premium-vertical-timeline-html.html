@@ -1,0 +1,176 @@
+                <!-- Our Method Section - Premium Interactive Vertical Timeline -->
+                <section class="gb-method" id="methodology">
+                    <div class="gb-method__wrap">
+                        <!-- 1. Centered Heading Area -->
+                        <div class="gb-method__head">
+                            <span class="gb-method__eyebrow">Our Method</span>
+                            <h2 class="gb-method__title">
+                                From Discovery to a <span class="highlight">Practical Action Plan.</span>
+                            </h2>
+                            <p class="gb-method__sub">
+                                A structured 6-stage engagement designed to minimise disruption and maximise clarity.
+                            </p>
+                        </div>
+
+                        <!-- 2. Timeline Container -->
+                        <div class="gb-method__timeline">
+                            <!-- Central Timeline Line -->
+                            <div class="gb-method__line"></div>
+
+                            <!-- Stage 01: DISCOVER -->
+                            <div class="gb-method__stage">
+                                <div class="gb-method__indicator" data-stage="1"></div>
+                                <div class="gb-method__connector"></div>
+                                <article class="gb-method__card">
+                                    <img src="assets/img/method/discover.jpg" alt="DISCOVER - Business Discovery Meeting" class="gb-method__card-img">
+                                    <span class="gb-method__stage-number">Stage 01</span>
+                                    <h3 class="gb-method__card-title">DISCOVER</h3>
+                                    <p class="gb-method__card-desc">Understand business context, workforce profile, operating locations, and primary leadership concerns.</p>
+                                </article>
+                            </div>
+
+                            <!-- Stage 02: COLLECT -->
+                            <div class="gb-method__stage">
+                                <div class="gb-method__indicator" data-stage="2"></div>
+                                <div class="gb-method__connector"></div>
+                                <article class="gb-method__card">
+                                    <img src="assets/img/method/collect.jpg" alt="COLLECT - Document Collection" class="gb-method__card-img">
+                                    <span class="gb-method__stage-number">Stage 02</span>
+                                    <h3 class="gb-method__card-title">COLLECT</h3>
+                                    <p class="gb-method__card-desc">Request and gather relevant personnel records, policies, statutory registers, and process evidence.</p>
+                                </article>
+                            </div>
+
+                            <!-- Stage 03: REVIEW -->
+                            <div class="gb-method__stage">
+                                <div class="gb-method__indicator" data-stage="3"></div>
+                                <div class="gb-method__connector"></div>
+                                <article class="gb-method__card">
+                                    <img src="assets/img/method/review.jpg" alt="REVIEW - Document Review" class="gb-method__card-img">
+                                    <span class="gb-method__stage-number">Stage 03</span>
+                                    <h3 class="gb-method__card-title">REVIEW</h3>
+                                    <p class="gb-method__card-desc">Test data samples, compare written documents to actual daily practice, and identify gaps or inconsistencies.</p>
+                                </article>
+                            </div>
+
+                            <!-- Stage 04: PRIORITISE -->
+                            <div class="gb-method__stage">
+                                <div class="gb-method__indicator" data-stage="4"></div>
+                                <div class="gb-method__connector"></div>
+                                <article class="gb-method__card">
+                                    <img src="assets/img/method/prioritise.jpg" alt="PRIORITISE - Strategic Planning" class="gb-method__card-img">
+                                    <span class="gb-method__stage-number">Stage 04</span>
+                                    <h3 class="gb-method__card-title">PRIORITISE</h3>
+                                    <p class="gb-method__card-desc">Classify observations by regulatory impact, business urgency, and practical effort required to resolve.</p>
+                                </article>
+                            </div>
+
+                            <!-- Stage 05: REPORT -->
+                            <div class="gb-method__stage">
+                                <div class="gb-method__indicator" data-stage="5"></div>
+                                <div class="gb-method__connector"></div>
+                                <article class="gb-method__card">
+                                    <img src="assets/img/method/report.jpg" alt="REPORT - Executive Reporting" class="gb-method__card-img">
+                                    <span class="gb-method__stage-number">Stage 05</span>
+                                    <h3 class="gb-method__card-title">REPORT</h3>
+                                    <p class="gb-method__card-desc">Present evidence-led observations, executive summaries, risk registers, and recommended corrective actions.</p>
+                                </article>
+                            </div>
+
+                            <!-- Stage 06: SUPPORT -->
+                            <div class="gb-method__stage">
+                                <div class="gb-method__indicator" data-stage="6"></div>
+                                <div class="gb-method__connector"></div>
+                                <article class="gb-method__card">
+                                    <img src="assets/img/method/support.jpg" alt="SUPPORT - Implementation Support" class="gb-method__card-img">
+                                    <span class="gb-method__stage-number">Stage 06</span>
+                                    <h3 class="gb-method__card-title">SUPPORT</h3>
+                                    <p class="gb-method__card-desc">Agree on owners and realistic timelines; provide hands-on follow-up guidance where in agreed scope.</p>
+                                </article>
+                            </div>
+
+                            <!-- 3. Final CTA -->
+                            <div class="gb-method__cta">
+                                <p class="gb-method__cta-text">Ready to see where you stand?</p>
+                                <a href="contact" class="gb-method__cta-btn">
+                                    Schedule Scoping Call <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- JavaScript for Scroll Animation -->
+                <script>
+                    // Intersection Observer for Scroll Animations
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const stages = document.querySelectorAll('.gb-method__stage');
+                        const indicators = document.querySelectorAll('.gb-method__indicator');
+                        const methodSection = document.querySelector('.gb-method');
+
+                        // Option to reduce motion
+                        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                        if (!prefersReducedMotion) {
+                            // Create Intersection Observer
+                            const observerOptions = {
+                                root: null,
+                                rootMargin: '0px',
+                                threshold: 0.2
+                            };
+
+                            const observer = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        // Add visible class to stage
+                                        entry.target.classList.add('visible');
+
+                                        // Find and activate the corresponding indicator
+                                        const stageIndex = Array.from(stages).indexOf(entry.target);
+                                        if (indicators[stageIndex]) {
+                                            indicators[stageIndex].classList.add('active');
+                                        }
+                                    }
+                                });
+                            }, observerOptions);
+
+                            // Observe each stage
+                            stages.forEach((stage, index) => {
+                                setTimeout(() => {
+                                    observer.observe(stage);
+                                }, index * 150); // Stagger animations
+                            });
+
+                            // Monitor scroll for indicators
+                            const indicatorObserver = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        const indicator = entry.target;
+                                        const stageIndex = Array.from(indicators).indexOf(indicator);
+                                        stages.forEach((stage, index) => {
+                                            if (index <= stageIndex) {
+                                                indicator.classList.add('active');
+                                            }
+                                        });
+                                    } else {
+                                        entry.target.classList.remove('active');
+                                        const stageIndex = Array.from(indicators).indexOf(entry.target);
+                                        stages.forEach((stage, index) => {
+                                            if (index > stageIndex) {
+                                                stage.classList.remove('visible');
+                                            }
+                                        });
+                                    }
+                                });
+                            }, { threshold: 0.1, rootMargin: '-50% 0px -50% 0px' });
+
+                            indicators.forEach(indicator => {
+                                indicatorObserver.observe(indicator);
+                            });
+                        } else {
+                            // No motion preferred - show all immediately
+                            stages.forEach(stage => stage.classList.add('visible'));
+                            indicators.forEach(indicator => indicator.classList.add('active'));
+                        }
+                    });
+                </script>
