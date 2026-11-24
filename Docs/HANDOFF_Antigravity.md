@@ -286,7 +286,7 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
 ### Optional / leftovers
 
 - [ ] **5. Sticky bottom CTA bar on mobile.** Audit priority: High-optional. Only if wanted: show it at ≤767px and hide it on `/contact`. It must not overlap the back-to-top button.
-- [ ] Remove the dead `<script src="assets/js/ajax-mail.js">` from `about.html`, `faq.html` and `service.html`, and the file itself if nothing else uses it.
+- [x] Remove the dead `<script src="assets/js/ajax-mail.js">` from `about.html`, `faq.html` and `service.html`, and the file itself if nothing else uses it.
 - [ ] Not a code task: because recruitment is not a service, the client should remove recruitment wording from outside marketing (job boards, LinkedIn, ads) that links to the site.
 
 ---
