@@ -241,7 +241,12 @@
                         <!-- Form + Briefing Card -->
                         <div class="gbc-grid">
                             <div class="gbc-formcard" data-reveal>
-                                <form id="contact-form" class="contact-form-box gbc-form" aria-labelledby="gbc-form-title">
+                                <form id="contact-form" class="contact-form-box gbc-form" action="/api/contact" method="post" aria-labelledby="gbc-form-title">
+                                    <!-- Spam trap: hidden from people and assistive tech; bots that fill it are dropped server-side. -->
+                                    <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+                                        <label for="company_website">Leave this field empty</label>
+                                        <input type="text" name="company_website" id="company_website" tabindex="-1" autocomplete="off">
+                                    </div>
                                     <div class="gbc-form__head">
                                         <h3 id="gbc-form-title" class="gbc-form__title">Schedule a Scoping Call</h3>
                                         <p class="gbc-form__lead">Takes under 2 minutes. We reply within one business day.</p>
@@ -296,7 +301,7 @@
                                     </div>
 
                                     <div class="gbc-consent">
-                                        <input type="checkbox" id="gbc-consent" required aria-describedby="gbc-consent-err">
+                                        <input type="checkbox" id="gbc-consent" name="consent" value="yes" required aria-describedby="gbc-consent-err">
                                         <label for="gbc-consent"><span class="gbc-consent__box" aria-hidden="true"><i class="fa-solid fa-check"></i></span>I agree to be contacted about my enquiry</label>
                                         <p class="gbc-field__err" id="gbc-consent-err"></p>
                                     </div>
@@ -574,8 +579,6 @@
         <script src="assets/js/jquery.meanmenu.min.js" defer></script>
         <!--<< Magnific Popup Js >>-->
         <!--<< Wow Animation Js >>-->
-        <!--<< Ajax Mail Js >>-->
-        <script src="assets/js/ajax-mail.js" defer></script>
         <!--<< Main.js >>-->
         <script src="assets/js/main.js" defer></script>
         <script src="assets/js/contact.js" defer></script>

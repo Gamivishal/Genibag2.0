@@ -334,37 +334,52 @@
                 return;
             }
 
-            // The chosen services travel inside the existing "message" field (no new field names).
+            if (msgBox) { msgBox.textContent = ""; msgBox.className = "form-message gbc-form__msg"; }
+
+            var FALLBACK = "We could not send your enquiry. Please try again or email info@geniebag.com.";
+            function showError(text) {
+                setLoading(false);
+                if (!msgBox) return;
+                msgBox.className = "form-message gbc-form__msg error";
+                msgBox.textContent = text || FALLBACK;
+            }
+
+            var endpoint = form.getAttribute("action");
+            if (!endpoint || !window.fetch) {
+                // Never confirm an enquiry that was not sent.
+                showError("Our form is unavailable right now. Please email us at info@geniebag.com.");
+                return;
+            }
+
+            // Form fields plus the chosen service chips (chips are buttons, so they are added by hand).
+            var data = new URLSearchParams(new FormData(form));
             var chosen = chips.filter(function (c) { return c.getAttribute("aria-pressed") === "true"; })
                 .map(function (c) { return c.textContent.trim(); });
-            if (message && chosen.length) {
-                var original = message.value;
-                message.value = "Service of interest: " + chosen.join(", ") + (original ? "\n\n" + original : "");
-                setTimeout(function () { message.value = original; }, 0); // restored after ajax-mail serialises
-            }
+            if (chosen.length) data.set("services", chosen.join(", "));
 
-            if (msgBox) { msgBox.textContent = ""; msgBox.className = "form-message gbc-form__msg"; }
             setLoading(true);
+            var ctrl = window.AbortController ? new AbortController() : null;
+            var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
 
-            if (form.getAttribute("action")) {
-                // A real endpoint is configured: follow ajax-mail.js's result in .form-message.
-                var done = false;
-                var mo = new MutationObserver(function () {
-                    if (done) return;
-                    if (msgBox.classList.contains("success")) { done = true; mo.disconnect(); showSuccess(); }
-                    else if (msgBox.classList.contains("error")) { done = true; mo.disconnect(); setLoading(false); }
-                });
-                mo.observe(msgBox, { attributes: true, childList: true });
-                setTimeout(function () {
-                    if (done) return;
-                    done = true; mo.disconnect(); setLoading(false);
-                    msgBox.textContent = "This is taking longer than expected. Please try again or email info@geniebag.com.";
-                }, 20000);
-            } else {
-                // No endpoint configured (current setup): confirm as the page always has.
-                form.classList.add("is-quiet");
-                setTimeout(showSuccess, 1100);
-            }
+            fetch(endpoint, {
+                method: "POST",
+                headers: { "Accept": "application/json" },
+                body: data,
+                signal: ctrl ? ctrl.signal : undefined
+            })
+                .then(function (res) {
+                    return res.json().catch(function () { return {}; }).then(function (json) {
+                        // Success only on a 2xx reply that explicitly says ok.
+                        if (res.ok && json.ok === true) showSuccess();
+                        else showError(json.error);
+                    });
+                })
+                .catch(function (err) {
+                    showError(err && err.name === "AbortError"
+                        ? "This is taking longer than expected. Please try again or email info@geniebag.com."
+                        : FALLBACK);
+                })
+                .then(function () { clearTimeout(timer); });
         }, true);
     }
 

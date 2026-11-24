@@ -25,7 +25,7 @@ Official website for **Geniebag Solutions / Genie Bag HR Consultancy** (*"The Ma
 - `faq.html` - Client FAQs, partnership principles, and statutory disclaimer
 - `contact.html` - Scoping consultation request & contact details
 - `404.html` - Custom error page
-- `contact.php` - Secure form handler
+- `api/contact.js` - Contact form endpoint (Vercel function, sends email via Resend; needs `RESEND_API_KEY`)
 - `Docs/` - Official HR Compliance Audit presentations and reference materials
 - `assets/` - CSS styles, JavaScript plugins, fonts, and images (including transparent logo)
 - `_demo_templates_archive/` - Archived original ThemeForest demo pages (safely preserved)
