@@ -127,16 +127,17 @@ Work in this order: **Phase 6 → Phase 5 → Phase 3 → Phase 4**, then option
 Item numbers match `Docs/Audit_Fix_Plan.md`.
 
 ### Phase 6: SEO and head tags (no client input needed)
+*Status: Done. 7 unique titles (≤60 chars) & meta descriptions (≤155 chars), Open Graph & Twitter card tags, branded 1200x630 og-image.jpg, and single H1 per page verified.*
 
-- [ ] **29. Unique titles, meta descriptions and Open Graph tags.** Audit priority: Medium.
+- [x] **29. Unique titles, meta descriptions and Open Graph tags.** Audit priority: Medium.
   - **Where:** `<head>` lines 17 (description) and 19 (`<title>`) in all 7 pages. `about`, `contact`, `faq` and `service` all share the title "Geniebag Solutions – HR Compliance & Audit Consultancy" and the same short description.
   - **Fix:** Write a unique `<title>` (≤60 chars) and meta description (≤155 chars) for each page, based on its content. Add `og:title`, `og:description`, `og:type=website`, `og:url` (absolute), `og:image` (absolute URL to a 1200×630 branded image) and `twitter:card=summary_large_image`. No OG image exists yet. Create one from the logo and brand colours (navy `#111B34`, orange `#EF6939`) at `assets/img/og-image.jpg`, or leave a TODO comment and use the logo for now.
   - **Verify:** `grep -n "<title>" *.html` shows 7 different titles. Each page has an `og:image` that loads (curl the URL and expect 200).
-- [ ] **30. Favicon.** Audit priority: Medium.
+- [x] **30. Favicon.** Audit priority: Medium.
   - **Where:** Head lines 21–25 in every page already point to brand favicons added in commit `bd80ce2` on 23 Nov. That may have been after the audit ran.
   - **Fix:** Open the live site and a preview, and check the browser tab icon. If it shows the logo mark, close this item with no change. If not, check that `assets/img/favicon.svg` renders the brand mark, and check for a cached old `/favicon.ico` at the root.
   - **Verify:** The tab shows the Geniebag mark on every page, and `/apple-touch-icon.png` is 180×180.
-- [ ] **31. One `<h1>` per page.** Audit priority: Medium.
+- [x] **31. One `<h1>` per page.** Audit priority: Medium.
   - **Where:**
     - `index.html` 359 and 399: two hero slides each use `<h1>`, and the Swiper loop clones them, so the live page has 4.
     - `404.html` 196 and 205: two `<h1>`s.

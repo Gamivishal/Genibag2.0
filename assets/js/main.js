@@ -274,6 +274,16 @@
                     prevEl: ".array-prev, .hero-arrow--prev",
                     nextEl: ".array-next, .hero-arrow--next",
                 },
+                on: {
+                    init: function () {
+                        $('.swiper-slide-duplicate h1').each(function () {
+                            $(this).replaceWith('<h2 class="' + (this.className || '') + '">' + $(this).html() + '</h2>');
+                        });
+                    }
+                }
+            });
+            $('.swiper-slide-duplicate h1').each(function () {
+                $(this).replaceWith('<h2 class="' + (this.className || '') + '">' + $(this).html() + '</h2>');
             });
         }
 
