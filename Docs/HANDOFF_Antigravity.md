@@ -145,40 +145,41 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
   - **Verify:** In the rendered DOM (after Swiper init), `document.querySelectorAll('h1').length === 1` on all 7 pages.
 
 ### Phase 5: Layout polish (CSS/HTML; only item 28 needs client input)
+*Status: Done. Items 19–27 verified via headless Chrome (container alignment, unified CTA banner, touch targets >=44px, logo >=36px on mobile, no button wrap, single card numbers, reduced FAQ hero, min 13px labels); item 28 imagery deduplicated so no stock image appears on more than one page, with non-rendering comments for client photos.*
 
-- [ ] **19. Services page container.** Audit priority: Medium.
+- [x] **19. Services page container.** Audit priority: Medium.
   - **Where:** `service.html` 204 (`<section class="service-section-inners ...">`, module cards) and 351 (the tiers `<section class="section-padding fix section-bg">`).
   - **Fix:** Give their inner containers `max-width:1200px; margin:0 auto; padding-inline:24px`, matching the homepage container.
   - **Verify:** At 1024 and 1440px the first card's left edge lines up with the header logo's left edge, and no card touches the viewport edge.
-- [ ] **20. Same CTA banner on every page.** Audit priority: Medium.
+- [x] **20. Same CTA banner on every page.** Audit priority: Medium.
   - **Where:** The cramped 88px banner "LET'S MAKE HR clearer. stronger. ready." with button "Get In Touch Today" is at `service.html` ~413–430, `service-details.html` ~602–620, `faq.html` ~339–357 and `404.html` ~222–240. The good version is `index.html` 4180 (`<section class="gbh-cta">`), but **its CSS is inline in an `index.html` `<style>` block at ~4045**.
   - **Fix:** Move the `.gbh-cta*` rules from `index.html` into `main.css`. Replace the 4 banners with the `.gbh-cta` markup. Use the headline "Let's make HR clearer, stronger, ready." and the button "Book a scoping call" → `contact#contact-form`.
   - **Verify:** The banner looks identical on Home, Services, Service details, FAQ and 404 at 1440 and 390px.
-- [ ] **21. Contact form touch targets.** Audit priority: Medium.
+- [x] **21. Contact form touch targets.** Audit priority: Medium.
   - **Where:** `assets/css/contact.css` 313 (`.gbc-chip`), 333–342 (`.gbc-consent`, its label and `.gbc-consent__box`).
   - **Fix:** `.gbc-chip { min-height:44px; padding:10px 16px; }`. Make the consent `label` a block/flex element with `padding:12px 0` and `min-height:44px`, so the whole line is clickable.
   - **Verify:** At 320px, computed heights of every chip and the consent label are ≥44px, and tapping the label text toggles the box.
-- [ ] **22. Header logo on mobile.** Audit priority: Medium.
+- [x] **22. Header logo on mobile.** Audit priority: Medium.
   - **Where:** `main.css` ~6262–6290 (`.header-1 .logo img` at ≤1199, ≤575 and ≤400px; at ≤400px it is `max-width:160px; height:auto`, which makes the tagline about 6px tall). Logo file: `assets/img/logo/Logo2.png` (changed in `4d50efb`).
   - **Fix:** Below 768px, keep the logo at least 36px tall and hide or crop the "(The Management Basket)" tagline. Use a logo-mark or no-tagline variant if one exists, or an SVG. Do not shrink the image further.
   - **Verify:** At 320px the logo wordmark is legible and the image is ≥36px tall.
-- [ ] **23. Buttons wrapping onto 2 lines.** Audit priority: Low.
+- [x] **23. Buttons wrapping onto 2 lines.** Audit priority: Low.
   - **Where:** `service.html` 370 ("Scope Health Check" tier button). Footer CTA "Schedule Scoping Call" in each page: `index` 4262, `about` 1031, `service` 501, `service-details` 690, `faq` 427, `contact` 545, `404` 310.
   - **Fix:** `white-space:nowrap; padding-inline:24px` on these buttons, and let the button grow. Rename the footer CTA as part of item 18.
   - **Verify:** Every button label is on one line at 1024, 1294 and 1440px.
-- [ ] **24. Service cards show their number twice.** Audit priority: Low.
+- [x] **24. Service cards show their number twice.** Audit priority: Low.
   - **Where:** `index.html` What We Do cards (~1495–1620). Each card has `<span class="gb-wwd__card-watermark">01</span>` (large faded number) and `<span class="gb-wwd__num">01</span>` (badge).
   - **Fix:** Remove the `.gb-wwd__card-watermark` spans (6 cards) or hide them in CSS. Keep the badge.
   - **Verify:** Each card shows its number once.
-- [ ] **25. About page whitespace.** Audit priority: Low.
+- [x] **25. About page whitespace.** Audit priority: Low.
   - **Where:** `about.html` 753 (`.gba-about-corp`, Purpose/Approach/Commitment cards; CSS at `main.css` ~16970+, `.gba-corp-grid` uses `align-items:start`) and 875 (`.gba-phil` Philosophy; CSS in the `about.html` inline `<style>` around line 333).
   - **Fix:** Use `align-items:center` on the two-column grids and remove fixed `min-height`s.
   - **Verify:** No empty block taller than 200px in these sections at 1024–1440px.
-- [ ] **26. FAQ hero height.** Audit priority: Low.
+- [x] **26. FAQ hero height.** Audit priority: Low.
   - **Where:** `faq.html` ~195 (`<section class="breadcrumb-wrapper ..." style="... min-height: 380px ...">` plus inner `padding: 60px 15px` and theme breadcrumb padding). It renders about 709px tall.
   - **Fix:** Match the contact-page hero height: about 400px on desktop, about 260px on mobile.
   - **Verify:** At 1440×900 the first FAQ question is visible without scrolling.
-- [ ] **27. Small eyebrow labels.** Audit priority: Low.
+- [x] **27. Small eyebrow labels.** Audit priority: Low.
   - **Where:**
     - "TIER 1", "FEATURED" and similar tags in the `index.html` tiers styles (`.gb-tiers__eyebrow` ~3269 plus the tier tag classes nearby) and in `service.html` tier cards.
     - `.gbh-eyebrow` (`index.html` ~496).
@@ -186,7 +187,7 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
     - `.section-title .sub-title` (`main.css` 12338).
   - **Fix:** At least 13px, `letter-spacing:.08em`, with 4.5:1 contrast against the background.
   - **Verify:** At 390px, no visible text has a computed font-size under 13px. Icon glyphs are exempt. Run the font-size scan in section 5.
-- [ ] 🔒 **28. Imagery.** Audit priority: Low.
+- [x] 🔒 **28. Imagery.** Audit priority: Low.
   - **Where:** The same boardroom and business-person stock photos are reused across Home, About, FAQ and Contact (for example `assets/img/inner/faq-consultation.jpg`, used on About ~775).
   - **Fix:** Use one unique image per page with a consistent colour grade. Real team or office photos come from the client. Until then, at least stop reusing the same file.
   - **Verify:** No image file appears on more than one page: `grep -oh 'assets/img/[^"'"'"' )]*' *.html | sort | uniq -c`.

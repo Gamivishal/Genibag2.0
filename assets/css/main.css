@@ -17446,3 +17446,129 @@ html.genie-is-menu-transition #genie-menu-loader {
 .hero-1 .hero-content h2 span { font-weight: 400; }
 .hero-1 .hero-content h2 b { color: #A8B7B8; }
 
+/* ==========================================================================
+   Audit Phase 5: Layout Polish
+   ========================================================================== */
+
+/* 19. Services page container width matching homepage 1200px */
+.service-section-inners .container,
+.section-padding.fix.section-bg .container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding-inline: 24px !important;
+}
+
+/* 20. Global .gbh-cta styles */
+.gbh-wrap { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+.gbh-cta { position: relative; z-index: 10; background: linear-gradient(180deg, #F0F4FA 0%, #F0F4FA 50%, #111B34 50%, #111B34 100%); padding: 0; }
+.gbh-cta__card {
+  position: relative; overflow: hidden; border-radius: 28px; padding: 52px 56px;
+  background: linear-gradient(120deg, #CC4A22 0%, #F26A3F 55%, #F5A540 120%);
+  box-shadow: 0 30px 60px rgba(204, 74, 34, 0.30);
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+}
+.gbh-cta__card::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.4px, transparent 1.4px); background-size: 22px 22px;
+  mask-image: linear-gradient(90deg, transparent 30%, #000 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000 100%);
+}
+.gbh-cta__ring { position: absolute; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.22); pointer-events: none; }
+.gbh-cta__ring--1 { width: 340px; height: 340px; right: -110px; top: -170px; }
+.gbh-cta__ring--2 { width: 220px; height: 220px; right: -50px; top: -110px; }
+.gbh-cta__card > *:not(.gbh-cta__ring) { position: relative; z-index: 1; }
+.gbh-cta__copy { flex: 1 1 auto; min-width: 0; }
+.gbh-cta__kicker { display: inline-block; color: rgba(255, 255, 255, 0.85); font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+.gbh-cta__title { color: #fff; font-size: clamp(28px, 3.4vw, 40px); font-weight: 800; line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.5px; }
+.gbh-cta__text { color: rgba(255, 255, 255, 0.92); font-size: 16px; line-height: 1.6; margin: 0; max-width: 560px; }
+.gbh-cta__actions { display: flex; flex-wrap: wrap; gap: 12px; flex-shrink: 0; }
+.gbh-cta__btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 999px;
+  font-size: 15px; font-weight: 700; text-decoration: none; white-space: nowrap !important;
+  transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
+}
+.gbh-cta__btn--light { background: #fff; color: #111B34 !important; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14); }
+.gbh-cta__btn--light i { color: #EF6939; }
+.gbh-cta__btn--ghost { color: #fff !important; border: 1.5px solid rgba(255, 255, 255, 0.55); }
+.gbh-cta__btn:hover { transform: translateY(-2px); }
+.gbh-cta__btn--light:hover { box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2); }
+.gbh-cta__btn--ghost:hover { background: rgba(255, 255, 255, 0.12); }
+.gbh-cta__btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+@media (max-width: 991px) {
+  .gbh-cta__card { flex-direction: column; align-items: flex-start; padding: 44px 36px; }
+}
+@media (max-width: 575px) {
+  .gbh-cta__card { padding: 34px 22px; border-radius: 22px; }
+  .gbh-cta__actions, .gbh-cta__btn { width: 100%; justify-content: center; }
+}
+
+/* 22. Header logo on mobile (keep >= 36px tall, legible wordmark) */
+@media (max-width: 767px) {
+  .header-1 .logo img {
+    height: 38px !important;
+    min-height: 36px !important;
+    max-height: 42px !important;
+    width: auto !important;
+    max-width: 180px !important;
+    object-fit: contain;
+  }
+}
+@media (max-width: 400px) {
+  .header-1 .logo img {
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 38px !important;
+    width: auto !important;
+    max-width: 165px !important;
+    object-fit: contain;
+  }
+}
+
+/* 23. Button text wrapping prevention */
+.theme-btn,
+.footer-section .theme-btn,
+.gbh-cta__btn {
+  white-space: nowrap !important;
+}
+.footer-section .theme-btn {
+  padding-inline: 24px !important;
+}
+
+/* 24. Service card watermark hidden */
+.gb-wwd__card-watermark {
+  display: none !important;
+}
+
+/* 26. FAQ hero height reduction */
+.faq-hero .page-heading {
+  padding: 156px 0 84px !important;
+}
+@media (max-width: 1199px) {
+  .faq-hero .page-heading {
+    padding: 140px 0 76px !important;
+  }
+}
+@media (max-width: 767px) {
+  .faq-hero .page-heading {
+    padding: 124px 0 60px !important;
+  }
+}
+
+/* 27. Minimum font size for small labels and eyebrows (min 13px) */
+.gb-tiers__eyebrow,
+.gbh-eyebrow,
+.section-title .sub-title,
+.sub-title,
+.gb-method__eyebrow,
+.gb-tiers__tag,
+.gb-tiers__badge,
+.gbh-cta__kicker,
+.badge-tier,
+.gb-timeline__card-desc,
+.gb-timeline__stage-pill,
+.gb-timeline__node-num {
+  font-size: 13px !important;
+  letter-spacing: 0.08em;
+}
+

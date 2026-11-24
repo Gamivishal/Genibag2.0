@@ -312,7 +312,7 @@
 .gbc-chips__list { display: flex; flex-wrap: wrap; gap: 8px; }
 .gbc-chip {
     position: relative; display: inline-flex; align-items: center; gap: 7px;
-    padding: 9px 15px; border-radius: 999px;
+    padding: 10px 16px; border-radius: 999px; min-height: 44px;
     border: 1.5px solid #DCE2EC; background: #fff; color: var(--gbc-text);
     font-size: 14px; font-weight: 500; line-height: 1.2;
     transition: transform .3s var(--gbc-ease), border-color .2s ease, color .2s ease, background-color .2s ease;
@@ -333,8 +333,9 @@
 .gbc-consent { position: relative; margin-top: 18px; }
 .gbc-consent input { position: absolute; opacity: 0; width: 22px; height: 22px; margin: 0; left: 0; top: 0; }
 .gbc-consent label {
-    display: inline-flex; align-items: center; gap: 12px; cursor: pointer; margin: 0;
+    display: flex; align-items: center; gap: 12px; cursor: pointer; margin: 0;
     font-size: 14.5px; color: var(--gbc-text); line-height: 1.4;
+    padding: 12px 0; min-height: 44px;
 }
 .gbc-consent__box {
     flex: 0 0 22px; width: 22px; height: 22px; border-radius: 7px;
@@ -450,7 +451,7 @@
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor; mask-composite: exclude;
 }
-.gbc-why__eyebrow { display: inline-block; margin-bottom: 14px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FF8A63; }
+.gbc-why__eyebrow { display: inline-block; margin-bottom: 14px; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FF8A63; }
 .gbc-why__title { margin: 0 0 14px; color: #fff; font-family: "Mona Sans", sans-serif; font-size: clamp(22px, 2vw, 27px); font-weight: 600; line-height: 1.25; }
 .gbc-why__lead { margin: 0 0 28px; color: #A2B2CB; font-size: 15px; line-height: 1.65; }
 
@@ -639,7 +640,7 @@
     }
     .gbc-motion .gbc-next__steps li:not(:last-child)::before { transform: scaleY(0); transition: transform .9s var(--gbc-ease) calc(var(--gbc-d, 0ms) + 350ms); }
     .gbc-motion .gbc-next__steps li.is-in::before { transform: scaleY(1); }
-    .gbc-chip { padding: 8px 13px; font-size: 13.5px; }
+    .gbc-chip { padding: 10px 16px; font-size: 13.5px; min-height: 44px; }
     .gbc-next__steps { grid-template-columns: 1fr; gap: 26px; }
     .gbc-next__steps li { display: flex; gap: 18px; align-items: flex-start; text-align: left; padding: 0; }
     .gbc-next__num { flex: 0 0 48px; margin: 0; }
