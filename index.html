@@ -349,6 +349,43 @@
                                 justify-content: center;
                             }
                         }
+
+                        @media (max-width: 767px) {
+                            .hero-1 .hero-arrow,
+                            .hero-1 .array-prev,
+                            .hero-1 .array-next {
+                                display: none !important;
+                            }
+                            .hero-pagination {
+                                display: block !important;
+                                position: absolute;
+                                bottom: 68px;
+                                left: 0;
+                                right: 0;
+                                z-index: 10;
+                                text-align: center;
+                            }
+                            .hero-pagination .swiper-pagination-bullet {
+                                width: 9px;
+                                height: 9px;
+                                background: rgba(255, 255, 255, 0.45);
+                                opacity: 1;
+                                margin: 0 5px;
+                                border-radius: 50%;
+                                display: inline-block;
+                                transition: all 0.3s ease;
+                            }
+                            .hero-pagination .swiper-pagination-bullet-active {
+                                background: #FF7048;
+                                width: 24px;
+                                border-radius: 12px;
+                            }
+                        }
+                        @media (min-width: 768px) {
+                            .hero-pagination {
+                                display: none !important;
+                            }
+                        }
                     </style>
                     <!-- Hero Slider Navigation Arrows (Separated Left & Right) -->
                     <button type="button" class="hero-arrow hero-arrow--prev array-prev" aria-label="Previous slide" title="Previous slide">
@@ -440,6 +477,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Hero Slider Pagination (Mobile dots under CTA) -->
+                        <div class="swiper-pagination hero-pagination"></div>
                     </div>
                     <div class="marquee-section-2">
                         <div class="marquee">
@@ -637,12 +676,15 @@
                         .gbh-about__pillars > :last-child { grid-column: 1 / -1; }
                     }
                     @media (max-width: 767px) {
-                        .gbh-section { padding: 68px 0; }
-                        .gbh-head { margin-bottom: 40px; }
-                        .gbh-about__pillars { grid-template-columns: 1fr; }
-                        .gbh-about__chip { top: 16px; right: 12px; }
-                        .gbh-about__media::before { left: -10px; top: -10px; }
-                        .gbh-sub, .gbh-lead { font-size: 16px; }
+                        .gbh-section { padding: 56px 0; }
+                        .gbh-head { margin-bottom: 28px; }
+                        .gbh-about__pillars { grid-template-columns: 1fr; gap: 14px; margin-top: 36px; }
+                        .gbh-pillar { padding: 22px 20px; }
+                        .gbh-about__media { max-height: 260px; overflow: hidden; border-radius: 20px; }
+                        .gbh-about__chip { top: 14px; right: 10px; padding: 8px 12px; }
+                        .gbh-about__badge { display: none; }
+                        .gbh-about__media::before { left: -6px; top: -6px; }
+                        .gbh-sub, .gbh-lead { font-size: 15.5px; }
                     }
                     @media (prefers-reduced-motion: reduce) {
                         .gbh-card, .gbh-btn, .gbh-btn .arr, .gbh-icon, .gbh-about__img img { transition: none; }
@@ -1324,7 +1366,6 @@
 
                     @media (prefers-reduced-motion: no-preference) {
                         .gb-wwd .wow {
-                            visibility: hidden;
                             will-change: transform, opacity;
                         }
                         .gb-wwd .wow.animated {
@@ -1417,34 +1458,47 @@
 
                     @media (max-width: 767px) {
                         .gb-wwd {
-                            padding: 64px 0;
+                            padding: 56px 0;
                         }
                         .gb-wwd__head {
-                            margin-bottom: 40px;
+                            margin-bottom: 24px;
                         }
                         .gb-wwd__sub {
-                            font-size: 16px;
+                            font-size: 15px;
                         }
                         .gb-wwd__grid {
-                            grid-template-columns: 1fr;
-                            gap: 20px;
+                            display: flex;
+                            overflow-x: auto;
+                            scroll-snap-type: x mandatory;
+                            gap: 14px;
+                            padding: 6px 4px 16px;
+                            -webkit-overflow-scrolling: touch;
+                            scrollbar-width: none;
+                        }
+                        .gb-wwd__grid::-webkit-scrollbar {
+                            display: none;
+                        }
+                        .gb-wwd__card-wrap {
+                            flex: 0 0 280px;
+                            scroll-snap-align: start;
                         }
                         .gb-wwd__card {
-                            padding: 28px 22px 24px;
+                            padding: 24px 20px;
+                            height: 100%;
                         }
                         .gb-wwd__cta {
-                            margin-top: 40px;
+                            margin-top: 24px;
                         }
                         .gb-wwd__stats {
                             grid-template-columns: repeat(2, minmax(0, 1fr));
-                            gap: 16px;
-                            margin-top: 48px;
+                            gap: 12px;
+                            margin-top: 28px;
                         }
                         .gb-wwd__stat {
-                            padding: 22px 14px;
+                            padding: 16px 12px;
                         }
                         .gb-wwd__btn {
-                            font-size: 15px;
+                            font-size: 14.5px;
                         }
                         .gb-wwd__dots {
                             display: none;
@@ -1689,16 +1743,19 @@
                     .gbh-lens__card .gbh-btn { margin-top: auto; }
 
                     @media (max-width: 991px) {
-                        .gbh-lens { padding-bottom: 110px; }
-                        .gbh-lens__grid { grid-template-columns: 1fr; }
+                        .gbh-lens { padding-bottom: 80px; }
+                        .gbh-lens__grid { grid-template-columns: 1fr; gap: 32px; }
                     }
-                    @media (max-width: 575px) {
-                        .gbh-lens__item { grid-template-columns: auto 1fr; gap: 14px; padding: 18px; }
+                    @media (max-width: 767px) {
+                        .gbh-lens { padding-bottom: 56px; }
+                        .gbh-lens__item { grid-template-columns: auto 1fr; gap: 12px; padding: 14px 16px; }
                         .gbh-lens__num, .gbh-lens__go { display: none; }
-                        .gbh-lens__item .gbh-icon { width: 46px; height: 46px; font-size: 19px; }
-                        .gbh-lens__card { padding: 34px 22px 24px; }
-                        .gbh-lens__card h3 { font-size: 23px; }
-                        .gbh-lens__checks { grid-template-columns: 1fr; }
+                        .gbh-lens__item .gbh-icon { width: 40px; height: 40px; font-size: 16px; }
+                        .gbh-lens__item h3 { font-size: 15px; margin-bottom: 2px; }
+                        .gbh-lens__item p { font-size: 13px; line-height: 1.45; }
+                        .gbh-lens__card { padding: 24px 20px; }
+                        .gbh-lens__card h3 { font-size: 21px; }
+                        .gbh-lens__checks { grid-template-columns: 1fr; gap: 8px; font-size: 13px; }
                     }
                 </style>
                 <section class="gbh-section gbh-lens gbh-dotgrid" id="scope">
@@ -1785,39 +1842,19 @@
                     </div>
                 </section>
 
-                <!-- Our Method Section - Premium Interactive Vertical Timeline -->
+                <!-- Our Method Section - Compact 3x2 Grid on Desktop / Swipeable on Mobile -->
                 <style>
-                    /* ==========================================================================
-                       Premium Interactive Vertical Timeline - Our Method Section Redesign
-                       ========================================================================== */
-                    :root {
-                        --tm-bg: #0B1020;
-                        --tm-bg-card: #151D32;
-                        --tm-orange: #FF7048;
-                        --tm-orange-glow: rgba(255, 112, 72, 0.45);
-                        --tm-orange-subtle: rgba(255, 112, 72, 0.12);
-                        --tm-orange-border: rgba(255, 112, 72, 0.35);
-                        --tm-heading: #F5F6FA;
-                        --tm-desc: #A5AEC0;
-                        --tm-border: rgba(255, 255, 255, 0.08);
-                        --tm-border-hover: rgba(255, 112, 72, 0.35);
-                        --tm-line-track: rgba(255, 255, 255, 0.09);
-                        --tm-ease: cubic-bezier(0.22, 1, 0.36, 1);
-                    }
-
                     .gb-method {
-                        background-color: var(--tm-bg);
+                        background-color: #0B1020;
                         background-image: 
-                            radial-gradient(circle at 50% 12%, rgba(35, 28, 80, 0.38) 0%, transparent 60%),
-                            radial-gradient(circle at 12% 50%, rgba(18, 25, 52, 0.75) 0%, transparent 50%),
-                            radial-gradient(circle at 88% 75%, rgba(255, 112, 72, 0.06) 0%, transparent 50%);
-                        padding: 130px 0 120px;
+                            radial-gradient(circle at 50% 12%, rgba(35, 28, 80, 0.45) 0%, transparent 60%),
+                            radial-gradient(circle at 12% 50%, rgba(18, 25, 52, 0.8) 0%, transparent 50%),
+                            radial-gradient(circle at 88% 75%, rgba(255, 112, 72, 0.08) 0%, transparent 50%);
+                        padding: 96px 0 90px;
                         position: relative;
                         overflow: hidden;
                         color: #ffffff;
                     }
-
-                    /* Atmospheric Dot Grid */
                     .gb-method::before {
                         content: "";
                         position: absolute;
@@ -1827,827 +1864,228 @@
                         pointer-events: none;
                         z-index: 1;
                     }
-
-                    /* Atmospheric Glow Orbs */
-                    .gb-method__glow {
-                        position: absolute;
-                        border-radius: 50%;
-                        pointer-events: none;
-                        z-index: 1;
-                    }
-                    .gb-method__glow--top {
-                        top: 5%;
-                        left: 20%;
-                        width: 600px;
-                        height: 450px;
-                        background: radial-gradient(circle, rgba(120, 80, 220, 0.08) 0%, transparent 70%);
-                    }
-                    .gb-method__glow--orange {
-                        top: 45%;
-                        right: 5%;
-                        width: 500px;
-                        height: 500px;
-                        background: radial-gradient(circle, rgba(255, 112, 72, 0.08) 0%, transparent 70%);
-                    }
-                    .gb-method__glow--bottom {
-                        bottom: 5%;
-                        left: 10%;
-                        width: 550px;
-                        height: 450px;
-                        background: radial-gradient(circle, rgba(42, 157, 143, 0.07) 0%, transparent 70%);
-                    }
-
-                    /* Smooth Top & Bottom Dividers blending with adjacent sections */
-                    .gb-method__divider {
-                        position: absolute;
-                        left: 0;
-                        right: 0;
-                        width: 100%;
-                        height: 48px;
-                        pointer-events: none;
-                        z-index: 3;
-                    }
-                    .gb-method__divider--top { top: 0; }
-                    .gb-method__divider--bottom { bottom: 0; }
-                    .gb-method__divider svg { width: 100%; height: 100%; display: block; }
-
                     .gb-method__wrap {
+                        position: relative;
+                        z-index: 2;
                         max-width: 1240px;
                         margin: 0 auto;
                         padding: 0 24px;
-                        position: relative;
-                        z-index: 2;
                     }
-
-                    /* Section Header */
                     .gb-method__head {
                         text-align: center;
-                        max-width: 780px;
-                        margin: 0 auto 80px;
-                        position: relative;
-                        z-index: 2;
+                        max-width: 720px;
+                        margin: 0 auto 52px;
                     }
-
                     .gb-method__eyebrow {
                         display: inline-flex;
                         align-items: center;
                         gap: 8px;
+                        font-size: 13px;
+                        font-weight: 700;
+                        letter-spacing: 0.14em;
+                        text-transform: uppercase;
+                        color: #FF7048;
+                        background: rgba(255, 112, 72, 0.12);
+                        border: 1px solid rgba(255, 112, 72, 0.32);
                         padding: 6px 18px;
                         border-radius: 999px;
-                        background: var(--tm-orange-subtle);
-                        border: 1px solid var(--tm-orange-border);
-                        color: var(--tm-orange);
-                        font-size: 12.5px;
-                        font-weight: 700;
-                        letter-spacing: 0.12em;
-                        text-transform: uppercase;
-                        margin-bottom: 22px;
+                        margin-bottom: 18px;
                     }
                     .gb-method__eyebrow-dot {
                         width: 7px;
                         height: 7px;
                         border-radius: 50%;
-                        background: var(--tm-orange);
-                        box-shadow: 0 0 10px var(--tm-orange);
-                        animation: tmDotPulse 2s ease-in-out infinite alternate;
+                        background: #FF7048;
+                        box-shadow: 0 0 10px #FF7048;
                     }
-                    @keyframes tmDotPulse {
-                        0% { transform: scale(0.9); opacity: 0.7; }
-                        100% { transform: scale(1.3); opacity: 1; }
-                    }
-
                     .gb-method__title {
-                        font-size: clamp(32px, 4vw, 46px);
+                        font-size: clamp(28px, 3.6vw, 42px);
                         font-weight: 800;
                         line-height: 1.22;
-                        color: var(--tm-heading);
-                        margin: 0 0 18px;
+                        color: #F5F6FA;
+                        margin-bottom: 14px;
                         letter-spacing: -0.5px;
                     }
                     .gb-method__highlight {
-                        background: linear-gradient(90deg, #FF7048 0%, #FFA07A 100%);
+                        background: linear-gradient(135deg, #FF7048 0%, #FFA86B 100%);
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
-                        background-clip: text;
-                        color: var(--tm-orange);
                     }
-
                     .gb-method__sub {
-                        max-width: 640px;
+                        font-size: 16.5px;
+                        line-height: 1.65;
+                        color: #A5AEC0;
                         margin: 0 auto;
-                        color: var(--tm-desc);
-                        font-size: 17.5px;
-                        line-height: 1.75;
-                        font-weight: 400;
-                        text-wrap: balance;
                     }
-
-                    /* ==========================================================================
-                       Vertical Timeline Spine & Alternating Rows
-                       ========================================================================== */
-                    .gb-timeline {
-                        position: relative;
-                        max-width: 1140px;
-                        margin: 0 auto;
-                        padding: 20px 0 40px;
+                    .gb-method__grid {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 24px;
                     }
-
-                    /* Central Continuous Timeline Track (Spine) */
-                    .gb-timeline__spine {
-                        position: absolute;
-                        top: 40px;
-                        bottom: 40px;
-                        left: 50%;
-                        width: 3px;
-                        transform: translateX(-50%);
-                        background: var(--tm-line-track);
-                        border-radius: 3px;
-                        z-index: 1;
-                    }
-
-                    /* Active Glowing Fill Line */
-                    .gb-timeline__spine-fill {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 0%;
-                        background: linear-gradient(180deg, #FF7048 0%, #FFA07A 50%, #FF7048 100%);
-                        box-shadow: 0 0 14px var(--tm-orange-glow);
-                        border-radius: 3px;
-                        transition: height 0.15s ease-out;
-                    }
-
-                    /* Timeline Stage Row (Alternating Left / Right) */
-                    .gb-timeline__row {
-                        position: relative;
-                        display: flex;
-                        align-items: center;
-                        margin-bottom: 72px;
-                        z-index: 2;
-                    }
-                    .gb-timeline__row:last-child {
-                        margin-bottom: 0;
-                    }
-
-                    /* Left Row: Card on Left */
-                    .gb-timeline__row--left {
-                        justify-content: flex-start;
-                    }
-
-                    /* Right Row: Card on Right */
-                    .gb-timeline__row--right {
-                        justify-content: flex-end;
-                    }
-
-                    /* Central Milestone Node (Positioned on central spine) */
-                    .gb-timeline__node-wrap {
-                        position: absolute;
-                        left: 50%;
-                        top: 50%;
-                        transform: translate(-50%, -50%);
-                        z-index: 5;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-
-                    .gb-timeline__node {
-                        width: 46px;
-                        height: 46px;
-                        border-radius: 50%;
-                        background: #0E162B;
-                        border: 2px solid rgba(255, 255, 255, 0.18);
-                        color: rgba(255, 255, 255, 0.55);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 13.5px;
-                        font-weight: 800;
-                        position: relative;
-                        transition: all 0.45s var(--tm-ease);
-                        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-                        user-select: none;
-                    }
-
-                    .gb-timeline__node-num {
-                        position: relative;
-                        z-index: 2;
-                    }
-
-                    /* Active Glowing Node */
-                    .gb-timeline__node.is-active {
-                        background: linear-gradient(135deg, #FF7048 0%, #E85B2F 100%);
-                        border-color: #FF7048;
-                        color: #ffffff;
-                        box-shadow: 0 0 20px var(--tm-orange-glow), 0 0 35px rgba(255, 112, 72, 0.25);
-                        transform: scale(1.08);
-                    }
-
-                    /* Active Pulse Ring */
-                    .gb-timeline__node-pulse {
-                        position: absolute;
-                        inset: -8px;
-                        border-radius: 50%;
-                        border: 2px solid rgba(255, 112, 72, 0.55);
-                        opacity: 0;
-                        pointer-events: none;
-                    }
-                    .gb-timeline__node.is-active .gb-timeline__node-pulse {
-                        animation: tmNodePulse 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-                    }
-
-                    @keyframes tmNodePulse {
-                        0% { transform: scale(0.92); opacity: 0.85; }
-                        50% { transform: scale(1.4); opacity: 0.25; }
-                        100% { transform: scale(1.75); opacity: 0; }
-                    }
-
-                    /* Horizontal Connector Line (from node to card) */
-                    .gb-timeline__connector {
-                        position: absolute;
-                        top: 50%;
-                        height: 2px;
-                        z-index: 3;
-                        pointer-events: none;
-                        transition: background 0.4s var(--tm-ease), box-shadow 0.4s var(--tm-ease);
-                    }
-                    .gb-timeline__row--left .gb-timeline__connector {
-                        right: 50%;
-                        width: 48px;
-                        transform: translateY(-50%);
-                        background: linear-gradient(90deg, rgba(255, 112, 72, 0.7), rgba(255, 112, 72, 0.2));
-                    }
-                    .gb-timeline__row--right .gb-timeline__connector {
-                        left: 50%;
-                        width: 48px;
-                        transform: translateY(-50%);
-                        background: linear-gradient(90deg, rgba(255, 112, 72, 0.2), rgba(255, 112, 72, 0.7));
-                    }
-                    .gb-timeline__row:hover .gb-timeline__connector {
-                        box-shadow: 0 0 8px var(--tm-orange-glow);
-                    }
-
-                    /* ==========================================================================
-                       Content Card Design
-                       ========================================================================== */
-                    .gb-timeline__card-wrap {
-                        width: calc(50% - 48px);
-                        position: relative;
-                        z-index: 2;
-                    }
-
-                    .gb-timeline__card {
-                        background: var(--tm-bg-card);
-                        background: linear-gradient(180deg, #172037 0%, #131A2D 100%);
-                        border: 1px solid var(--tm-border);
+                    .gb-method-card {
+                        background: #151D32;
+                        border: 1px solid rgba(255, 255, 255, 0.08);
                         border-radius: 20px;
                         overflow: hidden;
-                        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.2);
-                        transition: 
-                            transform 0.45s var(--tm-ease),
-                            border-color 0.45s var(--tm-ease),
-                            box-shadow 0.45s var(--tm-ease);
                         display: flex;
                         flex-direction: column;
-                        position: relative;
-                    }
-
-                    /* Top Accent Gradient Bar */
-                    .gb-timeline__card::before {
-                        content: "";
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        height: 2px;
-                        background: linear-gradient(90deg, #FF7048 0%, #FFA07A 50%, #2A9D8F 100%);
-                        opacity: 0.65;
-                        z-index: 4;
-                        transition: opacity 0.4s var(--tm-ease), height 0.4s var(--tm-ease);
-                    }
-
-                    /* Card Hover Elevation */
-                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-                        .gb-timeline__card:hover {
-                            transform: translateY(-6px);
-                            border-color: var(--tm-border-hover);
-                            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.48), 0 0 30px rgba(255, 112, 72, 0.22);
-                        }
-                        .gb-timeline__card:hover::before {
-                            opacity: 1;
-                            height: 3px;
-                            box-shadow: 0 0 10px rgba(255, 112, 72, 0.5);
-                        }
-                        .gb-timeline__card:hover .gb-timeline__card-img img {
-                            transform: scale(1.05);
-                        }
-                        .gb-timeline__card:hover .gb-timeline__card-arrow {
-                            background: var(--tm-orange);
-                            color: #ffffff;
-                            transform: translate(3px, -3px) rotate(45deg);
-                            box-shadow: 0 4px 14px rgba(255, 112, 72, 0.4);
-                        }
-                    }
-
-                    /* Card Media / Image Container (Wide Top Image) */
-                    .gb-timeline__card-media {
-                        position: relative;
-                        width: 100%;
-                        aspect-ratio: 16 / 9;
-                        max-height: 220px;
-                        overflow: hidden;
-                        background: #0E1628;
-                    }
-
-                    .gb-timeline__card-img {
-                        width: 100%;
+                        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
                         height: 100%;
-                        overflow: hidden;
-                        position: relative;
                     }
-                    .gb-timeline__card-img img {
+                    .gb-method-card:hover {
+                        transform: translateY(-5px);
+                        border-color: rgba(255, 112, 72, 0.4);
+                        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 112, 72, 0.15);
+                    }
+                    .gb-method-card__media {
+                        position: relative;
+                        width: 100%;
+                        height: 170px;
+                        overflow: hidden;
+                        background: #0B1020;
+                    }
+                    .gb-method-card__media img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
-                        display: block;
-                        transition: transform 0.85s var(--tm-ease);
+                        transition: transform 0.6s ease;
                     }
-
-                    /* Gradient Vignette over image */
-                    .gb-timeline__card-media::after {
-                        content: "";
-                        position: absolute;
-                        inset: 0;
-                        background: linear-gradient(180deg, rgba(11, 16, 32, 0.1) 0%, rgba(19, 26, 45, 0.75) 100%);
-                        pointer-events: none;
-                        z-index: 1;
+                    .gb-method-card:hover .gb-method-card__media img {
+                        transform: scale(1.06);
                     }
-
-                    /* Floating Stage Badge on Image */
-                    .gb-timeline__stage-pill {
+                    .gb-method-card__pill {
                         position: absolute;
-                        top: 16px;
-                        left: 18px;
-                        z-index: 3;
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 6px;
-                        padding: 5px 12px;
-                        border-radius: 999px;
-                        background: rgba(11, 16, 32, 0.9);
-                        border: 1px solid rgba(255, 112, 72, 0.4);
-                        color: var(--tm-orange);
+                        top: 14px;
+                        left: 14px;
                         font-size: 11px;
-                        font-weight: 700;
-                        letter-spacing: 0.1em;
-                        text-transform: uppercase;
-                    }
-
-                    /* Floating Icon Box on Image */
-                    .gb-timeline__icon-box {
-                        position: absolute;
-                        top: 16px;
-                        right: 18px;
-                        z-index: 3;
-                        width: 36px;
-                        height: 36px;
-                        border-radius: 10px;
-                        background: rgba(11, 16, 32, 0.9);
-                        border: 1px solid rgba(255, 255, 255, 0.15);
-                        color: #FFA07A;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 14.5px;
-                        transition: transform 0.35s var(--tm-ease), background 0.35s var(--tm-ease), color 0.35s var(--tm-ease);
-                    }
-
-                    /* Card Body Content */
-                    .gb-timeline__card-body {
-                        padding: 26px 28px 28px;
-                        position: relative;
-                        z-index: 2;
-                    }
-
-                    .gb-timeline__card-header {
-                        display: flex;
-                        align-items: flex-start;
-                        justify-content: space-between;
-                        gap: 16px;
-                        margin-bottom: 12px;
-                    }
-
-                    .gb-timeline__card-title {
-                        font-size: 21px;
                         font-weight: 800;
-                        color: var(--tm-heading);
-                        letter-spacing: 0.03em;
-                        text-transform: uppercase;
-                        margin: 0;
-                        line-height: 1.3;
-                    }
-
-                    .gb-timeline__card-arrow {
-                        width: 34px;
-                        height: 34px;
-                        border-radius: 50%;
-                        background: rgba(255, 255, 255, 0.06);
-                        border: 1px solid rgba(255, 255, 255, 0.12);
-                        color: var(--tm-orange);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 12.5px;
-                        flex-shrink: 0;
-                        transition: all 0.35s var(--tm-ease);
-                    }
-
-                    .gb-timeline__card-desc {
-                        color: var(--tm-desc);
-                        font-size: 15.5px;
-                        line-height: 1.72;
-                        margin: 0;
-                        font-weight: 400;
-                    }
-
-                    /* ==========================================================================
-                       Final CTA Strip (Concluding the Timeline)
-                       ========================================================================== */
-                    .gb-timeline__cta {
-                        position: relative;
-                        text-align: center;
-                        margin-top: 80px;
-                        padding-top: 40px;
+                        letter-spacing: 0.1em;
+                        color: #ffffff;
+                        background: rgba(11, 16, 32, 0.85);
+                        backdrop-filter: blur(8px);
+                        padding: 4px 12px;
+                        border-radius: 999px;
+                        border: 1px solid rgba(255, 255, 255, 0.15);
                         z-index: 2;
                     }
-
-                    /* Connecting End Node on spine leading into CTA */
-                    .gb-timeline__end-node {
-                        width: 18px;
-                        height: 18px;
-                        border-radius: 50%;
-                        background: var(--tm-orange);
-                        box-shadow: 0 0 16px var(--tm-orange);
-                        margin: 0 auto 36px;
-                        position: relative;
-                    }
-                    .gb-timeline__end-node::after {
-                        content: "";
+                    .gb-method-card__icon {
                         position: absolute;
-                        inset: -6px;
+                        bottom: 12px;
+                        right: 14px;
+                        width: 38px;
+                        height: 38px;
                         border-radius: 50%;
-                        border: 1.5px solid rgba(255, 112, 72, 0.4);
-                        animation: tmDotPulse 2s ease-in-out infinite alternate;
+                        background: linear-gradient(135deg, #FF7048 0%, #E85B2F 100%);
+                        color: #ffffff;
+                        display: grid;
+                        place-items: center;
+                        font-size: 15px;
+                        box-shadow: 0 4px 12px rgba(232, 91, 47, 0.45);
+                        z-index: 2;
                     }
-
-                    .gb-timeline__cta-wrap {
-                        display: inline-flex;
+                    .gb-method-card__body {
+                        padding: 22px 22px 24px;
+                        display: flex;
                         flex-direction: column;
+                        flex-grow: 1;
+                    }
+                    .gb-method-card__body h3 {
+                        font-size: 18px;
+                        font-weight: 800;
+                        letter-spacing: 0.04em;
+                        color: #F5F6FA;
+                        margin-bottom: 8px;
+                    }
+                    .gb-method-card__body p {
+                        font-size: 14px;
+                        line-height: 1.6;
+                        color: #A5AEC0;
+                        margin: 0;
+                        flex-grow: 1;
+                    }
+                    .gb-method__cta {
+                        margin-top: 48px;
+                        text-align: center;
+                        display: flex;
+                        flex-wrap: wrap;
                         align-items: center;
-                        gap: 16px;
+                        justify-content: center;
+                        gap: 18px;
+                        background: rgba(255, 255, 255, 0.03);
+                        border: 1px solid rgba(255, 255, 255, 0.08);
+                        border-radius: 999px;
+                        padding: 14px 28px;
+                        max-width: 680px;
+                        margin-inline: auto;
                     }
-
-                    .gb-timeline__cta-text {
-                        color: var(--tm-heading);
-                        font-size: 19px;
-                        font-weight: 700;
-                        letter-spacing: -0.2px;
+                    .gb-method__cta-text {
+                        font-size: 15.5px;
+                        font-weight: 600;
+                        color: #E2E8F0;
                     }
-
-                    .gb-timeline__cta-btn {
-                        position: relative;
+                    .gb-method__cta-btn {
                         display: inline-flex;
                         align-items: center;
-                        gap: 10px;
-                        padding: 12px 28px;
-                        border-radius: 999px;
+                        gap: 8px;
                         background: linear-gradient(135deg, #FF7048 0%, #E85B2F 100%);
                         color: #ffffff !important;
-                        font-size: 15px;
+                        font-size: 14px;
                         font-weight: 700;
+                        padding: 10px 22px;
+                        border-radius: 999px;
                         text-decoration: none;
-                        box-shadow: 0 8px 24px rgba(255, 112, 72, 0.38);
-                        transition: transform 0.35s var(--tm-ease), box-shadow 0.35s var(--tm-ease), background 0.35s var(--tm-ease);
+                        transition: transform 0.25s ease, box-shadow 0.25s ease;
+                        white-space: nowrap;
                     }
-                    .gb-timeline__cta-btn i {
-                        font-size: 13.5px;
-                        transition: transform 0.35s var(--tm-ease);
-                    }
-                    .gb-timeline__cta-btn:hover {
+                    .gb-method__cta-btn:hover {
                         transform: translateY(-2px);
-                        box-shadow: 0 14px 34px rgba(255, 112, 72, 0.52);
-                        background: linear-gradient(135deg, #FF5B2C 0%, #D84F25 100%);
+                        box-shadow: 0 8px 20px rgba(232, 91, 47, 0.45);
                     }
-                    .gb-timeline__cta-btn:hover i {
-                        transform: translate(2px, -2px);
-                    }
-
-                    /* ==========================================================================
-                       Directional Animations
-                       ========================================================================== */
-                    @media (prefers-reduced-motion: no-preference) {
-                        .gb-method .wow {
-                            visibility: hidden;
-                            will-change: transform, opacity;
-                        }
-                        .gb-method .wow.animated {
-                            visibility: visible;
-                            animation-duration: 0.85s;
-                            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-                            animation-fill-mode: both;
-                        }
-                        .gb-method .wow.fadeInLeft.animated {
-                            animation-name: gbTimelineFromLeft !important;
-                        }
-                        .gb-method .wow.fadeInRight.animated {
-                            animation-name: gbTimelineFromRight !important;
-                        }
-                        .gb-method .wow.fadeInUp.animated {
-                            animation-name: gbTimelineFromUp !important;
-                        }
-
-                        @keyframes gbTimelineFromLeft {
-                            0% { opacity: 0; transform: translate3d(-50px, 0, 0); }
-                            100% { opacity: 1; transform: translate3d(0, 0, 0); }
-                        }
-                        @keyframes gbTimelineFromRight {
-                            0% { opacity: 0; transform: translate3d(50px, 0, 0); }
-                            100% { opacity: 1; transform: translate3d(0, 0, 0); }
-                        }
-                        @keyframes gbTimelineFromUp {
-                            0% { opacity: 0; transform: translate3d(0, 36px, 0); }
-                            100% { opacity: 1; transform: translate3d(0, 0, 0); }
+                    @media (max-width: 1199px) {
+                        .gb-method__grid {
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 20px;
                         }
                     }
-
-                    /* ==========================================================================
-                       Responsive Adaptations (Tablet & Mobile - Strict Alternating Left/Right)
-                       ========================================================================== */
-                    /* Tablet (768px - 1023px): Alternating Left/Right Timeline */
-                    @media (min-width: 768px) and (max-width: 1023px) {
+                    @media (max-width: 767px) {
                         .gb-method {
-                            padding: 100px 0 90px;
+                            padding: 64px 0 60px;
                         }
                         .gb-method__head {
-                            margin-bottom: 64px;
-                        }
-                        .gb-timeline__card-wrap {
-                            width: calc(50% - 36px);
-                        }
-                        .gb-timeline__row--left .gb-timeline__connector,
-                        .gb-timeline__row--right .gb-timeline__connector {
-                            width: 36px;
-                        }
-                        .gb-timeline__card-media {
-                            max-height: 185px;
-                        }
-                        .gb-timeline__card-body {
-                            padding: 22px 20px 24px;
-                        }
-                        .gb-timeline__card-title {
-                            font-size: 19px;
-                        }
-                        .gb-timeline__card-desc {
-                            font-size: 14.5px;
-                        }
-                    }
-
-                    /* Phablet / Large Mobile (481px - 767px): Alternating Left/Right */
-                    @media (min-width: 481px) and (max-width: 767px) {
-                        .gb-method {
-                            padding: 85px 0 75px;
+                            margin-bottom: 28px;
                         }
                         .gb-method__wrap {
-                            padding: 0 12px;
+                            padding: 0 16px;
                         }
-                        .gb-method__head {
-                            margin-bottom: 50px;
+                        .gb-method__grid {
+                            display: flex;
+                            overflow-x: auto;
+                            scroll-snap-type: x mandatory;
+                            gap: 14px;
+                            padding: 8px 4px 16px;
+                            -webkit-overflow-scrolling: touch;
+                            scrollbar-width: none;
                         }
-                        .gb-method__title {
-                            font-size: clamp(26px, 6vw, 34px);
+                        .gb-method__grid::-webkit-scrollbar {
+                            display: none;
                         }
-                        .gb-timeline__row {
-                            margin-bottom: 44px;
+                        .gb-method-card {
+                            flex: 0 0 280px;
+                            scroll-snap-align: start;
                         }
-                        .gb-timeline__node {
-                            width: 36px;
-                            height: 36px;
-                            font-size: 12px;
+                        .gb-method-card__media {
+                            height: 145px;
                         }
-                        .gb-timeline__card-wrap {
-                            width: calc(50% - 24px);
-                        }
-                        .gb-timeline__row--left .gb-timeline__connector,
-                        .gb-timeline__row--right .gb-timeline__connector {
-                            width: 24px;
-                        }
-                        .gb-timeline__card-media {
-                            max-height: 135px;
-                        }
-                        .gb-timeline__card-body {
-                            padding: 16px 14px 18px;
-                        }
-                        .gb-timeline__card-title {
-                            font-size: 15.5px;
-                        }
-                        .gb-timeline__card-desc {
-                            font-size: 13px;
-                            line-height: 1.6;
-                        }
-                    }
-
-                    /* Compact Smartphone (320px - 480px): Alternating Left/Right Timeline */
-                    @media (max-width: 480px) {
-                        .gb-method {
-                            padding: 75px 0 65px;
-                        }
-                        .gb-method__wrap {
-                            padding: 0 8px;
-                        }
-                        .gb-method__head {
-                            margin-bottom: 42px;
-                        }
-                        .gb-method__eyebrow {
-                            margin-bottom: 14px;
-                            font-size: 10.5px;
-                            padding: 4px 12px;
-                        }
-                        .gb-method__title {
-                            font-size: 24px;
-                            line-height: 1.25;
-                            margin-bottom: 12px;
-                        }
-                        .gb-method__sub {
-                            font-size: 14px;
-                            line-height: 1.6;
-                        }
-
-                        /* Central timeline spine */
-                        .gb-timeline {
-                            padding: 10px 0 20px;
-                        }
-                        .gb-timeline__spine {
-                            left: 50%;
-                            transform: translateX(-50%);
-                            top: 20px;
-                            bottom: 50px;
-                            width: 2.5px;
-                        }
-
-                        /* Alternating rows */
-                        .gb-timeline__row {
-                            margin-bottom: 34px;
-                            position: relative;
-                        }
-                        .gb-timeline__row:last-child {
-                            margin-bottom: 0;
-                        }
-
-                        /* Milestone Node in Center */
-                        .gb-timeline__node-wrap {
-                            position: absolute;
-                            left: 50%;
-                            top: 50%;
-                            transform: translate(-50%, -50%);
-                            z-index: 5;
-                        }
-                        .gb-timeline__node {
-                            width: 30px;
-                            height: 30px;
-                            font-size: 10.5px;
-                            border-width: 1.5px;
-                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-                        }
-
-                        /* Horizontal connector from center node to card */
-                        .gb-timeline__connector {
-                            height: 1.5px;
-                        }
-                        .gb-timeline__row--left .gb-timeline__connector {
-                            right: 50%;
-                            width: 22px;
-                            transform: translateY(-50%);
-                        }
-                        .gb-timeline__row--right .gb-timeline__connector {
-                            left: 50%;
-                            width: 22px;
-                            transform: translateY(-50%);
-                        }
-
-                        /* Alternating card width on compact screen */
-                        .gb-timeline__card-wrap {
-                            width: calc(50% - 22px);
-                        }
-                        .gb-timeline__card {
-                            border-radius: 13px;
-                            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-                        }
-
-                        /* Card Media */
-                        .gb-timeline__card-media {
-                            max-height: 95px;
-                            aspect-ratio: 16 / 10;
-                        }
-                        .gb-timeline__stage-pill {
-                            top: 6px;
-                            left: 6px;
-                            font-size: 8.5px;
-                            padding: 2px 6px;
-                            letter-spacing: 0.05em;
-                        }
-                        .gb-timeline__icon-box {
-                            top: 6px;
-                            right: 6px;
-                            width: 24px;
-                            height: 24px;
-                            font-size: 10px;
-                            border-radius: 6px;
-                        }
-
-                        /* Card Body */
-                        .gb-timeline__card-body {
-                            padding: 10px 8px 12px;
-                        }
-                        .gb-timeline__card-header {
-                            margin-bottom: 5px;
-                            gap: 6px;
-                        }
-                        .gb-timeline__card-title {
-                            font-size: 13px;
-                            letter-spacing: 0.02em;
-                        }
-                        .gb-timeline__card-arrow {
-                            width: 20px;
-                            height: 20px;
-                            font-size: 8.5px;
-                        }
-                        .gb-timeline__card-desc {
-                            font-size: 11px;
-                            line-height: 1.52;
-                        }
-
-                        /* Final CTA on small screens */
-                        .gb-timeline__cta {
-                            margin-top: 42px;
-                            padding-top: 20px;
-                        }
-                        .gb-timeline__cta-text {
-                            font-size: 16px;
-                        }
-                        .gb-timeline__cta-btn {
-                            padding: 10px 22px;
-                            font-size: 13.5px;
-                        }
-                    }
-
-                    /* Accessibility: Keyboard focus-visible & Reduced Motion */
-                    .gb-timeline__card:focus-visible,
-                    .gb-timeline__cta-btn:focus-visible {
-                        outline: 2px solid var(--tm-orange) !important;
-                        outline-offset: 3px !important;
-                    }
-                    @media (prefers-reduced-motion: reduce) {
-                        .gb-timeline__card,
-                        .gb-timeline__card-img img,
-                        .gb-timeline__card-arrow,
-                        .gb-timeline__node,
-                        .gb-timeline__spine-fill,
-                        .gb-timeline__cta-btn {
-                            transition: none !important;
-                            animation: none !important;
-                            transform: none !important;
-                            opacity: 1 !important;
-                        }
-                        .gb-timeline__node {
-                            background: linear-gradient(135deg, #FF7048 0%, #E85B2F 100%) !important;
-                            border-color: #FF7048 !important;
-                            color: #ffffff !important;
-                        }
-                        .gb-timeline__spine-fill {
-                            height: 100% !important;
+                        .gb-method__cta {
+                            border-radius: 20px;
+                            padding: 18px 20px;
+                            flex-direction: column;
+                            margin-top: 28px;
                         }
                     }
                 </style>
 
                 <section class="gb-method" id="methodology">
-                    <!-- Smooth Curved Top & Bottom Dividers -->
-                    <div class="gb-method__divider gb-method__divider--top" aria-hidden="true">
-                        <svg viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0,0 L1440,0 L1440,14 Q720,48 0,14 Z" fill="#F8F9FA"></path>
-                        </svg>
-                    </div>
-                    <div class="gb-method__divider gb-method__divider--bottom" aria-hidden="true">
-                        <svg viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0,48 L1440,48 L1440,34 Q720,0 0,34 Z" fill="#FFFFFF"></path>
-                        </svg>
-                    </div>
-
-                    <!-- Atmospheric Glows -->
-                    <div class="gb-method__glow gb-method__glow--top" aria-hidden="true"></div>
-                    <div class="gb-method__glow gb-method__glow--orange" aria-hidden="true"></div>
-                    <div class="gb-method__glow gb-method__glow--bottom" aria-hidden="true"></div>
-
                     <div class="gb-method__wrap">
                         <!-- Section Header -->
                         <div class="gb-method__head wow fadeInUp" data-wow-delay=".1s">
@@ -2663,222 +2101,94 @@
                             </p>
                         </div>
 
-                        <!-- Premium Interactive Vertical Timeline -->
-                        <div class="gb-timeline">
-                            <!-- Central Spine Track -->
-                            <div class="gb-timeline__spine" aria-hidden="true">
-                                <div class="gb-timeline__spine-fill"></div>
-                            </div>
+                        <!-- 3x2 Grid on Desktop / Swipeable Cards on Mobile -->
+                        <div class="gb-method__grid">
+                            <!-- Stage 01: Discover -->
+                            <article class="gb-method-card wow fadeInUp" data-wow-delay=".05s">
+                                <div class="gb-method-card__media">
+                                    <img loading="lazy" decoding="async" src="assets/img/method/stage-01.jpg" width="800" height="598" alt="Stage 01 Discover - Corporate Consultation and Strategy Meeting">
+                                    <span class="gb-method-card__pill">STAGE 01</span>
+                                    <span class="gb-method-card__icon" aria-hidden="true"><i class="fa-solid fa-compass"></i></span>
+                                </div>
+                                <div class="gb-method-card__body">
+                                    <h3>DISCOVER</h3>
+                                    <p>Understand business context, workforce profile, operating locations, and primary leadership concerns.</p>
+                                </div>
+                            </article>
 
-                            <!-- STAGE 01: DISCOVER (Left) -->
-                            <div class="gb-timeline__row gb-timeline__row--left">
-                                <div class="gb-timeline__card-wrap wow fadeInLeft" data-wow-delay=".05s">
-                                    <article class="gb-timeline__card" data-stage="1">
-                                        <div class="gb-timeline__card-media">
-                                            <div class="gb-timeline__card-img">
-                                                <img loading="lazy" decoding="async" src="assets/img/method/stage-01.jpg" width="800" height="598" alt="Stage 01 Discover - Corporate Consultation and Strategy Meeting">
-                                            </div>
-                                            <span class="gb-timeline__stage-pill">STAGE 01</span>
-                                            <div class="gb-timeline__icon-box" aria-hidden="true">
-                                                <i class="fa-solid fa-compass"></i>
-                                            </div>
-                                        </div>
-                                        <div class="gb-timeline__card-body">
-                                            <div class="gb-timeline__card-header">
-                                                <h3 class="gb-timeline__card-title">DISCOVER</h3>
-                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
-                                                    <i class="fa-solid fa-arrow-up-right"></i>
-                                                </span>
-                                            </div>
-                                            <p class="gb-timeline__card-desc">Understand business context, workforce profile, operating locations, and primary leadership concerns.</p>
-                                        </div>
-                                    </article>
+                            <!-- Stage 02: Collect -->
+                            <article class="gb-method-card wow fadeInUp" data-wow-delay=".1s">
+                                <div class="gb-method-card__media">
+                                    <img loading="lazy" decoding="async" src="assets/img/method/stage-02.jpg" width="800" height="446" alt="Stage 02 Collect - Documentation, Records & Policy Evidence">
+                                    <span class="gb-method-card__pill">STAGE 02</span>
+                                    <span class="gb-method-card__icon" aria-hidden="true"><i class="fa-solid fa-folder-open"></i></span>
                                 </div>
-                                <div class="gb-timeline__connector" aria-hidden="true"></div>
-                                <div class="gb-timeline__node-wrap">
-                                    <div class="gb-timeline__node" data-stage="1" aria-label="Stage 1">
-                                        <span class="gb-timeline__node-num">01</span>
-                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
-                                    </div>
+                                <div class="gb-method-card__body">
+                                    <h3>COLLECT</h3>
+                                    <p>Request and gather relevant personnel records, policies, statutory registers, and process evidence.</p>
                                 </div>
-                            </div>
+                            </article>
 
-                            <!-- STAGE 02: COLLECT (Right) -->
-                            <div class="gb-timeline__row gb-timeline__row--right">
-                                <div class="gb-timeline__connector" aria-hidden="true"></div>
-                                <div class="gb-timeline__node-wrap">
-                                    <div class="gb-timeline__node" data-stage="2" aria-label="Stage 2">
-                                        <span class="gb-timeline__node-num">02</span>
-                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
-                                    </div>
+                            <!-- Stage 03: Review -->
+                            <article class="gb-method-card wow fadeInUp" data-wow-delay=".15s">
+                                <div class="gb-method-card__media">
+                                    <img loading="lazy" decoding="async" src="assets/img/method/stage-03.jpg" width="800" height="446" alt="Stage 03 Review - Testing Data Samples & Gap Analysis">
+                                    <span class="gb-method-card__pill">STAGE 03</span>
+                                    <span class="gb-method-card__icon" aria-hidden="true"><i class="fa-solid fa-clipboard-check"></i></span>
                                 </div>
-                                <div class="gb-timeline__card-wrap wow fadeInRight" data-wow-delay=".05s">
-                                    <article class="gb-timeline__card" data-stage="2">
-                                        <div class="gb-timeline__card-media">
-                                            <div class="gb-timeline__card-img">
-                                                <img loading="lazy" decoding="async" src="assets/img/method/stage-02.jpg" width="800" height="446" alt="Stage 02 Collect - Documentation, Records & Policy Evidence">
-                                            </div>
-                                            <span class="gb-timeline__stage-pill">STAGE 02</span>
-                                            <div class="gb-timeline__icon-box" aria-hidden="true">
-                                                <i class="fa-solid fa-folder-open"></i>
-                                            </div>
-                                        </div>
-                                        <div class="gb-timeline__card-body">
-                                            <div class="gb-timeline__card-header">
-                                                <h3 class="gb-timeline__card-title">COLLECT</h3>
-                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
-                                                    <i class="fa-solid fa-arrow-up-right"></i>
-                                                </span>
-                                            </div>
-                                            <p class="gb-timeline__card-desc">Request and gather relevant personnel records, policies, statutory registers, and process evidence.</p>
-                                        </div>
-                                    </article>
+                                <div class="gb-method-card__body">
+                                    <h3>REVIEW</h3>
+                                    <p>Test data samples, compare written documents to actual daily practice, and identify gaps or inconsistencies.</p>
                                 </div>
-                            </div>
+                            </article>
 
-                            <!-- STAGE 03: REVIEW (Left) -->
-                            <div class="gb-timeline__row gb-timeline__row--left">
-                                <div class="gb-timeline__card-wrap wow fadeInLeft" data-wow-delay=".05s">
-                                    <article class="gb-timeline__card" data-stage="3">
-                                        <div class="gb-timeline__card-media">
-                                            <div class="gb-timeline__card-img">
-                                                <img loading="lazy" decoding="async" src="assets/img/method/stage-03.jpg" width="800" height="446" alt="Stage 03 Review - Testing Data Samples & Gap Analysis">
-                                            </div>
-                                            <span class="gb-timeline__stage-pill">STAGE 03</span>
-                                            <div class="gb-timeline__icon-box" aria-hidden="true">
-                                                <i class="fa-solid fa-clipboard-check"></i>
-                                            </div>
-                                        </div>
-                                        <div class="gb-timeline__card-body">
-                                            <div class="gb-timeline__card-header">
-                                                <h3 class="gb-timeline__card-title">REVIEW</h3>
-                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
-                                                    <i class="fa-solid fa-arrow-up-right"></i>
-                                                </span>
-                                            </div>
-                                            <p class="gb-timeline__card-desc">Test data samples, compare written documents to actual daily practice, and identify gaps or inconsistencies.</p>
-                                        </div>
-                                    </article>
+                            <!-- Stage 04: Prioritise -->
+                            <article class="gb-method-card wow fadeInUp" data-wow-delay=".2s">
+                                <div class="gb-method-card__media">
+                                    <img loading="lazy" decoding="async" src="assets/img/method/stage-04.jpg" width="800" height="598" alt="Stage 04 Prioritise - Strategic Classification & Action Planning">
+                                    <span class="gb-method-card__pill">STAGE 04</span>
+                                    <span class="gb-method-card__icon" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
                                 </div>
-                                <div class="gb-timeline__connector" aria-hidden="true"></div>
-                                <div class="gb-timeline__node-wrap">
-                                    <div class="gb-timeline__node" data-stage="3" aria-label="Stage 3">
-                                        <span class="gb-timeline__node-num">03</span>
-                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
-                                    </div>
+                                <div class="gb-method-card__body">
+                                    <h3>PRIORITISE</h3>
+                                    <p>Classify observations by regulatory impact, business urgency, and practical effort required to resolve.</p>
                                 </div>
-                            </div>
+                            </article>
 
-                            <!-- STAGE 04: PRIORITISE (Right) -->
-                            <div class="gb-timeline__row gb-timeline__row--right">
-                                <div class="gb-timeline__connector" aria-hidden="true"></div>
-                                <div class="gb-timeline__node-wrap">
-                                    <div class="gb-timeline__node" data-stage="4" aria-label="Stage 4">
-                                        <span class="gb-timeline__node-num">04</span>
-                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
-                                    </div>
+                            <!-- Stage 05: Report -->
+                            <article class="gb-method-card wow fadeInUp" data-wow-delay=".25s">
+                                <div class="gb-method-card__media">
+                                    <img loading="lazy" decoding="async" src="assets/img/method/stage-05.jpg" width="800" height="446" alt="Stage 05 Report - Executive Reporting & Recommended Corrective Actions">
+                                    <span class="gb-method-card__pill">STAGE 05</span>
+                                    <span class="gb-method-card__icon" aria-hidden="true"><i class="fa-solid fa-chart-column"></i></span>
                                 </div>
-                                <div class="gb-timeline__card-wrap wow fadeInRight" data-wow-delay=".05s">
-                                    <article class="gb-timeline__card" data-stage="4">
-                                        <div class="gb-timeline__card-media">
-                                            <div class="gb-timeline__card-img">
-                                                <img loading="lazy" decoding="async" src="assets/img/method/stage-04.jpg" width="800" height="598" alt="Stage 04 Prioritise - Strategic Classification & Action Planning">
-                                            </div>
-                                            <span class="gb-timeline__stage-pill">STAGE 04</span>
-                                            <div class="gb-timeline__icon-box" aria-hidden="true">
-                                                <i class="fa-solid fa-layer-group"></i>
-                                            </div>
-                                        </div>
-                                        <div class="gb-timeline__card-body">
-                                            <div class="gb-timeline__card-header">
-                                                <h3 class="gb-timeline__card-title">PRIORITISE</h3>
-                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
-                                                    <i class="fa-solid fa-arrow-up-right"></i>
-                                                </span>
-                                            </div>
-                                            <p class="gb-timeline__card-desc">Classify observations by regulatory impact, business urgency, and practical effort required to resolve.</p>
-                                        </div>
-                                    </article>
+                                <div class="gb-method-card__body">
+                                    <h3>REPORT</h3>
+                                    <p>Present evidence-led observations, executive summaries, risk registers, and recommended corrective actions.</p>
                                 </div>
-                            </div>
+                            </article>
 
-                            <!-- STAGE 05: REPORT (Left) -->
-                            <div class="gb-timeline__row gb-timeline__row--left">
-                                <div class="gb-timeline__card-wrap wow fadeInLeft" data-wow-delay=".05s">
-                                    <article class="gb-timeline__card" data-stage="5">
-                                        <div class="gb-timeline__card-media">
-                                            <div class="gb-timeline__card-img">
-                                                <img loading="lazy" decoding="async" src="assets/img/method/stage-05.jpg" width="800" height="446" alt="Stage 05 Report - Executive Reporting & Recommended Corrective Actions">
-                                            </div>
-                                            <span class="gb-timeline__stage-pill">STAGE 05</span>
-                                            <div class="gb-timeline__icon-box" aria-hidden="true">
-                                                <i class="fa-solid fa-chart-column"></i>
-                                            </div>
-                                        </div>
-                                        <div class="gb-timeline__card-body">
-                                            <div class="gb-timeline__card-header">
-                                                <h3 class="gb-timeline__card-title">REPORT</h3>
-                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
-                                                    <i class="fa-solid fa-arrow-up-right"></i>
-                                                </span>
-                                            </div>
-                                            <p class="gb-timeline__card-desc">Present evidence-led observations, executive summaries, risk registers, and recommended corrective actions.</p>
-                                        </div>
-                                    </article>
+                            <!-- Stage 06: Support -->
+                            <article class="gb-method-card wow fadeInUp" data-wow-delay=".3s">
+                                <div class="gb-method-card__media">
+                                    <img loading="lazy" decoding="async" src="assets/img/method/stage-06.jpg" width="800" height="446" alt="Stage 06 Support - Implementation Guidance and Hands-on Advisory">
+                                    <span class="gb-method-card__pill">STAGE 06</span>
+                                    <span class="gb-method-card__icon" aria-hidden="true"><i class="fa-solid fa-handshake-angle"></i></span>
                                 </div>
-                                <div class="gb-timeline__connector" aria-hidden="true"></div>
-                                <div class="gb-timeline__node-wrap">
-                                    <div class="gb-timeline__node" data-stage="5" aria-label="Stage 5">
-                                        <span class="gb-timeline__node-num">05</span>
-                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
-                                    </div>
+                                <div class="gb-method-card__body">
+                                    <h3>SUPPORT</h3>
+                                    <p>Agree on owners and realistic timelines; provide hands-on follow-up guidance where in agreed scope.</p>
                                 </div>
-                            </div>
-
-                            <!-- STAGE 06: SUPPORT (Right) -->
-                            <div class="gb-timeline__row gb-timeline__row--right">
-                                <div class="gb-timeline__connector" aria-hidden="true"></div>
-                                <div class="gb-timeline__node-wrap">
-                                    <div class="gb-timeline__node" data-stage="6" aria-label="Stage 6">
-                                        <span class="gb-timeline__node-num">06</span>
-                                        <span class="gb-timeline__node-pulse" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="gb-timeline__card-wrap wow fadeInRight" data-wow-delay=".05s">
-                                    <article class="gb-timeline__card" data-stage="6">
-                                        <div class="gb-timeline__card-media">
-                                            <div class="gb-timeline__card-img">
-                                                <img loading="lazy" decoding="async" src="assets/img/method/stage-06.jpg" width="800" height="446" alt="Stage 06 Support - Implementation Guidance and Hands-on Advisory">
-                                            </div>
-                                            <span class="gb-timeline__stage-pill">STAGE 06</span>
-                                            <div class="gb-timeline__icon-box" aria-hidden="true">
-                                                <i class="fa-solid fa-handshake-angle"></i>
-                                            </div>
-                                        </div>
-                                        <div class="gb-timeline__card-body">
-                                            <div class="gb-timeline__card-header">
-                                                <h3 class="gb-timeline__card-title">SUPPORT</h3>
-                                                <span class="gb-timeline__card-arrow" aria-hidden="true">
-                                                    <i class="fa-solid fa-arrow-up-right"></i>
-                                                </span>
-                                            </div>
-                                            <p class="gb-timeline__card-desc">Agree on owners and realistic timelines; provide hands-on follow-up guidance where in agreed scope.</p>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
+                            </article>
                         </div>
 
-                        <!-- Final CTA Strip -->
-                        <div class="gb-timeline__cta wow fadeInUp" data-wow-delay=".3s">
-                            <div class="gb-timeline__end-node" aria-hidden="true"></div>
-                            <div class="gb-timeline__cta-wrap">
-                                <span class="gb-timeline__cta-text">Ready to see where you stand?</span>
-                                <a href="contact" class="gb-timeline__cta-btn">
-                                    <span>Schedule Scoping Call</span>
-                                    <i class="fa-solid fa-arrow-up-right"></i>
-                                </a>
-                            </div>
+                        <!-- CTA Strip -->
+                        <div class="gb-method__cta wow fadeInUp" data-wow-delay=".35s">
+                            <span class="gb-method__cta-text">Ready to see where your HR compliance stands?</span>
+                            <a href="contact#contact-form" class="gb-method__cta-btn">
+                                <span>Book a scoping call</span>
+                                <i class="fa-solid fa-arrow-up-right"></i>
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -2965,15 +2275,24 @@
                         .gbh-exam__grid { grid-template-columns: 1fr 1fr; }
                     }
                     @media (max-width: 767px) {
-                        .gbh-exam__grid { grid-template-columns: 1fr; }
-                        .gbh-deliv { padding: 36px 20px; border-radius: 22px; }
-                        .gbh-deliv h3 { font-size: 25px; }
-                        .gbh-register__tag { display: none; }
+                        .gbh-exam { padding: 56px 0 48px; }
+                        .gbh-exam__grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+                        .gbh-tile { padding: 14px 12px; gap: 10px; border-radius: 14px; }
+                        .gbh-tile .gbh-icon { width: 34px; height: 34px; font-size: 14px; }
+                        .gbh-tile h3 { font-size: 13.5px; margin-bottom: 2px; }
+                        .gbh-tile p { font-size: 11.5px; line-height: 1.35; }
+                        .gbh-deliv { padding: 22px 16px; border-radius: 18px; }
+                        .gbh-deliv h3 { font-size: 20px; margin-bottom: 8px; }
+                        .gbh-deliv__intro { font-size: 13.5px; margin-bottom: 14px; }
+                        .gbh-deliv__list { gap: 8px; }
+                        .gbh-deliv__list li { font-size: 12.5px; }
+                        .gbh-register { margin-top: 16px; border-radius: 14px; }
+                        .gbh-register__bar { padding: 10px 14px; }
+                        .gbh-register tr { padding: 8px 12px; }
+                        .gbh-register td { font-size: 12px; line-height: 1.3; padding: 2px 0; }
                         .gbh-register thead { display: none; }
                         .gbh-register table, .gbh-register tbody, .gbh-register tr, .gbh-register td { display: block; width: 100%; }
-                        .gbh-register tr { padding: 14px 18px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
-                        .gbh-register td { border: 0; padding: 4px 0; }
-                        .gbh-register td::before { content: attr(data-label); display: block; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gbh-muted); margin-bottom: 2px; }
+                        .gbh-register td::before { content: attr(data-label); display: block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gbh-muted); margin-bottom: 1px; }
                     }
                 </style>
                 <section class="gbh-section gbh-exam gbh-dotgrid" id="deliverables">
@@ -3116,11 +2435,18 @@
                     @media (max-width: 991px) {
                         .gbh-why__grid { grid-template-columns: 1fr; gap: 48px; }
                     }
-                    @media (max-width: 575px) {
+                    @media (max-width: 767px) {
+                        .gbh-why { padding-bottom: 56px; }
+                        .gbh-why__grid { grid-template-columns: 1fr; gap: 36px; }
                         .gbh-shift { grid-template-columns: 1fr; }
-                        .gbh-shift__arrow { justify-self: center; transform: rotate(90deg); }
-                        .gbh-how { padding: 24px 18px; }
-                        .gbh-how__grid { grid-template-columns: 1fr; }
+                        .gbh-shift__arrow { justify-self: center; transform: rotate(90deg); margin: -4px 0; }
+                        .gbh-how { padding: 22px 18px; border-radius: 20px; }
+                        .gbh-how__grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+                        .gbh-how__item { padding: 14px 12px; border-radius: 12px; }
+                        .gbh-how__item h4 { font-size: 13.5px; margin-bottom: 3px; }
+                        .gbh-how__item p { font-size: 12px; line-height: 1.4; }
+                        .gbh-get { padding: 20px 18px; margin-bottom: 24px; }
+                        .gbh-get li { font-size: 13.5px; }
                     }
                 </style>
                 <section class="gbh-section gbh-why gbh-dotgrid" id="why-us">
@@ -3194,655 +2520,240 @@
                     </div>
                 </section>
 
-                <!-- Flexible Engagement Tiers (Slide 10) Redesigned: Senior Consulting Tiers -->
+                <!-- Flexible Engagement Tiers Teaser (Linking to Full Breakdown on /service#tiers) -->
                 <style>
-                    /* ==========================================================================
-                       Flexible Engagement Tiers - Senior UI/UX Redesign
-                       ========================================================================== */
-                    :root {
-                        --tier-orange: #F26A3F;
-                        --tier-orange-hover: #CC4A22;
-                        --tier-orange-glow: rgba(242, 106, 63, 0.28);
-                        --tier-amber: #F5A540;
-                        --tier-teal: #2A9D8F;
-                        --tier-teal-glow: rgba(42, 157, 143, 0.22);
-                        --tier-navy: #111A3A;
-                        --tier-navy-dark: #0F1733;
-                        --tier-text-dark: #526075;
-                        --tier-text-light: #A2B2CB;
-                        --tier-border-light: rgba(225, 233, 245, 0.85);
-                        --tier-ease: cubic-bezier(0.22, 1, 0.36, 1);
-                        --tier-duration: 380ms;
-                    }
-
-                    /* 1. Section Background: Soft off-white to very light blue gradient */
-                    .gb-tiers {
+                    .gb-tiers--teaser {
                         background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFF 100%);
-                        padding: 100px 0;
+                        padding: 84px 0 80px;
                         position: relative;
                         overflow: hidden;
                     }
-
-                    /* 1. Faint dotted grid pattern (3-4% opacity) */
-                    .gb-tiers::before {
+                    .gb-tiers--teaser::before {
                         content: "";
                         position: absolute;
                         inset: 0;
-                        background-image: radial-gradient(rgba(17, 26, 58, 0.035) 1.5px, transparent 1.5px);
+                        background-image: radial-gradient(rgba(17, 27, 52, 0.04) 1.5px, transparent 1.5px);
                         background-size: 28px 28px;
                         pointer-events: none;
-                        z-index: 1;
                     }
-
-                    /* 1. Soft blurred orange and teal glows */
-                    .gb-tiers__glow {
-                        position: absolute;
-                        border-radius: 50%;
-                        pointer-events: none;
-                        z-index: 1;
-                    }
-                    .gb-tiers__glow--orange {
-                        top: 25%;
-                        left: 15%;
-                        width: 550px;
-                        height: 480px;
-                        background: radial-gradient(circle, rgba(242, 106, 63, 0.08) 0%, transparent 70%);
-                    }
-                    .gb-tiers__glow--teal {
-                        bottom: 20%;
-                        right: 12%;
-                        width: 520px;
-                        height: 440px;
-                        background: radial-gradient(circle, rgba(42, 157, 143, 0.07) 0%, transparent 70%);
-                    }
-
                     .gb-tiers__wrap {
+                        position: relative;
+                        z-index: 2;
                         max-width: 1240px;
                         margin: 0 auto;
                         padding: 0 24px;
-                        position: relative;
-                        z-index: 2;
                     }
-
-                    /* 2. Centered Heading Area */
                     .gb-tiers__head {
                         text-align: center;
-                        max-width: 760px;
-                        margin: 0 auto 64px;
-                        position: relative;
-                        z-index: 2;
+                        max-width: 720px;
+                        margin: 0 auto 44px;
                     }
-
                     .gb-tiers__eyebrow {
                         display: inline-flex;
                         align-items: center;
                         gap: 8px;
-                        padding: 6px 18px;
-                        border-radius: 999px;
-                        background: rgba(242, 106, 63, 0.08);
-                        border: 1px solid rgba(242, 106, 63, 0.35);
-                        color: var(--tier-orange);
-                        font-size: 12.5px;
+                        font-size: 13px !important;
                         font-weight: 700;
-                        letter-spacing: 0.1em;
+                        letter-spacing: 0.12em;
                         text-transform: uppercase;
-                        margin-bottom: 20px;
+                        color: #F26A3F;
+                        background: rgba(242, 106, 63, 0.08);
+                        border: 1px solid rgba(242, 106, 63, 0.25);
+                        padding: 6px 16px;
+                        border-radius: 999px;
+                        margin-bottom: 16px;
                     }
                     .gb-tiers__eyebrow-dot {
                         width: 7px;
                         height: 7px;
                         border-radius: 50%;
-                        background: var(--tier-orange);
-                        box-shadow: 0 0 8px var(--tier-orange);
+                        background: #F26A3F;
+                        box-shadow: 0 0 8px #F26A3F;
                     }
-
                     .gb-tiers__title {
-                        font-size: clamp(30px, 3.8vw, 44px);
+                        font-size: clamp(28px, 3.6vw, 42px);
                         font-weight: 800;
-                        line-height: 1.24;
-                        color: var(--tier-navy);
-                        margin: 0 0 16px;
+                        line-height: 1.22;
+                        color: #111A3A;
+                        margin-bottom: 12px;
                         letter-spacing: -0.5px;
                     }
-                    .gb-tiers__title span.gradient-text {
-                        background: linear-gradient(90deg, #F26A3F 0%, #F5A540 100%);
+                    .gb-tiers__title .gradient-text {
+                        background: linear-gradient(135deg, #F26A3F 0%, #F5A540 100%);
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
-                        background-clip: text;
                     }
-
                     .gb-tiers__sub {
-                        max-width: 640px;
+                        font-size: 16.5px;
+                        line-height: 1.65;
+                        color: #526075;
                         margin: 0 auto;
-                        color: var(--tier-text-dark);
-                        font-size: 17px;
-                        line-height: 1.7;
-                        text-wrap: balance;
-                        font-weight: 400;
                     }
-
-                    /* 3. Cards Grid Layout (3 columns on desktop) */
-                    .gb-tiers__grid {
+                    .gb-tiers__teaser-grid {
                         display: grid;
-                        grid-template-columns: repeat(3, minmax(0, 1fr));
-                        gap: 32px;
-                        align-items: stretch;
-                        position: relative;
-                        z-index: 2;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 24px;
+                        margin-bottom: 36px;
                     }
-
-                    .gb-tier-card-wrap {
-                        display: flex;
-                        min-width: 0;
-                        position: relative;
-                    }
-
-                    /* Card Base */
-                    .gb-tier-card {
-                        width: 100%;
+                    .gb-tier-teaser {
+                        background: #FFFFFF;
+                        border: 1.5px solid #E1E9F5;
+                        border-radius: 20px;
+                        padding: 32px 26px;
                         display: flex;
                         flex-direction: column;
-                        border-radius: 22px;
+                        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
                         position: relative;
-                        transition: 
-                            transform var(--tier-duration) var(--tier-ease),
-                            box-shadow var(--tier-duration) var(--tier-ease);
-                        will-change: transform, box-shadow;
                     }
-
-                    /* 4. Tier 1 and Tier 3 Light Cards */
-                    .gb-tier-card--light {
-                        background: #FFFFFF;
-                        border: 1px solid var(--tier-border-light);
-                        padding: 38px 32px 32px;
-                        box-shadow: 0 4px 18px rgba(17, 26, 58, 0.04), 0 1px 3px rgba(17, 26, 58, 0.02);
-                        z-index: 2;
+                    .gb-tier-teaser:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 16px 36px rgba(17, 26, 58, 0.08);
+                        border-color: rgba(242, 106, 63, 0.4);
                     }
-
-                    /* Top accent bar on light cards */
-                    .gb-tier-card--light .gb-tier-card__topbar {
+                    .gb-tier-teaser--featured {
+                        border-color: #F26A3F;
+                        background: linear-gradient(180deg, #FFFFFF 0%, #FFF9F6 100%);
+                        box-shadow: 0 12px 32px rgba(242, 106, 63, 0.12);
+                    }
+                    .gb-tier-teaser__pop-badge {
                         position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        height: 3px;
-                        border-radius: 22px 22px 0 0;
-                        background: transparent;
-                        transition: background var(--tier-duration) var(--tier-ease), height var(--tier-duration) var(--tier-ease);
-                    }
-
-                    /* 5. Tier 2 Featured Dark Hero Card */
-                    .gb-tier-card--featured {
-                        background: linear-gradient(180deg, var(--tier-navy) 0%, var(--tier-navy-dark) 100%);
-                        color: #ffffff;
-                        padding: 44px 34px 34px;
-                        border-radius: 24px;
-                        box-shadow: 0 16px 40px rgba(15, 23, 51, 0.28), 0 0 35px rgba(242, 106, 63, 0.20);
-                        z-index: 5;
-                    }
-
-                    /* Flowing glowing gradient border for featured card */
-                    .gb-tier-card__animated-border {
-                        position: absolute;
-                        inset: 0;
-                        border-radius: 24px;
-                        padding: 2px;
-                        background: linear-gradient(135deg, #F26A3F 0%, #F5A540 35%, #2A9D8F 70%, #F26A3F 100%);
-                        background-size: 300% 300%;
-                        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-                        -webkit-mask-composite: xor;
-                        mask-composite: exclude;
-                        animation: flowBorder 8s ease infinite;
-                        pointer-events: none;
-                        z-index: 3;
-                    }
-
-                    @keyframes flowBorder {
-                        0%, 100% { background-position: 0% 50%; }
-                        50% { background-position: 100% 50%; }
-                    }
-
-                    /* Card content layering */
-                    .gb-tier-card > * {
-                        position: relative;
-                        z-index: 2;
-                    }
-
-                    /* 5. "MOST POPULAR" Badge: Centered on top edge, overlapping border */
-                    .gb-tier__popular-badge {
-                        position: absolute;
-                        top: -14px;
+                        top: -13px;
                         left: 50%;
                         transform: translateX(-50%);
                         background: linear-gradient(135deg, #F26A3F 0%, #E85B2F 100%);
                         color: #ffffff;
-                        padding: 5px 18px;
-                        border-radius: 999px;
                         font-size: 11px;
                         font-weight: 800;
                         letter-spacing: 0.1em;
-                        text-transform: uppercase;
-                        box-shadow: 0 4px 16px rgba(242, 106, 63, 0.45);
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 6px;
-                        white-space: nowrap;
-                        z-index: 10;
-                        overflow: hidden;
-                    }
-                    .gb-tier__popular-badge::before {
-                        content: "";
-                        position: absolute;
-                        top: -50%;
-                        left: -60%;
-                        width: 40%;
-                        height: 200%;
-                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-                        transform: rotate(25deg);
-                        animation: badgeShine 4s ease-in-out infinite;
-                        pointer-events: none;
-                    }
-
-                    @keyframes badgeShine {
-                        0%, 65% { left: -60%; }
-                        100% { left: 140%; }
-                    }
-
-                    /* Tier Badge Pill (TIER 1 / TIER 2 / TIER 3) */
-                    .gb-tier__badge {
-                        display: inline-block;
-                        padding: 4px 12px;
+                        padding: 3px 14px;
                         border-radius: 999px;
-                        font-size: 11.5px;
-                        font-weight: 700;
-                        letter-spacing: 0.08em;
-                        text-transform: uppercase;
-                        margin-bottom: 18px;
+                        white-space: nowrap;
+                    }
+                    .gb-tier-teaser__badge {
+                        display: inline-block;
                         align-self: flex-start;
-                    }
-                    .gb-tier-card--light .gb-tier__badge {
-                        background: rgba(17, 26, 58, 0.06);
-                        color: var(--tier-navy);
-                        border: 1px solid rgba(17, 26, 58, 0.10);
-                    }
-                    .gb-tier-card--featured .gb-tier__badge {
-                        background: rgba(242, 106, 63, 0.18);
-                        color: var(--tier-orange);
-                        border: 1px solid rgba(242, 106, 63, 0.35);
-                    }
-
-                    /* Card Titles & Descriptions */
-                    .gb-tier__card-title {
-                        font-size: 22px;
+                        font-size: 11.5px;
                         font-weight: 800;
-                        line-height: 1.3;
-                        margin: 0 0 10px;
+                        letter-spacing: 0.08em;
+                        color: #F26A3F;
+                        background: rgba(242, 106, 63, 0.09);
+                        padding: 3px 10px;
+                        border-radius: 6px;
+                        margin-bottom: 14px;
                     }
-                    .gb-tier-card--light .gb-tier__card-title {
-                        color: var(--tier-navy);
+                    .gb-tier-teaser h3 {
+                        font-size: 21px;
+                        font-weight: 800;
+                        color: #111A3A;
+                        margin-bottom: 10px;
                     }
-                    .gb-tier-card--featured .gb-tier__card-title {
-                        color: #ffffff;
-                    }
-
-                    .gb-tier__card-desc {
+                    .gb-tier-teaser p {
                         font-size: 14.5px;
-                        line-height: 1.65;
-                        margin: 0 0 22px;
-                        min-height: 48px;
-                    }
-                    .gb-tier-card--light .gb-tier__card-desc {
-                        color: var(--tier-text-dark);
-                    }
-                    .gb-tier-card--featured .gb-tier__card-desc {
-                        color: var(--tier-text-light);
-                    }
-
-                    /* Thin Divider Line */
-                    .gb-tier__divider {
-                        height: 1px;
-                        width: 100%;
-                        margin-bottom: 24px;
-                    }
-                    .gb-tier-card--light .gb-tier__divider {
-                        background: rgba(17, 26, 58, 0.07);
-                    }
-                    .gb-tier-card--featured .gb-tier__divider {
-                        background: rgba(255, 255, 255, 0.10);
-                    }
-
-                    /* 1. Checklist Line Wrapping Fix (Problem 1) */
-                    .gb-tier__list {
-                        list-style: none;
-                        padding: 0;
-                        margin: 0 0 32px;
+                        line-height: 1.6;
+                        color: #526075;
+                        margin-bottom: 18px;
                         flex-grow: 1;
                     }
-
-                    .gb-tier__item {
+                    .gb-tier-teaser__chips {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
                         display: flex;
-                        align-items: flex-start;
-                        gap: 12px;
-                        margin-bottom: 14px;
-                        font-size: 14.5px;
-                        line-height: 1.55;
-                    }
-                    .gb-tier-card--light .gb-tier__item {
-                        color: #2D3A50;
-                    }
-                    .gb-tier-card--featured .gb-tier__item {
-                        color: #E2E8F0;
-                    }
-
-                    .gb-tier__check-icon {
-                        width: 20px;
-                        height: 20px;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 11px;
-                        flex-shrink: 0;
-                        margin-top: 2px;
-                        transition: transform var(--tier-duration) var(--tier-ease);
-                    }
-                    .gb-tier-card--light .gb-tier__check-icon {
-                        background: rgba(42, 157, 143, 0.12);
-                        color: var(--tier-teal);
-                    }
-                    .gb-tier-card--featured .gb-tier__check-icon {
-                        background: rgba(242, 106, 63, 0.20);
-                        color: var(--tier-orange);
-                    }
-
-                    .gb-tier__item-text {
-                        flex: 1;
-                    }
-
-                    /* 2. Consistent Buttons (Problem 2 & Problem 4) */
-                    .gb-tier__btn {
-                        height: 48px;
-                        border-radius: 999px;
-                        font-size: 15px;
-                        font-weight: 700;
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 100%;
-                        text-decoration: none;
-                        padding: 0 24px;
-                        position: relative;
-                        overflow: hidden;
-                        margin-top: auto;
-                        box-sizing: border-box;
-                        transition: 
-                            transform var(--tier-duration) var(--tier-ease),
-                            box-shadow var(--tier-duration) var(--tier-ease),
-                            background var(--tier-duration) var(--tier-ease),
-                            color var(--tier-duration) var(--tier-ease),
-                            border-color var(--tier-duration) var(--tier-ease);
-                    }
-
-                    /* Light card button (Outlined -> Navy Fill) */
-                    .gb-tier__btn--outline {
-                        background: transparent;
-                        color: var(--tier-navy) !important;
-                        border: 1.5px solid rgba(17, 26, 58, 0.22);
+                        flex-direction: column;
                         gap: 8px;
                     }
-                    .gb-tier__btn--outline i {
-                        font-size: 13px;
-                        transition: transform var(--tier-duration) var(--tier-ease);
-                    }
-
-                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-                        .gb-tier-card--light:hover .gb-tier__btn--outline,
-                        .gb-tier__btn--outline:hover {
-                            background: var(--tier-navy);
-                            color: #ffffff !important;
-                            border-color: var(--tier-navy);
-                            transform: translateY(-2px);
-                            box-shadow: 0 6px 20px rgba(17, 26, 58, 0.20);
-                        }
-                        .gb-tier-card--light:hover .gb-tier__btn--outline i,
-                        .gb-tier__btn--outline:hover i {
-                            transform: translateX(4px);
-                        }
-                    }
-
-                    /* Featured card button (Solid Orange Gradient + Arrow Circle) */
-                    .gb-tier__btn--primary {
-                        background: linear-gradient(135deg, #F26A3F 0%, #E85B2F 100%);
-                        color: #ffffff !important;
-                        border: none;
-                        box-shadow: 0 6px 22px rgba(242, 106, 63, 0.45);
-                        gap: 10px;
-                    }
-                    .gb-tier__btn--primary::before {
-                        content: "";
-                        position: absolute;
-                        top: -50%;
-                        left: -60%;
-                        width: 40%;
-                        height: 200%;
-                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-                        transform: rotate(25deg);
-                        transition: left 0.75s var(--tier-ease);
-                        pointer-events: none;
-                    }
-
-                    .gb-tier__btn-arrow-circle {
-                        width: 28px;
-                        height: 28px;
-                        border-radius: 50%;
-                        background: #ffffff;
-                        color: var(--tier-orange);
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 11px;
-                        flex-shrink: 0;
-                        transition: transform var(--tier-duration) var(--tier-ease);
-                    }
-
-                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-                        .gb-tier-card--featured:hover .gb-tier__btn--primary,
-                        .gb-tier__btn--primary:hover {
-                            transform: translateY(-2px);
-                            box-shadow: 0 10px 28px rgba(242, 106, 63, 0.60);
-                            background: linear-gradient(135deg, #CC4A22 0%, #E85B2F 100%);
-                        }
-                        .gb-tier-card--featured:hover .gb-tier__btn--primary::before,
-                        .gb-tier__btn--primary:hover::before {
-                            left: 140%;
-                        }
-                        .gb-tier-card--featured:hover .gb-tier__btn-arrow-circle,
-                        .gb-tier__btn--primary:hover .gb-tier__btn-arrow-circle {
-                            transform: rotate(45deg);
-                        }
-                    }
-
-                    /* 6. Desktop Hover Effects */
-                    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-                        .gb-tier-card--light:hover {
-                            transform: translateY(-8px);
-                            box-shadow: 0 16px 36px rgba(17, 26, 58, 0.08), 0 0 24px rgba(242, 106, 63, 0.16);
-                        }
-                        .gb-tier-card--light:hover .gb-tier-card__topbar {
-                            background: linear-gradient(90deg, var(--tier-orange) 0%, var(--tier-teal) 100%);
-                            height: 4px;
-                        }
-                        .gb-tier-card--featured:hover {
-                            transform: scale(1.05) translateY(-8px);
-                            box-shadow: 0 22px 48px rgba(15, 23, 51, 0.35), 0 0 45px rgba(242, 106, 63, 0.30);
-                        }
-                        .gb-tier-card:hover .gb-tier__check-icon {
-                            transform: scale(1.15);
-                        }
-                    }
-
-                    /* Desktop 3-column scaling for featured card */
-                    @media (min-width: 992px) {
-                        .gb-tier-card-wrap--featured {
-                            margin: -14px 0;
-                        }
-                        .gb-tier-card--featured {
-                            transform: scale(1.04);
-                        }
-                    }
-
-                    /* Touch devices: clean active state */
-                    @media (hover: none) or (pointer: coarse) {
-                        .gb-tier-card:active {
-                            transform: scale(0.985);
-                        }
-                    }
-
-                    /* 8. Trust Line Strip Under Cards */
-                    .gb-tiers__trust {
-                        margin-top: 56px;
-                        text-align: center;
+                    .gb-tier-teaser__chips li {
+                        font-size: 13.5px;
+                        color: #334155;
                         display: flex;
                         align-items: center;
+                        gap: 8px;
+                    }
+                    .gb-tier-teaser__chips li i {
+                        color: #2A9D8F;
+                        font-size: 13px;
+                    }
+                    .gb-tiers__teaser-foot {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 20px;
+                    }
+                    .gb-tiers__teaser-actions {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
                         justify-content: center;
-                        gap: 10px;
-                        color: var(--tier-text-dark);
-                        font-size: 15px;
-                        font-weight: 500;
+                        gap: 16px;
                     }
-                    .gb-tiers__trust i {
-                        color: var(--tier-teal);
-                        font-size: 16px;
-                    }
-                    .gb-tiers__trust-link {
-                        color: var(--tier-orange);
-                        font-weight: 700;
-                        text-decoration: none;
+                    .gb-tiers__scoping-btn {
                         display: inline-flex;
                         align-items: center;
-                        gap: 4px;
-                        transition: color var(--tier-duration) var(--tier-ease);
+                        gap: 8px;
+                        background: #111A3A;
+                        color: #ffffff !important;
+                        font-size: 14.5px;
+                        font-weight: 700;
+                        padding: 12px 24px;
+                        border-radius: 999px;
+                        text-decoration: none;
+                        transition: background 0.25s ease;
+                        white-space: nowrap;
                     }
-                    .gb-tiers__trust-link:hover {
-                        color: var(--tier-orange-hover);
-                        text-decoration: underline;
+                    .gb-tiers__scoping-btn:hover {
+                        background: #F26A3F;
                     }
-
-                    /* 7. Scroll Animation */
-                    @media (prefers-reduced-motion: no-preference) {
-                        .gb-tiers__reveal-head,
-                        .gb-tiers__reveal-card,
-                        .gb-tiers__reveal-trust {
-                            opacity: 0;
-                            transform: translateY(32px);
-                            transition: 
-                                opacity 0.65s var(--tier-ease),
-                                transform 0.65s var(--tier-ease);
-                        }
-
-                        .gb-tiers.is-revealed .gb-tiers__reveal-head {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
-
-                        .gb-tiers.is-revealed .gb-tiers__reveal-card {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
-
-                        /* Stagger 120ms left to right */
-                        .gb-tiers.is-revealed .gb-tier-card-wrap:nth-child(1) { transition-delay: 0.10s; }
-                        .gb-tiers.is-revealed .gb-tier-card-wrap:nth-child(2) { transition-delay: 0.22s; }
-                        .gb-tiers.is-revealed .gb-tier-card-wrap:nth-child(3) { transition-delay: 0.34s; }
-
-                        .gb-tiers.is-revealed .gb-tiers__reveal-trust {
-                            opacity: 1;
-                            transform: translateY(0);
-                            transition-delay: 0.46s;
-                        }
+                    .gb-tiers__trust {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        font-size: 13.5px;
+                        color: #526075;
+                        text-align: center;
                     }
-
-                    /* 9. Accessibility Focus-Visible */
-                    .gb-tier-card:focus-visible,
-                    .gb-tier__btn:focus-visible,
-                    .gb-tiers__trust-link:focus-visible {
-                        outline: 2px solid var(--tier-orange) !important;
-                        outline-offset: 3px !important;
+                    .gb-tiers__trust i {
+                        color: #2A9D8F;
+                        font-size: 16px;
                     }
-
-                    /* Responsive Adjustments */
                     @media (max-width: 991px) {
-                        .gb-tiers {
-                            padding: 80px 0;
+                        .gb-tiers__teaser-grid {
+                            grid-template-columns: 1fr;
+                            gap: 16px;
+                        }
+                    }
+                    @media (max-width: 767px) {
+                        .gb-tiers--teaser {
+                            padding: 56px 0 50px;
                         }
                         .gb-tiers__head {
-                            margin-bottom: 48px;
+                            margin-bottom: 24px;
                         }
-                        .gb-tiers__grid {
-                            grid-template-columns: 1fr;
-                            max-width: 540px;
-                            margin: 0 auto;
-                            gap: 32px;
+                        .gb-tiers__wrap {
+                            padding: 0 16px;
                         }
-                        .gb-tier-card--featured {
-                            transform: none !important;
+                        .gb-tiers__teaser-grid {
+                            display: flex !important;
+                            overflow-x: auto !important;
+                            scroll-snap-type: x mandatory !important;
+                            gap: 14px !important;
+                            padding: 4px 4px 16px !important;
+                            -webkit-overflow-scrolling: touch;
+                            scrollbar-width: none;
                         }
-                        .gb-tier-card-wrap--featured {
-                            margin: 0;
+                        .gb-tiers__teaser-grid::-webkit-scrollbar {
+                            display: none;
                         }
-                    }
-
-                    @media (max-width: 480px) {
-                        .gb-tiers {
-                            padding: 65px 0;
-                        }
-                        .gb-tier-card--light {
-                            padding: 30px 22px 24px;
-                        }
-                        .gb-tier-card--featured {
-                            padding: 36px 22px 24px;
-                        }
-                        .gb-tier__card-title {
-                            font-size: 20px;
-                        }
-                        .gb-tier__card-desc {
-                            min-height: auto;
-                            margin-bottom: 18px;
-                        }
-                        .gb-tiers__trust {
-                            flex-direction: column;
-                            gap: 8px;
-                            text-align: center;
-                        }
-                    }
-
-                    /* Reduced Motion Calm Fallback */
-                    @media (prefers-reduced-motion: reduce) {
-                        .gb-tiers__reveal-head,
-                        .gb-tiers__reveal-card,
-                        .gb-tiers__reveal-trust,
-                        .gb-tier-card,
-                        .gb-tier-card--featured::before,
-                        .gb-tier__popular-badge::before,
-                        .gb-tier__btn,
-                        .gb-tier__btn--primary::before,
-                        .gb-tier__btn-arrow-circle,
-                        .gb-tier__check-icon {
-                            transition: none !important;
-                            animation: none !important;
-                            transform: none !important;
-                            opacity: 1 !important;
+                        .gb-tier-teaser {
+                            flex: 0 0 280px !important;
+                            scroll-snap-align: start;
+                            padding: 22px 18px !important;
                         }
                     }
                 </style>
-                <section class="gb-tiers" id="tiers">
-                    <!-- Background Depth Glows -->
-                    <div class="gb-tiers__glow gb-tiers__glow--orange" aria-hidden="true"></div>
-                    <div class="gb-tiers__glow gb-tiers__glow--teal" aria-hidden="true"></div>
 
+                <section class="gb-tiers gb-tiers--teaser" id="tiers">
                     <div class="gb-tiers__wrap">
-                        <!-- 2. Centered Heading Area -->
-                        <div class="gb-tiers__head gb-tiers__reveal-head">
+                        <div class="gb-tiers__head wow fadeInUp" data-wow-delay=".1s">
                             <div class="gb-tiers__eyebrow">
                                 <span class="gb-tiers__eyebrow-dot" aria-hidden="true"></span>
                                 <span>Flexible Engagement</span>
@@ -3855,127 +2766,62 @@
                             </p>
                         </div>
 
-                        <!-- 3. Cards Grid -->
-                        <div class="gb-tiers__grid">
-                            <!-- Tier 1 -->
-                            <div class="gb-tier-card-wrap gb-tiers__reveal-card">
-                                <article class="gb-tier-card gb-tier-card--light">
-                                    <div class="gb-tier-card__topbar" aria-hidden="true"></div>
-                                    <span class="gb-tier__badge">TIER 1</span>
-                                    <h3 class="gb-tier__card-title">Focused Health Check</h3>
-                                    <p class="gb-tier__card-desc">
-                                        A targeted review of selected HR documents, policies, or specific operational concerns.
-                                    </p>
-                                    <div class="gb-tier__divider"></div>
-                                    <ul class="gb-tier__list">
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Specific policy or document review</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Quick sampling of employee files</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">High-level risk observations</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Rapid turnaround timeframe</span>
-                                        </li>
-                                    </ul>
-                                    <a href="contact" class="gb-tier__btn gb-tier__btn--outline">
-                                        <span>Scope Health Check</span>
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                </article>
+                        <div class="gb-tiers__teaser-grid">
+                            <!-- Tier 1 Teaser -->
+                            <div class="gb-tier-teaser wow fadeInUp" data-wow-delay=".15s">
+                                <span class="gb-tier-teaser__badge">TIER 1</span>
+                                <h3>Focused Health Check</h3>
+                                <p>Targeted review of selected HR documents, policies, or specific operational concerns.</p>
+                                <ul class="gb-tier-teaser__chips">
+                                    <li><i class="fa-solid fa-check"></i> Specific policy or document review</li>
+                                    <li><i class="fa-solid fa-check"></i> Quick sampling of employee files</li>
+                                    <li><i class="fa-solid fa-check"></i> Rapid turnaround timeframe</li>
+                                </ul>
                             </div>
 
-                            <!-- Tier 2 (Featured / Most Popular) -->
-                            <div class="gb-tier-card-wrap gb-tier-card-wrap--featured gb-tiers__reveal-card">
-                                <article class="gb-tier-card gb-tier-card--featured">
-                                    <div class="gb-tier-card__animated-border" aria-hidden="true"></div>
-                                    <!-- Centered Most Popular Badge -->
-                                    <span class="gb-tier__popular-badge">
-                                        <i class="fa-solid fa-star"></i> MOST POPULAR
-                                    </span>
-                                    <span class="gb-tier__badge">TIER 2</span>
-                                    <h3 class="gb-tier__card-title">Comprehensive Audit</h3>
-                                    <p class="gb-tier__card-desc">
-                                        A wider review across agreed HR and statutory areas, complete with evidence testing and prioritised register.
-                                    </p>
-                                    <div class="gb-tier__divider"></div>
-                                    <ul class="gb-tier__list">
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">End-to-end statutory & process review</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Rigorous sample testing across departments</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Formal Findings Register & Risk Prioritization</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Corrective action tracker with assigned owners</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Executive leadership readout & discussion</span>
-                                        </li>
-                                    </ul>
-                                    <a href="contact" class="gb-tier__btn gb-tier__btn--primary">
-                                        <span>Scope Full Audit</span>
-                                        <span class="gb-tier__btn-arrow-circle"><i class="fa-solid fa-arrow-up-right"></i></span>
-                                    </a>
-                                </article>
+                            <!-- Tier 2 Teaser (Featured) -->
+                            <div class="gb-tier-teaser gb-tier-teaser--featured wow fadeInUp" data-wow-delay=".2s">
+                                <span class="gb-tier-teaser__pop-badge"><i class="fa-solid fa-star"></i> MOST POPULAR</span>
+                                <span class="gb-tier-teaser__badge">TIER 2</span>
+                                <h3>Comprehensive Audit</h3>
+                                <p>Complete review across agreed HR and statutory areas, complete with evidence testing and prioritized register.</p>
+                                <ul class="gb-tier-teaser__chips">
+                                    <li><i class="fa-solid fa-check"></i> End-to-end statutory &amp; process review</li>
+                                    <li><i class="fa-solid fa-check"></i> Formal findings register &amp; action plan</li>
+                                    <li><i class="fa-solid fa-check"></i> Executive leadership readout</li>
+                                </ul>
                             </div>
 
-                            <!-- Tier 3 -->
-                            <div class="gb-tier-card-wrap gb-tiers__reveal-card">
-                                <article class="gb-tier-card gb-tier-card--light">
-                                    <div class="gb-tier-card__topbar" aria-hidden="true"></div>
-                                    <span class="gb-tier__badge">TIER 3</span>
-                                    <h3 class="gb-tier__card-title">Implementation Support</h3>
-                                    <p class="gb-tier__card-desc">
-                                        Hands-on advisory helping leadership and internal teams close agreed gaps and strengthen workflows.
-                                    </p>
-                                    <div class="gb-tier__divider"></div>
-                                    <ul class="gb-tier__list">
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Policy drafting & template updates</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Remediation progress tracking</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Process control & governance coaching</span>
-                                        </li>
-                                        <li class="gb-tier__item">
-                                            <span class="gb-tier__check-icon"><i class="fa-solid fa-check"></i></span>
-                                            <span class="gb-tier__item-text">Scheduled follow-up review milestones</span>
-                                        </li>
-                                    </ul>
-                                    <a href="contact" class="gb-tier__btn gb-tier__btn--outline">
-                                        <span>Request Support</span>
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
-                                </article>
+                            <!-- Tier 3 Teaser -->
+                            <div class="gb-tier-teaser wow fadeInUp" data-wow-delay=".25s">
+                                <span class="gb-tier-teaser__badge">TIER 3</span>
+                                <h3>Implementation Support</h3>
+                                <p>Hands-on advisory helping leadership and internal teams close agreed gaps and strengthen workflows.</p>
+                                <ul class="gb-tier-teaser__chips">
+                                    <li><i class="fa-solid fa-check"></i> Policy drafting &amp; template updates</li>
+                                    <li><i class="fa-solid fa-check"></i> Remediation progress tracking</li>
+                                    <li><i class="fa-solid fa-check"></i> Governance coaching &amp; milestones</li>
+                                </ul>
                             </div>
                         </div>
 
-                        <!-- 8. Trust Line Strip -->
-                        <div class="gb-tiers__trust gb-tiers__reveal-trust">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <span>Not sure which tier fits? Book a free scoping call and we'll recommend the right scope.</span>
-                            <a href="contact" class="gb-tiers__trust-link">Talk to us <i class="fa-solid fa-arrow-up-right"></i></a>
+                        <!-- Teaser Actions & Trust Strip -->
+                        <div class="gb-tiers__teaser-foot wow fadeInUp" data-wow-delay=".3s">
+                            <div class="gb-tiers__teaser-actions">
+                                <a href="service#tiers" class="theme-btn" style="white-space: nowrap !important; padding-inline: 24px !important;">
+                                    <span class="btn-arrow-left"><i class="fa-solid fa-arrow-right"></i></span>
+                                    <span class="btn-title">Compare All Engagement Tiers &amp; Scope</span>
+                                    <span class="btn-arrow-right"><i class="fa-solid fa-arrow-right"></i></span>
+                                </a>
+                                <a href="contact#contact-form" class="gb-tiers__scoping-btn">
+                                    <span>Book a scoping call</span>
+                                    <i class="fa-solid fa-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            <div class="gb-tiers__trust">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Not sure which tier fits? Book a scoping call and we'll recommend the right scope for your organisation.</span>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -4039,13 +2885,20 @@
                     .gbh-note p { margin: 0; font-size: 13.5px; color: var(--gbh-navy); line-height: 1.65; }
 
                     @media (max-width: 991px) {
-                        .gbh-faq { padding-bottom: 60px; }
-                        .gbh-faq__grid { grid-template-columns: 1fr; gap: 40px; }
+                        .gbh-faq { padding-bottom: 48px; }
+                        .gbh-faq__grid { grid-template-columns: 1fr; gap: 32px; }
                     }
-                    @media (max-width: 575px) {
-                        .gbh-faq__list .acc-btn { padding: 18px; gap: 12px; font-size: 15.5px; }
+                    @media (max-width: 767px) {
+                        .gbh-faq { padding: 56px 0 48px; }
+                        .gbh-faq__help { padding: 20px 18px; margin-top: 24px; border-radius: 18px; }
+                        .gbh-faq__help h3 { font-size: 18px; }
+                        .gbh-faq__help p { font-size: 13.5px; margin-bottom: 14px; }
+                        .gbh-faq__list { gap: 10px; }
+                        .gbh-faq__list .acc-btn { padding: 14px 16px; gap: 10px; font-size: 14.5px; }
                         .gbh-faq__qnum { display: none; }
-                        .gbh-faq__list .acc-content .text { padding: 0 18px 20px; font-size: 14.5px; }
+                        .gbh-faq__list .acc-content .text { padding: 0 16px 16px; font-size: 13.5px; line-height: 1.6; }
+                        .gbh-note { padding: 14px 16px; margin-top: 16px; border-radius: 12px; }
+                        .gbh-note p { font-size: 12.5px; }
                     }
 
                     /* ---------- Closing CTA (overlaps into footer) ---------- */
@@ -4272,7 +3125,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding: 22px 0; text-align: center; background: rgba(0,0,0,0.15); position: relative; z-index: 2;">
+                    <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding: 22px 0; text-align: center; background: rgba(0,0,0,0.15); position: relative; z-index: 2;">
                         <div class="container">
                             <p style="margin: 0; font-size: 14px; color: #94A3B8;">
                                 © 2026 <strong style="color: #ffffff;">Geniebag Solutions</strong> (The Management Basket). All Rights Reserved.

@@ -109,16 +109,24 @@
     ================================ */
 
       // Scroll reveal for .wow elements (replaces WOW.js).
-      // Plays every time an element scrolls into view, in both directions:
-      //   scrolling down -> element rises up into place (fadeInUp)
-      //   scrolling up   -> element drops down into place (fadeInDown)
-      // A per-frame check is used instead of WOW.js / IntersectionObserver because
-      // GSAP ScrollSmoother clips the page inside a fixed wrapper, which made those
-      // fire everything at once or loop. Positions are measured with the fade's own
-      // transform subtracted, so the animation can never re-trigger itself.
+      // Plays every time an element scrolls into view.
+      // Once played, elements stay visible so fast scrolling leaves no blank sections.
+      // With reduced-motion active, reveals are skipped entirely and elements remain visible.
       (function () {
         var els = Array.prototype.slice.call(document.querySelectorAll(".wow"));
         if (!els.length) return;
+
+        var prefersReducedMotion = window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (prefersReducedMotion) {
+            els.forEach(function (el) {
+                el.style.visibility = "visible";
+                el.classList.add("animated");
+            });
+            window.wowController = function () {};
+            return;
+        }
 
         els.forEach(function (el) { el.style.visibility = "hidden"; });
 
@@ -155,24 +163,6 @@
           }
         }
 
-        function reset(el) {
-          el.classList.remove("animated");
-          el.style.visibility = "hidden";
-          el.style.animationName = "";
-
-          // Interactive reset hooks when off-screen
-          if (el.classList.contains("gb-wwd__stat") || el.closest(".gb-wwd__stats")) {
-            if (typeof window.resetGenieStatCounters === "function") {
-              window.resetGenieStatCounters();
-            }
-          }
-          if (el.closest("#methodology")) {
-            if (typeof window.resetGenieMethodReveal === "function") {
-              window.resetGenieMethodReveal();
-            }
-          }
-        }
-
         // Skip the (getComputedStyle-heavy) pass while the page isn't moving.
         // A full pass is still forced every ~0.5s to catch layout changes.
         var lastY = null, lastVh = null, idleFrames = 0;
@@ -187,11 +177,12 @@
           if (y === lastY && vh === lastVh && ++idleFrames < 30) return;
           lastY = y; lastVh = vh; idleFrames = 0;
           for (var i = 0; i < els.length; i++) {
-            var el = els[i], r = layoutRect(el), on = el.classList.contains("animated");
-            if (!on && r.top < vh * 0.92 && r.bottom > vh * 0.08) {
-              play(el, r.top < vh / 2);
-            } else if (on && (r.bottom < 0 || r.top > vh)) {
-              reset(el); // fully off-screen: ready to play again
+            var el = els[i], on = el.classList.contains("animated");
+            if (!on) {
+              var r = layoutRect(el);
+              if (r.top < vh * 0.95 && r.bottom > 0) {
+                play(el, r.top < vh / 2);
+              }
             }
           }
         }
@@ -273,6 +264,10 @@
                 navigation: {
                     prevEl: ".array-prev, .hero-arrow--prev",
                     nextEl: ".array-next, .hero-arrow--next",
+                },
+                pagination: {
+                    el: ".hero-pagination, .banner-active .swiper-pagination",
+                    clickable: true,
                 },
                 on: {
                     init: function () {
@@ -880,8 +875,8 @@
         }
         progress = Math.min(1, Math.max(0, progress));
 
-        // Show button once the user has scrolled down 280px (toggle only on change)
-        var shouldShow = scrollY > 280;
+        // Show button once the user has scrolled down 1.5x viewport height (toggle only on change)
+        var shouldShow = scrollY > ((window.innerHeight || 800) * 1.5);
         if (shouldShow !== backTopShown) {
             backTopShown = shouldShow;
             $backTop.toggleClass("show", shouldShow);
@@ -998,6 +993,12 @@
                 $(".offcanvas__overlay").removeClass("overlay-open");
                 $("body").removeClass("locked");
 
+                // Immediately reveal all target content so anchor jump never lands on hidden text
+                $target.find(".wow").addBack(".wow").each(function () {
+                    this.style.visibility = "visible";
+                    this.classList.add("animated");
+                });
+
                 if (window.smoother && typeof window.smoother.offset === "function") {
                     var targetOffset = window.smoother.offset($target[0]);
                     var scrollY = Math.max(0, targetOffset - 80);
@@ -1032,6 +1033,11 @@
             if (hash && hash.length > 1) {
                 var $target = $(hash);
                 if ($target.length) {
+                    // Immediately reveal all target content so anchor jump never lands on hidden text
+                    $target.find(".wow").addBack(".wow").each(function () {
+                        this.style.visibility = "visible";
+                        this.classList.add("animated");
+                    });
                     setTimeout(function () {
                         if (typeof ScrollTrigger !== "undefined") {
                             ScrollTrigger.refresh();
@@ -1062,41 +1068,31 @@
        Text Anim Js Start
     ================================ */
 
-      if (
-    typeof SplitText !== "undefined" &&
-        document.querySelectorAll(".split-title").length > 0
-        ) {
-    document.querySelectorAll(".split-title").forEach((title) => {
+    var prefersReducedMotion = window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        // split by words + chars (IMPORTANT)
-        const split = new SplitText(title, {
-        type: "words,chars"
+    // Single smooth element reveal instead of letter-by-letter typing
+    if (!prefersReducedMotion && typeof gsap !== "undefined" && document.querySelectorAll(".split-title").length > 0) {
+        document.querySelectorAll(".split-title").forEach(function (title) {
+            gsap.fromTo(title,
+                { opacity: 0, y: 20 },
+                {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: "top 90%",
+                        toggleActions: "play none none none",
+                        once: true
+                    },
+                    duration: 0.8,
+                    opacity: 1,
+                    y: 0,
+                    ease: "power3.out"
+                }
+            );
         });
-
-        // add class to chars
-        split.chars.forEach((char) => {
-        char.classList.add("char");
-        });
-
-        // GSAP animation
-        gsap.to(split.chars, {
-        scrollTrigger: {
-            trigger: title,
-            start: "top 90%",
-            toggleActions: "play reset play reset"
-        },
-        duration: 0.8,
-        clipPath: "inset(0% 0% -15% 0%)",
-        x: 0,
-        opacity: 1,
-        ease: "power4.out",
-        stagger: 0.03
-        });
-
-    });
     }
 
-     if (typeof gsap !== "undefined") {
+    if (!prefersReducedMotion && typeof gsap !== "undefined") {
           gsap.registerPlugin(ScrollTrigger, SplitText);
 
           let mm = gsap.matchMedia();
@@ -1163,10 +1159,10 @@
               });
               });
 
-              // ðŸ”¥ MOST IMPORTANT PART
+              // 🔥 MOST IMPORTANT PART
               ScrollTrigger.refresh();
 
-              // ðŸ”¥ cleanup on breakpoint change
+              // 🔥 cleanup on breakpoint change
               return () => {
               splits.forEach(split => split.revert());
               ScrollTrigger.getAll().forEach(st => st.kill());
@@ -1223,7 +1219,7 @@
        Approach Anim Js Start
     ================================ */
 
-    if (document.querySelectorAll(".approach-area").length > 0) {
+    if (!prefersReducedMotion && document.querySelectorAll(".approach-area").length > 0) {
 
     const mm = gsap.matchMedia();
 

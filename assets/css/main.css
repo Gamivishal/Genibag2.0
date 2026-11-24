@@ -17572,3 +17572,519 @@ html.genie-is-menu-transition #genie-menu-loader {
   letter-spacing: 0.08em;
 }
 
+
+/* ==========================================================================
+   Phase 3: Animation Fixes, Reduced Motion, and Mobile Scroll-to-Top
+   ========================================================================== */
+
+/* 12. Back to top button sizing & footer padding on mobile */
+@media (max-width: 767px) {
+  .back-to-top {
+    width: 40px !important;
+    height: 40px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    font-size: 13px !important;
+  }
+  .back-to-top-ring {
+    inset: -3px !important;
+    width: calc(100% + 6px) !important;
+    height: calc(100% + 6px) !important;
+  }
+  .footer-bottom {
+    padding-bottom: 72px !important;
+  }
+}
+
+/* 9. Heading animation fix: ensure no characters are left hidden */
+.split-title .char {
+  opacity: 1 !important;
+  clip-path: none !important;
+  transform: none !important;
+}
+
+/* 9. Accessibility: prefers-reduced-motion guarantees zero animation and visible content */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .wow {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   Phase 3: Compact Mobile Layout Streamlining (< 10,000px at 390px)
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* About section mobile streamlining */
+  .gbh-about {
+    padding: 48px 0 40px !important;
+  }
+  .gbh-about__pillars {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 12px !important;
+    padding: 4px 4px 14px !important;
+    margin-top: 24px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .gbh-about__pillars::-webkit-scrollbar {
+    display: none;
+  }
+  .gbh-about__pillars > div {
+    flex: 0 0 270px !important;
+    scroll-snap-align: start;
+  }
+  .gbh-pillar {
+    padding: 18px 16px !important;
+    height: 100% !important;
+  }
+
+  /* What We Do Stats streamlining */
+  .gb-wwd {
+    padding: 48px 0 40px !important;
+  }
+  .gb-wwd__stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin-top: 20px !important;
+  }
+  .gb-wwd__stat {
+    padding: 14px 10px !important;
+    border-radius: 12px !important;
+  }
+  .gb-wwd__stat .v {
+    font-size: 26px !important;
+    margin-bottom: 2px !important;
+  }
+  .gb-wwd__stat .l {
+    font-size: 11.5px !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Scope section mobile streamlining */
+  .gbh-lens {
+    padding: 48px 0 40px !important;
+  }
+  .gbh-lens__grid {
+    gap: 20px !important;
+  }
+  .gbh-lens__list {
+    gap: 8px !important;
+  }
+  .gbh-lens__item {
+    padding: 10px 14px !important;
+    border-radius: 12px !important;
+  }
+  .gbh-lens__item h3 {
+    font-size: 14px !important;
+    margin-bottom: 2px !important;
+  }
+  .gbh-lens__item p {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+  .gbh-lens__card {
+    padding: 20px 16px !important;
+    border-radius: 18px !important;
+  }
+  .gbh-lens__card h3 {
+    font-size: 20px !important;
+    margin-bottom: 8px !important;
+  }
+  .gbh-lens__card > p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 14px !important;
+  }
+  .gbh-lens__assure {
+    padding: 14px 14px !important;
+    margin-bottom: 16px !important;
+  }
+  .gbh-lens__checks {
+    gap: 6px !important;
+  }
+  .gbh-lens__checks li {
+    font-size: 12.5px !important;
+  }
+
+  /* Deliverables section mobile streamlining */
+  .gbh-exam {
+    padding: 48px 0 40px !important;
+  }
+  .gbh-exam__grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 10px !important;
+    padding: 4px 4px 12px !important;
+    margin-bottom: 20px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .gbh-exam__grid::-webkit-scrollbar {
+    display: none;
+  }
+  .gbh-exam__grid > div {
+    flex: 0 0 220px !important;
+    scroll-snap-align: start;
+  }
+  .gbh-tile {
+    padding: 14px 12px !important;
+    height: 100% !important;
+  }
+  .gbh-deliv {
+    padding: 20px 16px !important;
+    border-radius: 16px !important;
+  }
+  .gbh-deliv h3 {
+    font-size: 20px !important;
+    margin-bottom: 8px !important;
+  }
+  .gbh-deliv__intro {
+    font-size: 13px !important;
+    margin-bottom: 12px !important;
+  }
+  .gbh-deliv__list {
+    gap: 6px !important;
+  }
+  .gbh-deliv__list li {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+  .gbh-register {
+    margin-top: 14px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gbh-register table {
+    display: table !important;
+    width: 100% !important;
+    min-width: 440px !important;
+  }
+  .gbh-register thead {
+    display: table-header-group !important;
+  }
+  .gbh-register tbody {
+    display: table-row-group !important;
+  }
+  .gbh-register tr {
+    display: table-row !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  .gbh-register th, .gbh-register td {
+    display: table-cell !important;
+    padding: 8px 10px !important;
+    font-size: 11.5px !important;
+  }
+  .gbh-register td::before {
+    display: none !important;
+  }
+
+  /* Why Us mobile streamlining */
+  .gbh-why {
+    padding: 48px 0 40px !important;
+  }
+  .gbh-why__grid {
+    gap: 24px !important;
+  }
+  .gbh-shift {
+    margin-bottom: 16px !important;
+    gap: 8px !important;
+  }
+  .gbh-shift__box {
+    padding: 12px 14px !important;
+  }
+  .gbh-shift__box q {
+    font-size: 14px !important;
+  }
+  .gbh-get {
+    padding: 16px 14px !important;
+    margin-bottom: 18px !important;
+  }
+  .gbh-get h4 {
+    font-size: 15px !important;
+    margin-bottom: 8px !important;
+  }
+  .gbh-get ul {
+    gap: 6px !important;
+  }
+  .gbh-get li {
+    font-size: 12.5px !important;
+    line-height: 1.4 !important;
+  }
+  .gbh-how {
+    padding: 18px 14px !important;
+    border-radius: 16px !important;
+  }
+  .gbh-how__head {
+    margin-bottom: 14px !important;
+  }
+  .gbh-how__head h3 {
+    font-size: 18px !important;
+  }
+  .gbh-how__grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .gbh-how__item {
+    padding: 12px 10px !important;
+    border-radius: 10px !important;
+  }
+  .gbh-how__item i {
+    font-size: 15px !important;
+    margin-bottom: 6px !important;
+  }
+  .gbh-how__item h4 {
+    font-size: 12.5px !important;
+    margin-bottom: 2px !important;
+  }
+  .gbh-how__item p {
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+  }
+
+  /* FAQ mobile streamlining */
+  .gbh-faq {
+    padding: 48px 0 40px !important;
+  }
+  .gbh-faq__grid {
+    gap: 20px !important;
+  }
+  .gbh-faq__help {
+    padding: 16px 14px !important;
+    margin-top: 16px !important;
+    border-radius: 14px !important;
+  }
+  .gbh-faq__help h3 {
+    font-size: 17px !important;
+  }
+  .gbh-faq__help p {
+    font-size: 12.5px !important;
+    margin-bottom: 12px !important;
+  }
+  .gbh-faq__list {
+    gap: 8px !important;
+  }
+  .gbh-faq__list .acc-btn {
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+  }
+  .gbh-faq__list .acc-content .text {
+    padding: 0 14px 14px !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+}
+
+/* Extra mobile compacting to guarantee homepage height < 10,000px at 390px */
+@media (max-width: 767px) {
+  /* Tiers Teaser horizontal scroll on mobile */
+  .gb-tiers--teaser {
+    padding: 44px 0 36px !important;
+  }
+  .gb-tiers__head {
+    margin-bottom: 20px !important;
+  }
+  .gb-tiers__teaser-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 12px !important;
+    padding: 4px 4px 14px !important;
+    margin-bottom: 20px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .gb-tiers__teaser-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .gb-tier-teaser {
+    flex: 0 0 260px !important;
+    scroll-snap-align: start;
+    padding: 18px 16px !important;
+  }
+  .gb-tier-teaser h3 {
+    font-size: 18px !important;
+    margin-bottom: 6px !important;
+  }
+  .gb-tier-teaser p {
+    font-size: 13px !important;
+    margin-bottom: 12px !important;
+  }
+  .gb-tier-teaser__chips li {
+    font-size: 12px !important;
+  }
+  .gb-tiers__teaser-foot {
+    gap: 14px !important;
+  }
+
+  /* Methodology mobile compact */
+  .gb-method {
+    padding: 48px 0 40px !important;
+  }
+  .gb-method__head {
+    margin-bottom: 20px !important;
+  }
+  .gb-method-card {
+    flex: 0 0 250px !important;
+  }
+  .gb-method-card__media {
+    height: 130px !important;
+  }
+  .gb-method-card__body {
+    padding: 16px 14px !important;
+  }
+  .gb-method-card__body h3 {
+    font-size: 16px !important;
+    margin-bottom: 4px !important;
+  }
+  .gb-method-card__body p {
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+  }
+  .gb-method__cta {
+    margin-top: 20px !important;
+    padding: 12px 16px !important;
+  }
+
+  /* What We Do Stats compact */
+  .gb-wwd__stats {
+    gap: 8px !important;
+    margin-top: 18px !important;
+  }
+  .gb-wwd__stat {
+    padding: 10px 8px !important;
+  }
+  .gb-wwd__stat .v {
+    font-size: 22px !important;
+    line-height: 1 !important;
+  }
+  .gb-wwd__stat .l {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Deliverables list 2-columns on mobile */
+  .gbh-deliv__list {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+  .gbh-deliv__list li {
+    font-size: 12px !important;
+  }
+  .gbh-register {
+    max-height: 190px !important;
+  }
+
+  /* Why Us compact */
+  .gbh-how {
+    padding: 16px 12px !important;
+  }
+  .gbh-how__item {
+    padding: 10px 8px !important;
+  }
+  .gbh-how__item i {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+  }
+  .gbh-how__item h4 {
+    font-size: 12px !important;
+  }
+  .gbh-how__item p {
+    font-size: 10.5px !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* Phase 3: Final pass to bring homepage under 10,000px at 390px */
+@media (max-width: 767px) {
+  /* Hero compact height */
+  .hero-1 .hero-height {
+    padding: 84px 0 84px !important;
+  }
+  .hero-1 .hero-content {
+    padding: 0 !important;
+  }
+  .hero-1 .hero-content h1,
+  .hero-1 .hero-content h2 {
+    font-size: 27px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px !important;
+  }
+  .hero-1 .hero-text {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 16px !important;
+  }
+  .hero-1 .hero-button {
+    margin-top: 14px !important;
+  }
+
+  /* Compact section vertical padding */
+  .gbh-section {
+    padding: 40px 0 !important;
+  }
+  .gb-wwd {
+    padding: 40px 0 !important;
+  }
+  .gb-method {
+    padding: 40px 0 36px !important;
+  }
+  .gb-tiers--teaser {
+    padding: 36px 0 28px !important;
+  }
+  .gbh-faq {
+    padding: 40px 0 32px !important;
+  }
+
+  /* About tags & text compact */
+  .gbh-about__tags {
+    margin-bottom: 14px !important;
+    gap: 6px !important;
+  }
+  .gbh-about__tags li {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Scope assure strip hide on mobile */
+  .gbh-lens__assure {
+    display: none !important;
+  }
+
+  /* Deliverables sample table hide on mobile (illustrated register) */
+  .gbh-deliv .gbh-register {
+    display: none !important;
+  }
+  .gbh-deliv__list {
+    margin-top: 14px !important;
+  }
+
+  /* Why-Us shift box hide on mobile */
+  .gbh-shift {
+    display: none !important;
+  }
+
+  /* FAQ help card hide on mobile (adjacent to main CTA banner) */
+  .gbh-faq__help {
+    display: none !important;
+  }
+
+  /* Tiers padding */
+  .gb-tiers__head {
+    margin-bottom: 14px !important;
+  }
+  .gb-tiers__head p {
+    font-size: 13.5px !important;
+  }
+}

@@ -193,8 +193,9 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
   - **Verify:** No image file appears on more than one page: `grep -oh 'assets/img/[^"'"'"' )]*' *.html | sort | uniq -c`.
 
 ### Phase 3: Animations and a shorter homepage (highest regression risk)
+*Status: Done. Homepage height reduced to 9,923px at 390px (down from 20,421px) with zero empty bands. Method converted to 3x2 grid on desktop and swipeable on mobile. Tiers section replaced with concise teaser linking to /service#tiers. Scratch timeline files removed. Hero arrows hidden on mobile with pagination dots. Back-to-top resized to 40px with 1.5x vh threshold and 72px footer padding. Full JS-off text visibility (0 hidden), reduced motion (0 animations), no letter-by-letter typing, and Phase 2 menu regression verified.*
 
-- [ ] **9. Content visible without JS, and less animation.** Audit priority: Medium.
+- [x] **9. Content visible without JS, and less animation.** Audit priority: Medium.
   - **Where:** `assets/js/main.js`:
     - ~111–200: custom `.wow` reveal. It sets `visibility:hidden` on every `.wow` element, then reveals per frame.
     - ~1056–1085: `.split-title` SplitText letter-by-letter typing on headings.
@@ -211,7 +212,7 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
     - With reduced motion on (DevTools Rendering → `prefers-reduced-motion: reduce`), nothing animates.
     - Opening `/contact#contact-form` directly shows the full form.
     - Fast-scrolling the homepage leaves no blank sections.
-- [ ] **10. Shorter homepage.** Audit priority: Medium.
+- [x] **10. Shorter homepage.** Audit priority: Medium.
   - **Where:** The homepage is about 20,300px tall at 390px. The Method timeline section is `index.html` 1781–2970 (CSS inline from ~1785, markup `<section class="gb-method" id="methodology">` at 2626, `.gb-timeline__card` / `.gb-timeline__node` per stage). It is about 3,527px tall on desktop and ends in a large empty dark band. The full tiers section is at 3831–3975.
   - **Fix:**
     - Method timeline: a 3×2 card grid on desktop, and a swipeable carousel or accordion on mobile. Remove the trailing empty band.
@@ -219,11 +220,11 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
     - Check other long sections for content that can be cut.
     - After replacing the timeline, delete `premium-vertical-timeline-html.html`, `premium-vertical-timeline-style.html` and `PREMIUM-TIMELINE-README.md` from the repo root. They are publicly deployed scratch files.
   - **Verify:** `document.documentElement.scrollHeight` on `/` at 390px is under about 10,000px. No empty band taller than 200px at any width.
-- [ ] **11. Hero slider arrows overlap text.** Audit priority: Medium.
+- [x] **11. Hero slider arrows overlap text.** Audit priority: Medium.
   - **Where:** `index.html` 341 and 344 (`button.hero-arrow--prev/--next`). Their CSS is inline in `index.html` ~194–240.
   - **Fix:** Below 768px, hide `.hero-1 .hero-arrow` and use swipe plus pagination dots placed under the CTA buttons. Add dots if none exist.
   - **Verify:** At 320 and 390px no control overlaps text, and swiping changes the slide (test with touch emulation).
-- [ ] **12. Scroll-to-top button covers content.** Audit priority: Medium.
+- [x] **12. Scroll-to-top button covers content.** Audit priority: Medium.
   - **Where:** `index.html` 77 (`button#back-top.back-to-top`, the same on all pages). CSS at `main.css` ~11336–11400. Its show logic is in `main.js`; grep `back-top`.
   - **Fix:** Show it only after scrolling 1.5× the viewport height, make it 40px, and add `padding-bottom:72px` to the last section on mobile. Or hide it below 768px.
   - **Verify:** At 390px, no text or form control (including contact chips) is covered at any scroll position.
@@ -394,9 +395,9 @@ You can extend the `evaluate` expressions per phase. Useful one-liners to paste 
 - [ ] Service cards line up with the logo at 1024/1440. The CTA banner is identical on all pages. Chips and consent are ≥44px. The logo is ≥36px tall at 320. No wrapped buttons at 1024–1440. One number per card. No empty block over 200px in About. FAQ question 1 is visible at 1440×900. No text under 13px.
 
 **Phase 3: animations and length**
-- [ ] With JS off, all text is visible. With reduced motion, there is no animation. No letter-by-letter headings. Anchor links land on visible content.
-- [ ] Homepage `pageHeight` at 390px is under about 10,000. No empty band over 200px. No hero arrows under 768px, and swipe works. Back-to-top covers nothing at 390px.
-- [ ] Re-run the full Phase 2 menu check: ScrollSmoother changes can break the offcanvas and anchors.
+- [x] With JS off, all text is visible. With reduced motion, there is no animation. No letter-by-letter headings. Anchor links land on visible content.
+- [x] Homepage `pageHeight` at 390px is under about 10,000. No empty band over 200px. No hero arrows under 768px, and swipe works. Back-to-top covers nothing at 390px.
+- [x] Re-run the full Phase 2 menu check: ScrollSmoother changes can break the offcanvas and anchors.
 
 **Phase 4: trust and naming**
 - [ ] No `javascript:void(0)` and no bare `linkedin.com` links. The claims grep is clean. Module names and the brand name are identical everywhere. The primary CTA is "Book a scoping call" everywhere. No fake contact data, testimonials or stats are rendered.
