@@ -12,7 +12,7 @@
     
       $('#mobile-menu').meanmenu({
         meanMenuContainer: '.mobile-menu',
-        meanScreenWidth: "1199",
+        meanScreenWidth: "991", // desktop nav from 992px (audit: nav fits at 1024px); keep in sync with main.css "Audit Phase 2"
         meanExpand: ['<i class="far fa-plus"></i>'],
     });
 

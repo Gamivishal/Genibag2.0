@@ -3,6 +3,13 @@
 Source: `Docs/Recruitment_Website_Design_Audit.pdf` (23 Nov 2026, 27 actions: 4 High, 14 Medium, 9 Low)
 Site: https://genibag2-0.vercel.app (static HTML on Vercel, `cleanUrls: true`)
 
+### Status (branch `audit-fixes`)
+| Phase | State |
+|---|---|
+| 1: Form endpoint | Done. Needs `RESEND_API_KEY` (and `CONTACT_FROM` once the domain is verified) in Vercel, plus a live test. |
+| 2: Mobile menu / nav | Done: items 3, 4, 6, 7. Item 5 (sticky mobile bar, optional) skipped. Phone link waiting on D3 (placeholder comment in each page's menu panel). Item 8 depends on D1. |
+| 3–7 | Not started |
+
 ---
 
 ## 0. How this project is built (read before you change anything)

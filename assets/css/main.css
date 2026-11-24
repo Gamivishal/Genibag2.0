@@ -17322,3 +17322,87 @@ html.genie-is-menu-transition #genie-menu-loader {
   }
 }
 
+
+/* ==========================================================================
+   Audit Phase 2: mobile menu & navigation
+   (Docs/Audit_Fix_Plan.md items 3, 4, 6, 7. Breakpoint 992px matches
+   meanScreenWidth "991" in assets/js/main.js.)
+   ========================================================================== */
+
+/* Item 3: the panel never exceeds the viewport. The fixed 470/390/340px widths
+   plus translateX(-15px) pushed it off-screen at 320px; 15px gutter each side. */
+.offcanvas__info {
+  max-width: calc(100vw - 30px);
+}
+@media (max-width: 450px) {
+  .offcanvas__wrapper {
+    padding: 20px 20px 20px 24px;
+  }
+}
+
+/* Item 4: primary booking action + direct contact at the top of the panel */
+.offcanvas__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+.offcanvas__cta .offcanvas__book {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.offcanvas__cta .offcanvas__book i {
+  margin-left: 10px;
+}
+.offcanvas__cta .offcanvas__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: var(--white);
+  font-weight: 500;
+  word-break: break-all;
+}
+.offcanvas__cta .offcanvas__link i {
+  color: var(--theme);
+}
+.offcanvas__cta .offcanvas__link:hover {
+  color: var(--theme);
+}
+
+/* Items 6 + 7: full desktop nav and CTA from 992px; the hamburger is only for
+   the collapsed (mobile/tablet) menu. */
+@media (min-width: 992px) {
+  .header-1 .header__hamburger {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .header-1 .header-right .theme-btn {
+    display: inline-flex;
+    padding: 0 16px;
+    font-size: 14px;
+    height: 44px;
+    line-height: 44px;
+  }
+  .header-1 .header-right .theme-btn i {
+    margin-left: 6px;
+  }
+  .header-main .main-menu ul li {
+    margin-inline-end: 18px;
+  }
+  .header-main .main-menu ul li a {
+    font-size: 15px;
+  }
+  .header-1 .header-right {
+    gap: 14px !important;
+  }
+  .header-1 .logo img {
+    max-width: 180px !important;
+  }
+}
