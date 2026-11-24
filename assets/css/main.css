@@ -18088,3 +18088,17 @@ html.genie-is-menu-transition #genie-menu-loader {
     font-size: 13.5px !important;
   }
 }
+
+/* ==========================================================================
+   Phase 4: Trust Content & Sentence-Case CTA Overrides
+   ========================================================================== */
+.theme-btn,
+.theme-btn span,
+.theme-btn .btn-title,
+.offcanvas__book,
+.header-1 .theme-btn,
+.gbh-cta__btn,
+.gba-btn,
+.gbh-btn {
+    text-transform: none !important;
+}

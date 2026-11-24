@@ -230,8 +230,9 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
   - **Verify:** At 390px, no text or form control (including contact chips) is covered at any scroll position.
 
 ### Phase 4: Trust content and consistent naming
+*Status: Done. Email info@geniebag.com visible in footers and offcanvas across all 7 pages with non-rendering placeholders for client phone, address, and registration. Dead social links and generic linkedin.com links removed, leaving email and placeholder comments. Unsupported claims softened ("Confidential Deliverable", "Statutory Confidentiality", and stats strip reframed to 6 Modules, 6-Stage Method, 3 Tiers, 1 Action Plan). Commented-out testimonials and logo row added to index.html. 6 canonical module names unified across cards, modals, hero marquee, sidebar, and all 7 footers. Visible brand name unified to "Geniebag Solutions" everywhere, and primary CTA unified to sentence-case "Book a scoping call" with CSS text-transform: none override.*
 
-- [ ] 🔒 **13. Contact details on every page.** Audit priority: Medium.
+- [x] 🔒 **13. Contact details on every page.** Audit priority: Medium.
   - **Where:**
     - The footer of all 7 pages (footer contact column near the "Schedule Scoping Call" button; see the item 23 lines).
     - The footer bottom bar ("© 2026 Geniebag Solutions …").
@@ -240,24 +241,24 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
     - The `off-contact-info` block. It has 2 variants: `index`, `service-details` and `404` show "Consultation & Inquiries / Expertise / Engagement"; the other 4 show "Contact Info / Email / Consultation". Make them the same.
   - **Fix:** Add email now. Phone (`tel:`), registered address, business hours, legal entity name and registration number need the client, so add placeholder comments for them. Do not render fake values.
   - **Verify:** Email, plus phone and address once supplied, are visible in the footer at 390 and 1440px, and `tel:` opens the dialler on a phone.
-- [ ] 🔒 **14. Social links.** Audit priority: Medium.
+- [x] 🔒 **14. Social links.** Audit priority: Medium.
   - **Where:**
     - Footer icons with `href="javascript:void(0)"` (LinkedIn, Twitter, Facebook), 3 per page: `index` 4215, `about` 984, `service` 454, `service-details` 643, `faq` 380, `contact` 498, `404` 263.
     - Offcanvas "Follow us" LinkedIn `href="https://linkedin.com"` at ~129–147 in each page. `about.html` 842 also uses it.
   - **Fix:** Remove every icon that has no real company profile (now: all of them except email). When the client supplies URLs, add them back with `target="_blank" rel="noopener"` and `aria-label="Geniebag Solutions on LinkedIn"`.
   - **Verify:** `grep -c "javascript:void(0)\|https://linkedin.com\"" *.html` gives 0, and every remaining icon opens the right profile in a new tab.
-- [ ] **15. Unsupported claims.** Audit priority: Medium.
+- [x] **15. Unsupported claims.** Audit priority: Medium.
   - **Where:**
     - `service.html` ~595 "Confidential & Legally Vetted Deliverable" (module modal).
     - `contact.html` ~378 "ISO-Aligned & Statutory Confidentiality".
     - `index.html` 1605–1622 stats strip: "100% Statutory & Practical Scope", "0 Unnecessary Disruption" and the others.
   - **Fix:** Reword to supportable statements that match the FAQ disclaimer ("not a guarantee of legal compliance"), for example "Confidential deliverable" and "Statutory confidentiality". 🔒 Replace the stats with verifiable numbers (audits completed, years in practice, states covered, industries served) once the client supplies them. Until then, use non-numeric labels or hide the strip.
   - **Verify:** `grep -in "vetted\|iso-\|guarantee\|certified\|100%\|unnecessary disruption" *.html` returns only supported text, including the disclaimer.
-- [ ] 🔒 **16. Testimonials and client logos.** Audit priority: Medium.
+- [x] 🔒 **16. Testimonials and client logos.** Audit priority: Medium.
   - **Where:** `index.html`, a new block above the tiers teaser (tiers is currently at 3831).
   - **Fix:** Build the markup and CSS for 3 testimonials (quote, name, role, company) and a logo row, but **keep them out of the page** (commented out or not added) until the client supplies real, permitted content. Do not use placeholder names or quotes on the live site.
   - **Verify:** Once there is content: at 1440px, Home shows at least one testimonial and one verifiable metric within 2 scrolls.
-- [ ] **17. One name for each module.** Audit priority: Medium.
+- [x] **17. One name for each module.** Audit priority: Medium.
   - **Canonical names** (from README and the homepage cards):
     1. HR Compliance Review
     2. HR Process Audit
@@ -274,7 +275,7 @@ Item numbers match `Docs/Audit_Fix_Plan.md`.
     - Hero marquee chips in `index.html` (~430–455).
   - **Fix:** Use the canonical names everywhere a module is named. Descriptive subtitles under a name are fine.
   - **Verify:** Grep each canonical name. Every location uses it, and no old variant remains (`grep -n "Statutory & Compliance Audit\|Operations & Process Audit\|Records Audit\"" *.html`).
-- [ ] **18. One brand name and one CTA label.** Audit priority: Low (CTA wording) / Medium (brand, part of service naming).
+- [x] **18. One brand name and one CTA label.** Audit priority: Low (CTA wording) / Medium (brand, part of service naming).
   - **Where:**
     - Brand variants: `index.html` 357 hero eyebrow "GENIE BAG HR CONSULTANCY • THE MANAGEMENT BASKET"; `index.html` ~3125 "Why Genie Bag" eyebrow; `about.html` 760 "ABOUT GENIE BAG SOLUTIONS" and 775 alt text; `service.html` 559 "Genie Bag HR Audit Suite". Also grep `-i "genie bag"` for visible text (HTML comments don't matter).
     - CTA variants: "Book A Scoping Call" or "Book a Scoping Call" at `*.html` lines ~102 and ~171 (offcanvas and header), `index` 375, 415, 3960, 3971, 4191; "Get In Touch Today" (CTA banners, item 20); "Schedule Scoping Call" (footers, item 23, plus `index` 2871); "Talk to us" (`index` ~3971); "Request Support" (`service.html` 404, `index` ~3960).
@@ -400,7 +401,7 @@ You can extend the `evaluate` expressions per phase. Useful one-liners to paste 
 - [x] Re-run the full Phase 2 menu check: ScrollSmoother changes can break the offcanvas and anchors.
 
 **Phase 4: trust and naming**
-- [ ] No `javascript:void(0)` and no bare `linkedin.com` links. The claims grep is clean. Module names and the brand name are identical everywhere. The primary CTA is "Book a scoping call" everywhere. No fake contact data, testimonials or stats are rendered.
+- [x] No `javascript:void(0)` and no bare `linkedin.com` links. The claims grep is clean. Module names and the brand name are identical everywhere. The primary CTA is "Book a scoping call" everywhere. No fake contact data, testimonials or stats are rendered.
 
 **Before merging to `main`** (the owner does this, not the agent): Lighthouse (performance and accessibility), real iOS Safari and Android devices, keyboard-only navigation through the menu and the form.
 
